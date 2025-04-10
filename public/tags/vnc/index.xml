@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VNC on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/vnc/</link>
+    <description>Recent content in VNC on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/vnc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IoT Remote Access, Control and Management Over the Internet</title>
+      <link>http://localhost:51627/iot/iot-remote-access-control-over-the-internet/</link>
+      <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/iot-remote-access-control-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to remotely access, control and manage your IoT devices from outside of our home or office network over the internet, allowing you to remotely manage your IoT device from anywhere.&lt;/p&gt;&#xA;&lt;p&gt;IoT is quickly becoming popular worldwide because of the unlimited workflow automation opportunities that comes with it. However, if not managed properly, these IoT devices can become a liability and lead to customer churn, resulting in lost revenue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Securely Remote Access MySQL or Any Database in Raspberry Pi behind Firewall</title>
+      <link>http://localhost:51627/iot/secure-remote-access-mysql-database-raspberry-pi-behind-firewall-over-the-internet-anywhere/</link>
+      <pubDate>Mon, 07 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/secure-remote-access-mysql-database-raspberry-pi-behind-firewall-over-the-internet-anywhere/</guid>
+      <description>&lt;p&gt;In this article, we’ll discuss how to securely remote access MySQL database or any database(DB) in a Raspberry Pi in a private network (behind NAT router and firewall) over the internet.&lt;/p&gt;&#xA;&lt;p&gt;You can use the same procedure to remote access any database (PostgresSQL, MariaDB, GridDB, SQLite, Redis etc) in your Raspberry Pi or IoT over the internet.&lt;/p&gt;&#xA;&lt;p&gt;We will use &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;SocketXP IoT Remote Access solution&lt;/a&gt; to securely connect to your remote MySQL database.  SocketXP is very simple and easy to setup.  SocketXP has a free trial plan.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Remotely Connect to Linux Desktop via VNC from Windows: A Step-by-Step Guide
+</title>
+      <link>http://localhost:51627/iot/remotely-connect-linux-desktop-gui-via-vnc-from-windows/</link>
+      <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remotely-connect-linux-desktop-gui-via-vnc-from-windows/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to remotely access your Linux or Ubuntu desktop GUI from Windows using VNC, making it easier than ever to manage your Linux server from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the Linux server is its ability to be accessed remotely, allowing you to control it from another device. One of the most common methods to achieve this is by using Virtual Network Computing (VNC).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Securely Remote Access MySQL Database Behind Firewall</title>
+      <link>http://localhost:51627/iot/secure-remote-access-mysql-database-behind-firewall-over-the-internet/</link>
+      <pubDate>Thu, 06 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/secure-remote-access-mysql-database-behind-firewall-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we’ll discuss how to securely remote connect to a MySQL database running in a private network (behind NAT router and firewall) over the internet.&lt;/p&gt;&#xA;&lt;p&gt;You can use the same procedure to remote access any database (Postgresql, MariaDB, Redis DB, SQLite etc.) over the internet.&lt;/p&gt;&#xA;&lt;p&gt;We will use &lt;a href=&#34;http://localhost:51627/&#34;&gt;SocketXP Remote Access solution&lt;/a&gt; to securely connect to your remote MySQL database.  SocketXP is very simple and easy to setup.  SocketXP has a free trial plan.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Remotely Connect to IoT via VNC : A Step-by-Step Guide
+</title>
+      <link>http://localhost:51627/iot/remotely-connect-iot-via-vnc/</link>
+      <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remotely-connect-iot-via-vnc/</guid>
+      <description>&lt;p&gt;One of the key features of IoT is its ability to be accessed remotely, allowing you to control it from another device. One of the most common methods to achieve this is by using Virtual Network Computing (VNC).&lt;/p&gt;&#xA;&lt;p&gt;In this article, we will guide you through the process of remotely connecting to a IoT such as Raspberry Pi, Nvidia Jetson Nano, or Google Coral via VNC.&lt;/p&gt;&#xA;&lt;p&gt;Remotely connecting and accessing a IoT Remote Desktop involves the following steps:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

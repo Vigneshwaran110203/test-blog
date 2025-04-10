@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>Update Firmware in your IoT using SocketXP OTA Update</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">Update Firmware in your IoT using SocketXP OTA Update</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">Update Firmware in your IoT using SocketXP OTA Update</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Mar 7, 2025
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#creating-and-deploying-ota-updates">Creating and Deploying OTA Updates</a>
+      <ul>
+        <li><a href="#workflow-script---updatesh">Workflow Script - update.sh</a></li>
+        <li><a href="#upload-the-artifact">Upload the artifact</a></li>
+        <li><a href="#deploy-the-artifact">Deploy the Artifact</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/update-iot-firmware-using-socketxp-ota-update/" title="Update Firmware in your IoT using SocketXP OTA Update">
+                        <img src="/assets/img/ota-update/ota-update.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#creating-and-deploying-ota-updates">Creating and Deploying OTA Updates</a>
+      <ul>
+        <li><a href="#workflow-script---updatesh">Workflow Script - update.sh</a></li>
+        <li><a href="#upload-the-artifact">Upload the artifact</a></li>
+        <li><a href="#deploy-the-artifact">Deploy the Artifact</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this article, we will show you how to remotely update firmware (A/B update) on a fleet of IoT or embedded Linux devices using <a href="/iot-ota-update">SocketXP&rsquo;s Over-the-Air(OTA) update</a> feature.</p>
+<p>SocketXP is an <a href="/socketxp-iot-device-management-platform">IoT device management platform</a> that can be used to remotely manage, monitor, access, update and control IoT or any embedded Linux devices at massive scale.</p>
+<p><a href="/iot-ota-update">SocketXP&rsquo;s OTA update</a> feature is extremely useful when you have to deploy software update on a fleet of IoT devices or embedded devices in your customer&rsquo;s network behind a NAT router or Firewall or out in the field connected via a cellular network.</p>
+<p>The OTA update feature can be used to update the following types of artifacts:</p>
+<ul>
+<li>Firmware</li>
+<li><a href="/iot/update-iot-debian-packages-using-socketxp-ota-update">Software packages (Debian, RPM)</a></li>
+<li><a href="/iot/update-iot-app-using-socketxp-ota-update">Application binaries</a></li>
+<li><a href="/iot/update-iot-docker-containers-using-socketxp-ota-update">Docker containers</a></li>
+<li>Program files</li>
+<li>Config files</li>
+<li>Execute a script or command</li>
+</ul>
+<p>on multiple remote devices.</p>
+<h2 id="creating-and-deploying-ota-updates">Creating and Deploying OTA Updates</h2>
+<p>Creating and deploying OTA updates using the tool is a two step process:</p>
+<ol>
+<li>Create and upload an OTA update workflow script as an artifact to the SocketXP Artifact Registry</li>
+<li>Deploy the workflow script on a group of devices</li>
+</ol>
+<p>The basic concept behind this two-step approach is to reuse the uploaded script to deploy OTA updates on  different group of devices.</p>
+<p>The workflow script will download firmware images from a third-party registry and update the firmware in the target IoT devices.</p>
+<h3 id="workflow-script---updatesh">Workflow Script - update.sh</h3>
+<p>The OTA update workflow script contains all the instructions required to update the firmware installed in the IoT devices.</p>
+<p>The OTA update workflow script is designed to provide a robust and automated mechanism for updating the root filesystem of an embedded Linux device using U-Boot as its bootloader.</p>
+<p>It implements an A/B partitioning scheme, which allows for safe updates and reliable rollbacks in case of failures.</p>
+<blockquote>
+<p>Note:  The workflow script is just a blueprint provided for guidance.  You should modify the script to suit your hardware and bootloader requirements.  The script may not work as-is on many hardware platforms.</p></blockquote>
+<p>The firmware update script we will use for this example can be downloaded from our <a href="https://github.com/ampaslabs/ota-update-build-artifacts">official git repository</a>.</p>
+<p>Let’s quickly look at the contents of the <code>update.sh</code> workflow script.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+#!/bin/bash
+
+#================================================
+# Firmware Update Workflow Script
+#================================================
+
+# The script implements A/B system update with U-Boot boatloader.
+# U-Boot's "bootcmd" should refer to the "bootpart" variable to decide
+# which boot partition to boot from.
+# Performs healthcheck and rollback on failure.
+
+# Configuration
+NEW_ROOTFS_IMAGE="$1"
+ROOTFS_A="/dev/mmcblk0p2"
+ROOTFS_B="/dev/mmcblk0p3"
+TEMP_IMAGE="/tmp/new_rootfs.img"
+MOUNT_POINT="/mnt/new_rootfs"
+HEALTH_CHECK_SCRIPT="/etc/init.d/health_check.sh"
+UBOOT_BOOT_PART_VAR="bootpart"
+UBOOT_BOOT_COUNT_VAR="bootcount"
+UBOOT_BOOT_LIMIT="3"
+UBOOT_PART_A_VALUE="1"
+UBOOT_PART_B_VALUE="2"
+
+# Function to get current boot partition
+get_current_boot_part() {
+  local bootpart=$(fw_printenv "$UBOOT_BOOT_PART_VAR" | awk -F '=' '{print $2}')
+  echo "$bootpart"
+}
+
+# Function to set boot partition
+set_boot_part() {
+  local part_value="$1"
+  fw_setenv "$UBOOT_BOOT_PART_VAR" "$part_value"
+}
+
+# Function to reset boot count
+reset_boot_count() {
+  fw_setenv "$UBOOT_BOOT_COUNT_VAR" "0"
+}
+
+# Function to switch boot partition
+switch_boot_part() {
+  local current_part=$(get_current_boot_part)
+  if [ "$current_part" == "$UBOOT_PART_A_VALUE" ]; then
+    set_boot_part "$UBOOT_PART_B_VALUE"
+  else
+    set_boot_part "$UBOOT_PART_A_VALUE"
+  fi
+  reset_boot_count
+}
+
+# Main update process
+echo "$(date) - Starting OTA update..."
+
+# Download the new rootfs image
+echo "$(date) - Downloading image from $NEW_ROOTFS_IMAGE..."
+curl -s -o "$TEMP_IMAGE" "$NEW_ROOTFS_IMAGE"
+if [ $? -ne 0 ]; then
+  echo "$(date) - Error downloading image."
+  rm "$TEMP_IMAGE"
+  exit 1
+fi
+
+# Download the checksum file
+echo "$(date) - Downloading checksum file..."
+curl -s -o "$CHECKSUM_FILE" "${NEW_ROOTFS_IMAGE}.sha256"
+if [ $? -ne 0 ]; then
+  echo "$(date) - Error downloading checksum file."
+  rm "$TEMP_IMAGE"
+  rm "$CHECKSUM_FILE"
+  exit 1
+fi
+
+# Verify checksum
+echo "$(date) - Verifying checksum..."
+if ! sha256sum -c "$CHECKSUM_FILE" 2>/dev/null | grep -q "OK"; then
+  echo "$(date) - Checksum verification failed."
+  rm "$TEMP_IMAGE"
+  rm "$CHECKSUM_FILE"
+  exit 1
+fi
+
+# Determine the target partition
+local current_part=$(get_current_boot_part)
+if [ "$current_part" == "$UBOOT_PART_A_VALUE" ]; then
+  TARGET_ROOTFS="$ROOTFS_B"
+else
+  TARGET_ROOTFS="$ROOTFS_A"
+fi
+
+# Unmount target rootfs if mounted.
+if mount | grep "$TARGET_ROOTFS" ; then
+        umount "$TARGET_ROOTFS"
+fi
+
+# Write the new image to the target partition
+echo "$(date) - Writing image to $TARGET_ROOTFS..."
+dd if="$TEMP_IMAGE" of="$TARGET_ROOTFS" bs=4M status=progress
+if [ $? -ne 0 ]; then
+  echo "$(date) - Error writing image to $TARGET_ROOTFS."
+  rm "$TEMP_IMAGE"
+  rm "$CHECKSUM_FILE"
+  exit 1
+fi
+
+# Clean up the downloaded image and checksum file
+rm "$TEMP_IMAGE"
+rm "$CHECKSUM_FILE"
+
+
+# Mount the new rootfs to copy health check script
+mkdir -p "$MOUNT_POINT"
+mount "$TARGET_ROOTFS" "$MOUNT_POINT"
+if [ $? -ne 0 ]; then
+        echo "$(date) - Failed to mount $TARGET_ROOTFS"
+        exit 1
+fi
+
+# Copy health check script to the new rootfs
+cat &lt&ltEOF &gt "$MOUNT_POINT$HEALTH_CHECK_SCRIPT"
+#!/bin/bash
+
+# Configuration
+UBOOT_BOOT_COUNT_VAR="bootcount"
+UBOOT_BOOT_LIMIT="3"
+
+# Function to get current boot count
+get_boot_count() {
+  fw_printenv "\$UBOOT_BOOT_COUNT_VAR" | awk -F '=' '{print \$2}'
+}
+
+# Function to increment boot count
+increment_boot_count() {
+  local current_count=\$(get_boot_count)
+  local new_count=\$((\$current_count + 1))
+  fw_setenv "\$UBOOT_BOOT_COUNT_VAR" "\$new_count"
+}
+
+# Function to switch boot partition (rollback)
+switch_boot_part() {
+  local current_part=\$(fw_printenv "bootpart" | awk -F '=' '{print \$2}')
+  if [ "\$current_part" == "1" ]; then
+    fw_setenv "bootpart" "2"
+  else
+    fw_setenv "bootpart" "1"
+  fi
+  fw_setenv "\$UBOOT_BOOT_COUNT_VAR" "0"
+}
+
+# Main health check logic
+sleep 60
+ping -c 1 google.com > /dev/null
+if [ \$? -ne 0 ]; then
+  echo "\$(date) - Health check failed."
+  increment_boot_count
+
+  local current_count=\$(get_boot_count)
+  if [ "\$current_count" -ge "\$UBOOT_BOOT_LIMIT" ]; then
+    echo "\$(date) - Boot limit reached. Triggering rollback."
+    switch_boot_part
+    reboot
+  else
+    echo "\$(date) - Boot count incremented. Rebooting."
+    reboot
+  fi
+else
+  echo "\$(date) - Health check successful. Resetting boot count."
+  fw_setenv "\$UBOOT_BOOT_COUNT_VAR" "0"
+  rm /etc/init.d/health_check.sh # Remove health check script
+  exit 0
+fi
+EOF
+
+chmod +x "$MOUNT_POINT$HEALTH_CHECK_SCRIPT"
+umount "$MOUNT_POINT"
+rmdir "$MOUNT_POINT"
+
+# Switch boot to the new rootfs
+switch_boot_part
+
+# Reboot to load the new rootfs
+reboot
+</pre>
+<p><strong>Explanation</strong>:</p>
+<p>What the <code>update.sh</code> workflow script does is:</p>
+<ul>
+<li>
+<p>The script begins by initializing configuration variables, including the download URL for the new <code>root filesystem image</code>, the target partitions for <code>A/B updates</code>, temporary file paths, <code>U-Boot</code> environment variable names, and boot count limits. It also defines functions to manipulate the <code>U-Boot</code> environment, such as getting and setting the boot partition, resetting the boot count, and switching between boot partitions.</p>
+</li>
+<li>
+<p>The script proceeds to download the new <code>root filesystem image</code> and its corresponding <code>checksum file</code> from the provided URLs, verifying the integrity of the downloaded image by comparing its checksum against the downloaded checksum file. If the verification fails, the script terminates. Otherwise, it identifies the target partition for the update based on the current boot partition, unmounts the target partition if necessary, and writes the new root filesystem image to it using the <code>dd</code> command.</p>
+</li>
+<li>
+<p>Following the image write, the script mounts the new root filesystem to a temporary mount point and creates a <code>health check script</code> within it. What the health check script does: This health check script, designed to run after the system reboots, verifies basic system functionality (e.g., network connectivity). If the health check fails, the script increments the boot count in <code>U-Boot</code> and initiates a <code>rollback</code> to the previous root filesystem partition if the boot count exceeds the defined limit; otherwise, it reboots. If the health check succeeds, the script resets the boot count, removes itself, and exits.</p>
+</li>
+<li>
+<p>Finally, the main script switches the boot partition in U-Boot to the newly updated partition and reboots the device.</p>
+</li>
+</ul>
+<h3 id="upload-the-artifact">Upload the artifact</h3>
+<p>We will upload the workflow script <code>update.sh</code> directly to the SocketXP Artifact Registry as a <code>script</code> type artifact.</p>
+<p>Login to your SocketXP account using the web potal and go to the OTA update page.  In the Artifacts table, click the “Upload new artifact” button.</p>
+<p>A new window will popup as show below.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/container/iot-ota-update-docker-container-update-artifact-upload.png" alt="SocketXP IoT OTA Update - Update IoT firmware on remote embedded Linux devices" style="max-width:50%;max-height:;">
+</div>
+
+<p>Select the <code>artifact type</code> as <code>&quot;script&quot;</code>.</p>
+<p>Browse and select the <code>update.sh</code> file.</p>
+<p>Specify the appropriate version for the artifact, <code>1.0.0</code> in this example.</p>
+<p>Specify the destination folder in the target device where the script should be downloaded and executed.  For example: <code>/tmp or /home/user/myapp or /usr/bin</code></p>
+<p>Specify the command to execute the script in the target device. For example: <code>/bin/bash update.sh</code></p>
+<p>Finally, click the &ldquo;Upload&rdquo; button to upload the artifact to the cloud registry.</p>
+<p>You’ll see a message saying “File uploaded successfully”</p>
+<h3 id="deploy-the-artifact">Deploy the Artifact</h3>
+<p>Now that the artifact has been uploaded to the SocketXP Artifact Registry in the cloud, let’s deploy the artifact/script to run on target devices.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/container/iot-ota-update-docker-container-update-artifact-summary.png" alt="SocketXP OTA Update upload an IoT app binary to SocketXP cloud artifact registry" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>From the Artifacts table, view and select the artifact you have just uploaded.</p>
+<p><strong>Note</strong>: If you don&rsquo;t see your artifact yet, click the &ldquo;Refresh&rdquo; button to reload the table data.</p>
+<p>Click the <code>“+” icon</code> next to the artifact to create a new deployment.</p>
+<p>A new window will popup, as shown below.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/container/iot-ota-update-docker-linux-container-update-create-deployment.png" alt="SocketXP OTA Update - deploy and update firmware on a fleet of remote iot and embedded Linux devices" style="max-width:50%;max-height:;">
+</div>
+
+<p>Give a name for the deployment, say for example, <code>“deploy-version-1.0.0-to-test-devices”</code>.</p>
+<p>Specify the target device ID or the device group or select a tag to deploy the artifact on.</p>
+<p><strong>Note</strong>: You can deploy the artifact on a single device ID, or a device group or a device tag.  If you want to deploy the artifact on more than one device group or device tag, repeat the &ldquo;Create New Deployment&rdquo; process for the different group or tag.</p>
+<p>Finally, click the “Create Deployment” button.</p>
+<p>Now, go to the “Deployments” tab, hit the refresh button.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/container/iot-ota-update-docker-linux-container-update-deployments-summary.png" alt="SocketXP OTA Update - View the summary of firmware OTA updates deployed" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>View and select the deployment we just created to see its progress.</p>
+<p>Click the <code>“More Info &lt; &gt;”</code> button to view and monitor the progress of the deployment on each target devices (in the device group or tag).</p>
+<p>Click the “Refresh” button to view the progress.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/container/iot-ota-update-docker-linux-container-update-deployment-progress.png" alt="SocketXP OTA Update - View the progress of firmware OTA updates deployed on each IoT or embedded Linux device" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>You can check the stdout and stderr logs generated by the update process, by clicking the “view log” buttons.</p>
+<p>Login into one of the devices to check if the firmware update is successful.</p>
+<p>Congratulations!  We have successfully updated the firmware in the remote IoT or embedded Linux devices using <a href="/iot-ota-update">SocketXP OTA update</a>.</p>
+<p>Now that you have learnt how to deploy firmware OTA updates to remote IoT devices, you can learn to create OTA updates for the following types of artifacts:</p>
+<ul>
+<li><a href="/iot/update-iot-app-using-socketxp-ota-update">App Binary</a></li>
+<li><a href="/iot/update-iot-debian-packages-using-socketxp-ota-update">Debian Package</a></li>
+<li><a href="/iot/update-iot-docker-containers-using-socketxp-ota-update">Docker Container</a></li>
+<li>Config File</li>
+<li>Script File</li>
+</ul>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

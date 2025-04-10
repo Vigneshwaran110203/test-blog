@@ -1,0 +1,60 @@
+{{ define "main" }}
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">{{ .Title }}</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">{{ .Title }}</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>{{ .Date.Format "Jan 2, 2006" }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            <!-- 📌 Table of Contents (TOC) - Fixed on Left -->
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit">{{ .TableOfContents | safeHTML }}</div>
+            </div>
+
+            <!-- 📌 Blog Content (Main Section) -->
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                {{ if isset .Params "images" }}
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="{{ .Permalink }}" title="{{ .Title }}">
+                        <img src="{{ index .Params.images 0 }}" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                {{ end }}
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc">{{ .TableOfContents | safeHTML }}</div>
+                </div>
+                {{ .Content }}
+            </div>
+
+            <!-- 📌 Sales Banner - Fixed on Right -->
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+{{ end }}

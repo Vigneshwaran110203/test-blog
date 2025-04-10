@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Iot Security on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/iot-security/</link>
+    <description>Recent content in Iot Security on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 17 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/iot-security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mutual TLS Authentication and Zero Trust Security for IoT Devices: Securing Your Connected Devices
+</title>
+      <link>http://localhost:51627/iot/mutual-tls-zero-trust-security-iot-devices/</link>
+      <pubDate>Tue, 10 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/mutual-tls-zero-trust-security-iot-devices/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss the benefits of using &lt;a href=&#34;https://www.bastionxp.com/mutual-tls&#34;&gt;Mutual TLS(mTLS) authentication&lt;/a&gt; based &lt;a href=&#34;http://localhost:51627/iot/zero-trust-security-iot-devices&#34;&gt;zero trust security&lt;/a&gt; for remotely accessing IoT devices, including improved security, reduced risk of data breaches, and increased compliance.&lt;/p&gt;&#xA;&lt;p&gt;The article also provides an example use case for how &lt;a href=&#34;https://www.bastionxp.com&#34;&gt;BastionXP TLS certificate manager(PKI/CA)&lt;/a&gt; can be used to implement mTLS based zero trust security for IoT devices.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-mtls-authentication&#34;&gt;What is mTLS Authentication&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;(https://www.bastionxp.com/mutual-tls)&#34;&gt;Mutual TLS (mTLS) authentication&lt;/a&gt; is a method of authenticating both the client and server in a communication session. It uses TLS certificates to verify the identity of both parties, ensuring that they are who they claim to be.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Zero Trust Security for IoT Devices: Protecting Your Connected Devices
+</title>
+      <link>http://localhost:51627/iot/zero-trust-security-iot-devices/</link>
+      <pubDate>Sat, 13 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/zero-trust-security-iot-devices/</guid>
+      <description>&lt;p&gt;The Internet of Things (IoT) has revolutionized the way we live and work by connecting everyday devices to the internet.&lt;/p&gt;&#xA;&lt;p&gt;From smart homes to industrial automation, IoT devices are everywhere. However, as the number of connected devices grows, so does the risk of cyber threats.&lt;/p&gt;&#xA;&lt;p&gt;In this article, we’ll explore the importance of Zero Trust security for IoT devices and how it can help protect your connected devices from cyber threats.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

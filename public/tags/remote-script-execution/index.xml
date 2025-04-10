@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Remote Script Execution on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/remote-script-execution/</link>
+    <description>Recent content in Remote Script Execution on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 17 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/remote-script-execution/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remotely Execute Shell Commands or Scripts on your Linux server</title>
+      <link>http://localhost:51627/iot/remote-command-script-execution-linux-server/</link>
+      <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-command-script-execution-linux-server/</guid>
+      <description>&lt;p&gt;Are you looking for a way to execute remote command on your Linux servers from anywhere in the world?&lt;/p&gt;&#xA;&lt;p&gt;Want to break free from the limitations of physical proximity and execute commands remotely with ease? Remote command execution is the ultimate solution!&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s a game-changer for Linux server enthusiasts and professionals alike, offering unparalleled convenience and flexibility. Picture being able to execute commands on your Linux server from the comfort of your  home, office or even while on the go.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remotely Execute Shell Commands or Scripts on your IoT device</title>
+      <link>http://localhost:51627/iot/remote-command-script-execution-iot/</link>
+      <pubDate>Sat, 15 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-command-script-execution-iot/</guid>
+      <description>&lt;p&gt;Are you looking for a way to control your IoT projects from anywhere in the world?&lt;/p&gt;&#xA;&lt;p&gt;Want to break free from the limitations of physical proximity and execute commands remotely with ease? Remote command execution is the ultimate solution!&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s a game-changer for IoT enthusiasts and professionals alike, offering unparalleled convenience and flexibility. Picture being able to execute commands on your IoT from the comfort of your  home, office or even while on the go.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

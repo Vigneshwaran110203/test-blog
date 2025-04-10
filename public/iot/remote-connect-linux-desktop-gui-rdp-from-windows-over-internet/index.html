@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Remote Access Linux Desktop GUI from Windows over the Internet</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Remote Access Linux Desktop GUI from Windows over the Internet</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Remote Access Linux Desktop GUI from Windows over the Internet</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Aug 5, 2023
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-rdp">What is RDP</a></li>
+    <li><a href="#what-is-xrdp">What is xrdp</a></li>
+    <li><a href="#linux-server-remote-desktop-access-using-xrdp">Linux server Remote Desktop Access using xrdp</a></li>
+    <li><a href="#step-1-setting-up-a-desktop-environment-on-linux-server">Step 1: Setting up a Desktop environment on Linux server</a></li>
+    <li><a href="#step-2-install-and-setup-xrdp-on-linux-server">Step 2: Install and setup xrdp on Linux server</a></li>
+    <li><a href="#step-3-install-socketxp-linux-server-remote-access-agent">Step 3: Install SocketXP Linux Server Remote Access Agent</a></li>
+    <li><a href="#step-4-connect-to-linux-server-remote-desktop-using-rdp-client">Step 4: Connect to Linux server remote desktop using RDP Client</a>
+      <ul>
+        <li><a href="#connecting-from-local-network">Connecting from Local Network</a></li>
+        <li><a href="#connecting-from-outside-network-over-the-internet">Connecting from Outside Network Over the Internet</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+    <li><a href="#recommended-suggestions">Recommended Suggestions</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remote-connect-linux-desktop-gui-rdp-from-windows-over-internet/" title="How to Remote Access Linux Desktop GUI from Windows over the Internet">
+                        <img src="/assets/img/raspberry-pi-remote-desktop-access/remote-access-raspberry-pi-remote-desktop-xrdp-from-internet.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-rdp">What is RDP</a></li>
+    <li><a href="#what-is-xrdp">What is xrdp</a></li>
+    <li><a href="#linux-server-remote-desktop-access-using-xrdp">Linux server Remote Desktop Access using xrdp</a></li>
+    <li><a href="#step-1-setting-up-a-desktop-environment-on-linux-server">Step 1: Setting up a Desktop environment on Linux server</a></li>
+    <li><a href="#step-2-install-and-setup-xrdp-on-linux-server">Step 2: Install and setup xrdp on Linux server</a></li>
+    <li><a href="#step-3-install-socketxp-linux-server-remote-access-agent">Step 3: Install SocketXP Linux Server Remote Access Agent</a></li>
+    <li><a href="#step-4-connect-to-linux-server-remote-desktop-using-rdp-client">Step 4: Connect to Linux server remote desktop using RDP Client</a>
+      <ul>
+        <li><a href="#connecting-from-local-network">Connecting from Local Network</a></li>
+        <li><a href="#connecting-from-outside-network-over-the-internet">Connecting from Outside Network Over the Internet</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+    <li><a href="#recommended-suggestions">Recommended Suggestions</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this article, we&rsquo;ll discuss how to remotely access your Linux or Ubuntu desktop GUI from Windows using RDP, making it easier than ever to manage your Linux server from anywhere in the world.</p>
+<p>One of the most powerful features of the Linux is its ability to be accessed remotely, allowing you to control and interact with your Linux server or Ubuntu over the internet from outside network.</p>
+<p>And when it comes to remote desktop access on a Linux server, xrdp (X Remote Desktop Protocol) is the go-to solution.</p>
+<p>With xrdp, you can unlock a world of possibilities, from setting up a headless Linux server to accessing your Linux server&rsquo;s graphical desktop from any machine, be it a Windows, macOS, or Linux machine.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/T_ss1-a7qW8?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<h2 id="what-is-rdp">What is RDP</h2>
+<p>
+    <a href="https://learn.microsoft.com/en-us/troubleshoot/windows-server/remote/understanding-remote-desktop-protocol" rel="nofollow" target=""> Remote Desktop Protocol </a>
+(RDP) is a network protocol developed by Microsoft and is widely used by users to remotely access and interact with the graphical user interface of a remote machine such as Windows Server, Mac, or Linux machine including Linux server.</p>
+<p>RDP follows the client-server model, where an RDP client is installed on a local machine, and an RDP server is installed on the remote server or Linux server.</p>
+<h2 id="what-is-xrdp">What is xrdp</h2>
+<p>xrdp is an open-source software package that allows for remote desktop access to Linux-based operating systems, including Linux server.</p>
+<p>xrdp stands for &ldquo;X Remote Desktop Protocol&rdquo; and is a protocol that enables users to connect to a Linux-based desktop environment from a remote device, such as a Windows, macOS, or another Linux machine.</p>
+<p>xrdp uses the Remote Desktop Protocol (RDP) developed by Microsoft.</p>
+<p>xrdp is often used as an alternative to other remote desktop solutions, such as Virtual Network Computing (VNC), as it provides a more seamless and integrated experience for connecting to Linux-based systems.</p>
+<p>It allows users to access their Linux desktop environment remotely, run applications, edit files, and perform other tasks using a graphical interface, making it convenient for remote administration, support, and other use cases.</p>
+<h2 id="linux-server-remote-desktop-access-using-xrdp">Linux server Remote Desktop Access using xrdp</h2>
+<p>In this blog article, we will delve into the fascinating concept of Linux server remote desktop access using xrdp.</p>
+<p>We will guide you through the step-by-step process of setting up xrdp on your Linux server, exploring its features and configuration options, and providing tips and tricks to optimize your remote desktop experience.</p>
+<p>So, grab your Linux server, and let&rsquo;s embark on an exciting journey of unlocking the true potential of remote desktop access with xrdp!</p>
+<blockquote>
+<p><strong>Recommended for you:</strong>  How to securely <a href="/iot/remote-access-linux-server-ssh-over-the-internet-from-windows">remote access Linux Servers using SSH from Windows</a>.</p></blockquote>
+<h2 id="step-1-setting-up-a-desktop-environment-on-linux-server">Step 1: Setting up a Desktop environment on Linux server</h2>
+<p>Before you can remotely connect to your Linux server via xrdp, you need to make sure your Linux server is set up and running.</p>
+<p>This includes installing an operating system (such as Ubuntu) and connecting your Linux server to a display, keyboard, and mouse.</p>
+<p>Additionally, make sure your Linux server is connected to the internet via an Ethernet cable or Wi-Fi.</p>
+<p>For this tutorial we will assume that your Linux server doesn&rsquo;t have a GUI desktop environment installed. We will install XFCE desktop environment, to have the actual desktop accessible on the Linux server.</p>
+<p><strong>Note:</strong> If your Linux server already has a desktop environment set up, say Ubuntu Desktop, then you can skip this step and jump to the next step.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">sudo apt install -y xfce4 xfce4-goodies </pre>
+<p>Next, we will install xrdp to access this GUI desktop environment from a different machine.</p>
+<h2 id="step-2-install-and-setup-xrdp-on-linux-server">Step 2: Install and setup xrdp on Linux server</h2>
+<p>Following the below instructions to install xrdp on your Linux server:</p>
+<ol>
+<li>
+<p>Open a terminal window.</p>
+</li>
+<li>
+<p>Update the package list on your system by running the following command:
+<pre class="p-4 bg-background rounded overflow-x-auto">sudo apt update</pre></p>
+</li>
+<li>
+<p>Install xrdp by running the following command:
+<pre class="p-4 bg-background rounded overflow-x-auto">sudo apt install xrdp</pre></p>
+</li>
+<li>
+<p>Once the installation is complete, start the xrdp service by running the following command:
+<pre class="p-4 bg-background rounded overflow-x-auto">sudo systemctl start xrdp</pre></p>
+</li>
+<li>
+<p>Optionally, you can enable the xrdp service to start automatically at boot by running the following command:
+<pre class="p-4 bg-background rounded overflow-x-auto">sudo systemctl enable xrdp</pre></p>
+</li>
+<li>
+<p>It&rsquo;s important to configure your firewall settings in your Linux server to allow incoming RDP traffic to your Linux server on TCP port 3389 using the following command:
+<pre class="p-4 bg-background rounded overflow-x-auto">sudo ufw allow 3389/tcp</pre></p>
+</li>
+</ol>
+<p>Now you can access your Linux server desktop via xrdp from your Windows or Mac PC in a local network.  You can jump to Step #4 if you want to access Linux server remote desktop using an RDP client from a local network.</p>
+<p>But our goal is to connect to Linux server desktop remotely over the internet.</p>
+<p>For this, we&rsquo;ll use the SocketXP <a href="/remote-access-linux-server">Linux Server Remote Access</a> solution as shown in the next step.</p>
+<h2 id="step-3-install-socketxp-linux-server-remote-access-agent">Step 3: Install SocketXP Linux Server Remote Access Agent</h2>
+<p>We need to install SocketXP Linux Server Remote Access Agent to run in two different places:</p>
+<ul>
+<li>Linux server - in IoT Master Mode (Default Mode)</li>
+<li>Laptop or PC - in IoT Slave Mode</li>
+</ul>
+<p>Follow the SocketXP <a href="https://www.socketxp.com/download">download and install</a> instructions to install the SocketXP Remote Access agent on the Linux server and the access devices.</p>
+<p>To make SocketXP agent to run in IoT Master Mode (which is the default mode of SocketXP agent) use the below command.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ socketxp  connect tcp://localhost:3389
+
+Connected to SocketXP Cloud Gateway.
+Access the TCP service securely using the SocketXP agent in IoT Slave Mode.
+</pre>
+<p>where localhost port 3389 is the RDP server port, on which xrdp is listening for connections from a RDP client such as RDC.</p>
+<p>Next, to access the Linux server device from your Windows laptop or PC, install SocketXP Agent for Windows and run the below command:</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">
+$ ./socketxp.exe connect tcp://localhost:3000 --iot-slave --peer-device-id "2233-abcdefgh-2342abc" --peer-device-port 3389 --authtoken &lt;auth token&gt;
+Listening for TCP connections at:
+Local URL -> tcp://localhost:3000  
+</pre>
+where 3000 is a local port on your PC at which you want to access the Linux server.  You can choose to use any free local port instead of port 3000.</p>
+<p>You shall find the device ID of your Linux server device from the <a href="https://portal.socketxp.com/#/devices">SocketXP Portal page in the IoT Devices section</a>.  For our illustration, we assume <code>2233-abcdefgh-2342abc</code> is the device ID of your IoT device.</p>
+<h2 id="step-4-connect-to-linux-server-remote-desktop-using-rdp-client">Step 4: Connect to Linux server remote desktop using RDP Client</h2>
+<p>With xrdp up and running on your Linux server, you can now connect to it using an RDP client such as Remote Dekstop Connection (RDC) in Windows or Remmina in Linux.</p>
+<p>If you are using Linux, use the following command to install Remmina on your Ubuntu Linux based access device such as your laptop:
+<pre class="p-4 bg-background rounded overflow-x-auto">sudo apt update
+sudo apt install remmina</pre></p>
+<h3 id="connecting-from-local-network">Connecting from Local Network</h3>
+<p>To access the remote desktop GUI of your Linux server connected to your local network, simply open the Windows Remote Desktop Client(RDC), enter the IP address or hostname of your Linux server, and click &ldquo;Connect&rdquo;. Enter your Linux server&rsquo;s username and password when prompted.</p>
+<p>If you are using Linux, you can use the Remmina Remote Desktop Client, which is a popular RDP client for Linux. Open Remmina, click on &ldquo;New&rdquo; to create a new connection, select &ldquo;RDP&rdquo; as the protocol, and enter your Linux server&rsquo;s IP address or hostname, username, and password. Click &ldquo;Connect&rdquo; to establish the remote desktop connection.</p>
+<h3 id="connecting-from-outside-network-over-the-internet">Connecting from Outside Network Over the Internet</h3>
+<p>If you want to remotely access Linux server desktop from Windows over the internet using SocketXP <a href="/remote-access-linux-server">Linux Server Remote Access</a> solution, then enter <code>localhost</code> or <code>127.0.0.1</code> as the IP address and port <code>3000</code> on the RDC client.</p>
+<p>This is the IP address and port on which SocketXP agent configured to run in <code>iot-slave</code> mode, in Step#3 above, is listening for local proxy connections.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-desktop-access/raspberry-pi-remote-desktop-access-using-xrdp.png" alt="linux server remote desktop access RDP xrdp from anywhere" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Once connected, you will be able to see and interact with your Linux server&rsquo;s desktop environment, just as if you were physically sitting in front of it. You can run applications, edit files, and perform other tasks remotely.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-desktop-access/remote-access-raspberry-pi-remote-desktop-xrdp-from-internet.jpg" alt="linux server remote desktop access RDP xrdp from windows over the internet" style="max-width:80%;max-height:100%;">
+</div>
+
+<h2 id="conclusion">Conclusion:</h2>
+<p>With xrdp, remote access to your Linux server desktop GUI has never been easier.</p>
+<p><a href="/remote-access-linux-server">SocketXP Linux Server Remote Access Solution</a> is a highly scalable solution that uses secure SSL/TLS tunnel to remotely connect and access Linux server VNC server from a Windows Laptop or a Mac Book.</p>
+<p>By following the steps outlined in this article, you can quickly set up xrdp on your Linux server and establish a secure and convenient remote desktop connection from anywhere, anytime.</p>
+<p>Whether you&rsquo;re managing a Linux server remotely or accessing your Linux server for troubleshooting or maintenance purposes, xrdp is a powerful tool that enables you to stay connected to your Linux server with ease.</p>
+<p>Happy remote controlling your Linux server!</p>
+<h2 id="recommended-suggestions">Recommended Suggestions</h2>
+<p>Based on your interest, you may also be interested in:</p>
+<ul>
+<li>How to securely <a href="/iot/remote-access-linux-server-ssh-over-the-internet-from-windows">remote access Linux Server using SSH from Windows</a>.</li>
+</ul>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/489xTArHxCY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

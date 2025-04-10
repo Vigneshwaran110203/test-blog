@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>A Guide to IoT Performance Monitoring</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">A Guide to IoT Performance Monitoring</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">A Guide to IoT Performance Monitoring</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Nov 10, 2024
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-device-health-monitoring">1. Device Health Monitoring</a>
+      <ul>
+        <li><a href="#device-availability">Device Availability:</a></li>
+        <li><a href="#battery-and-power-levels">Battery and Power Levels:</a></li>
+        <li><a href="#environmental-conditions">Environmental Conditions:</a></li>
+        <li><a href="#firmware-and-software-versions">Firmware and Software Versions:</a></li>
+        <li><a href="#tools-for-device-health-monitoring">Tools for Device Health Monitoring:</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-network-performance-monitoring">2. Network Performance Monitoring</a>
+      <ul>
+        <li><a href="#latency">Latency:</a></li>
+        <li><a href="#bandwidth-utilization">Bandwidth Utilization:</a></li>
+        <li><a href="#packet-loss">Packet Loss:</a></li>
+        <li><a href="#network-protocols">Network Protocols:</a></li>
+        <li><a href="#tools-for-network-monitoring">Tools for Network Monitoring:</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-data-integrity-and-quality-assurance">3. Data Integrity and Quality Assurance</a>
+      <ul>
+        <li><a href="#error-detection">Error Detection:</a></li>
+        <li><a href="#data-consistency">Data Consistency:</a></li>
+        <li><a href="#data-latency">Data Latency:</a></li>
+        <li><a href="#tools-for-data-integrity-monitoring">Tools for Data Integrity Monitoring:</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-security-monitoring">4. Security Monitoring</a>
+      <ul>
+        <li><a href="#threat-detection">Threat Detection:</a></li>
+        <li><a href="#encryption-and-authentication">Encryption and Authentication:</a></li>
+        <li><a href="#vulnerability-scanning">Vulnerability Scanning:</a></li>
+        <li><a href="#security-tools">Security Tools:</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-energy-efficiency-monitoring">5. Energy Efficiency Monitoring</a>
+      <ul>
+        <li><a href="#power-consumption-tracking">Power Consumption Tracking:</a></li>
+        <li><a href="#energy-efficiency-optimization">Energy Efficiency Optimization:</a></li>
+        <li><a href="#energy-monitoring-tools">Energy Monitoring Tools:</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-scalability-and-load-balancing">6. Scalability and Load Balancing</a>
+      <ul>
+        <li><a href="#dynamic-scaling">Dynamic Scaling:</a></li>
+        <li><a href="#load-balancing">Load Balancing:</a></li>
+        <li><a href="#tools-for-scalability-and-load-balancing">Tools for Scalability and Load Balancing:</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-emerging-trends-in-iot-performance-monitoring">7. Emerging Trends in IoT Performance Monitoring</a>
+      <ul>
+        <li><a href="#edge-computing">Edge Computing:</a></li>
+        <li><a href="#ai-and-machine-learning">AI and Machine Learning:</a></li>
+        <li><a href="#5g-networks">5G Networks:</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-how-to-monitor-iot-device-performance">8. How to Monitor IoT Device Performance</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/iot-performance-monitoring/" title="A Guide to IoT Performance Monitoring">
+                        <img src="/assets/img/iot-device-management-platform/iot-device-management-platform.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-device-health-monitoring">1. Device Health Monitoring</a>
+      <ul>
+        <li><a href="#device-availability">Device Availability:</a></li>
+        <li><a href="#battery-and-power-levels">Battery and Power Levels:</a></li>
+        <li><a href="#environmental-conditions">Environmental Conditions:</a></li>
+        <li><a href="#firmware-and-software-versions">Firmware and Software Versions:</a></li>
+        <li><a href="#tools-for-device-health-monitoring">Tools for Device Health Monitoring:</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-network-performance-monitoring">2. Network Performance Monitoring</a>
+      <ul>
+        <li><a href="#latency">Latency:</a></li>
+        <li><a href="#bandwidth-utilization">Bandwidth Utilization:</a></li>
+        <li><a href="#packet-loss">Packet Loss:</a></li>
+        <li><a href="#network-protocols">Network Protocols:</a></li>
+        <li><a href="#tools-for-network-monitoring">Tools for Network Monitoring:</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-data-integrity-and-quality-assurance">3. Data Integrity and Quality Assurance</a>
+      <ul>
+        <li><a href="#error-detection">Error Detection:</a></li>
+        <li><a href="#data-consistency">Data Consistency:</a></li>
+        <li><a href="#data-latency">Data Latency:</a></li>
+        <li><a href="#tools-for-data-integrity-monitoring">Tools for Data Integrity Monitoring:</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-security-monitoring">4. Security Monitoring</a>
+      <ul>
+        <li><a href="#threat-detection">Threat Detection:</a></li>
+        <li><a href="#encryption-and-authentication">Encryption and Authentication:</a></li>
+        <li><a href="#vulnerability-scanning">Vulnerability Scanning:</a></li>
+        <li><a href="#security-tools">Security Tools:</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-energy-efficiency-monitoring">5. Energy Efficiency Monitoring</a>
+      <ul>
+        <li><a href="#power-consumption-tracking">Power Consumption Tracking:</a></li>
+        <li><a href="#energy-efficiency-optimization">Energy Efficiency Optimization:</a></li>
+        <li><a href="#energy-monitoring-tools">Energy Monitoring Tools:</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-scalability-and-load-balancing">6. Scalability and Load Balancing</a>
+      <ul>
+        <li><a href="#dynamic-scaling">Dynamic Scaling:</a></li>
+        <li><a href="#load-balancing">Load Balancing:</a></li>
+        <li><a href="#tools-for-scalability-and-load-balancing">Tools for Scalability and Load Balancing:</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-emerging-trends-in-iot-performance-monitoring">7. Emerging Trends in IoT Performance Monitoring</a>
+      <ul>
+        <li><a href="#edge-computing">Edge Computing:</a></li>
+        <li><a href="#ai-and-machine-learning">AI and Machine Learning:</a></li>
+        <li><a href="#5g-networks">5G Networks:</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-how-to-monitor-iot-device-performance">8. How to Monitor IoT Device Performance</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p><a href="/iot-remote-monitoring">IoT (Internet of Things) Performance Monitoring</a> refers to the processes and technologies used to track, manage, and optimize the performance of IoT devices, networks, and systems.</p>
+<p>IoT networks, made up of interconnected devices that communicate autonomously, are increasingly critical across various sectors including manufacturing, healthcare, agriculture, and smart cities.</p>
+<pre><code>  +---------------------+
+  |    IoT Devices      | &lt;--- Sensor data, Device health
+  +---------------------+
+          |
+          |  (Data Transmission)
+          v
+  +---------------------+            +------------------+
+  |   Gateway/Edge      | &lt;-------&gt;  |   Network        | 
+  |   Device            |            |   Performance    |
+  +---------------------+            +------------------+
+          |
+          |  (Data Collection, Analytics)
+          v
+  +---------------------+              +--------------------+
+  |   Cloud Platform    | &lt;-------&gt;    |   Cloud Monitoring |
+  |   (Data Analytics)  |              |   (Resource Usage, |
+  +---------------------+              |   API, Health)     |
+          |                            +--------------------+
+          |
+          v
+  +----------------------+
+  |    Visualization &amp;   |
+  |    Performance Dash  |
+  +----------------------+
+</code></pre>
+<p>Performance monitoring ensures that these systems remain functional, efficient, secure, and scalable.</p>
+<h2 id="1-device-health-monitoring">1. Device Health Monitoring</h2>
+<p>Device health monitoring involves tracking the operational status of each IoT device in the network.</p>
+<p>This is fundamental to maintaining uptime and identifying issues early before they lead to failure.</p>
+<p>The key aspects of device health include:</p>
+<h3 id="device-availability">Device Availability:</h3>
+<p>Whether a device is online and functioning as expected. This might include monitoring connectivity using protocols like MQTT or CoAP, and ensuring devices don’t lose connection to the network.</p>
+<h3 id="battery-and-power-levels">Battery and Power Levels:</h3>
+<p>Many IoT devices are battery-operated, especially in remote areas where replacing batteries can be costly or time-consuming. Monitoring battery levels and power consumption is crucial for preventing failures.</p>
+<h3 id="environmental-conditions">Environmental Conditions:</h3>
+<p>Devices may have environmental constraints. For example, outdoor sensors might have temperature or humidity limits, and monitoring these parameters ensures the device doesn’t operate outside of safe limits.</p>
+<h3 id="firmware-and-software-versions">Firmware and Software Versions:</h3>
+<p>Keeping track of the versions of firmware or software running on each device is essential. This ensures that any known bugs, vulnerabilities, or outdated software are updated promptly.</p>
+<h3 id="tools-for-device-health-monitoring">Tools for Device Health Monitoring:</h3>
+<p><a href="/">SocketXP IoT Device Management</a>: Provides over-the-air updates, health monitoring, and inventory management for IoT devices.</p>
+<p>Prometheus and Grafana: Used for collecting and visualizing metrics from devices, helping track operational performance in real-time.</p>
+<h2 id="2-network-performance-monitoring">2. Network Performance Monitoring</h2>
+<p>The performance of the underlying network is as important as the health of individual devices. Network monitoring helps to ensure that devices can communicate effectively and reliably with each other and with central systems.</p>
+<h3 id="latency">Latency:</h3>
+<p>The time it takes for data to travel from an IoT device to its destination (e.g., cloud or other devices). High latency can degrade performance in applications that require real-time or near-real-time responses, like autonomous vehicles or healthcare monitoring.</p>
+<h3 id="bandwidth-utilization">Bandwidth Utilization:</h3>
+<p>Monitoring the volume of data being sent across the network helps identify if the available bandwidth is sufficient to handle device traffic, especially as the network grows.</p>
+<h3 id="packet-loss">Packet Loss:</h3>
+<p>Losing data packets during transmission can result in incomplete or corrupted data, which could impact decision-making in time-sensitive applications.</p>
+<h3 id="network-protocols">Network Protocols:</h3>
+<p>Depending on the IoT use case, different protocols (e.g., Zigbee, LoRaWAN, Bluetooth) are used for communication. Monitoring these protocols and their performance in different environments is essential for reliable IoT operations.</p>
+<h3 id="tools-for-network-monitoring">Tools for Network Monitoring:</h3>
+<p>Wireshark: A network analyzer for deep packet inspection.
+Nagios: A popular open-source tool for network monitoring that can alert users to potential issues.</p>
+<h2 id="3-data-integrity-and-quality-assurance">3. Data Integrity and Quality Assurance</h2>
+<p>Data integrity ensures that the data transmitted from IoT devices is accurate, complete, and uncorrupted. Given that IoT systems often rely on real-time data for critical decisions, ensuring data integrity is paramount.</p>
+<h3 id="error-detection">Error Detection:</h3>
+<p>IoT data streams need to be monitored for errors, such as missing packets or corrupted data.</p>
+<h3 id="data-consistency">Data Consistency:</h3>
+<p>As IoT systems often operate across distributed networks, ensuring that data remains consistent across all devices and platforms is important. Data inconsistency can arise from network failures or discrepancies between devices with different configurations.</p>
+<h3 id="data-latency">Data Latency:</h3>
+<p>For real-time applications, ensuring that data is transmitted and processed quickly is essential. Monitoring data latency ensures that time-sensitive applications, such as remote patient monitoring, are functioning as expected.</p>
+<h3 id="tools-for-data-integrity-monitoring">Tools for Data Integrity Monitoring:</h3>
+<p>Apache Kafka: A distributed event streaming platform that ensures data is transmitted consistently and in real time.</p>
+<h2 id="4-security-monitoring">4. Security Monitoring</h2>
+<p>Security is one of the biggest concerns in IoT systems. With many devices connected to the internet, they become potential entry points for malicious actors. IoT security monitoring involves tracking devices for vulnerabilities, ensuring encryption, and managing access control.</p>
+<h3 id="threat-detection">Threat Detection:</h3>
+<p>Monitoring for unusual activities, such as unauthorized access or attempts to hack IoT devices, is crucial. Tools often look for specific patterns or behavior indicative of security breaches.</p>
+<h3 id="encryption-and-authentication">Encryption and Authentication:</h3>
+<p>IoT systems require end-to-end encryption to protect sensitive data. Additionally, devices must have robust authentication methods (e.g., two-factor authentication or device certificates) to prevent unauthorized access.</p>
+<p><a href="/">SocketXP IoT Management Platform</a> uses  SSL/TLS end-to-end encrypted channels to communicate with devices, along with mTLS authentication and 2FA using Google G-Suite or Microsoft 365 login.</p>
+<h3 id="vulnerability-scanning">Vulnerability Scanning:</h3>
+<p>Devices and networks should be regularly scanned for vulnerabilities to ensure they are not exposed to known exploits or weak configurations.</p>
+<h3 id="security-tools">Security Tools:</h3>
+<p>Armis: Provides IoT security solutions that monitor for vulnerabilities and manage security policies across connected devices.</p>
+<p>Zingbox: A security platform that provides real-time visibility into IoT devices, detecting and mitigating threats.</p>
+<h2 id="5-energy-efficiency-monitoring">5. Energy Efficiency Monitoring</h2>
+<p>Monitoring the power consumption of IoT devices is critical, especially for battery-operated systems. IoT devices that run on limited power sources must be optimized for energy consumption to prolong their battery life and reduce maintenance costs.</p>
+<h3 id="power-consumption-tracking">Power Consumption Tracking:</h3>
+<p>Monitoring the energy usage of devices allows operators to detect inefficiencies. This is particularly important in remote IoT applications where replacing batteries or recharging devices is difficult.</p>
+<h3 id="energy-efficiency-optimization">Energy Efficiency Optimization:</h3>
+<p>Devices can be configured to enter low-power states when not in use, reducing unnecessary energy expenditure.</p>
+<h3 id="energy-monitoring-tools">Energy Monitoring Tools:</h3>
+<p>Blynk: A platform that allows for energy management and optimization for IoT devices.
+Particle: Provides energy-efficient solutions and tracking for IoT devices.</p>
+<h2 id="6-scalability-and-load-balancing">6. Scalability and Load Balancing</h2>
+<p>As IoT networks expand, it becomes increasingly important to ensure that the system can scale without impacting performance. Monitoring scalability and balancing the load is essential to avoid overloading specific devices or network segments.</p>
+<h3 id="dynamic-scaling">Dynamic Scaling:</h3>
+<p>The system should automatically scale based on the volume of data being generated or the number of devices being added. Cloud-based systems like AWS IoT, Microsoft Azure IoT, and <a href="/">SocketXP IoT</a> offer automatic scaling.</p>
+<h3 id="load-balancing">Load Balancing:</h3>
+<p>Distributing the processing workload evenly across multiple devices or servers helps maintain system performance, especially as the number of devices increases.</p>
+<h3 id="tools-for-scalability-and-load-balancing">Tools for Scalability and Load Balancing:</h3>
+<p><a href="/">SocketXP IoT Platform</a>: Scales automatically as the number of devices grows and balances the load across available resources.</p>
+<p>Kubernetes: Used for container orchestration, Kubernetes can manage the scaling and distribution of workloads across the cloud infrastructure.</p>
+<h2 id="7-emerging-trends-in-iot-performance-monitoring">7. Emerging Trends in IoT Performance Monitoring</h2>
+<h3 id="edge-computing">Edge Computing:</h3>
+<p>To reduce latency and bandwidth usage, edge computing enables processing of data closer to the IoT devices. This is particularly useful for applications like autonomous vehicles or industrial automation where real-time processing is essential.</p>
+<h3 id="ai-and-machine-learning">AI and Machine Learning:</h3>
+<p>AI/ML algorithms can help predict potential device failures or network bottlenecks by analyzing historical data and identifying patterns, enabling proactive maintenance.</p>
+<h3 id="5g-networks">5G Networks:</h3>
+<p>5G’s low latency and high bandwidth will significantly enhance IoT performance, particularly for applications that require large-scale data transfers and low response times, such as smart cities or healthcare monitoring systems.</p>
+<h2 id="8-how-to-monitor-iot-device-performance">8. How to Monitor IoT Device Performance</h2>
+<p>Here is a simple python program that monitors the performance of IoT system resources such as CPU, memory, disk, and network usages.  We will use the <code>psutil</code> library to monitor the system resources.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+import psutil
+
+def main():
+    print("CPU usage %: ", psutil.cpu_percent(), "%")
+    print("Mem Usage %:", psutil.virtual_memory().percent, "%")
+    print("Swap Usage %:", psutil.swap_memory().percent, "%")
+
+    for dp in psutil.disk_partitions():
+        print("\nDisk usage of partition [", dp.mountpoint, "]: ",
+                psutil.disk_usage(dp.mountpoint).percent, "%")
+
+    print("Network bytes sent: ", psutil.net_io_counters().bytes_sent, "Bytes")
+    print("Network bytes received: ", psutil.net_io_counters().bytes_recv, "Bytes")
+
+    
+if __name__ == "__main__":
+    main()
+</pre>
+<p>Here is a sample output from executing the above program:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>    $ python3.9 simple-res-mon.py 
+</span></span><span style="display:flex;"><span>    CPU usage %:  72.0 %
+</span></span><span style="display:flex;"><span>    Mem Usage %: 89.3 %
+</span></span><span style="display:flex;"><span>    Swap Usage %: 95.3 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition <span style="color:#f92672">[</span> / <span style="color:#f92672">]</span>:  10.6 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition <span style="color:#f92672">[</span> /System/Volumes/Preboot <span style="color:#f92672">]</span>:  2.4 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition <span style="color:#f92672">[</span> /System/Volumes/VM <span style="color:#f92672">]</span>:  34.6 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition <span style="color:#f92672">[</span> /System/Volumes/Update <span style="color:#f92672">]</span>:  0.0 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition <span style="color:#f92672">[</span> /System/Volumes/Data <span style="color:#f92672">]</span>:  62.3 %
+</span></span><span style="display:flex;"><span>    Network bytes sent:  <span style="color:#ae81ff">3892295680</span> Bytes
+</span></span><span style="display:flex;"><span>    Network bytes received:  <span style="color:#ae81ff">4136247296</span> Bytes
+</span></span></code></pre></div><p>In addition to <a href="/iot/monitor-iot-system-resources-performance-using-python/">monitoring IoT performance</a>, it is crucial to send alerts or notifications when the device performance deteriorates.</p>
+<p>More Python examples can be found in the below article:</p>
+<p><a href="/iot/monitor-iot-system-resources-performance-using-python/">How to monitor IoT Performance continuously and generate alerts using Python</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>IoT performance monitoring is a critical component in ensuring the efficiency, reliability, and security of IoT systems, especially as these networks grow in complexity and scale. By focusing on key areas such as device health, network performance, data integrity, security, and energy efficiency, organizations can detect issues early, optimize their systems, and improve overall operational outcomes.</p>
+<p>As IoT continues to play a transformative role in industries ranging from healthcare to smart cities, emerging technologies like edge computing, AI/ML, and 5G are further reshaping how IoT systems are monitored and managed. These innovations offer enhanced real-time data processing, improved scalability, and faster, more reliable connections.</p>
+<p>Effective IoT performance monitoring goes beyond just tracking individual devices or metrics; it requires a holistic approach that integrates various monitoring tools and technologies into a cohesive system. By leveraging <a href="/iot-remote-monitoring">advanced monitoring platforms</a>, cloud-based solutions, and AI-powered analytics, organizations can maintain a proactive stance in identifying and addressing potential problems, improving the lifespan of devices, and ultimately enhancing user experience.</p>
+<p>In summary, as IoT continues to evolve, investing in robust performance monitoring strategies will be essential for optimizing system reliability, reducing downtime, enhancing security, and maximizing the long-term value of IoT deployments.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

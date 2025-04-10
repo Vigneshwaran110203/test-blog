@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Install and Setup SSH Server and Client on your Embedded Linux Device</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Install and Setup SSH Server and Client on your Embedded Linux Device</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Install and Setup SSH Server and Client on your Embedded Linux Device</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>May 10, 2023
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-to-install-openssh-server-on-your-iot-device">How to install OpenSSH server on your IoT device</a>
+      <ul>
+        <li><a href="#debianubuntu-linux">Debian/Ubuntu Linux:</a></li>
+        <li><a href="#rhelcentos-linux">RHEL/CentOS Linux:</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-install-ssh-client-on-your-client-machines">How to install SSH client on your client machines</a>
+      <ul>
+        <li><a href="#debianubuntu">Debian/Ubuntu</a></li>
+        <li><a href="#rhelcentos">RHEL/CentOS</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-create-and-setup-ssh-keys">How to create and setup SSH Keys</a></li>
+    <li><a href="#disable-password-authentication-on-your-ssh-server">Disable Password Authentication on your SSH Server</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/install-setup-ssh-server-client-iot-device/" title="How to Install and Setup SSH Server and Client on your Embedded Linux Device">
+                        <img src="/assets/img/raspberry-pi-remote-ssh-access/iot-remote-ssh.png" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-to-install-openssh-server-on-your-iot-device">How to install OpenSSH server on your IoT device</a>
+      <ul>
+        <li><a href="#debianubuntu-linux">Debian/Ubuntu Linux:</a></li>
+        <li><a href="#rhelcentos-linux">RHEL/CentOS Linux:</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-install-ssh-client-on-your-client-machines">How to install SSH client on your client machines</a>
+      <ul>
+        <li><a href="#debianubuntu">Debian/Ubuntu</a></li>
+        <li><a href="#rhelcentos">RHEL/CentOS</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-create-and-setup-ssh-keys">How to create and setup SSH Keys</a></li>
+    <li><a href="#disable-password-authentication-on-your-ssh-server">Disable Password Authentication on your SSH Server</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>
+    <a href="https://www.openssh.com/" rel="nofollow" target="_blank"> 
+OpenSSH </a>
+ is a free open source software that uses Secure Shell(SSH) protocol to create secure and encrypted communication channels over computer networks.</p>
+<p>OpenSSH is developed by the 
+    <a href="https://www.openbsd.org/" rel="nofollow" target="_blank"> Open BST Community </a>
+ and it is released under a Simplified BSD License.</p>
+<p>OpenSSH comes with additional features such as SFTP and SCP to perform secure file transfer and secure copy over a computer network.</p>
+<p>Setting up SSH server in your IoT device is essential for enabling <a href="/iot-remote-access">secure remote access to your IoT device</a>.</p>
+<h2 id="how-to-install-openssh-server-on-your-iot-device">How to install OpenSSH server on your IoT device</h2>
+<p>To install and run SSH server on your IoT device, execute the following commands:</p>
+<h3 id="debianubuntu-linux">Debian/Ubuntu Linux:</h3>
+<p>First update your linux and then install the openssh server
+<pre class="p-4 bg-background rounded overflow-x-auto">$ sudo apt-get update
+$ sudo apt-get install openssh-server</pre>
+The following commands will enable and run SSH server as a daemon in the background.
+<pre class="p-4 bg-background rounded overflow-x-auto">$ sudo systemctl enable ssh
+
+$ sudo systemctl start ssh
+</pre></p>
+<h3 id="rhelcentos-linux">RHEL/CentOS Linux:</h3>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">$ sudo yum update
+
+$ sudo yum -y install openssh-server</pre>
+Then enable SSH server and start it.
+<pre class="p-4 bg-background rounded overflow-x-auto">$ sudo chkconfig sshd on
+
+$ sudo service sshd start
+</pre>
+SSH uses port 22 for communication.  If it is not enabled already, execute the following command to open up the SSH port on your linux system.</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">$ sudo /sbin/iptable -A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+$ sudo service iptables save
+</pre>
+ </p>
+<h2 id="how-to-install-ssh-client-on-your-client-machines">How to install SSH client on your client machines</h2>
+<p>Use the following command to install SSH client on your laptops or any device from where you would remote SSH into your IoT device.</p>
+<h3 id="debianubuntu">Debian/Ubuntu</h3>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ sudo apt-get update
+$ sudo apt-get install openssh-client</pre>
+<h3 id="rhelcentos">RHEL/CentOS</h3>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ sudo yum update
+
+$ sudo yum -y install openssh-client</pre>
+<h2 id="how-to-create-and-setup-ssh-keys">How to create and setup SSH Keys</h2>
+<p>SSH uses a public/private key based encryption algorithm for encrypting the communication channel.  Use the ssh-keygen command to generate SSH keys for those clients that need to SSH into your IoT devices.</p>
+<p>Go to your client machine (Laptop, for eg.) and open up a terminal and execute the following command.  Follow the instructions on the screen to create a public/private key pair.</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">$ ssh-keygen -b 4096
+
+Generating public/private rsa key pair.
+
+Enter file in which to save the key (/home/your_home/.ssh/id_rsa):
+</pre>
+The keys will be saved usually in your home directory under the “.ssh” folder.  Leave the private key in your client machine.  Copy just the contents of /home/your_)home/.ssh/id_rsa.pub file and paste it (actually append it) to the “~/.ssh/authorized_keys” file in your IoT device where the SSH server runs.</p>
+<p>From now on, you can login to your IoT device remotely using the SSH private key in your client machine using the following command</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ ssh -i ~/.ssh/id_rsa.key john@tunnel.socketxp.com -p 23224
+
+</pre>
+<h2 id="disable-password-authentication-on-your-ssh-server">Disable Password Authentication on your SSH Server</h2>
+<p>After configuring your SSH server and client to use private/public key for authentication, it is wise and safe to turn off password based authentication, because passwords are relatively easy to crack.</p>
+<p>Before you perform this step, make sure you have setup your public/private key pairs correctly and you are able to login using them.  Otherwise, once you disable password authentication, you’ll be locked out of your IoT device.</p>
+<p>To disable password authentication, open the SSH server’s configuration file as a sudo user.</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">sudo nano /etc/ssh/sshd_config
+</pre>
+Inside the file, search for a directive called PasswordAuthentication.  This may be commented out. Uncomment the line and set the value to “no”.  This will disable your ability to log in to the SSH server using account passwords:</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">PasswordAuthentication no
+</pre>
+Save and close the file when you are finished.</p>
+<p>To actually implement the changes we just made, you must restart the service.</p>
+<p>On Ubuntu or Debian machines, you can issue this command:</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">sudo service ssh restart
+</pre>
+On CentOS/Fedora machines, issue the following command:</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">sudo service sshd restart
+</pre>
+After completing this step, you’ve successfully transitioned your SSH daemon to only respond to SSH keys.</p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>SSH uses encryption to securely communicate with your IoT device  over any unsecure network such as the internet.</p>
+<p>Setting up SSH server in your IoT device and the client software in your access devices is essential for enabling <a href="/iot-remote-access">remote access to your IoT device</a>.</p>
+<p>Disabling password based SSH authentication and enabling SSH key based authentication for SSH login significantly improves IoT device remote access security.</p>
+<p>OpenSSH server and client software, combined with the power of SocketXP IoT Remote Access Solution is a great combination for managing and maintaining your IoT device fleet remotely.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

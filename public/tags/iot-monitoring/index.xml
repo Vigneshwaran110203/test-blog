@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IoT Monitoring on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/iot-monitoring/</link>
+    <description>Recent content in IoT Monitoring on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/iot-monitoring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Guide to IoT Performance Monitoring</title>
+      <link>http://localhost:51627/iot/iot-performance-monitoring/</link>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/iot-performance-monitoring/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot-remote-monitoring&#34;&gt;IoT (Internet of Things) Performance Monitoring&lt;/a&gt; refers to the processes and technologies used to track, manage, and optimize the performance of IoT devices, networks, and systems.&lt;/p&gt;&#xA;&lt;p&gt;IoT networks, made up of interconnected devices that communicate autonomously, are increasingly critical across various sectors including manufacturing, healthcare, agriculture, and smart cities.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;  +---------------------+&#xA;  |    IoT Devices      | &amp;lt;--- Sensor data, Device health&#xA;  +---------------------+&#xA;          |&#xA;          |  (Data Transmission)&#xA;          v&#xA;  +---------------------+            +------------------+&#xA;  |   Gateway/Edge      | &amp;lt;-------&amp;gt;  |   Network        | &#xA;  |   Device            |            |   Performance    |&#xA;  +---------------------+            +------------------+&#xA;          |&#xA;          |  (Data Collection, Analytics)&#xA;          v&#xA;  +---------------------+              +--------------------+&#xA;  |   Cloud Platform    | &amp;lt;-------&amp;gt;    |   Cloud Monitoring |&#xA;  |   (Data Analytics)  |              |   (Resource Usage, |&#xA;  +---------------------+              |   API, Health)     |&#xA;          |                            +--------------------+&#xA;          |&#xA;          v&#xA;  +----------------------+&#xA;  |    Visualization &amp;amp;   |&#xA;  |    Performance Dash  |&#xA;  +----------------------+&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Performance monitoring ensures that these systems remain functional, efficient, secure, and scalable.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

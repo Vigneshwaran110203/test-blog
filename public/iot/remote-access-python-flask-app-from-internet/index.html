@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Remote Access Python Flask App from Internet</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Remote Access Python Flask App from Internet</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Remote Access Python Flask App from Internet</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Aug 4, 2021
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-socketxp">What is SocketXP</a>
+      <ul>
+        <li><a href="#how-it-works">How it works?</a></li>
+        <li><a href="#a-simple-python-flask-app---quick-demo">A Simple Python Flask App - Quick Demo:</a></li>
+        <li><a href="#run-the-python-flask-app">Run the Python Flask App</a></li>
+        <li><a href="#access-the-python-flask-app">Access the python flask app</a></li>
+        <li><a href="#download-and-install-socketxp-client">Download and install SocketXP client</a></li>
+        <li><a href="#expose-flask-app-to-the-internet">Expose flask app to the internet</a></li>
+      </ul>
+    </li>
+    <li><a href="#debugging-python-flask-web-app-remote-access-issues">Debugging Python Flask Web App Remote Access Issues</a>
+      <ul>
+        <li><a href="#python-flask-app-not-accessible-from-remote-machine-or-across-networks">Python flask app not accessible from remote machine or across networks:</a></li>
+        <li><a href="#what-is-localhost-ip-address-127001">What is Localhost IP address 127.0.0.1?</a></li>
+        <li><a href="#how-to-connect-to-python-flask-web-app-in-my-local-network">How to connect to Python Flask Web App in my local network</a></li>
+        <li><a href="#python-flask-app-remote-access-not-working">Python flask app remote access not working</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remote-access-python-flask-app-from-internet/" title="How to Remote Access Python Flask App from Internet">
+                        <img src="/assets/img/remote-access-flask-app-from-internet/remote-access-flask-app-from-internet.png" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-socketxp">What is SocketXP</a>
+      <ul>
+        <li><a href="#how-it-works">How it works?</a></li>
+        <li><a href="#a-simple-python-flask-app---quick-demo">A Simple Python Flask App - Quick Demo:</a></li>
+        <li><a href="#run-the-python-flask-app">Run the Python Flask App</a></li>
+        <li><a href="#access-the-python-flask-app">Access the python flask app</a></li>
+        <li><a href="#download-and-install-socketxp-client">Download and install SocketXP client</a></li>
+        <li><a href="#expose-flask-app-to-the-internet">Expose flask app to the internet</a></li>
+      </ul>
+    </li>
+    <li><a href="#debugging-python-flask-web-app-remote-access-issues">Debugging Python Flask Web App Remote Access Issues</a>
+      <ul>
+        <li><a href="#python-flask-app-not-accessible-from-remote-machine-or-across-networks">Python flask app not accessible from remote machine or across networks:</a></li>
+        <li><a href="#what-is-localhost-ip-address-127001">What is Localhost IP address 127.0.0.1?</a></li>
+        <li><a href="#how-to-connect-to-python-flask-web-app-in-my-local-network">How to connect to Python Flask Web App in my local network</a></li>
+        <li><a href="#python-flask-app-remote-access-not-working">Python flask app remote access not working</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this article, we&rsquo;ll discuss how to <strong>remote access a Python Flask app</strong> from the internet using <a href="/iot-remote-access">SocketXP IoT Remote Access solution</a>.</p>
+<p>Let&rsquo;s assume you have a Python Flask web server application that runs on <strong>localhost IP address 127.0.0.1</strong> in your personal laptop or in a server or in a Raspberry Pi in your home or office network, behind NAT router and firewall.</p>
+<p>Anyone outside of your home or office network cannot access the Flask web application because the application runs in your local network or local IP address 127.0.0.1. Local IP addresses such as <strong>127.0.0.1, 10.1.1.1 or 192.168.1.1</strong> etc., cannot be accessed from the internet.</p>
+<p>Let&rsquo;s say, you want to expose the flask app to the internet or make it externally visible, so that your colleagues, customers or a remote person or an app can access the flask app from the internet.</p>
+<p>Today, there are three ways to expose your Python Flask Web Application to the internet.</p>
+<ol>
+<li>Deploy the flask app in an externally visible server such as your office server which has a public IP address and domain name.</li>
+<li>Deploy the web application in a cloud platform such as AWS, MS Azure, Google Cloud Platform or Digital Ocean Cloud.</li>
+<li>Create a public web URL for your web app using <a href="/">SocketXP</a>.</li>
+</ol>
+<p>The first two options cost more money and require more effort in terms of purchasing your own IP address, domain name, configuring and managing them in the cloud.</p>
+<p>To address the above problems and provide an alternate cost-effective solution, we have created <a href="/">SocketXP</a>.</p>
+<p>In this article, we&rsquo;ll discuss in detail how to create a permanent and unique public web URL for your python flask app using <a href="/iot/remote-access-iot-web-app-from-internet/">SocketXP Web Service Remote Access Solution</a>.</p>
+<h2 id="what-is-socketxp">What is SocketXP</h2>
+<p>SocketXP is a simple, quick and cost-effective way to deploy your web application online.</p>
+<h3 id="how-it-works">How it works?</h3>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/remote-access-flask-app-from-internet/remote-access-flask-app-from-internet.png" alt="remote-access-flask-app-from-internet" style="max-width:80%;max-height:100%;">
+</div>
+
+<ul>
+<li>Run your flask web application in any server or laptop using localhost IP address 127.0.0.1.</li>
+<li>Download SocketXP Client and install in the office server or laptop</li>
+<li>SocketXP Client will create a secure tunnel from your server to the SocketXP Cloud Gateway.</li>
+<li>SocketXP Cloud Service will provide a secure public web URL (HTTPS URL) that you can use to access your python flask web application from the internet.</li>
+</ul>
+<h3 id="a-simple-python-flask-app---quick-demo">A Simple Python Flask App - Quick Demo:</h3>
+<p>Let&rsquo;s use the following simple Python flask web application for the demo.</p>
+<p>By default, a python flask app will listen on localhost IP address 127.0.0.1 and TCP port 5000.  But, in the below example, we instruct the app to listen on IP 127.0.0.1 and port 3000.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ cat myapp.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return '&lt;h2&gt;Hello, World!&lt;/h2&gt;'
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=3000, debug=True)
+</pre>
+<h3 id="run-the-python-flask-app">Run the Python Flask App</h3>
+<p><strong>Note:</strong> You need to install Flask module using the following command:
+<pre class="p-4 bg-background rounded overflow-x-auto">$ python3 -m pip install flask </pre></p>
+<p>Run the myapp.py on a local server or laptop using any of the following commands:</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">$ python3 -m flask --app myapp.py run</pre>
+or simply run as:
+<pre class="p-4 bg-background rounded overflow-x-auto">$ python3 myapp.py
+ * Serving Flask app 'myapp.py'
+ * Debug mode: off
+ * Running on http://127.0.0.1:3000
+Press CTRL+C to quit
+</pre></p>
+<h3 id="access-the-python-flask-app">Access the python flask app</h3>
+<p>Using a browser, let&rsquo;s point to http://localhost:3000 to connect to the flask web application.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/remote-access-localhost-nodejs-app/localhost-nodejs-app-server.png" alt="remote-access-flask-app-from-internet" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Right now the flask application can be accessed only by you because it runs on your laptop.</p>
+<h3 id="download-and-install-socketxp-client">Download and install SocketXP client</h3>
+<p>Now to make the python flask application accessible from the internet, let&rsquo;s download and run the SocketXP client from the <a href="https://www.socketxp.com/download">download page</a>.</p>
+<p>Next, authenticate and register the SocketXP client with the SocketXP Cloud Gateway, using the auth-token from the <a href="https://portal.socketxp.com">Portal Page</a></p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/AuthToken.jpg" alt="remote-access-flask-app-from-internet" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Click the copy button to copy the command string and paste it in the terminal window in your laptop or server.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ socketxp login "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+</pre>
+<p>After registering the SocketXP Client with the SocketXP Cloud Service, you could create HTTP proxy tunnel between the application running in your laptop and the SocketXP Cloud Service, via the SocketXP Client.</p>
+<p>As our flask app is a web application(HTTP server), let&rsquo;s create a HTTP proxy tunnel.</p>
+<h3 id="expose-flask-app-to-the-internet">Expose flask app to the internet</h3>
+<p>Use the following command to create a HTTP proxy tunnel between the flask web application and the SocketXP Cloud Gateway.  This will generate a public web URL.  Use the SocketXP public web URL to expose your flask app to the internet.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$socketxp connect http://localhost:3000
+Public URL -&gt; <strong>https://679aa48b-1162-44f7-b6c6-59129dd68b58.socketxp.com</strong></pre>
+<p>Let&rsquo;s access the flask web application from the internet using the SocketXP Public URL provided in the above output.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/remote-access-flask-app-from-internet/Access-Public-URL-localhost-flask-app.png" alt="remote-access-flask-app-from-internet" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>You could now share the above link with your customers or remote employees, so that they could access your web application from anywhere in the world. </p>
+<p>The above SocketXP public URL is a permanent link just assigned to you and it doesn&rsquo;t change until you manually delete it from the HTTP tunnels section in the portal.</p>
+<h2 id="debugging-python-flask-web-app-remote-access-issues">Debugging Python Flask Web App Remote Access Issues</h2>
+<p>Here are some common problems encounter while developing, testing and deploying your Python Flask Web App for the first time:</p>
+<h3 id="python-flask-app-not-accessible-from-remote-machine-or-across-networks">Python flask app not accessible from remote machine or across networks:</h3>
+<p>By default, a python flask application will listen on the <code>localhost IP address 127.0.0.1</code> and TCP <code>port 5000</code>.  This IP address is not externally visible to other machines in your local network.  This app can be accessed only from the same machine in which it is running.</p>
+<p>You need to change your Python Flask web app to either listen on the network IP address of your machine such as <code>192.168.X.X, 10.1.X.X</code> etc., or using the <code>anycast IP address 0.0.0.0</code>.  The anycast IP address <code>0.0.0.0</code> will make the flask app to listen on all IP addresses in the machine and accept all incoming connections to this flask app from any network interface (loopback, ethernet, wifi) irrespective of its IP address.</p>
+<p><strong>Hint:</strong> Anycast IP address <code>0.0.0.0</code> is equivalent to using <code>*.*.*.*</code> in the IP address field, where <code>*</code> means match any string or number in the IP address.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ cat myapp.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return '&lt;h2&gt;Hello, World!&lt;/h2&gt;'
+
+if __name__ == '__main__':
+    <b>app.run(host='0.0.0.0', port=3000, debug=True)</b>
+</pre>
+<h3 id="what-is-localhost-ip-address-127001">What is Localhost IP address 127.0.0.1?</h3>
+<p>Localhost IP address or Loopback IP address 127.0.0.1 belongs to the Loopback interface of your system. Loopback(lo) interface is a software network interface (unlike Ethernet or WiFi interfaces which are hardware network interfaces) created automatically by the OS.</p>
+<p>Only programs(a web browser, for example) running in your laptop or server can connect to the flask web server listening on the loopback IP address (localhost) 127.0.0.1 and some TCP port say 5000 or 3000.  Other servers or laptops in your local network cannot connect to the python flask web server listening on IP address 127.0.0.1.</p>
+<p>Localhost or Loopback IP address 127.0.0.1 is useful for developing and testing any web server application locally on your laptop without having to deploy on a production server.  But the loopback IP address is not suitable for exposing your web application to any other external machine, including other machines in your local network.</p>
+<blockquote>
+<p>&ldquo;Loopback or Localhost IP address 127.0.0.1 is not suitable for exposing your web application to any other external machine.&rdquo;</p></blockquote>
+<h3 id="how-to-connect-to-python-flask-web-app-in-my-local-network">How to connect to Python Flask Web App in my local network</h3>
+<p>If you want to allow other machines(say, a colleague&rsquo;s laptop) in your local network to connect to your python flask app, you should make your flask web app to listen on a local network IP address such as <code>192.168.X.X or 10.1.X.X</code> assigned by your WiFi router to your machine (or using the anycast IP address <code>0.0.0.0</code>), as shown in the example below:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ cat myapp.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return '&lt;h2&gt;Hello, World!&lt;/h2&gt;'
+
+if __name__ == '__main__':
+    <b>app.run(host='192.168.10.7', port=3000, debug=True)</b>
+</pre>
+<p>The above code assumes that <code>192.168.10.7</code> is the local network IP address of your laptop&rsquo;s WiFi adapter.  This IP address assigned to your laptop may vary depening on how your WiFi&rsquo;s DHCP (Dynamic Host Configuration Protocol) server is configured.</p>
+<p>You need to execute a command such as <code>ifconfig</code> in Linux based systems and <code>ipconfig</code> in Windows systems to find the local network IP address of your machine.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
+        <b>inet 192.168.10.7  netmask 255.255.255.255  broadcast 0.0.0.0</b>
+        ether 42:01:0a:80:00:02  txqueuelen 1000  (Ethernet)
+        RX packets 6445195824  bytes 697982309275 (697.9 GB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 5107947877  bytes 1316487081762 (1.3 TB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 2388090363  bytes 832100026992 (832.1 GB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2388090363  bytes 832100026992 (832.1 GB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+<p>You can use a network utility like <code>ping</code> tool to check if one machine can talk to another machine in the same network or another network.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ ping 192.168.10.7
+PING 192.168.10.7 (192.168.10.7) 56(84) bytes of data.
+64 bytes from 192.168.10.7: icmp_seq=1 ttl=64 time=0.050 ms
+64 bytes from 192.168.10.7: icmp_seq=2 ttl=64 time=0.040 ms
+64 bytes from 192.168.10.7: icmp_seq=3 ttl=64 time=0.060 ms
+^C
+--- 192.168.10.7 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3049ms
+rtt min/avg/max/mdev = 0.040/0.048/0.060/0.007 ms</pre>
+<p>However, it is always better to use the anycast IP address <code>0.0.0.0</code> so that anyone in your any local network could access your web app.</p>
+<p>Finally, if you want your Python Flask app to be externally visible or accessible from the public internet or from any outside network, you need to use a <a href="/iot-remote-access">remote access solution</a> such as the <a href="/iot/remote-access-iot-web-app-from-internet/">SocketXP Web Service Remote Access Solution</a> that we discussed above in this article.</p>
+<h3 id="python-flask-app-remote-access-not-working">Python flask app remote access not working</h3>
+<p>The primary reason why python flask app remote access not working is probably your WiFi router or firewall setting is preventing connection from outside network.</p>
+<p>You need to use a reverse proxy service like <a href="/iot/remote-access-iot-web-app-from-internet/">SocketXP Web Service Remote Access Solution</a>, discussed above in this article, to remotely access your Python Flask app without having to worry about manipulating your WiFi router setttings or your firewall rules.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

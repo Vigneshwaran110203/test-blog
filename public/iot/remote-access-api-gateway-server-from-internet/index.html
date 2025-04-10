@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Remote Access API Gateway Server from the Internet</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Remote Access API Gateway Server from the Internet</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Remote Access API Gateway Server from the Internet</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Oct 19, 2024
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#python-flask-app-example">Python Flask App Example:</a></li>
+    <li><a href="#what-is-socketxp">What is SocketXP</a>
+      <ul>
+        <li><a href="#how-it-works">How it works?</a></li>
+        <li><a href="#a-simple-python-flask-app---quick-demo">A Simple Python Flask App - Quick Demo:</a></li>
+        <li><a href="#run-the-python-flask-app">Run the Python Flask App</a></li>
+        <li><a href="#access-the-python-flask-app">Access the python flask app</a></li>
+        <li><a href="#download-and-install-socketxp-client">Download and install SocketXP client</a></li>
+        <li><a href="#expose-flask-app-to-the-internet">Expose flask app to the internet</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remote-access-api-gateway-server-from-internet/" title="How to Remote Access API Gateway Server from the Internet">
+                        <img src="/assets/img/remote-access-flask-app-from-internet/remote-access-flask-app-from-internet.png" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#python-flask-app-example">Python Flask App Example:</a></li>
+    <li><a href="#what-is-socketxp">What is SocketXP</a>
+      <ul>
+        <li><a href="#how-it-works">How it works?</a></li>
+        <li><a href="#a-simple-python-flask-app---quick-demo">A Simple Python Flask App - Quick Demo:</a></li>
+        <li><a href="#run-the-python-flask-app">Run the Python Flask App</a></li>
+        <li><a href="#access-the-python-flask-app">Access the python flask app</a></li>
+        <li><a href="#download-and-install-socketxp-client">Download and install SocketXP client</a></li>
+        <li><a href="#expose-flask-app-to-the-internet">Expose flask app to the internet</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this tutorial, we will discuss how to setup remote access to a private API gateway server in your local machine, so that you can connect to it remotely and securely over the internet.</p>
+<p>Whether you are a coding enthusiast, a professional developer, or just a beginner, this article will provide you with a step-by-step instructions on how to setup remote connectivity to your private API gateway server running in your local machine over the internet.</p>
+<p>So, let&rsquo;s dive in.</p>
+<h2 id="python-flask-app-example">Python Flask App Example:</h2>
+<p>Let&rsquo;s assume you have a Python Flask based API gatewway web server application that runs on <strong>localhost IP address 127.0.0.1</strong> in your local machine, say a personal laptop, a server, a Raspberry Pi.</p>
+<p>The device is in your home or office network, behind NAT router and firewall.</p>
+<p>Anyone outside of your home or office network cannot access the API gateway server because the application runs in your local network or local IP address 127.0.0.1. Local IP addresses such as <strong>127.0.0.1, 10.1.1.1 or 192.168.1.1</strong> etc., cannot be accessed from the internet.</p>
+<p>Let&rsquo;s say, you want to expose the API gateway web server to the internet or make it externally visible, so that your colleagues, customers or a remote person or a web app can access the API gateway server from the internet.</p>
+<p>Today, there are three ways to expose your API gateway web server app to the internet.</p>
+<ol>
+<li>Deploy the API gateway in an externally visible server such as your office server which has a public IP address and domain name.</li>
+<li>Deploy the API gateway web application in a cloud platform such as AWS, MS Azure, Google Cloud Platform or Digital Ocean Cloud.</li>
+<li>Create a permanent and unique public web URL for your API gateway web app using <a href="/">SocketXP</a>.</li>
+</ol>
+<p>The first two options cost more money and require more time and effort in terms of purchasing your own IP address, domain name, configuring and managing them in the cloud.</p>
+<p>To address the above problems and provide an alternate cost-effective solution, we have created <a href="/">SocketXP</a> solution.</p>
+<p>In this article, we&rsquo;ll discuss in detail how to create a permanent and unique public web URL for your API gateway server using <a href="/iot/remote-access-iot-web-app-from-internet/">SocketXP Web Service Remote Access Solution</a>.</p>
+<h2 id="what-is-socketxp">What is SocketXP</h2>
+<p>SocketXP is a simple, quick and cost-effective way to deploy your private web application or API gateway server online in just few seconds.</p>
+<h3 id="how-it-works">How it works?</h3>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/remote-access-flask-app-from-internet/remote-access-flask-app-from-internet.png" alt="remote-access-api-gateway-from-internet" style="max-width:80%;max-height:100%;">
+</div>
+
+<ul>
+<li>Run your flask web application/API gateway in your local machine using localhost IP address 127.0.0.1.</li>
+<li>Download the SocketXP Client and install it in your local machine say, laptop or server.</li>
+<li>SocketXP Client will create a secure HTTPS tunnel from your server to the SocketXP Cloud Gateway.</li>
+<li>SocketXP Cloud Gateway will provide a secure public web URL (HTTPS URL) that you can use to access your python flask web application from anywhere over the internet.</li>
+</ul>
+<h3 id="a-simple-python-flask-app---quick-demo">A Simple Python Flask App - Quick Demo:</h3>
+<p>Let&rsquo;s use the following simple Python flask based API gateway web server for the demo.</p>
+<p>By default, a python flask app will listen on localhost IP address 127.0.0.1 and TCP port 5000.  But, in the below example, we instruct the app to listen on IP 127.0.0.1 and port 3000.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ cat myapp.py
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/api/books', methods=['GET'])
+def get_books():
+  books_data = [
+		{'id': "1001", 'title': 'Book1', 'author': 'Author1'}, 
+		{'id': "1002", 'title': 'Book2', 'author': 'Author2'}
+	] 
+  return jsonify({'books': books_data})
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=3000, debug=True)
+</pre>
+<h3 id="run-the-python-flask-app">Run the Python Flask App</h3>
+<p><strong>Note:</strong> You need to install Flask module using the following command:
+<pre class="p-4 bg-background rounded overflow-x-auto">$ python3 -m pip install flask </pre></p>
+<p>Run the myapp.py on a local server or laptop using any of the following commands:</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">$ python3 -m flask --app myapp.py run</pre>
+or simply run as:
+<pre class="p-4 bg-background rounded overflow-x-auto">$ python3 myapp.py
+ * Serving Flask app 'myapp.py'
+ * Debug mode: off
+ * Running on http://127.0.0.1:3000
+Press CTRL+C to quit
+</pre></p>
+<h3 id="access-the-python-flask-app">Access the python flask app</h3>
+<p>Using a web client such as <code>curl</code> or a web browser, let&rsquo;s try connecting to http://localhost:3000 and access the flask based API gateway web application.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ curl http://localhost:5000/api/books</pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;books&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;author&#34;</span>: <span style="color:#e6db74">&#34;Author1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;1001&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Book1&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;author&#34;</span>: <span style="color:#e6db74">&#34;Author2&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;1002&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Book2&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Right now the private flask application can be accessed only by you because it runs on your laptop locally.</p>
+<h3 id="download-and-install-socketxp-client">Download and install SocketXP client</h3>
+<p>Now to make the python flask application accessible from the internet, let&rsquo;s download and run the SocketXP client from the <a href="https://www.socketxp.com/download">download page</a>.</p>
+<p>Next, authenticate and register the SocketXP client with the SocketXP Cloud Gateway, using the auth-token from the <a href="https://portal.socketxp.com">Portal Page</a></p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/AuthToken.jpg" alt="remote-access-api-gateway-from-internet" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Click the copy button to copy the command string and paste it in the terminal window in your laptop or server.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ sudo socketxp login "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+</pre>
+<p>After registering the SocketXP Client with the SocketXP Cloud Service, you could create HTTP proxy tunnel between the application running in your laptop and the SocketXP Cloud Service, via the SocketXP Client.</p>
+<p>As our flask app is a web application(HTTP server), let&rsquo;s create a HTTP proxy tunnel.</p>
+<h3 id="expose-flask-app-to-the-internet">Expose flask app to the internet</h3>
+<p>Use the following command to create a HTTP proxy tunnel between the flask web application and the SocketXP Cloud Gateway.  This will generate a public web URL.  Use the SocketXP public web URL to expose your flask app to the internet.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$sudo socketxp connect http://localhost:3000
+Public URL -&gt; <strong>https://679aa48b-1162-44f7-b6c6-59129dd68b58.socketxp.com</strong></pre>
+<p>Let&rsquo;s access the flask web application from the internet using the SocketXP Public URL provided in the above output.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ curl https://679aa48b-1162-44f7-b6c6-59129dd68b58.socketxp.com/api/books</pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;books&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;author&#34;</span>: <span style="color:#e6db74">&#34;Author1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;1001&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Book1&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;author&#34;</span>: <span style="color:#e6db74">&#34;Author2&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;1002&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Book2&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You could now share the above link with your customers or remote employees or any web app, so that they could access your API gateway web server application from anywhere in the world. </p>
+<p>The above SocketXP public URL is a random, permanent and unique URL link created just for you. It doesn&rsquo;t change until you manually delete it from the HTTP tunnels section in the SocketXP web portal.</p>
+<p>Congratulations!! You have successfully setup remote access to your API gateway server and accessed it remotely using a web client.</p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>Developing API gateway server for your applications is made easy by using Python or Go web frameworks.</p>
+<p>With <a href="/iot-remote-access">SocketXP HTTP Web Service Remote Access Solution</a> (part of <a href="/iot/iot-device-management-platform">IoT Device Management and Remote Access Platform</a>), it is easy to securely remote access any web application including API gateway servers running in your local machine such as your IoT device, from any browser on any OS, be it Windows or Mac or Linux.</p>
+<p>By following the steps outlined in this article, you can quickly set up remote access to private API gateway server running in your local device and access it from anywhere, anytime.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

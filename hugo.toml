@@ -1,0 +1,3 @@
+baseURL = 'http://localhost:1313/'
+languageCode = 'en-us'
+title = "SocketXP | IoT Device Management and Remote Access Platform"

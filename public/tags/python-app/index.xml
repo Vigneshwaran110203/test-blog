@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python App on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/python-app/</link>
+    <description>Recent content in Python App on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/python-app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remote Access Websocket Server from the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-websocket-server-from-internet/</link>
+      <pubDate>Tue, 10 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-websocket-server-from-internet/</guid>
+      <description>&lt;p&gt;In this tutorial, we will discuss how to setup remote access to a websocket server in your local machine so that you can connect to the websocket securely over the internet.&lt;/p&gt;&#xA;&lt;p&gt;Whether you are a coding enthusiast, a DIY enthusiast, or just curious about writing web applications for &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;IoT and remotely accessing&lt;/a&gt; it, this article will provide you with a step-by-step instructions on how to remotely connect to a websocket app running in your IoT over the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access a Web App in IoT from Internet</title>
+      <link>http://localhost:51627/iot/remote-access-iot-web-app-from-internet/</link>
+      <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-iot-web-app-from-internet/</guid>
+      <description>&lt;p&gt;Internet of Things(IoT) has gained immense popularity among technology enthusiasts and hobbyists alike.&lt;/p&gt;&#xA;&lt;p&gt;Establishing secure remote access to an IoT device is important for end-users who need to remotely access and control an IoT device using an app or web browser; service partners who must have access to devices that have been installed in the corresponding remote location; and product support teams who need the ability to log onto installed devices located on customer sites&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access your Localhost NodeJS App from internet</title>
+      <link>http://localhost:51627/iot/remote-access-localhost-nodejs-app-from-internet/</link>
+      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-localhost-nodejs-app-from-internet/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s assume you have a nodejs web application that runs in your personal laptop or in a server or in a Raspberry Pi in your office LAN network.&lt;/p&gt;&#xA;&lt;p&gt;Anyone outside of your office network cannot access the web application because the application runs in your local network.&lt;/p&gt;&#xA;&lt;p&gt;Suppose you want to expose the web application to the internet, so that your customers or remote employees can access it from anywhere in the world.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

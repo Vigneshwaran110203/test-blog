@@ -1,0 +1,513 @@
+<!-- Start of Navigation Bar -->
+<header style="position: fixed; top: 0px; left: 0px; width: 100vw; z-index: 1000;">
+    <nav class="navigation-bar" id="navbar">
+        <span class="logo"><a href="/">SocketXP</a></span>
+        <div class="nav-main-links" id="nav-main-links-container">
+            <ul class="nav-category">
+                <li class="nav-links-container">
+                    <div class="nav-btn-link" onclick="toggleDropDown(event, 'dropdown1', 'dropdown-img-1')">
+                        <a href="#">Products</a>
+                        <img src="/assets/images/dropdown.svg" alt="" class="dropdown-img small-dropdown-img" id="dropdown-img-1">
+                    </div>
+                    <div class="small-dropdown-menu" id="dropdown1">
+                        <a href="/socketxp-iot-device-management-platform" class="dropdown-sub-menu">
+                            <img src="/assets/images/socketxp-product-iot.svg" alt="" class="dropdown-sub-menu-img">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">SocketXP IoT Device Management Platform</p>
+                                <p class="nav-sub-menu-paragraph">Manage IoT devices with ease.</p>
+                            </div>
+                        </a>
+                        <hr class="break-line">
+                        <a href="https://www.bastionxp.com/" class="dropdown-sub-menu">
+                            <img src="/assets/images/bastionxp-iot-product.svg" alt="" class="dropdown-sub-menu-img">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">BastionXP Zero Trust Security Platform</p>
+                                <p class="nav-sub-menu-paragraph">Secure your IoT systems.</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+    
+                <li class="nav-links-container nav-link-dropdown-container">
+                    <div class="nav-btn-link" onclick="toggleDropDown(event, 'dropdown2', 'dropdown-img-2')">
+                        <a href="">Solutions</a>
+                        <img src="/assets/images/dropdown.svg" alt="" class="dropdown-img small-dropdown-img" id="dropdown-img-2">
+                    </div>
+                    <div class="small-dropdown-menu smaller-screen-dropdown-menu" id="dropdown2">
+                        <div class="small-dropdown-topic">
+                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleSubDropdown(event, 'div1', 'dropdown-icon-1')">
+                                <a href="/iot-remote-access" class="dropdown-sub-menu">
+                                    <img src="/assets/images/iot-remote-access.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Remote Access</p>
+                                        <p class="nav-sub-menu-paragraph">Secure access to IoT devices remotely.</p>
+                                    </div>
+                                </a>
+                                <img src="/assets/images/dropdown.svg" alt="" class="size-5 transition-transform duration-300 rotate-0 ease-in-out" id="dropdown-icon-1">
+                            </div>
+                            <div id="div1" class="dropdown-responsive dropdown-sub-menu-lg hidden">
+                                <hr class="break-line gap-fill line-hidden">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/ssh-remote-access.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT SSH Remote Access</p>
+                                        <p class="nav-sub-menu-paragraph">Secure shell access for IoT devices.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/vnc.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Remote Desktop Access (VNC)</p>
+                                        <p class="nav-sub-menu-paragraph">Virtual desktop access to IoT devices.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/rdp.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Remote Desktop Access (RDP)</p>
+                                        <p class="nav-sub-menu-paragraph">Real-time device performance monitoring.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/iot-web-service-remote-access.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Web Service Remote Access</p>
+                                        <p class="nav-sub-menu-paragraph">Access IoT web services remotely.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/http-web-service-remote-access.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">HTTP Web Service Remote Access</p>
+                                        <p class="nav-sub-menu-paragraph">HTTP protocol-based IoT web service access.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="/remote-access-linux-server" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/linux-server-remote-access.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">Linux Server Remote Access</p>
+                                        <p class="nav-sub-menu-paragraph">Remotely manage Linux-based IoT servers.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/secure-file-transfer-icon.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Secure File Transfer</p>
+                                        <p class="nav-sub-menu-paragraph">Transfer files securely between IoT devices.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/ssh-key-icon.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">SSH Key Management</p>
+                                        <p class="nav-sub-menu-paragraph">Manage and secure SSH keys easily.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <hr class="break-line">
+                        <a href="/iot-remote-monitoring" class="dropdown-sub-menu">
+                            <img src="/assets/images/iot-remote-monitoring.svg" alt="" class="dropdown-sub-menu-img">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">IoT Remote Monitoring</p>
+                                <p class="nav-sub-menu-paragraph">Real-time device performance monitoring.</p>
+                            </div>
+                        </a>
+                        <hr class="break-line">
+                        <a href="/iot-asset-tracking" class="dropdown-sub-menu">
+                            <img src="/assets/images/iot-asset-tracking.svg" alt="" class="dropdown-sub-menu-img">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">IoT Asset Tracking</p>
+                                <p class="nav-sub-menu-paragraph">Track assets across locations.</p>
+                            </div>
+                        </a>
+                        <hr class="break-line">
+                        <div class="small-dropdown-topic">
+                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleSubDropdown(event, 'div2', 'dropdown-icon-2')">
+                                <a href="/iot-ota-update" class="dropdown-sub-menu">
+                                    <img src="/assets/images/iot-sotware-ota-update.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Software OTA Update</p>
+                                        <p class="nav-sub-menu-paragraph">Seamlessly update software over the air.</p>
+                                    </div>
+                                </a>
+                                <img src="/assets/images/dropdown.svg" alt="" class="size-5 transition-transform duration-300 rotate-0 ease-in-out" id="dropdown-icon-2">
+                            </div>
+                            <div id="div2" class="dropdown-responsive dropdown-sub-menu-lg hidden">
+                                <hr class="break-line gap-fill line-hidden">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/app-binary-icon.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">OTA Update App Binary</p>
+                                        <p class="nav-sub-menu-paragraph">App updates OTA.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/debian-ota.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">OTA Update Debian Package</p>
+                                        <p class="nav-sub-menu-paragraph">Debian updates OTA.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/docker-ota.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">OTA Update Docker Container</p>
+                                        <p class="nav-sub-menu-paragraph">Docker updates OTA.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/firmware-iccon.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">OTA Update Firmware</p>
+                                        <p class="nav-sub-menu-paragraph">Firmware updates OTA.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="small-dropdown-menu larger-screen-dropdown-menu h-80 grid lg:grid-cols-3 xl:grid-cols-5 lg:px-6 xl:px-0">
+                        <div class="my-auto larger-screen-dropdown-container border-right-pattern place-self-end lg:col-span-1 xl:col-span-2" style="padding-right: 0px;">
+                            <div id="sub-nav-link-1" class="bg-background dropdown-sub-menu justify-between cursor-pointer border-b-[1px] border-gray-300 py-2 px-3">
+                                <a href="/iot-remote-access/" class="flex items-start justify-start gap-4">
+                                    <img src="/assets/images/iot-remote-access.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Remote Access</p>
+                                        <p class="nav-sub-menu-paragraph">Secure access to IoT devices remotely.</p>
+                                    </div>
+                                </a>
+                                <img src="/assets/images/dropdown.svg" alt="" class="dropdown-img" style="rotate: 270deg;">
+                            </div>
+                            <div id="sub-nav-link-2" class="py-2 px-3 border-b-[1px] border-gray-300">
+                                <a href="/iot-remote-monitoring" class="dropdown-sub-menu">
+                                    <img src="/assets/images/iot-remote-monitoring.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Remote Monitoring</p>
+                                        <p class="nav-sub-menu-paragraph">Real-time device performance monitoring.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="sub-nav-link-3" class="py-2 px-3 border-b-[1px] border-gray-300">
+                                <a href="/iot-asset-tracking" class="dropdown-sub-menu">
+                                    <img src="/assets/images/iot-asset-tracking.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Asset Tracking</p>
+                                        <p class="nav-sub-menu-paragraph">Track assets across locations.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="sub-nav-link-4" class="dropdown-sub-menu justify-between cursor-pointer py-2 px-3">
+                                <a href="/iot-ota-update" class="flex justify-start items-start gap-4" >
+                                    <img src="/assets/images/iot-sotware-ota-update.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Software OTA Update</p>
+                                        <p class="nav-sub-menu-paragraph">Seamlessly update software over the air.</p>
+                                    </div>
+                                </a>
+                                <img src="/assets/images/dropdown.svg" alt="" class="dropdown-img" style="rotate: 270deg;">
+                            </div>
+                        </div>
+                        <div id="container-1" class="larger-dropdown-category-container place-self-start lg:col-span-2 xl:col-span-3" style="padding-left: 10px; height: fit-content;">
+                            <div class="larger-dropdown-category">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/ssh-remote-access.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT SSH Remote Access</p>
+                                        <p class="nav-sub-menu-paragraph">Secure shell access for IoT devices.</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/vnc.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Remote Desktop Access (VNC)</p>
+                                        <p class="nav-sub-menu-paragraph">Virtual desktop access to IoT devices.</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/rdp.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Remote Desktop Access (RDP)</p>
+                                        <p class="nav-sub-menu-paragraph">Real-time device performance monitoring.</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="/remote-access-linux-server" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/linux-server-remote-access.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">Linux Server Remote Access</p>
+                                        <p class="nav-sub-menu-paragraph">Remotely manage Linux-based IoT servers.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="larger-dropdown-category my-auto">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/iot-web-service-remote-access.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Web Service Remote Access</p>
+                                        <p class="nav-sub-menu-paragraph">Access IoT web services remotely.</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/http-web-service-remote-access.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">HTTP Web Service Remote Access</p>
+                                        <p class="nav-sub-menu-paragraph">HTTP protocol-based IoT web service access.</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/secure-file-transfer-icon.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">IoT Secure File Transfer</p>
+                                        <p class="nav-sub-menu-paragraph">Transfer files securely between IoT devices.</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/ssh-key-icon.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">SSH Key Management</p>
+                                        <p class="nav-sub-menu-paragraph">Manage and secure SSH keys easily.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="container-2" class="larger-dropdown-category-container hidden place-self-start lg:col-span-2 xl:col-span-3" style="padding-left: 10px;">
+                            <div class="larger-dropdown-category">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/app-binary-icon.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">OTA Update App Binary</p>
+                                        <p class="nav-sub-menu-paragraph">App updates OTA.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/debian-ota.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">OTA Update Debian Package</p>
+                                        <p class="nav-sub-menu-paragraph">Debian updates OTA.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="larger-dropdown-category">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/docker-ota.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">OTA Update Docker Container</p>
+                                        <p class="nav-sub-menu-paragraph">Docker updates OTA.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/firmware-iccon.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">OTA Update Firmware</p>
+                                        <p class="nav-sub-menu-paragraph">Firmware updates OTA.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+    
+                <li class="nav-links-container">
+                    <div class="nav-btn-link" onclick="toggleDropDown(event, 'dropdown3', 'dropdown-img-3')">
+                        <a href="">Industries</a>
+                        <img src="/assets/images/dropdown.svg" alt="" class="dropdown-img small-dropdown-img" id="dropdown-img-3">
+                    </div>
+                    <div class="small-dropdown-menu" id="dropdown3">
+                        <a href="/industries/agriculture-iot-management/" class="dropdown-sub-menu">
+                            <img src="/assets/images/agriculture.svg" alt="" class="dropdown-sub-menu-img">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">Agriculture</p>
+                                <p class="nav-sub-menu-paragraph">IoT Solutions for modern farming</p>
+                            </div>
+                        </a>
+                        <hr class="break-line">
+                        <a href="/industries/automotive-connected-vehicles-iot-management/" class="dropdown-sub-menu">
+                            <img src="/assets/images/automobile.svg" alt="" class="dropdown-sub-menu-img">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">Automobile</p>
+                                <p class="nav-sub-menu-paragraph">Smarter vehicle management with IoT</p>
+                            </div>
+                        </a>
+                        <hr class="break-line">
+                        <a href="/industries/healthcare-iot-management/" class="dropdown-sub-menu">
+                            <img src="/assets/images/healthcare.svg" alt="" class="dropdown-sub-menu-img">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">Healthcare</p>
+                                <p class="nav-sub-menu-paragraph">Enhancing patient care with IoT.</p>
+                            </div>
+                        </a>
+                        <hr class="break-line">
+                        <a href="/industries/smart-energy-iot-management" class="dropdown-sub-menu">
+                            <img src="/assets/images/smart-energy.svg" alt="" class="dropdown-sub-menu-img">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">Smart Energy</p>
+                                <p class="nav-sub-menu-paragraph">Optimize energy systems with IoT.</p>
+                            </div>
+                        </a>
+                        <hr class="break-line">
+                        <a href="/industries/smart-city-iot-management" class="dropdown-sub-menu">
+                            <img src="/assets/images/smart-city.svg" alt="" class="dropdown-sub-menu-img">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">Smart City</p>
+                                <p class="nav-sub-menu-paragraph">IoT for smarter urban living.</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+    
+                <li><a href="/pricing">Pricing</a></li>
+                <li><a href="/download">Download</a></li>
+    
+                <li class="nav-links-container nav-link-dropdown-container">
+                    <div class="nav-btn-link" onclick="toggleDropDown(event, 'dropdown4', 'dropdown-img-4')">
+                        <a href="">Resources</a>
+                        <img src="/assets/images/dropdown.svg" alt="" class="dropdown-img small-dropdown-img" id="dropdown-img-4">
+                    </div>
+                    <div class="small-dropdown-menu smaller-screen-dropdown-menu" id="dropdown4">
+                        <div>
+                            <a href="https://docs.socketxp.com/" class="dropdown-sub-menu">
+                                <img src="/assets/images/documentation.svg" alt="" class="dropdown-sub-menu-img">
+                                <div class="dropdown-sub-content">
+                                    <p class="nav-sub-menu-heading">Documentation</p>
+                                    <p class="nav-sub-menu-paragraph">Comprehensive guides and API references.</p>
+                                </div>
+                            </a>
+                            <hr class="break-line">
+                            <a href="/iot" class="dropdown-sub-menu">
+                                <img src="/assets/images/blog.svg" alt="" class="dropdown-sub-menu-img">
+                                <div class="dropdown-sub-content">
+                                    <p class="nav-sub-menu-heading">Blog</p>
+                                    <p class="nav-sub-menu-paragraph">Read insights and updates about IoT.</p>
+                                </div>
+                            </a>
+                            <hr class="break-line">
+                            <div class="dropdown-sub-menu">
+                                <img src="/assets/images/partners.svg" alt="" class="dropdown-sub-menu-img">
+                                <div class="dropdown-sub-content">
+                                    <p class="nav-sub-menu-heading">Partners</p>
+                                    <p class="nav-sub-menu-paragraph">Explore collaboration opportunities.</p>
+                                </div>
+                            </div>
+                            <hr class="break-line" style="margin-left: 40px;">
+                            <div style="margin-left: 40px;">
+                                <a href="/resellers" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/resellers.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">Resellers</p>
+                                        <p class="nav-sub-menu-paragraph">Authorized distributors of your platform.</p>
+                                    </div>
+                                </a>
+                                <hr class="break-line">
+                                <a href="/affiliates" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/affiliates.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">Affiliates</p>
+                                        <p class="nav-sub-menu-paragraph">Partners promoting the platform for rewards.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="small-dropdown-menu larger-screen-dropdown-menu">
+                        <div class="larger-screen-dropdown-container border-right-pattern" style="padding-right: 0px;">
+                            <div class="py-2 px-3 border-b-[1px] border-gray-300">
+                                <a href="https://docs.socketxp.com/" class="dropdown-sub-menu">
+                                    <img src="/assets/images/documentation.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">Documentation</p>
+                                        <p class="nav-sub-menu-paragraph">Comprehensive guides and API references.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="py-2 px-3 border-b-[1px] border-gray-300">
+                                <a href="/iot" class="dropdown-sub-menu">
+                                    <img src="/assets/images/blog.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">Blog</p>
+                                        <p class="nav-sub-menu-paragraph">Read insights and updates about IoT.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="dropdown-sub-menu py-2 px-3">
+                                <img src="/assets/images/partners.svg" alt="" class="dropdown-sub-menu-img">
+                                <div class="dropdown-sub-content">
+                                    <p class="nav-sub-menu-heading">Partners</p>
+                                    <p class="nav-sub-menu-paragraph">Explore collaboration opportunities.</p>
+                                </div>
+                                <img src="/assets/images/dropdown.svg" alt="" class="dropdown-img" style="rotate: 270deg;">
+                            </div>
+                        </div>
+                        <div class="larger-dropdown-category-container" style="padding-left: 10px;">
+                            <div class="larger-dropdown-category">
+                                <a href="/resellers" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/resellers.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">Resellers</p>
+                                        <p class="nav-sub-menu-paragraph">Authorized distributors of your platform.</p>
+                                    </div>
+                                </a>
+                                <a href="/affiliates" class="dropdown-sub-menu dropdown-category">
+                                    <img src="/assets/images/affiliates.svg" alt="" class="dropdown-sub-menu-img">
+                                    <div class="dropdown-sub-content">
+                                        <p class="nav-sub-menu-heading">Affiliates</p>
+                                        <p class="nav-sub-menu-paragraph">Partners promoting the platform for rewards.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+    
+                <li class="nav-links-container">
+                    <div class="nav-btn-link" onclick="toggleDropDown(event, 'dropdown5', 'dropdown-img-5')">
+                        <a  href="/login" onclick="event.stopPropagation();">Sign in</a>
+                        <img src="/assets/images/dropdown.svg" alt="" class="dropdown-img small-dropdown-img" id="dropdown-img-5">
+                    </div>
+                    <div class="small-dropdown-menu" id="dropdown5">
+                        <a href="https://portal.socketxp.com/#/login" class="dropdown-sub-menu">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">US Gateway Login</p>
+                                <p class="nav-sub-menu-paragraph">Access your US IoT gateway.</p>
+                            </div>
+                        </a>
+                        <hr class="break-line">
+                        <a href="https://portal.eu.socketxp.com/#/login" class="dropdown-sub-menu">
+                            <div class="dropdown-sub-content">
+                                <p class="nav-sub-menu-heading">Europe Gateway Login</p>
+                                <p class="nav-sub-menu-paragraph">Access your Europe IoT gateway.</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <a href="/login"><button class="cta-btn smaller-screen">Try For Free</button></a>
+        </div>
+        <a href="/login"><button class="cta-btn larger-screen">Try For Free</button></a>
+        <div class="nav-btn">
+            <button aria-label="Open navigation menu">
+                <img src="/assets/images/hamburger-icon.svg" class="hamburger-icon" id="hamburger-btn" alt="">
+            </button>
+            <button aria-label="Close navigation menu">
+                <img src="/assets/images/close-icon.svg" class="close-icon" id="close-icon" alt="">
+            </button>
+        </div>
+    </nav>
+</header>
+<!-- End of Navigation Bar -->

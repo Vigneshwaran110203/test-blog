@@ -1,0 +1,15 @@
+<!-- Start of Hero Section -->
+<section class="normal-hero">
+    <div class="hero-container">
+        <h1 class="hero-title">{{ .Params.heroTitle }}</h1>
+        <p class="hero-description">{{ .Params.heroDescription }}</p>
+        <div class="hero-button-container">
+            <a href="{{ .Params.primaryLink }}" class="hero-primary-button">{{ .Params.primaryLabel }}</a>
+            {{ if .Params.pageName }}
+                <a href="{{ .Params.secondaryLink }}" class="hero-secondary-button">{{ .Params.secondaryLabel }}</a>
+            {{ end }}
+        </div>
+    </div>
+    <img src="{{ .Params.Image_URL }}" alt="SocketXP Dashboard" class="hero-image">
+</section>
+<!-- End of Hero Section -->

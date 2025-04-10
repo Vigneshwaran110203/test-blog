@@ -1,0 +1,23 @@
+<section class="iot-asset-tracking large:px-[20%]">
+    <div class="sub-container">
+        <span class="dark-tagline">{{ .tagline }}</span>
+        <h2 class="dark-sub-container-title">{{ .title }}</h2>
+        <p class="dark-sub-container-description">{{ .description }}</p>
+    </div>
+    <div class="box-grid-left-container-dark">
+        <img src="{{ .image }}" class="solutions-image" alt="">
+        <div class="box-grid-points-container">
+            {{ range .points }}
+            <div class="points-card">
+                <span class="solutions-icon">
+                    <img src="{{ .icon }}" alt="" class="size-6 large:size-8">
+                </span>
+                <div class="points-content">
+                    <h5 class="text-white">{{ .title }}</h5>
+                    <p class="text-background">{{ .description }}</p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Key Based Authentication on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/key-based-authentication/</link>
+    <description>Recent content in Key Based Authentication on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/key-based-authentication/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Secure File Transfers - Mastering SFTP and SCP</title>
+      <link>http://localhost:51627/iot/secure-file-transfer-sftp-scp/</link>
+      <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/secure-file-transfer-sftp-scp/</guid>
+      <description>&lt;p&gt;In today&amp;rsquo;s interconnected world, securely transferring files is paramount.&lt;/p&gt;&#xA;&lt;p&gt;Whether you&amp;rsquo;re a system administrator, developer, or simply a user needing to move data, understanding SFTP and SCP is essential.&lt;/p&gt;&#xA;&lt;p&gt;These protocols provide secure alternatives to traditional file transfer methods, protecting your data from prying eyes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-are-sftp-and-scp&#34;&gt;What are SFTP and SCP?&lt;/h2&gt;&#xA;&lt;h3 id=&#34;sftp-ssh-file-transfer-protocol&#34;&gt;SFTP (SSH File Transfer Protocol):&lt;/h3&gt;&#xA;&lt;p&gt;SFTP is a secure file transfer protocol that operates over the SSH (Secure Shell) protocol.&#xA;It provides a secure, interactive session for transferring files, similar to FTP, but with encryption.&#xA;SFTP allows for various file operations, including uploading, downloading, renaming, deleting, and managing directories.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mastering SSH - A Complete Guide to Secure Shell Protocol</title>
+      <link>http://localhost:51627/iot/ssh-secure-shell/</link>
+      <pubDate>Tue, 19 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/ssh-secure-shell/</guid>
+      <description>&lt;h2 id=&#34;10--what-is-ssh&#34;&gt;1.0  What is SSH&lt;/h2&gt;&#xA;&lt;p&gt;Secure Shell (SSH) is a cryptographic network protocol designed for secure communication over an unsecured network.&lt;/p&gt;&#xA;&lt;p&gt;It is widely used for remote login, command execution, and data transfer between computers. SSH provides a secure channel over an unsecured network by encrypting the data exchanged between the client and the server.&lt;/p&gt;&#xA;&lt;p&gt;This guide will take you through the comprehensive details of SSH, from its history and key features to advanced configurations and security best practices.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

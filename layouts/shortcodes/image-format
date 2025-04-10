@@ -1,0 +1,5 @@
+{{ if .IsNamedParams }}
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="{{ .Get "src" }}" alt="{{ .Get "alt" }}" style="max-width:80%;max-height:100%;">
+</div>
+{{ end }}

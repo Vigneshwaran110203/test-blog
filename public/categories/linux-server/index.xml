@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux Server on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/categories/linux-server/</link>
+    <description>Recent content in Linux Server on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/categories/linux-server/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Share Your Linux Terminal with Your Team Members</title>
+      <link>http://localhost:51627/iot/linux-terminal-sharing-ssh-session-sharing/</link>
+      <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/linux-terminal-sharing-ssh-session-sharing/</guid>
+      <description>&lt;p&gt;SocketXP is a powerful tool for securely sharing your Linux terminal or SSH session with people you trust to quickly perform a joint debugging. Your customers or team members can connect to your Linux terminal session via a browser over HTTPS protocol using a public web URL.&lt;/p&gt;&#xA;&lt;p&gt;In this article, we will discuss how to configure and setup SocketXP in your Linux machine or device so that you can share your Linux terminal with your team members, customers or anyone you trust.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access Ubuntu SSH Server over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-ubuntu-ssh-server-over-the-internet/</link>
+      <pubDate>Mon, 18 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-ubuntu-ssh-server-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to remote access your Ubuntu Linux &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell/&#34;&gt;Secure Shell (SSH)&lt;/a&gt; server from Windows or any OS without comprimising security, making it easier than ever to manage your Ubuntu Linux remotely from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the &lt;a href=&#34;http://localhost:51627/remote-access-linux-server&#34;&gt;Ubuntu Linux is its ability to be accessed remotely&lt;/a&gt;, which allows you to control and manage your Ubuntu Linux from another machine over the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access SSH From Anywhere</title>
+      <link>http://localhost:51627/iot/remote-access-ssh-from-anywhere/</link>
+      <pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-ssh-from-anywhere/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to securely remote access your Linux (SSH) server or device from anywhere in the world, making it easier than ever to remotely manage your Linux server.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the Linux server is its ability to be accessed remotely, which allows you to control and manage your Linux server from another machine over the internet.&lt;/p&gt;&#xA;&lt;p&gt;One common method to remotely access a Linux server is using &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell/&#34;&gt;Secure Shell (SSH)&lt;/a&gt;, a network protocol that provides a secure way to communicate with a remote device.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access SSH Without Port Forwarding</title>
+      <link>http://localhost:51627/iot/remote-access-ssh-without-port-forwarding/</link>
+      <pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-ssh-without-port-forwarding/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to securely remote access your Linux or Ubuntu Secure Shell (SSH) server over the internet without setting up port forwarding in your router or pinholing your firewall, making it easier than ever to manage your Linux server from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the Linux server is its ability to be accessed remotely, which allows you to control and manage your Linux server from another machine over the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access Kubernetes Worker Node SSH over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-kubernetes-worker-node-ssh-over-the-internet/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-kubernetes-worker-node-ssh-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to remotely access your Kubernetes Master or Worker Node&amp;rsquo;s Secure Shell (SSH) over the internet, making it easier than ever to manage your Kubernetes Worker Nodes or cluster from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of a Linux based cluster node is its ability to be accessed remotely, which allows you to control and manage your Kubernetes Worker Node from another machine over the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access Linux Desktop GUI from Windows over the Internet</title>
+      <link>http://localhost:51627/iot/remote-connect-linux-desktop-gui-rdp-from-windows-over-internet/</link>
+      <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-connect-linux-desktop-gui-rdp-from-windows-over-internet/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to remotely access your Linux or Ubuntu desktop GUI from Windows using RDP, making it easier than ever to manage your Linux server from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the most powerful features of the Linux is its ability to be accessed remotely, allowing you to control and interact with your Linux server or Ubuntu over the internet from outside network.&lt;/p&gt;&#xA;&lt;p&gt;And when it comes to remote desktop access on a Linux server, xrdp (X Remote Desktop Protocol) is the go-to solution.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access Linux Server SSH from Windows over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-linux-server-ssh-over-the-internet-from-windows/</link>
+      <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-linux-server-ssh-over-the-internet-from-windows/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to remotely access your Linux or Ubuntu Secure Shell (SSH) server from Windows, making it easier than ever to manage your Linux server from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the Linux server is its ability to be accessed remotely, which allows you to control and manage your Linux server from another machine over the internet.&lt;/p&gt;&#xA;&lt;p&gt;One common method to remotely access a Linux server is using &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell/&#34;&gt;Secure Shell (SSH)&lt;/a&gt;, a network protocol that provides a secure way to communicate with a remote device.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remotely Execute Shell Commands or Scripts on your Linux server</title>
+      <link>http://localhost:51627/iot/remote-command-script-execution-linux-server/</link>
+      <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-command-script-execution-linux-server/</guid>
+      <description>&lt;p&gt;Are you looking for a way to execute remote command on your Linux servers from anywhere in the world?&lt;/p&gt;&#xA;&lt;p&gt;Want to break free from the limitations of physical proximity and execute commands remotely with ease? Remote command execution is the ultimate solution!&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s a game-changer for Linux server enthusiasts and professionals alike, offering unparalleled convenience and flexibility. Picture being able to execute commands on your Linux server from the comfort of your  home, office or even while on the go.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Remotely Connect to Linux Desktop via VNC from Windows: A Step-by-Step Guide
+</title>
+      <link>http://localhost:51627/iot/remotely-connect-linux-desktop-gui-via-vnc-from-windows/</link>
+      <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remotely-connect-linux-desktop-gui-via-vnc-from-windows/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to remotely access your Linux or Ubuntu desktop GUI from Windows using VNC, making it easier than ever to manage your Linux server from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the Linux server is its ability to be accessed remotely, allowing you to control it from another device. One of the most common methods to achieve this is by using Virtual Network Computing (VNC).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

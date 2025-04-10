@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to configure and setup SSH public keys, the right way</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to configure and setup SSH public keys, the right way</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to configure and setup SSH public keys, the right way</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Feb 11, 2022
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1--create-the-ssh-keys">Step #1  Create the SSH keys</a></li>
+    <li><a href="#step-2-configure-the-server-to-use-the-public-key">Step 2: Configure the server to use the public key</a></li>
+    <li><a href="#step-3-verify-ssh-login-using-the-key">Step 3 Verify SSH login using the key</a></li>
+    <li><a href="#step-4--disable-password-based-authentication-if-required">Step 4:  Disable password based authentication, if required.</a></li>
+    <li><a href="#problems-at-scale">Problems at Scale:</a>
+      <ul>
+        <li><a href="#socketxp-ssh-public-key-management-tool">SocketXP SSH Public Key Management Tool:</a></li>
+      </ul>
+    </li>
+    <li><a href="#got-any-questions">Got any questions?</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/configure-setup-ssh-public-keys-right-way/" title="How to configure and setup SSH public keys, the right way">
+                        <img src="/assets/img/tighten-ssh-access-using-ssh-certificates/setup-ssh-public-keys.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1--create-the-ssh-keys">Step #1  Create the SSH keys</a></li>
+    <li><a href="#step-2-configure-the-server-to-use-the-public-key">Step 2: Configure the server to use the public key</a></li>
+    <li><a href="#step-3-verify-ssh-login-using-the-key">Step 3 Verify SSH login using the key</a></li>
+    <li><a href="#step-4--disable-password-based-authentication-if-required">Step 4:  Disable password based authentication, if required.</a></li>
+    <li><a href="#problems-at-scale">Problems at Scale:</a>
+      <ul>
+        <li><a href="#socketxp-ssh-public-key-management-tool">SocketXP SSH Public Key Management Tool:</a></li>
+      </ul>
+    </li>
+    <li><a href="#got-any-questions">Got any questions?</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>Mostly, users login to their servers using SSH passwords.  SSH password based authentication is not safe for enterprise usecases because passwords are usually short in length, contain dictionary words, and can be easily guessed.  Using SSH public key based authentication is safe for enterprise deployments.</p>
+<p>In this article we&rsquo;ll discuss how to configure and setup SSH public key based login for a linux server.</p>
+<h2 id="step-1--create-the-ssh-keys">Step #1  Create the SSH keys</h2>
+<p>When you install SSH, it comes with a bunch of handy tools.  One of them is named <code>ssh-keygen</code>.  We&rsquo;ll use <code>ssh-keygen</code> to create SSH public keys.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ ssh-keygen -t rsa -b 4096
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/bob/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/bob/.ssh/id_rsa
+Your public key has been saved in /home/bob/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:ShpCF11/fYjujAVDYivNKpNM6QdVwh8Z9sX00PIspdo 
+bob@localhost
+The key's randomart image is:
++---[RSA 4096]----+
+|    .oooBo.o+.   |
+|     +o*o* .o=o. |
+|  . = ..+.= o*+ .|
+| . = o o.  =o o. |
+|  . B + S  oo.   |
+|   . B .  .=E    |
+|    . .   . o    |
+|                 |
+|                 |
++----[SHA256]-----+
+</pre>
+<p>We are requesting a RSA type key and the key length should be 4096 bits.  The longer the key, the harder it is to crack it.</p>
+<p>It is highly recommended to provide a passphrase for the private key, when prompted.  If an unauthorized user gets hold of the private key with no passphrase, they will be able to log in to any server you&rsquo;ve configured with the associated public key.</p>
+<p>The above command would have generated an SSH pair - public key and a private key, in the default <code>.ssh</code> folder in your home directory. For example: <code>/home/bob/.ssh/</code></p>
+<p><strong>Public Key:</strong> /home/bob/.ssh/id_rsa.pub
+<strong>Private Key:</strong> /home/bob/.ssh/id_rsa</p>
+<p>You should neither share the private key with anyone nor copy it to your online storage or emails or chat window.</p>
+<h2 id="step-2-configure-the-server-to-use-the-public-key">Step 2: Configure the server to use the public key</h2>
+<p>Next, we need to copy the SSH public key to the server.  We&rsquo;ll use a tool named <code>ssh-copy-id</code> that is part of the ssh toolkit.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ ssh-copy-id bob@server-name </pre>
+<p>Once the above command completes, you can login to your server using the SSH public key.  If you have set up a passphrase during the key generation, the <code>ssh-copy-id</code> command will ask for it.
+Alternatively, you can copy the SSH public key manually to the server.  You need to copy-paste or append the public key to the <code>~/.ssh/authorized_keys</code> file  on the server.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto"> 
+$ cat /home/bob/.ssh/authorized_keys 
+#Bob's key
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQAB... bob</pre>
+<h2 id="step-3-verify-ssh-login-using-the-key">Step 3 Verify SSH login using the key</h2>
+<p>Verify if you can login to the server using the ssh key generated above.   Run the SSH client command as shown below:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">ssh -i /home/bob/.ssh/id_rsa bob@server-name</pre>
+<p>The -i option is used to specify the identity file or the SSH private key file.  You may be prompted for the passphrase to unlock the private key, if you provided one during the step #1 above.</p>
+<p>When you login using the SSH key for the first time, you&rsquo;ll see a weird message on the console, something like this:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+The authenticity of host 'server-name (10.1.1.1)' can't be established.
+ED25519 key fingerprint is SHA256:LKVs+g5kgmIXsYkU2Fl8XmNOmW4Rz1/AoXBLdRoanzM.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])?</pre>
+<p>This is a catch22 situation where you can neither deny nor agree with the message.  If you know this is your host or server, then say yes and continue.  The SSH public key of the host will be stored in the <code>~/.ssh/known_hosts</code> file in your client machine for future reference.  Next time when you SSH login, you&rsquo;ll not see the message again.</p>
+<p>If you prefer not to input the SSH key file location and the username everytime you use the ssh command, you could setup the SSH config in your user machine as shown below:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ cat ~/.ssh/config
+	
+Host host1
+   HostName host1.example.com
+   User bob
+   IdentityFile ~/.ssh/id_rsa
+</pre>
+<p>Description of the fields used in the above config file:</p>
+<ul>
+<li>Host — the nickname for the host.</li>
+<li>HostName — the IP address or domain of the remote server.</li>
+<li>User — the username associated with the account in the server.</li>
+<li>IdentityFile — the location of your SSH key to be used for login to this host.</li>
+</ul>
+<p>If you prefer to use a different private key for each host, then you could setup your config file as shown below:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ cat ~/.ssh/config
+	
+Host host1
+   HostName host1.example.com
+   User bob
+   IdentityFile ~/.ssh/id_rsa_host1
+
+Host host2
+   HostName host2.example.com
+   User bob
+   IdentityFile ~/.ssh/id_rsa_host2
+
+Host host3
+   HostName host3.example.com
+   User bob
+   IdentityFile ~/.ssh/id_rsa_host3
+</pre>
+<p>Here after you could SSH into any host with a simple command like:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ ssh [host-nickname] </pre>
+<p>For example, to login to host1:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ ssh host1 </pre>
+<h2 id="step-4--disable-password-based-authentication-if-required">Step 4:  Disable password based authentication, if required.</h2>
+<p>Now that you have set up your SSH keys for login, it is the right time to completely disable password based login in your SSH server.</p>
+<blockquote>
+<p><strong>Note:</strong> Make sure that all other users of the server also have setup SSH public key based login successfully, before you turn-off the password based SSH login.  Because once you disable password based authentication, any user still using password for SSH login wouldn&rsquo;t be able to do so after this.</p></blockquote>
+<p>Edit the <code>/etc/ssh/sshd_config</code> file in the server using any editor of your choice, say nano or vim.  Change the setting named <code>PasswordAuthentication:</code> to <code>no</code> as shown below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ nano /etc/ssh/sshd_config
+…
+PasswordAuthentication: no
+…
+</pre>
+<p>If you see any &lsquo;#&rsquo; at the beginning of the line, make sure you delete it.  # is used to comment out a configuration.  You need to uncomment it to make the configuration effective. Save the change and restart the SSH server daemon using the following command as sudo user:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto"> $ sudo systemctl restart sshd </pre>
+<p>Verify sshd server is up and running.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto"> $ sudo systemctl status sshd </pre>
+<h2 id="problems-at-scale">Problems at Scale:</h2>
+<p>Now that you have set up one user for SSH public key based authentication, you as an admin of your organization, should repeat the same procedure to set up SSH public key based authentication for the remaining users.</p>
+<p>If you have more than one server in your organization(which would most likely be the case), then you need to copy each user&rsquo;s SSH public key to the <code>authorized_keys</code> file in all the servers.  This becomes a M * N problem set.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/tighten-ssh-access-using-ssh-certificates/setup-ssh-public-keys.jpg" alt="SSH public key setup" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>It is not possible to do this task manually with a scaled infrastructure. Some sort of a software or automation tool is required to complete the task.</p>
+<p>It is highly recommended that a user doesn&rsquo;t reuse the same SSH public key to login to all SSH servers.  If an unwanted user were to get hold of the private key, the potential attack surface becomes large.</p>
+<p>There are some  additional problems &amp; operational challenges associated with using SSH public key based authentication.  We discuss this in detail in our next article here: <a href="https://www.bastionxp.com/blog/tightening-ssh-access-using-short-lived-ssh-certificates/"><strong>Tightening SSH access using short-lived SSH certificates</strong>
+</a></p>
+<h3 id="socketxp-ssh-public-key-management-tool">SocketXP SSH Public Key Management Tool:</h3>
+<p>SSH password based authentication is vulnerable to attacks and generally not recommended for production usecases.  SSH Public Private key based authentication is a secure and recommended method for production usecases.</p>
+<p><a href="/">SocketXP remote device management platform</a> provides an <a href="/remote-access-linux-server">SSH remote access solution</a> that has a built-in SSH public key management tool.</p>
+<p>By default, SocketXP Web Portal or Dashboard will create and sync a very short-lived single-use SSH public key to your Ubuntu Linux machine, so that you can securely remote login to your Ubuntu Linux from anywhere in the world, without having to use password based authentication. The key will be cleaned up or trashed immediately after the user logs in.</p>
+<p>You should remember that a user can SSH into your Ubuntu Linux machine from the SocketXP web portal, only after a successful SSO login (and 2FA authentication) provided by your SSO OAuth provider such: Microsoft 365 or Google G-Suite.</p>
+<p>SocketXP&rsquo;s built-in SSH public key management tool, that automates SSH public key management or syncing it between your Ubuntu Linux system and the SSH web client, even cleans up the key immediately after the user logs in, so that a new public key setup is required for the next login attempt by the same user.</p>
+<p>For better security, you can even disable password based authentication completely on your Ubuntu Linux SSH server.  But, if you prefer to use password based authentication, then select the &ldquo;Password authentication&rdquo; option during the login prompt in the web portal.  The default option is &ldquo;SSH Public Key Authentication.&rdquo;</p>
+<h2 id="got-any-questions">Got any questions?</h2>
+<p>If you have any questions about SocketXP SSH Remote Access and SSH Public Key Management Solution, please write to us at: <a href="mailto:support@socketxp.com">support@socketxp.com</a></p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

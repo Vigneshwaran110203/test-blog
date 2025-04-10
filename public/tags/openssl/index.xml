@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenSSL on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/openssl/</link>
+    <description>Recent content in OpenSSL on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/openssl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mutual TLS Authentication - Everything you need to know</title>
+      <link>http://localhost:51627/iot/mutual-tls-authentication/</link>
+      <pubDate>Sat, 09 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/mutual-tls-authentication/</guid>
+      <description>&lt;h2 id=&#34;what-is-mtls&#34;&gt;What is mTLS?&lt;/h2&gt;&#xA;&lt;p&gt;Mutual Transport Layer Security (mTLS), also known as two-way TLS, is a security protocol that allows both the client and server to authenticate each other before establishing a secure connection. This is in contrast to traditional TLS, where only the client authenticates the server.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-mtls-works&#34;&gt;How mTLS Works:&lt;/h2&gt;&#xA;&lt;p&gt;Certificate Exchange: Both the client and server present their respective digital certificates to each other.&lt;/p&gt;&#xA;&lt;p&gt;Certificate Verification: Each party verifies the authenticity and validity of the other&amp;rsquo;s certificate using a trusted certificate authority (CA).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

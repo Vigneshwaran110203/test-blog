@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Remotely Execute Shell Commands or Scripts on your IoT device</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Remotely Execute Shell Commands or Scripts on your IoT device</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Remotely Execute Shell Commands or Scripts on your IoT device</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Apr 15, 2023
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-to-send-commands-to-iot-over-the-internet">How to send commands to IoT over the internet</a>
+      <ul>
+        <li><a href="#step-1-install-and-setup-socketxp-agent">Step #1: Install and Setup SocketXP Agent</a></li>
+        <li><a href="#step-2-send-a-remote-command">Step #2: Send a Remote Command</a></li>
+        <li><a href="#device">Device</a></li>
+        <li><a href="#device-group">Device Group</a></li>
+        <li><a href="#device-tag">Device Tag</a></li>
+        <li><a href="#sample-commands">Sample Commands</a></li>
+        <li><a href="#advantanges-of-remote-command-execution-on-iot">Advantanges of Remote Command Execution on IoT:</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remote-command-script-execution-iot/" title="How to Remotely Execute Shell Commands or Scripts on your IoT device">
+                        <img src="/assets/img/execute-remote-commands-multiple-linux-server.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-to-send-commands-to-iot-over-the-internet">How to send commands to IoT over the internet</a>
+      <ul>
+        <li><a href="#step-1-install-and-setup-socketxp-agent">Step #1: Install and Setup SocketXP Agent</a></li>
+        <li><a href="#step-2-send-a-remote-command">Step #2: Send a Remote Command</a></li>
+        <li><a href="#device">Device</a></li>
+        <li><a href="#device-group">Device Group</a></li>
+        <li><a href="#device-tag">Device Tag</a></li>
+        <li><a href="#sample-commands">Sample Commands</a></li>
+        <li><a href="#advantanges-of-remote-command-execution-on-iot">Advantanges of Remote Command Execution on IoT:</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>Are you looking for a way to control your IoT projects from anywhere in the world?</p>
+<p>Want to break free from the limitations of physical proximity and execute commands remotely with ease? Remote command execution is the ultimate solution!</p>
+<p>It&rsquo;s a game-changer for IoT enthusiasts and professionals alike, offering unparalleled convenience and flexibility. Picture being able to execute commands on your IoT from the comfort of your  home, office or even while on the go.</p>
+<p>In this article, we&rsquo;ll explore the exciting world of remote command execution on IoT, delving into a simple method that don&rsquo;t require you to login to your IoT via SSH.</p>
+<p>Yes. You heard that right. You don&rsquo;t need to <a href="/iot/remote-access-iot-ssh-over-the-internet">remote SSH into your IoT</a>!</p>
+<p>You could simply use the remote command execution feature of the <a href="/iot-remote-access">SocketXP IoT Remote Access solution</a> to send commands to your IoT over the internet.</p>
+<p>Get ready to unlock the full potential of your IoT projects and experience a new level of control and accessibility!</p>
+<h2 id="how-to-send-commands-to-iot-over-the-internet">How to send commands to IoT over the internet</h2>
+<p>In this section, we&rsquo;ll discuss how to configure and setup IoT so that you could send commands remotely to IoT over the internet using simple APIs.</p>
+<ol>
+<li>
+<p>We’ll install a simple, secure and lightweight SocketXP agent to run in your IoT or IoT device.</p>
+</li>
+<li>
+<p>The agent would connect your IoT privately and securely using an SSL/TLS tunnel to our SocketXP Cloud Gateway.</p>
+</li>
+<li>
+<p>You could then access the APIs provided by the cloud gateway using a secure authentication token created exclusively for you.</p>
+</li>
+<li>
+<p>You could then simply send commands or scripts to execute in your remotely located IoT via our APIs.</p>
+</li>
+</ol>
+<p>Let’s get started.</p>
+<h3 id="step-1-install-and-setup-socketxp-agent">Step #1: Install and Setup SocketXP Agent</h3>
+<p>Follow the instructions here to <a href="https://www.socketxp.com/download">download, install and setup SocketXP agent</a> on your IoT.</p>
+<p><strong>Note:</strong> You don’t have to run an SSH server (port 22) to run this agent. You could even point the agent to connect to some local unused port such as 52233.</p>
+<h3 id="step-2-send-a-remote-command">Step #2: Send a Remote Command</h3>
+<p>In SocketXP parlance, remote commands are called as Remote Jobs or Deployments.</p>
+<p>We will use the <code>curl</code> utility to submit a job. Alternatively, you could use the <code>Postman</code> tool to perform the same request.</p>
+<p>Before submitting a remote command or job, you need to define a workflow first.</p>
+<p>Use the workflow to submit a deployment/job to run in a specific device (DeviceId) or a group of devices.</p>
+<p>The idea behind separating workflow and deployment is reusability and repeatability.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+curl https://api.socketxp.com/v1/workflow \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer [your-auth-token-goes-here]" \
+  -d '{“Name”: "print-date-workflow”, “Command": "date"}'
+
+</pre>
+<p>The response to this POST API call, on success (200 OK), would look something like this.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+{"WorkflowId": "678edc16-96d1-4ea2-a99c-0474c2449381"}
+</pre>
+<p>Next, we could deploy this workflow to a device or a group of devices or a device tag as shown below.</p>
+<h3 id="device">Device</h3>
+<p>Submit a deployment/job to a device using the <code>DeviceId</code> option.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+curl https://api.socketxp.com/v1/job \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer [your-auth-token-goes-here]" \
+  -d '{“Name”: “test-job-123”, “DeviceId”: "sensor-dev12345”, "WorkflowId": "678edc16-96d1-4ea2-a99c-0474c2449381" }'
+</pre>
+<h3 id="device-group">Device Group</h3>
+<p>Submit a deployment/job to a group of devices using the <code>DeviceGroup</code> option.
+<pre class="p-4 bg-background rounded overflow-x-auto">
+curl https://api.socketxp.com/v1/job \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer [your-auth-token-goes-here]" \
+  -d '{“Name”: “test-job-123”, “DeviceGroup”: "temp-sensor”, "WorkflowId": "678edc16-96d1-4ea2-a99c-0474c2449381" }'
+</pre></p>
+<h3 id="device-tag">Device Tag</h3>
+<p>Use the TagId option to submit a deployment/job to a group of devices with a given tag.
+<pre class="p-4 bg-background rounded overflow-x-auto">
+
+curl https://api.socketxp.com/v1/job \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer [your-auth-token-goes-here]" \
+  -d '{“Name”: “test-job-123”, “TagId”: "temp-sensor”, "WorkflowId": "678edc16-96d1-4ea2-a99c-0474c2449381" }'
+</pre></p>
+<p>Here is the sample response from submiting a job.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+{"JobId": "4cad67dd-ab67-42ee-a293-4db493cab9ea"}
+</pre>
+<p>Now you could retrieve the status or the result of the job (remote command) using the above JobId, as shown below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+curl https://api.socketxp.com/v1/job/4cad67dd-ab67-42ee-a293-4db493cab9ea \
+  -X GET \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer [your-auth-token-goes-here]" 
+
+</pre>
+<p>And the response to the curl request would look like this:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+{
+	“JobId”: “4cad67dd-ab67-42ee-a293-4db493cab9ea”,
+	“JobName”: “test-job-123”,
+	“DeviceId”: “sensor-dev12345”,
+	“Command”: “date”,
+	“StartTime”: “Feb 8, 2002, 15:04:13 PST”,
+	“EndTime”: “Feb 8, 2002, 15:04:14 PST”,
+	“Result”: “Fri Feb 8 15:04:14 UTC 2002”
+}
+</pre>
+<p>The result field will have the result (Std output and Std errors) of the remote command executed on your IoT.</p>
+<h3 id="sample-commands">Sample Commands</h3>
+<p>Here are some sample commands you could execute remotely on your IoT using SocketXP REST API&rsquo;s.</p>
+<ul>
+<li>“sh /home/john/script.sh”</li>
+<li>“python /home/john/check_temperature.py”</li>
+<li>&ldquo;reboot&rdquo;</li>
+<li>&ldquo;systemctl restart sshd&rdquo;</li>
+<li>&ldquo;echo &lsquo;This is the content of the new config file.&rsquo; &gt; /home/test-user/config&rdquo;</li>
+</ul>
+<p>Refer to our documentation for the complete set of SocketXP API&rsquo;s to submit and execute remote commands or scripts to run in your IoT.</p>
+<h3 id="advantanges-of-remote-command-execution-on-iot">Advantanges of Remote Command Execution on IoT:</h3>
+<p>The following are the advantages of using SocketXP REST APIs to send commands to IoT remotely over the internet:</p>
+<ul>
+<li>secure access to your devices via REST API (using access token and HTTPS/TLS connection) to the API Gateway</li>
+<li>ability to automate the API’s using a python or shell script or your own dashboard web application.</li>
+<li>execute remote commands without having to manually login to the SSH server.</li>
+<li>ability to execute the same command or script on a fleet of IoT and fetch the results from all.</li>
+</ul>
+<h2 id="conclusion">Conclusion:</h2>
+<p>In conclusion, remote command execution is a must have feature in any <a href="iot-remote-management-platform-ultimate-guide/">IoT Management Platform</a> for automating repeated tasks that need to be performed on a remote IoT.</p>
+<p>SocketXP&rsquo;s <a href="/iot-remote-access">IoT Remote Access</a> solution offers a powerful and convenient way to remotely manage and control IoT devices. With its user-friendly interface, advanced features, and unparalleled flexibility, this innovative solution is a must-have tool for IoT enthusiasts.</p>
+<p>Whether you&rsquo;re a hobbyist, a professional, or a IoT administrator, SocketXP&rsquo;s solution can revolutionize your IoT remote command execution experience, making it easier and more efficient than ever before.</p>
+<p>Take advantage of this cutting-edge solution and unlock the full potential of your IoT devices. Try <a href="/iot-remote-access">SocketXP IoT Remote Access solution</a> today and discover the convenience and versatility it can bring to your IoT projects.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

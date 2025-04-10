@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Device Management on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/device-management/</link>
+    <description>Recent content in Device Management on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/device-management/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remotely Execute Shell Commands or Scripts on your IoT device</title>
+      <link>http://localhost:51627/iot/remote-command-script-execution-iot/</link>
+      <pubDate>Sat, 15 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-command-script-execution-iot/</guid>
+      <description>&lt;p&gt;Are you looking for a way to control your IoT projects from anywhere in the world?&lt;/p&gt;&#xA;&lt;p&gt;Want to break free from the limitations of physical proximity and execute commands remotely with ease? Remote command execution is the ultimate solution!&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s a game-changer for IoT enthusiasts and professionals alike, offering unparalleled convenience and flexibility. Picture being able to execute commands on your IoT from the comfort of your  home, office or even while on the go.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Execute Shell Scripts on Multiple Linux Servers</title>
+      <link>http://localhost:51627/iot/execute-shell-scripts-on-multiple-remote-linux-servers/</link>
+      <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/execute-shell-scripts-on-multiple-remote-linux-servers/</guid>
+      <description>&lt;p&gt;When you have hundreds or thousands of linux servers or embedded Linux devices deployed in the field, it becomes very hard, challenging and time consuming to manually remote SSH login to each one of those Linux servers to run the same set of shell commands to re-configure, update software, or execute a script.&lt;/p&gt;&#xA;&lt;p&gt;SocketXP OTA (Over The Air) or Remote Job Automation feature automates and simplifies the execution of shell commands or scripts on multiple Linux servers over SSH.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

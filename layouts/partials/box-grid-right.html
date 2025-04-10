@@ -1,0 +1,23 @@
+<section class="iot-remote-access large:px-[20%]">
+    <div class="sub-container">
+        <span class="tagline">{{ .tagline }}</span>
+        <h2 class="sub-container-title">{{ .title }}</h2>
+        <p class="sub-container-description">{{ .description }}</p>
+    </div>
+    <div class="box-grid-right-container">
+        <img src="{{ .image }}" class="solutions-image" alt="">
+        <div class="box-grid-points-container">
+            {{ range .points }}
+            <div class="points-card">
+                <span class="solutions-icon">
+                    <img src="{{ .icon }}" alt="" class="size-6">
+                </span>
+                <div class="points-content">
+                    <h5>{{ .title }}</h5>
+                    <p>{{ .description }}</p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>

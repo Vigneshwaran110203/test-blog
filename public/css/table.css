@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --primary-color: #7986CB;
+    --secondary-color: #C5CAE9;
+    --tertiary-color: #F9FCFF;
+    --border-color: #C5CAE9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    /* font-family: "Montserrat", sans-serif; */
+    box-sizing: border-box;
+}
+
+/* Style the table */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 7px;
+    border: 1px solid #C5CAE9;
+    margin: 5px;
+    overflow: hidden;
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+}
+
+#small-business-btn{
+    background-color: #2979FF;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+#enterprise-pricing-table .table-header th{
+    font-size: 12px;
+    padding: 16px 3px;
+}
+
+#enterprise-pricing-table .table-header th:first-child{
+    padding-left: 10px;
+}
+
+#enterprise-btn{
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: white;
+}
+
+.table-comp{
+    border-width: 0.5px 0px 0px 0.5px;
+    border-style: solid;
+    border-color: var(--border-color);
+    text-align: left;
+}
+
+/* Center-align table container */
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* Style for the header row */
+.table-header {
+    background: var(--primary-color);
+}
+
+.table-header th {
+    text-align: center;
+    padding: 16px;
+    font-size: 14px;
+    color: white;
+}
+
+.table-header th:first-child {
+    text-align: left;
+    padding-left: 10px;
+}
+
+/* Style for subtopics */
+.table-subtopic {
+    background-color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 13px;
+    text-align: left;
+}
+
+.table-subtopic td {
+    padding: 10px 20px 10px 10px;
+}
+
+.table-content:hover{
+    background: rgba(121, 135, 203, 0.075);
+}
+
+/* Content rows */
+.table-content td {
+    padding: 7.5px;
+}
+
+/* Center-align comparison values */
+.table-comp {
+    text-align: center;
+    font-size: 9px;
+    font-weight: 400;
+}
+
+.table-comp img{
+    width: 9px;
+    height: 9px;
+}
+
+/* Feature column background */
+.table-feature {
+    text-align: left;
+    font-size: 9px;
+    font-weight: 600;
+    border-width: 0.5px 0px 0px 0px;
+    border-style: solid;
+    border-color: var(--border-color);
+    line-height: 1.5;
+    background-color: rgba(197, 202, 233, 0.5);
+}
+
+@media screen and (min-width: 550px) {
+    table{
+        width: 100%;
+    }
+
+    .table-content td{
+        padding: 20px 10px;
+    }
+    .table-header th {
+        padding: 20px 10px;
+        font-size: 15px;
+    }
+    .table-header th:first-child {
+        text-align: left;
+    }
+    .table-header th:nth-child(2n), .table-header th:nth-child(3), .table-header th:nth-child(5){
+        padding: 20px 30px;
+    }
+    #enterprise-pricing-table .table-header th{
+        font-size: 15px;
+        padding: 20px 10px;
+    }
+    .table-feature{
+        font-size: 12px;
+        padding: 10px;
+    }
+    .table-comp{
+        font-size: 10px;
+    }
+    .table-subtopic td{
+        padding: 20px 0px 20px 10px;
+    }
+    .table-comp img{
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media screen and (min-width: 768px){
+    table{
+        width: 100%;
+    }
+
+    .table-header th:nth-child(2n), .table-header th:nth-child(3), .table-header th:nth-child(5){
+        padding: 0px 45px 0px;
+    }
+
+    .table-content td{
+        padding: 20px;
+    }
+
+    .table-feature{
+        font-size: 13px;
+        padding-left: 10px;
+    }
+
+    .table-comp{
+        font-size: 13px;
+    }
+
+    .table-comp img{
+        width: 11px;
+        height: 11px;
+    }
+
+    .table-header th:first-child {
+        padding-left: 20px;
+    }
+
+    .table-subtopic td{
+        padding-left: 20px;
+        padding: 20px 0px 20px 20px;
+    }
+
+    #enterprise-pricing-table .table-header th:first-child{
+        padding-left: 20px;
+    }
+}
+
+@media screen and (min-width: 992px){
+    table{
+        width: 100%;
+    }
+    .table-header th, #enterprise-pricing-table .table-header th{
+        font-size: 1.5rem;
+        padding: 20px;
+    }
+    .table-subtopic td{
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .table-feature{
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .table-comp{
+        font-size: 18px;
+    }
+    .table-comp img{
+        width: 20px;
+        height: 20px;
+    }
+    .dash{
+        font-size: 1.4rem;
+    }
+    .table-header th:nth-child(2n){
+        padding: 0px 50px 0px;
+    }
+    .table-header th:nth-child(2){
+        padding: 0px 55px 0px;
+    }
+
+    .toggle-btn{
+        font-size: 1.25rem;
+        border: 2px solid red;
+    }
+
+    #small-business-btn{
+        font-size: 1rem;
+    }
+
+    #enterprise-btn{
+        font-size: 1rem;
+    }
+
+    #enterprise-pricing-table .table-header th{
+        font-size: 1.5rem;
+    }
+
+    .table-feature{
+        padding: 20px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    table{
+        width: 100%;
+    }
+
+    .table-feature{
+        width: 400px;
+    }
+}

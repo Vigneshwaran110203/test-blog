@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nvidia Jetson Nano on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/nvidia-jetson-nano/</link>
+    <description>Recent content in Nvidia Jetson Nano on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/nvidia-jetson-nano/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remotely Access Nvidia Jetson Nano over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-nvidia-jetson-nano-over-the-internet/</link>
+      <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-nvidia-jetson-nano-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to configure and setup remote access to your Nvidia Jetson Nano&amp;rsquo;s Secure Shell(SSH) command line, so that you could connect to it over the internet from anywhere.&lt;/p&gt;&#xA;&lt;p&gt;We will also discuss how to securely remote connect to your Nvidia Jetson Nano based embedded Linux device using Remote Desktop Application.&lt;/p&gt;&#xA;&lt;p&gt;The &lt;a href=&#34;http://localhost:51627/iot/nvidia-jetson-nano-vs-raspberry-pi-which-one-is-better-for-your-project&#34;&gt;NVIDIA Jetson Nano&lt;/a&gt; is a small, powerful computer that can be used for robotics and many AI-based applications. It&amp;rsquo;s a popular choice for prototyping AI products and creating embedded AI solutions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Nvidia Jetson Nano vs Raspberry Pi  - Which one is better for your project?</title>
+      <link>http://localhost:51627/iot/nvidia-jetson-nano-vs-raspberry-pi-which-one-is-better-for-your-project/</link>
+      <pubDate>Thu, 25 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/nvidia-jetson-nano-vs-raspberry-pi-which-one-is-better-for-your-project/</guid>
+      <description>&lt;p&gt;Single-board computers (SBCs) are becoming increasingly popular for their low cost and versatility.&lt;/p&gt;&#xA;&lt;p&gt;Two of the most popular SBCs are the Nvidia Jetson Nano and the Raspberry Pi.&lt;/p&gt;&#xA;&lt;p&gt;While both boards have their own strengths and weaknesses, they are often compared against each other due to their similar form factor and price point.&lt;/p&gt;&#xA;&lt;p&gt;In this article, we&amp;rsquo;ll discuss in great detail about each board, their benefits, limitations,  advantages, disadvantages, and the kind of projects for which they are suitable for.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

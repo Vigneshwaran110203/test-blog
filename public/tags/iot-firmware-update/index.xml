@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IoT Firmware Update on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/iot-firmware-update/</link>
+    <description>Recent content in IoT Firmware Update on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/iot-firmware-update/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Update Firmware in your IoT using SocketXP OTA Update</title>
+      <link>http://localhost:51627/iot/update-iot-firmware-using-socketxp-ota-update/</link>
+      <pubDate>Fri, 07 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/update-iot-firmware-using-socketxp-ota-update/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to remotely update firmware (A/B update) on a fleet of IoT or embedded Linux devices using &lt;a href=&#34;http://localhost:51627/iot-ota-update&#34;&gt;SocketXP&amp;rsquo;s Over-the-Air(OTA) update&lt;/a&gt; feature.&lt;/p&gt;&#xA;&lt;p&gt;SocketXP is an &lt;a href=&#34;http://localhost:51627/socketxp-iot-device-management-platform&#34;&gt;IoT device management platform&lt;/a&gt; that can be used to remotely manage, monitor, access, update and control IoT or any embedded Linux devices at massive scale.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot-ota-update&#34;&gt;SocketXP&amp;rsquo;s OTA update&lt;/a&gt; feature is extremely useful when you have to deploy software update on a fleet of IoT devices or embedded devices in your customer&amp;rsquo;s network behind a NAT router or Firewall or out in the field connected via a cellular network.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

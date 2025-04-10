@@ -1,0 +1,18 @@
+<section class="industrial-feature large:px-[20%]">
+    <div class="sub-container">
+        <span class="tagline">{{ .tagline }}</span>
+        <h2 class="sub-container-title">{{ .title }}</h2>
+        <p class="sub-container-description">{{ .description }}</p>
+    </div>
+    <div class="industrial-feature-container">
+        {{ range .features }}
+        <div class="industrial-feature-card">
+            <div class="industrial-feature-icon">
+                <img src="{{ .icon }}" alt="" class="size-7">
+            </div>
+            <h3>{{ .title }}</h3>
+            <p>{{ .description }}</p>
+        </div>
+        {{ end }}
+    </div>
+</section>

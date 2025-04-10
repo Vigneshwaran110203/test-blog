@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenSSH on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/openssh/</link>
+    <description>Recent content in OpenSSH on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/openssh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Install and Setup SSH Server and Client on your Embedded Linux Device</title>
+      <link>http://localhost:51627/iot/install-setup-ssh-server-client-iot-device/</link>
+      <pubDate>Wed, 10 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/install-setup-ssh-server-client-iot-device/</guid>
+      <description>&lt;p&gt;&#xA;    &lt;a href=&#34;https://www.openssh.com/&#34; rel=&#34;nofollow&#34; target=&#34;_blank&#34;&gt; &#xA;OpenSSH &lt;/a&gt;&#xA; is a free open source software that uses Secure Shell(SSH) protocol to create secure and encrypted communication channels over computer networks.&lt;/p&gt;&#xA;&lt;p&gt;OpenSSH is developed by the &#xA;    &lt;a href=&#34;https://www.openbsd.org/&#34; rel=&#34;nofollow&#34; target=&#34;_blank&#34;&gt; Open BST Community &lt;/a&gt;&#xA; and it is released under a Simplified BSD License.&lt;/p&gt;&#xA;&lt;p&gt;OpenSSH comes with additional features such as SFTP and SCP to perform secure file transfer and secure copy over a computer network.&lt;/p&gt;&#xA;&lt;p&gt;Setting up SSH server in your IoT device is essential for enabling &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;secure remote access to your IoT device&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

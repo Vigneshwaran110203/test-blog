@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Remote Access a TCP Socket Server from the Internet</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Remote Access a TCP Socket Server from the Internet</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Remote Access a TCP Socket Server from the Internet</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Dec 9, 2024
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-socketxp">What is SocketXP</a>
+      <ul>
+        <li><a href="#how-it-works">How it works?</a></li>
+        <li><a href="#tcp-socket-server---quick-demo">TCP Socket Server - Quick Demo:</a></li>
+        <li><a href="#access-the-local-tcp-socket-server-using-the-local-tcp-client-socket">Access the local TCP socket server using the local TCP client socket</a></li>
+      </ul>
+    </li>
+    <li><a href="#remote-access-to-tcp-socket-server">Remote Access to TCP Socket Server</a>
+      <ul>
+        <li><a href="#download-and-install-socketxp-agent">Download and install SocketXP agent</a></li>
+        <li><a href="#connect-server-socket-to-socketxp-cloud-gateway">Connect Server Socket to SocketXP Cloud Gateway</a></li>
+      </ul>
+    </li>
+    <li><a href="#secure-remote-access-to-your-tcp-socket-server-using-slave-mode">Secure Remote Access to your TCP Socket Server using Slave Mode</a>
+      <ul>
+        <li><a href="#socketxp-agent-slave-mode-setup">SocketXP Agent Slave Mode Setup</a></li>
+        <li><a href="#remote-connect-to-the-tcp-socket-server-via-the-socketxp-local-proxy">Remote Connect to the TCP socket Server via the SocketXP Local Proxy</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+    <li><a href="#got-questions">Got questions?</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remote-access-tcp-socket-server-python-c-java-go-from-internet/" title="How to Remote Access a TCP Socket Server from the Internet">
+                        <img src="/assets/img/remote-access-tcp-socket-server/remote-access-tcp-socket-server-python-c-java-golang.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-socketxp">What is SocketXP</a>
+      <ul>
+        <li><a href="#how-it-works">How it works?</a></li>
+        <li><a href="#tcp-socket-server---quick-demo">TCP Socket Server - Quick Demo:</a></li>
+        <li><a href="#access-the-local-tcp-socket-server-using-the-local-tcp-client-socket">Access the local TCP socket server using the local TCP client socket</a></li>
+      </ul>
+    </li>
+    <li><a href="#remote-access-to-tcp-socket-server">Remote Access to TCP Socket Server</a>
+      <ul>
+        <li><a href="#download-and-install-socketxp-agent">Download and install SocketXP agent</a></li>
+        <li><a href="#connect-server-socket-to-socketxp-cloud-gateway">Connect Server Socket to SocketXP Cloud Gateway</a></li>
+      </ul>
+    </li>
+    <li><a href="#secure-remote-access-to-your-tcp-socket-server-using-slave-mode">Secure Remote Access to your TCP Socket Server using Slave Mode</a>
+      <ul>
+        <li><a href="#socketxp-agent-slave-mode-setup">SocketXP Agent Slave Mode Setup</a></li>
+        <li><a href="#remote-connect-to-the-tcp-socket-server-via-the-socketxp-local-proxy">Remote Connect to the TCP socket Server via the SocketXP Local Proxy</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+    <li><a href="#got-questions">Got questions?</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this article, we&rsquo;ll discuss how to <strong>remote access a TCP socket server</strong> from the internet using <a href="/iot-remote-access">SocketXP Remote Access solution</a>, without having to setup port forwarding.</p>
+<p>Let&rsquo;s assume you have a TCP socket server that runs on <strong>localhost IP address 127.0.0.1</strong> in your personal laptop or in a office server in your office network, behind NAT router and firewall.</p>
+<p>Anyone outside of your office network cannot access the TCP socket server because the server runs in your local network or local IP address 127.0.0.1. Local IP addresses such as <strong>127.0.0.1, 10.1.1.1 or 192.168.1.1</strong> etc., cannot be accessed from the internet.</p>
+<p>Let&rsquo;s say, you want to expose the TCP socket server to the internet or make it externally visible, so that your colleagues, customers or a remote app can access the TCP socket server from the internet.</p>
+<p>Today, there are three ways to expose your TCP socket server to the internet.</p>
+<ul>
+<li>Deploy the TCP socket server in an externally visible server such as your office server which has a public IP address and domain name.</li>
+<li>Deploy the TCP socket server in a cloud platform such as AWS, MS Azure, Google Cloud Platform or Digital Ocean Cloud.</li>
+<li>Create a secure SSL/TLS encrypted remote access tunnel using <a href="/">SocketXP</a>.</li>
+</ul>
+<p>The first two options require more time, cost more money and require more effort in terms of purchasing your own IP address, domain name, configuring and managing them in the cloud.</p>
+<p>To address the above problems and provide an alternate cost-effective solution, we have created <a href="/">SocketXP</a>.  Moreover, SocketXP solution is quick and easy to setup remote access in just few mins.</p>
+<p>In this article, we&rsquo;ll discuss in detail how to create a secure remote access to your TCP socket server using <a href="/iot/iot-remote-access/">SocketXP Remote Access Solution</a>.</p>
+<h2 id="what-is-socketxp">What is SocketXP</h2>
+<p><a href="/">SocketXP</a> is a cloud based <a href="/socketxp-iot-device-management-platform/">IoT Remote Access and Device Management Platform</a>, which is a simple, quick and cost-effective solution to deploy your TCP services and remotely access them from anywhere in the world over the internet.</p>
+<h3 id="how-it-works">How it works?</h3>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/remote-access-tcp-socket-server/remote-access-tcp-socket-server-python-c-java-golang.jpg" alt="remote-access-TCP-socket-program-from-internet" style="max-width:80%;max-height:100%;">
+</div>
+
+<ul>
+<li>Run your TCP socket server in your office server or VM using localhost IP address 127.0.0.1 or 10.x.x.x or 192.x.x.x.</li>
+<li>Download SocketXP Client and install in the office server where the TCP socket server runs.</li>
+<li>SocketXP Client will create a secure SSL/TLS reverse proxy tunnel from your TCP socket server to the SocketXP Cloud Gateway.</li>
+<li><strong>Slave Mode</strong>: Remote access the TCP socket server using SocketXP agent in Slave Mode(Hint: Imagine a VPN client) from any remote machine such as your Laptop or PC.  In this method, your TCP socket server will NOT be exposed to the internet through a public TCP IP/port.  Also no port forwarding setup is required.</li>
+</ul>
+<h3 id="tcp-socket-server---quick-demo">TCP Socket Server - Quick Demo:</h3>
+<p>Let&rsquo;s use the following TCP socket server written in Python for the demo.  The solution discussed in this article would work well for any socket program: written in C, Java or Golang or any language.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# tcp_server.py
+import socket
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+address = ("127.0.0.1",8000)
+s.bind(address)
+s.listen(1)
+c , addr = s.accept()
+data = c.recv(100).decode()
+print("Data: ", str(data))
+c.close()
+
+</pre>
+<p>Here is the TCP socket client program written in Python:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# tcp_client.py
+import socket
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+address = ("127.0.0.1",8000)
+s.connect(address)
+s.send(str.encode("Hello, World!"))
+s.close()
+</pre>
+<p>Now, let&rsquo;s check if the server and client socket program can talk to each other locally.</p>
+<h3 id="access-the-local-tcp-socket-server-using-the-local-tcp-client-socket">Access the local TCP socket server using the local TCP client socket</h3>
+<p>Let&rsquo;s run the TCP socket server program using Python in a terminal:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>python3 tcp_server.py 
+</span></span></code></pre></div><p>Now, in another terminal window on the same machine, run the TCP socket client program using Python:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>python3 tcp_client.py
+</span></span></code></pre></div><p>The TCP socket server window will print:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Data:  Hello, World!
+</span></span></code></pre></div><p>Right now, the TCP socket server can be accessed only from your local network.  It cannot be accessed from the outside network or from the internet.</p>
+<p>Now, to make it accessible from outside network over the internet, we need to install and setup the SocketXP agent in your server(the host machine where the TCP socket server runs).</p>
+<h2 id="remote-access-to-tcp-socket-server">Remote Access to TCP Socket Server</h2>
+<p>Configuring remote access to the TCP socket server.  We are planning to setup the following:</p>
+<blockquote>
+<p><code>TCP client socket</code> ==&gt; <code>SocketXP Slave Mode agent(Local Proxy)</code> ==&gt; <code>SocketXP Cloud Gateway</code> ==&gt; <code>SocketXP agent running in your TCP socket server in master mode</code> ==&gt; <code>TCP server socket</code></p></blockquote>
+<h3 id="download-and-install-socketxp-agent">Download and install SocketXP agent</h3>
+<p>Let&rsquo;s download and run the SocketXP agent from the <a href="https://www.socketxp.com/download">download page</a>.</p>
+<p>Next, authenticate and register the SocketXP agent/client with the SocketXP Cloud Gateway, using the auth-token from the <a href="https://portal.socketxp.com">Portal Page</a></p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/AuthToken.jpg" alt="remote-access-flask-app-from-internet" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Click the copy button to copy the command string and paste it in the terminal window in your laptop or server.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ sudo socketxp login "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+</pre>
+<p>After registering the SocketXP Client with the SocketXP Cloud Service, you can create a SSL/TLS encrypted reverse proxy tunnel between the TCP socket server running in your office server and the SocketXP Cloud Gateway, via the SocketXP Client (Hint: Imagine a VPN server and client.)</p>
+<h3 id="connect-server-socket-to-socketxp-cloud-gateway">Connect Server Socket to SocketXP Cloud Gateway</h3>
+<p>Use the following command to create a secure SSL/TLS encrypted reverse proxy tunnel between the TCP socket server and the SocketXP Cloud Gateway.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ sudo socketxp connect tcp://127.0.0.1:8000
+Connected to SocketXP Cloud Gateway.
+Access the TCP service securely from the web portal or using the SocketXP agent in IoT slave mode.
+</pre>
+<h2 id="secure-remote-access-to-your-tcp-socket-server-using-slave-mode">Secure Remote Access to your TCP Socket Server using Slave Mode</h2>
+<p>To securely remote access any TCP service or application (including a TCP socket program), we will be using the SocketXP&rsquo;s Slave Mode feature. (Hint: Imagine a VPN client).</p>
+<h3 id="socketxp-agent-slave-mode-setup">SocketXP Agent Slave Mode Setup</h3>
+<p>Now to securely remote access the TCP socket server, from a remote machine (such as your laptop), <a href="/download">download and install</a> the appropriate version of SocketXP agent binary on your laptop running windows OS or Linux OS or MacOS.</p>
+<p>Next, setup the SocketXP agent to run in Slave Mode or the Local Proxy mode, as shown below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ sudo socketxp connect tcp://127.0.0.1:4000 --iot-slave --authtoken eyJhbGciOiJIUzI1Ni... --peer-device-id cf7936fa-8b12-4df4-ab37-a3692cc8ec38 --peer-device-port 8000
+
+Listening for TCP connections at:
+Local URL -> tcp://127.0.0.1:4000
+</pre>
+<p><strong>Note</strong>: you can use any local port instead of port 4000 used in the example above. Make sure you edit your TCP client socket program to connect to the server on that new port (in this case, 4000), because we are trying to proxy the TCP socket connection via the SocketXP agent running locally on your Laptop.</p>
+<p>You can find the peer <code>device ID</code> of your TCP socket server from the <code>/var/lib/socketxp/device.key</code> file in your host machine where the SocketXP agent is running in master mode(the default mode) along side your TCP socket server.</p>
+<p>Alternatively, you can find the Device ID from the Devices tab in the SocketXP Web Portal.</p>
+<p>SocketXP agent run in Slave Mode or Local Proxy mode, will proxy all connections to a local port(TCP 4000) to a remote host and remote port(8000) where the TCP socket server is running.  This tunnel/connection will be proxy&rsquo;ed through the SocketXP Cloud Gateway.</p>
+<h3 id="remote-connect-to-the-tcp-socket-server-via-the-socketxp-local-proxy">Remote Connect to the TCP socket Server via the SocketXP Local Proxy</h3>
+<p>Run your TCP client program and connect to the TCP socket server remotely and more securely via an SSL/TLS connection.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>python3 tcp_client.py
+</span></span></code></pre></div><p>Now check the TCP server socket terminal window:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Data:  Hello, World!
+</span></span></code></pre></div><p>Finally, check the terminal window where the SocketXP agent is running in the slave mode or local proxy mode:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Listening <span style="color:#66d9ef">for</span> TCP connections at:
+</span></span><span style="display:flex;"><span>Local URL -&gt; tcp://127.0.0.1:4000
+</span></span><span style="display:flex;"><span>Connecting to device <span style="color:#f92672">(</span>cf7936fa-8b12-4df4-ab37-a3692cc8ec38, <span style="color:#f92672">)</span> port <span style="color:#f92672">(</span>8000<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p><strong>Explanation</strong>:</p>
+<p>What we see here is: <code>TCP client socket</code> ==&gt; <code>SocketXP Slave Mode agent(Local Proxy)</code> ==&gt; <code>SocketXP Cloud Gateway</code> ==&gt; the <code>SocketXP agent running in your TCP socket server in master mode</code> ==&gt; <code>TCP server socket</code>, working in sync behind the screen to securely encrypt and forward the traffic between the TCP socket client running in your Laptop and the TCP socket server running in your office server.</p>
+<p>You can use the same method to securely remote access any HTTP web service:</p>
+<ul>
+<li>Apache Web Server,</li>
+<li>NGINX Web Proxy Server,</li>
+<li>Python Web App,</li>
+<li>NodeJS Web App</li>
+</ul>
+<p>or any TCP services such as:</p>
+<ul>
+<li>SSH server</li>
+<li>SMTP server</li>
+<li>SFTP server</li>
+<li>RDP/VNC server</li>
+<li>Database server: SQL-DB, Postgresql DB, MongoDB etc.</li>
+</ul>
+<p>remotely over the internet.</p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>With <a href="/iot/iot-remote-access/">SocketXP Remote Access Solution</a> – part of <a href="/socketxp-iot-device-management-platform">IoT Device Management and Remote Access Platform</a>, it is easy to securely remote access any TCP socket application running in your IoT device on any OS.</p>
+<p>By following the steps outlined in this article, you can quickly set up remote access to TCP socket server or application running in your local IoT device or Linux server and access it from anywhere, anytime.</p>
+<p>Whether you’re managing a project remotely or accessing your server or IoT device for troubleshooting or maintenance purposes, TCP socket server remote access is a powerful tool that enables you to stay connected to your remote machine with ease.</p>
+<h2 id="got-questions">Got questions?</h2>
+<p>If you have any questions, please write to us at: <a href="mailto:support@socketxp.com">support@socketxp.com</a></p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

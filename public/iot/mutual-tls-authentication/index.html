@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>Mutual TLS Authentication - Everything you need to know</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">Mutual TLS Authentication - Everything you need to know</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">Mutual TLS Authentication - Everything you need to know</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Nov 9, 2024
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-mtls">What is mTLS?</a></li>
+    <li><a href="#how-mtls-works">How mTLS Works:</a></li>
+    <li><a href="#mtls-vs-tls">mTLS vs TLS</a></li>
+    <li><a href="#benefits-of-mutual-tls">Benefits of mutual TLS</a></li>
+    <li><a href="#key-considerations-for-implementing-mtls">Key Considerations for Implementing mTLS:</a></li>
+    <li><a href="#use-cases-for-mtls">Use cases for mTLS</a>
+      <ul>
+        <li><a href="#1-https-web-service-security">1. HTTPS Web Service Security</a></li>
+        <li><a href="#2-database-security">2. Database Security</a></li>
+        <li><a href="#3-api-security">3. API security</a></li>
+        <li><a href="#4-microservices-architecture">4. Microservices architecture</a></li>
+        <li><a href="#5-iot-security">5. IoT security</a></li>
+        <li><a href="#6-zero-trust-security">6. Zero Trust security</a></li>
+        <li><a href="#7-service-mesh">7. Service Mesh</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-implement-mtls">How to implement mTLS</a></li>
+    <li><a href="#open-source-tools-to-implement-mtls">Open Source Tools to implement mTLS</a></li>
+    <li><a href="#real-world-mtls-examples">Real World mTLS Examples</a></li>
+    <li><a href="#how-ssl-certificates-implement-mtls">How SSL certificates implement mTLS</a>
+      <ul>
+        <li><a href="#important-fields-in-the-certificate">Important fields in the certificate</a></li>
+        <li><a href="#how-the-server-and-client-identities-are-verified">How the server and client identities are verified</a></li>
+      </ul>
+    </li>
+    <li><a href="#limitations-of-mtls">Limitations of mTLS</a>
+      <ul>
+        <li><a href="#mtls-best-practices-for-security">mTLS best practices for security:</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/mutual-tls-authentication/" title="Mutual TLS Authentication - Everything you need to know">
+                        <img src="/assets/img/iot-zero-trust-security/zero-trust-security-iot-devices.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-mtls">What is mTLS?</a></li>
+    <li><a href="#how-mtls-works">How mTLS Works:</a></li>
+    <li><a href="#mtls-vs-tls">mTLS vs TLS</a></li>
+    <li><a href="#benefits-of-mutual-tls">Benefits of mutual TLS</a></li>
+    <li><a href="#key-considerations-for-implementing-mtls">Key Considerations for Implementing mTLS:</a></li>
+    <li><a href="#use-cases-for-mtls">Use cases for mTLS</a>
+      <ul>
+        <li><a href="#1-https-web-service-security">1. HTTPS Web Service Security</a></li>
+        <li><a href="#2-database-security">2. Database Security</a></li>
+        <li><a href="#3-api-security">3. API security</a></li>
+        <li><a href="#4-microservices-architecture">4. Microservices architecture</a></li>
+        <li><a href="#5-iot-security">5. IoT security</a></li>
+        <li><a href="#6-zero-trust-security">6. Zero Trust security</a></li>
+        <li><a href="#7-service-mesh">7. Service Mesh</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-implement-mtls">How to implement mTLS</a></li>
+    <li><a href="#open-source-tools-to-implement-mtls">Open Source Tools to implement mTLS</a></li>
+    <li><a href="#real-world-mtls-examples">Real World mTLS Examples</a></li>
+    <li><a href="#how-ssl-certificates-implement-mtls">How SSL certificates implement mTLS</a>
+      <ul>
+        <li><a href="#important-fields-in-the-certificate">Important fields in the certificate</a></li>
+        <li><a href="#how-the-server-and-client-identities-are-verified">How the server and client identities are verified</a></li>
+      </ul>
+    </li>
+    <li><a href="#limitations-of-mtls">Limitations of mTLS</a>
+      <ul>
+        <li><a href="#mtls-best-practices-for-security">mTLS best practices for security:</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <h2 id="what-is-mtls">What is mTLS?</h2>
+<p>Mutual Transport Layer Security (mTLS), also known as two-way TLS, is a security protocol that allows both the client and server to authenticate each other before establishing a secure connection. This is in contrast to traditional TLS, where only the client authenticates the server.</p>
+<h2 id="how-mtls-works">How mTLS Works:</h2>
+<p>Certificate Exchange: Both the client and server present their respective digital certificates to each other.</p>
+<p>Certificate Verification: Each party verifies the authenticity and validity of the other&rsquo;s certificate using a trusted certificate authority (CA).</p>
+<p>Session Establishment: If both certificates are valid, a secure encrypted session is established between the client and server.</p>
+<h2 id="mtls-vs-tls">mTLS vs TLS</h2>
+<p>mTLS (Mutual Transport Layer Security) and traditional TLS (Transport Layer Security) share many similarities, but there is one key difference:</p>
+<p><strong>Traditional TLS</strong>: In traditional TLS, only the server is authenticated. The client trusts the server&rsquo;s certificate, but the server does not verify the client&rsquo;s identity. This means that an attacker could potentially impersonate the server and intercept communications without being detected.</p>
+<p><strong>mTLS</strong>: In mTLS, both the client and server must authenticate each other. This means that both parties present their digital certificates, and each verifies the other&rsquo;s identity. This added layer of authentication provides a higher level of security and helps prevent man-in-the-middle attacks.</p>
+<p>The primary difference between mTLS and traditional TLS is that mTLS requires mutual authentication of both parties involved in the communication, while traditional TLS only requires the server to be authenticated.  mTLS authentication is a key component in setting up a Zero Trust Security architecture.</p>
+<h2 id="benefits-of-mutual-tls">Benefits of mutual TLS</h2>
+<p>mutual TLS is useful and important because it provides a number of security benefits, including:</p>
+<ul>
+<li><strong>Mutual authentication:</strong> mTLS ensures that both the client and server are who they claim to be. This prevents man-in-the-middle(MITM) attacks, where an attacker intercepts communication between two parties and impersonates one of them.</li>
+<li><strong>Improved security:</strong> mTLS encrypts all data transmitted over the connection, protecting it from eavesdropping and tampering.</li>
+<li><strong>Reduced complexity:</strong> mTLS can simplify security architecture by eliminating the need for separate authentication mechanisms.</li>
+</ul>
+<h2 id="key-considerations-for-implementing-mtls">Key Considerations for Implementing mTLS:</h2>
+<p>Here are some key considerations for implementing mTLS:</p>
+<ul>
+<li>
+<p><strong>Certificate Management:</strong> Proper management of digital certificates is crucial to ensure the security and validity of mTLS sessions.</p>
+</li>
+<li>
+<p><strong>Complexity:</strong> Implementing mTLS can be more complex than traditional TLS, requiring careful configuration and management.</p>
+</li>
+<li>
+<p><strong>Compatibility:</strong> Ensure that both the client and server applications support mTLS and can exchange certificates correctly.</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="/">SocketXP IoT Remote Access and Management Platform</a> has a built-in digital certificate manager that can manage digital certificates at scale.  It handles all the complexities involved in implementing mTLS and simplifies end user workflow involved in securing IoT devices.</p></blockquote>
+<h2 id="use-cases-for-mtls">Use cases for mTLS</h2>
+<p>mTLS is used in a variety of applications, including:</p>
+<h3 id="1-https-web-service-security">1. HTTPS Web Service Security</h3>
+<p>mTLS can be used in the context of HTTPS server and HTTPS client communications to provide mutual authentication and encryption.</p>
+<p>In a typical HTTPS connection, only the server is authenticated to the client using a TLS certificate. This is sufficient for many applications, such as browsing a website. However, in some cases, it is also desirable to authenticate the client to the server. This can be done using mTLS.</p>
+<p>To implement <a href="/blog/golang-https-web-server-self-signed-ssl-tls-x509-certificate/">mTLS for HTTPS server and client communications</a>, both the server and client must have a TLS certificate. The server&rsquo;s certificate must be signed by a trusted certificate authority (CA), and the client&rsquo;s certificate must be signed by the same CA or by a CA that is trusted by the server.</p>
+<p>When the client connects to the server, it sends its TLS certificate to the server. The server verifies the client&rsquo;s certificate and, if valid, authenticates the client. The server then sends its own TLS certificate to the client. The client verifies the server&rsquo;s certificate and, if valid, authenticates the server.</p>
+<p>Once both the client and server have been authenticated, they can establish a secure HTTPS connection. All data transmitted over the connection will be encrypted using TLS.</p>
+<p><strong>Examples:</strong> <a href="https://www.bastionxp.com/blog/configure-nginx-server-ssl-certificate-mutual-tls-client-authentication/">Nginx</a>, Apache web servers, or any web service applications written in Golang, Java, Python support mTLS authentication.</p>
+<h3 id="2-database-security">2. Database Security</h3>
+<p>In a typical database connection, only the database server authenticates to the client using a TLS certificate. This is sufficient for many applications, such as a web application connecting to a database to retrieve data. However, in some cases, it is also desirable to authenticate the client to the database server. This can be done using mTLS.</p>
+<p>To implement <a href="https://www.bastionxp.com/blog/configure-mysql-database-server-client-ssl-certificate-mutual-tls/">mTLS for database server and client communications</a>, both the database server and client must have a TLS certificate. The database server&rsquo;s certificate must be signed by a trusted certificate authority (CA), and the client&rsquo;s certificate must be signed by the same CA or by a CA that is trusted by the database server.</p>
+<p>When the client connects to the database server, it sends its TLS certificate to the database server. The database server verifies the client&rsquo;s certificate and, if valid, authenticates the client. The database server then sends its own TLS certificate to the client. The client verifies the database server&rsquo;s certificate and, if valid, authenticates the database server.</p>
+<p>Once both the client and database server have been authenticated, they can establish a secure database connection. All data transmitted over the connection will be encrypted using TLS.</p>
+<p>Here are some specific examples of how mTLS can be used for database server and client communications:</p>
+<ul>
+<li>A company could use mTLS to protect access to its production database. This would help to prevent unauthorized users from accessing the database and stealing data.</li>
+<li>A healthcare provider could use mTLS to protect access to its patient database. This would help to prevent unauthorized users from accessing patient records.</li>
+<li>A financial services company could use mTLS to protect access to its customer database. This would help to prevent unauthorized users from accessing customer accounts and stealing money.</li>
+</ul>
+<p><strong>Examples:</strong> MySQL DB, Postgresql DB, and MongoDB support mTLS authentication.</p>
+<h3 id="3-api-security">3. API security</h3>
+<p>To use <a href="https://www.bastionxp.com/blog/api-gateway-security-mtls-authentication">mTLS for API security</a>, the API provider would need to generate a TLS certificate for the API. The API provider would then need to configure the API to require clients to authenticate using mTLS.</p>
+<p>Clients would need to obtain a TLS certificate from a trusted CA. The client would then need to configure the client to authenticate to the API using mTLS.</p>
+<p>When a client wants to access the API, it would send its TLS certificate to the API. The API would verify the client&rsquo;s certificate to ensure that it is signed by a trusted CA and that it belongs to the client.</p>
+<p>If the client&rsquo;s certificate is valid, the API would allow the client to access the API. Otherwise, the API would deny the client access.</p>
+<h3 id="4-microservices-architecture">4. Microservices architecture</h3>
+<p>To use mTLS in a microservices architecture, each microservice would need to generate a TLS certificate. Each microservice would also need to be configured to require other microservices to authenticate using mTLS.</p>
+<p>When a microservice wants to communicate with another microservice, it would send its TLS certificate to the other microservice. The other microservice would verify the certificate to ensure that it is signed by a trusted CA and that it belongs to the sending microservice.</p>
+<p>If the certificate is valid, the other microservice would allow the sending microservice to communicate with it. Otherwise, the other microservice would deny the sending microservice access.</p>
+<h3 id="5-iot-security">5. IoT security</h3>
+<p>To use mTLS for IoT security, the IoT device would need to obtain a TLS certificate. The IoT device would also need to be configured to authenticate to the server using mTLS.</p>
+<p>When the IoT device wants to communicate with the server, it would send its TLS certificate to the server. The server would verify the certificate to ensure that it is signed by a trusted CA and that it belongs to the IoT device.</p>
+<p>If the certificate is valid, the server would allow the IoT device to communicate with it. Otherwise, the server would deny the IoT device access.</p>
+<p><a href="/">SocketXP IoT Device Management Platform</a> implements <a href="https://docs.socketxp.com/guide/mutual-tls-security/mutual-tls/">mTLS authentication for IoT device access security</a>.  All IoT devices are issued a TLS certificate and key.  Device connect to the platform using TLS client certificates for mTLS authentication.</p>
+<h3 id="6-zero-trust-security">6. Zero Trust security</h3>
+<p>To use mTLS for Zero Trust security, all users, devices, and network traffic would need to be configured to authenticate using mTLS.</p>
+<p>When a user, device, or network traffic wants to access a resource, it would send its TLS certificate to the resource. The resource would verify the certificate to ensure that it is signed by a trusted CA and that it belongs to the user, device, or network traffic.</p>
+<p>If the certificate is valid, the resource would allow the user, device, or network traffic to access it. Otherwise, the resource would deny access.</p>
+<h3 id="7-service-mesh">7. Service Mesh</h3>
+<p>A service mesh is a network infrastructure layer that provides a number of features for microservices, including mTLS. Service meshes can be used to deploy and manage microservices in a secure and reliable way.  Eg: Istio, Linkerd, AWS App Mesh</p>
+<p>Service meshes work by intercepting all traffic between microservices. This allows the service mesh to provide a number of features, such as:</p>
+<ul>
+<li><strong>Load balancing:</strong> The service mesh can distribute traffic between microservices in a balanced way. This helps to improve performance and reliability.</li>
+<li><strong>Service discovery:</strong> The service mesh can help microservices to discover each other. This makes it easier for microservices to communicate with each other.</li>
+<li><strong>Fault tolerance:</strong> The service mesh can help to make microservices more fault-tolerant. This helps to ensure that microservices remain available even if some of them fail.</li>
+<li><strong>Security:</strong> The service mesh can help to secure communication between microservices. This can be done using a variety of mechanisms, such as mTLS.</li>
+</ul>
+<p>mTLS plays an important role in service meshes by providing a secure way to authenticate and authorize microservices. mTLS ensures that only authorized microservices can communicate with each other. This helps to prevent unauthorized access to microservices and data.</p>
+<p>Here is an example of how mTLS is used in a service mesh:</p>
+<ol>
+<li>A microservice wants to communicate with another microservice.</li>
+<li>The microservice sends its TLS certificate to the other microservice.</li>
+<li>The other microservice verifies the certificate to ensure that it is signed by a trusted CA and that it belongs to the sending microservice.</li>
+<li>If the certificate is valid, the other microservice allows the sending microservice to communicate with it.</li>
+<li>The microservices communicate with each other using TLS encryption.</li>
+</ol>
+<p>This process ensures that only authorized microservices can communicate with each other and that the communication is encrypted.</p>
+<p>Service meshes and mTLS can be used to improve the security and reliability of microservices architectures. If you are using microservices, it is recommend using a service mesh to deploy and manage your microservices. You should also use mTLS to secure communication between your microservices.</p>
+<h2 id="how-to-implement-mtls">How to implement mTLS</h2>
+<p>To implement mTLS, both the client and server must have a TLS certificate. The certificate contains the public key of the owner and is signed by a <a href="/">trusted certificate authority (CA)</a>, for example <a href="/">BastionXP CA</a>.</p>
+<p>To establish an mTLS connection, the client and server first exchange their certificates. The client then verifies the server&rsquo;s certificate to ensure that it is signed by a trusted CA and that it belongs to the server.</p>
+<p>The server then verifies the client&rsquo;s certificate to ensure that it is signed by a trusted CA and that it belongs to the client.</p>
+<p>Once the client and server have verified each other&rsquo;s certificates, they can establish a secure connection using TLS. All data transmitted over the connection will be encrypted and protected from eavesdropping and tampering.</p>
+<h2 id="open-source-tools-to-implement-mtls">Open Source Tools to implement mTLS</h2>
+<p>There are a number of different open source and open standards based tools available today to implement mTLS in production. Here are some of the open source tools and technologies that generates TLS certificates for use with mTLS:</p>
+<ul>
+<li><strong>OpenSSL:</strong> <a href="https://openssl.org">OpenSSL</a> is a free and open-source toolkit for cryptography. OpenSSL can be used to generate and manage TLS certificates manually.</li>
+<li><strong>Let&rsquo;s Encrypt:</strong> <a href="https://letsencrypt.org">Let&rsquo;s Encrypt</a> is a public certificate authority that provides limited free TLS certificates to public servers and devices.</li>
+<li><strong>BastionXP PKI/CA:</strong>  <a href="/">BastionXP PKI/CA</a> is an enterprise-grade free and open standards based private certificate authority that provides unlimited free TLS certificates to servers and clients after a successful 2FA based authentication using OIDC SSO based 2FA login.  Also, it automates certificate rotation before well before the certificates expire, reducing the manual work involved and bolstering security.</li>
+</ul>
+<p>Which tools and technologies you use to implement mTLS will depend on your specific needs.</p>
+<h2 id="real-world-mtls-examples">Real World mTLS Examples</h2>
+<p>Here are some specific examples of how mTLS is being used in the real world:</p>
+<ul>
+<li>Google Cloud Platform (GCP) uses mTLS to secure communication between its various services.</li>
+<li>Netflix uses mTLS to secure communication between its microservices in its IT datacenters.</li>
+<li>Amazon Web Services (AWS) uses mTLS to secure communication between its various services and with its customers&rsquo; devices.</li>
+<li>Tesla uses mTLS to secure communication between its cars and its servers.</li>
+<li>The US Department of Defense is using mTLS to secure communication between its systems and with its contractors&rsquo; systems.</li>
+<li><a href="https://www.socketxp.com">SocketXP IoT Platform</a> uses mTLS tunnels to secure communication between its cloud gateway, IoT devices and end user applications.</li>
+</ul>
+<h2 id="how-ssl-certificates-implement-mtls">How SSL certificates implement mTLS</h2>
+<p>SSL certificates implement mTLS by providing a method for the client and server to exchange their public keys. The public key is contained in the <code>subjectPublicKeyInfo</code> field of the certificate.</p>
+<p>SSL certificates implement the <a href="https://ieeexplore.ieee.org/document/507642">public key cryptography</a> which provides a very high level of security.</p>
+<h3 id="important-fields-in-the-certificate">Important fields in the certificate</h3>
+<p>The following fields in the certificate are important for mTLS:</p>
+<ul>
+<li><strong>Subject:</strong> This field contains the identity of the certificate owner.  For example, the <code>common name</code> or <code>CN</code> filed could be set to the server&rsquo;s IP address, domain name, or the user&rsquo;s ID, name or email adddress.</li>
+<li><strong>Subject Alternative Name (SAN):</strong> This field can contain additional identities for the certificate owner.</li>
+<li><strong>Issuer:</strong> This field contains the identity of the CA that signed the certificate.</li>
+<li><strong>SubjectPublicKeyInfo:</strong> This field contains the public key of the certificate owner.</li>
+</ul>
+<h3 id="how-the-server-and-client-identities-are-verified">How the server and client identities are verified</h3>
+<p>To verify the server and client identities in mTLS, the following steps are typically taken:</p>
+<ol>
+<li>The client sends its certificate to the server.</li>
+<li>The server verifies the client&rsquo;s certificate by checking the following:
+<ul>
+<li>The certificate is signed by a trusted CA.</li>
+<li>The certificate is valid (i.e., it has not expired and has not been revoked).</li>
+<li>The certificate belongs to the client (i.e., the subject of the certificate matches the identity of the client).</li>
+</ul>
+</li>
+<li>The server sends its certificate to the client.</li>
+<li>The client verifies the server&rsquo;s certificate by checking the following:
+<ul>
+<li>The certificate is signed by a trusted CA.</li>
+<li>The certificate is valid (i.e., it has not expired and has not been revoked).</li>
+<li>The certificate belongs to the server (i.e., the subject of the certificate matches the identity of the server).</li>
+</ul>
+</li>
+</ol>
+<p>In addition to the above steps, the following important fields in the certificates can be used to verify server and client identities:</p>
+<ul>
+<li><strong>Subject:</strong> The subject field contains the identity of the certificate owner. This field can be used to verify that the client or server is who they claim to be.</li>
+<li><strong>Subject Alternative Name (SAN):</strong> The SAN field can contain additional identities for the certificate owner. This field can be used to verify that the client or server is authorized to access the requested resource.</li>
+<li><strong>Issuer:</strong> The issuer field contains the identity of the CA that signed the certificate. This field can be used to verify that the certificate is signed by a trusted CA.</li>
+<li><strong>SubjectPublicKeyInfo:</strong> The subjectPublicKeyInfo field contains the public key of the certificate owner. This field can be used to verify the signature on the certificate.</li>
+</ul>
+<p>For example, the client could verify the server&rsquo;s identity by checking that the server&rsquo;s certificate is signed by a trusted CA and that the subject of the certificate matches the hostname of the server that the client is trying to connect to.</p>
+<p>The server could verify the client&rsquo;s identity by checking that the client&rsquo;s certificate is signed by a trusted CA and that the subject of the certificate matches the identity of the client that is trying to connect.</p>
+<p>Here is a Sample Server Certificate with Server Identity issued by SocketXP IoT Gateway&rsquo;s CA Module:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ openssl x509 -in /var/lib/socketxp/tls_server.crt -noout  -text
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            a2:d3:99:a7:9a:25:54:cb:05:fc:46:25:ed:12:93:c9
+        Signature Algorithm: ecdsa-with-SHA256
+        Issuer: CN=ca.socketxp.com
+        Validity
+            Not Before: Nov  7 10:56:24 2024 GMT
+            Not After : Oct 14 10:56:24 2124 GMT
+        Subject: CN=device123.internal.example.local
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:e3:71:06:ab:48:1b:62:ad:96:3f:7a:e0:be:4b:
+                    6f:42:08:7f:1e:2a:10:85:89:98:12:12:68:1a:a0:
+                    19:14:a4:ef:87:00:7b:42:14:0b:b9:67:59:88:0e:
+                    74:55:e1:57:65:2f:45:36:a1:8b:d6:cb:8e:50:22:
+                    c2:46:2f:7f:bf
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Authority Key Identifier: 
+                87:67:A2:BF:77:6E:6F:61:1C:0E:77:72:4D:95:7D:E6:54:D6:FF:3C
+            X509v3 Subject Alternative Name: 
+                DNS:device123.internal.example.local
+    Signature Algorithm: ecdsa-with-SHA256
+    Signature Value:
+        30:45:02:20:28:32:03:08:1d:fe:3c:10:26:2f:29:b7:1d:8a:
+        d4:f2:fc:6e:8a:24:82:74:88:0e:c5:d8:a0:d3:19:2f:...
+
+</pre>
+<p>Here is a sample Client Certificate with Client Identity issued by SocketXP IoT Gateway&rsquo;s CA Module:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ openssl x509 -in ~/.bsh/tls_client.crt -noout  -text
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            04:c5:84:c0:ec:09:21:2e:ca:71:20:09:74:f8:c1:fe
+        Signature Algorithm: ecdsa-with-SHA256
+        Issuer: CN=ca.socketxp.com
+        Validity
+            Not Before: Nov  7 10:56:35 2024 GMT
+            Not After : Nov  8 10:56:35 2024 GMT
+        Subject: CN=bob@example.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:0c:ee:3a:48:73:46:38:68:6a:5c:05:2e:d2:52:
+                    92:6b:67:74:96:9f:59:c2:58:92:e3:84:aa:a0:33:
+                    08:5b:69:e9:ca:97:06:86:bb:11:e7:fd:3b:5c:21:
+                    04:6f:49:2a:6f:d9:b4:c3:85:23:c9:d9:b1:bc:82:
+                    ef:42:0e:27:29
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Authority Key Identifier: 
+                87:67:A2:BF:77:6E:6F:61:1C:0E:77:72:4D:95:7D:E6:54:D6:FF:3C
+            X509v3 Subject Alternative Name: 
+                email:bob@example.com
+    Signature Algorithm: ecdsa-with-SHA256
+    Signature Value:
+        30:45:02:20:3d:df:ad:e4:c7:53:0c:ed:23:63:e7:93:39:44:
+        17:e4:57:b7:8d:74:ea:89:fe:61: ...
+</pre>
+<p>The above certificates contains the server identity and user/client identity in the <code>Subject</code> field and <code>Subject Alternative Name</code> fields.</p>
+<blockquote>
+<p>Note: SocketXP IoT Gateway&rsquo;s CA module issues short-lived SSL TLS X.509 client certificates [valid for 24 hours only] by default to the end users or clients.  Users must renew their client certificates after the expiry period.  The CA provides granular control over who can access what resource and for how long.</p></blockquote>
+<p>By verifying the server and client identities, mTLS helps to prevent <code>man-in-the-middle</code> (MITM) attacks and other security threats.</p>
+<h2 id="limitations-of-mtls">Limitations of mTLS</h2>
+<p>mTLS has a few limitations, including:</p>
+<ul>
+<li><strong>Increased complexity:</strong> mTLS is slightly more complex to implement and configure than traditional TLS because now we need to get and use a client certificate in addition to getting the server certificate.  mTLS requires two-way authentication, while the traditional TLS requires just one-way authentication.</li>
+<li><strong>Performance overhead:</strong> mTLS can add a small performance overhead to connections, given the extra authentication and validation it needs to perform on the identities of the endpoints involved.  But mTLS improves the endpoint security several fold and therefore the performance overhead is worth it.</li>
+<li><strong>Compatibility:</strong> Not all clients and servers support mTLS.  Some legacy applications do not support mTLS.  But, all modern development tools and modern softwares support mTLS today.</li>
+</ul>
+<h3 id="mtls-best-practices-for-security">mTLS best practices for security:</h3>
+<p>Here are some mTLS best practices that should be followed for better security:</p>
+<ul>
+<li>Use a trusted CA such as <a href="/">BastionXP CA</a> to sign your certificates.</li>
+<li>Keep your certificates up to date and rotate them frequently.</li>
+<li>Use strong and latest encryption algorithms.</li>
+<li>Configure your clients and servers to verify certificates and identities properly.</li>
+<li>Monitor your server logs for suspicious activity.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>mTLS is a powerful security protocol that can be used to protect a variety of applications. It is becoming increasingly popular as organizations look to improve the security of their systems and data.</p>
+<p>mTLS offers a number of benefits, including:</p>
+<ul>
+<li>Mutual authentication: mTLS ensures that both the client and server are who they claim to be. This prevents man-in-the-middle attacks, where an attacker intercepts communication between two parties and impersonates one of them.</li>
+<li>Improved security: mTLS encrypts all data transmitted over the connection, protecting it from eavesdropping and tampering.</li>
+<li>Reduced complexity: mTLS can simplify security architecture by eliminating the need for separate authentication mechanisms.</li>
+</ul>
+<p>mTLS is used in a variety of applications, including: Web Services security, Databases security, API security, Microservices architecture, Service Mesh, IoT Security, Zero Trust Security.</p>
+<p>If you are looking for a way to improve the security of your application, mTLS is a good option to consider.</p>
+<p><a href="/">SocketXP IoT Management Platform&rsquo;s</a> built-in CA module automates certificate generation, distribution and rotation at scale, thereby eleminating the manual work and reducing the complexity involved, without compromising the security.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

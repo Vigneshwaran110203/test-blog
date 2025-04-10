@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SSH on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/ssh/</link>
+    <description>Recent content in SSH on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Secure File Transfers - Mastering SFTP and SCP</title>
+      <link>http://localhost:51627/iot/secure-file-transfer-sftp-scp/</link>
+      <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/secure-file-transfer-sftp-scp/</guid>
+      <description>&lt;p&gt;In today&amp;rsquo;s interconnected world, securely transferring files is paramount.&lt;/p&gt;&#xA;&lt;p&gt;Whether you&amp;rsquo;re a system administrator, developer, or simply a user needing to move data, understanding SFTP and SCP is essential.&lt;/p&gt;&#xA;&lt;p&gt;These protocols provide secure alternatives to traditional file transfer methods, protecting your data from prying eyes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-are-sftp-and-scp&#34;&gt;What are SFTP and SCP?&lt;/h2&gt;&#xA;&lt;h3 id=&#34;sftp-ssh-file-transfer-protocol&#34;&gt;SFTP (SSH File Transfer Protocol):&lt;/h3&gt;&#xA;&lt;p&gt;SFTP is a secure file transfer protocol that operates over the SSH (Secure Shell) protocol.&#xA;It provides a secure, interactive session for transferring files, similar to FTP, but with encryption.&#xA;SFTP allows for various file operations, including uploading, downloading, renaming, deleting, and managing directories.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Securely Transfer Files to your Remote IoT Devices - A Step-by-Step Guide</title>
+      <link>http://localhost:51627/iot/remote-iot-device-secure-file-transfer-sftp-scp/</link>
+      <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-iot-device-secure-file-transfer-sftp-scp/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to securely transfer files to and from your remote IoT or embedded Linux devices using SCP/SFTP.&lt;/p&gt;&#xA;&lt;p&gt;The Internet of Things (IoT) has revolutionized the way we interact with the world around us.&lt;/p&gt;&#xA;&lt;p&gt;With the ability to connect and control devices from anywhere in the world, IoT technology has brought convenience and efficiency to our daily lives.&lt;/p&gt;&#xA;&lt;p&gt;However, with this increased connectivity comes the need for secure transfer of file to/from these devices. One way to achieve this is through the use of &lt;a href=&#34;http://localhost:51627/iot/secure-file-transfer-sftp-scp&#34;&gt;SFTP or SCP&lt;/a&gt; tools.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Automate SSH Key Management and Control with SocketXP</title>
+      <link>http://localhost:51627/iot/socketxp-ssh-key-management-platform/</link>
+      <pubDate>Thu, 30 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/socketxp-ssh-key-management-platform/</guid>
+      <description>&lt;p&gt;In today&amp;rsquo;s interconnected world, &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell&#34;&gt;Secure Shell (SSH)&lt;/a&gt; is fundamental to &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;secure remote access&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;SSH password based authentication is vulnerable to attacks and generally not recommended for production usecases.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot/configure-setup-ssh-public-keys-right-way/&#34;&gt;SSH Public Private key based authentication&lt;/a&gt; is a secure and recommended method for production usecases.&lt;/p&gt;&#xA;&lt;p&gt;But managing SSH keys across a growing infrastructure can be a nightmare.&lt;/p&gt;&#xA;&lt;p&gt;SocketXP simplifies this complexity, offering a robust SSH Key Management Solution that empowers you to control, automate, and secure your SSH access.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SSH Key Management Platforms - A Comprehensive Guide</title>
+      <link>http://localhost:51627/iot/ssh-key-management-platform/</link>
+      <pubDate>Thu, 30 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/ssh-key-management-platform/</guid>
+      <description>&lt;p&gt;In today&amp;rsquo;s interconnected world, &lt;a href=&#34;http://localhost:51627/ssh-secure-shell&#34;&gt;Secure Shell (SSH)&lt;/a&gt; has become the cornerstone of &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;secure remote access&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s the silent workhorse behind countless system administration tasks, cloud interactions, and DevOps workflows.&lt;/p&gt;&#xA;&lt;p&gt;But with the rise of cloud computing, IoT devices, and increasingly complex IT infrastructures, managing SSH keys has become a significant challenge.&lt;/p&gt;&#xA;&lt;p&gt;This article explores the importance of SSH key management and delves into the capabilities of dedicated &lt;a href=&#34;http://localhost:51627/iot/socketxp-ssh-key-management-platform/&#34;&gt;SSH key management platforms&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-ssh-key-challenge-beyond-simple-authentication&#34;&gt;The SSH Key Challenge: Beyond Simple Authentication&lt;/h2&gt;&#xA;&lt;p&gt;SSH keys offer a far more secure alternative to password-based authentication. They eliminate the risk of password sniffing and brute-force attacks, significantly bolstering security. However, the very strength of SSH keys – their complexity – also creates a management headache.  Consider these challenges:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remotely Access Nvidia Jetson Nano over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-nvidia-jetson-nano-over-the-internet/</link>
+      <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-nvidia-jetson-nano-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to configure and setup remote access to your Nvidia Jetson Nano&amp;rsquo;s Secure Shell(SSH) command line, so that you could connect to it over the internet from anywhere.&lt;/p&gt;&#xA;&lt;p&gt;We will also discuss how to securely remote connect to your Nvidia Jetson Nano based embedded Linux device using Remote Desktop Application.&lt;/p&gt;&#xA;&lt;p&gt;The &lt;a href=&#34;http://localhost:51627/iot/nvidia-jetson-nano-vs-raspberry-pi-which-one-is-better-for-your-project&#34;&gt;NVIDIA Jetson Nano&lt;/a&gt; is a small, powerful computer that can be used for robotics and many AI-based applications. It&amp;rsquo;s a popular choice for prototyping AI products and creating embedded AI solutions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Share Your Linux Terminal with Your Team Members</title>
+      <link>http://localhost:51627/iot/linux-terminal-sharing-ssh-session-sharing/</link>
+      <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/linux-terminal-sharing-ssh-session-sharing/</guid>
+      <description>&lt;p&gt;SocketXP is a powerful tool for securely sharing your Linux terminal or SSH session with people you trust to quickly perform a joint debugging. Your customers or team members can connect to your Linux terminal session via a browser over HTTPS protocol using a public web URL.&lt;/p&gt;&#xA;&lt;p&gt;In this article, we will discuss how to configure and setup SocketXP in your Linux machine or device so that you can share your Linux terminal with your team members, customers or anyone you trust.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mastering SSH - A Complete Guide to Secure Shell Protocol</title>
+      <link>http://localhost:51627/iot/ssh-secure-shell/</link>
+      <pubDate>Tue, 19 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/ssh-secure-shell/</guid>
+      <description>&lt;h2 id=&#34;10--what-is-ssh&#34;&gt;1.0  What is SSH&lt;/h2&gt;&#xA;&lt;p&gt;Secure Shell (SSH) is a cryptographic network protocol designed for secure communication over an unsecured network.&lt;/p&gt;&#xA;&lt;p&gt;It is widely used for remote login, command execution, and data transfer between computers. SSH provides a secure channel over an unsecured network by encrypting the data exchanged between the client and the server.&lt;/p&gt;&#xA;&lt;p&gt;This guide will take you through the comprehensive details of SSH, from its history and key features to advanced configurations and security best practices.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access SSH From Anywhere</title>
+      <link>http://localhost:51627/iot/remote-access-ssh-from-anywhere/</link>
+      <pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-ssh-from-anywhere/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to securely remote access your Linux (SSH) server or device from anywhere in the world, making it easier than ever to remotely manage your Linux server.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the Linux server is its ability to be accessed remotely, which allows you to control and manage your Linux server from another machine over the internet.&lt;/p&gt;&#xA;&lt;p&gt;One common method to remotely access a Linux server is using &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell/&#34;&gt;Secure Shell (SSH)&lt;/a&gt;, a network protocol that provides a secure way to communicate with a remote device.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access SSH Without Port Forwarding</title>
+      <link>http://localhost:51627/iot/remote-access-ssh-without-port-forwarding/</link>
+      <pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-ssh-without-port-forwarding/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to securely remote access your Linux or Ubuntu Secure Shell (SSH) server over the internet without setting up port forwarding in your router or pinholing your firewall, making it easier than ever to manage your Linux server from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the Linux server is its ability to be accessed remotely, which allows you to control and manage your Linux server from another machine over the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access Kubernetes Worker Node SSH over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-kubernetes-worker-node-ssh-over-the-internet/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-kubernetes-worker-node-ssh-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to remotely access your Kubernetes Master or Worker Node&amp;rsquo;s Secure Shell (SSH) over the internet, making it easier than ever to manage your Kubernetes Worker Nodes or cluster from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of a Linux based cluster node is its ability to be accessed remotely, which allows you to control and manage your Kubernetes Worker Node from another machine over the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>IoT Remote Access, Control and Management Over the Internet</title>
+      <link>http://localhost:51627/iot/iot-remote-access-control-over-the-internet/</link>
+      <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/iot-remote-access-control-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to remotely access, control and manage your IoT devices from outside of our home or office network over the internet, allowing you to remotely manage your IoT device from anywhere.&lt;/p&gt;&#xA;&lt;p&gt;IoT is quickly becoming popular worldwide because of the unlimited workflow automation opportunities that comes with it. However, if not managed properly, these IoT devices can become a liability and lead to customer churn, resulting in lost revenue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Securely Remote Access MySQL or Any Database in Raspberry Pi behind Firewall</title>
+      <link>http://localhost:51627/iot/secure-remote-access-mysql-database-raspberry-pi-behind-firewall-over-the-internet-anywhere/</link>
+      <pubDate>Mon, 07 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/secure-remote-access-mysql-database-raspberry-pi-behind-firewall-over-the-internet-anywhere/</guid>
+      <description>&lt;p&gt;In this article, we’ll discuss how to securely remote access MySQL database or any database(DB) in a Raspberry Pi in a private network (behind NAT router and firewall) over the internet.&lt;/p&gt;&#xA;&lt;p&gt;You can use the same procedure to remote access any database (PostgresSQL, MariaDB, GridDB, SQLite, Redis etc) in your Raspberry Pi or IoT over the internet.&lt;/p&gt;&#xA;&lt;p&gt;We will use &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;SocketXP IoT Remote Access solution&lt;/a&gt; to securely connect to your remote MySQL database.  SocketXP is very simple and easy to setup.  SocketXP has a free trial plan.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access Linux Server SSH from Windows over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-linux-server-ssh-over-the-internet-from-windows/</link>
+      <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-linux-server-ssh-over-the-internet-from-windows/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to remotely access your Linux or Ubuntu Secure Shell (SSH) server from Windows, making it easier than ever to manage your Linux server from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the Linux server is its ability to be accessed remotely, which allows you to control and manage your Linux server from another machine over the internet.&lt;/p&gt;&#xA;&lt;p&gt;One common method to remotely access a Linux server is using &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell/&#34;&gt;Secure Shell (SSH)&lt;/a&gt;, a network protocol that provides a secure way to communicate with a remote device.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Securely Remote Access MySQL Database Behind Firewall</title>
+      <link>http://localhost:51627/iot/secure-remote-access-mysql-database-behind-firewall-over-the-internet/</link>
+      <pubDate>Thu, 06 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/secure-remote-access-mysql-database-behind-firewall-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we’ll discuss how to securely remote connect to a MySQL database running in a private network (behind NAT router and firewall) over the internet.&lt;/p&gt;&#xA;&lt;p&gt;You can use the same procedure to remote access any database (Postgresql, MariaDB, Redis DB, SQLite etc.) over the internet.&lt;/p&gt;&#xA;&lt;p&gt;We will use &lt;a href=&#34;http://localhost:51627/&#34;&gt;SocketXP Remote Access solution&lt;/a&gt; to securely connect to your remote MySQL database.  SocketXP is very simple and easy to setup.  SocketXP has a free trial plan.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Nvidia Jetson Nano vs Raspberry Pi  - Which one is better for your project?</title>
+      <link>http://localhost:51627/iot/nvidia-jetson-nano-vs-raspberry-pi-which-one-is-better-for-your-project/</link>
+      <pubDate>Thu, 25 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/nvidia-jetson-nano-vs-raspberry-pi-which-one-is-better-for-your-project/</guid>
+      <description>&lt;p&gt;Single-board computers (SBCs) are becoming increasingly popular for their low cost and versatility.&lt;/p&gt;&#xA;&lt;p&gt;Two of the most popular SBCs are the Nvidia Jetson Nano and the Raspberry Pi.&lt;/p&gt;&#xA;&lt;p&gt;While both boards have their own strengths and weaknesses, they are often compared against each other due to their similar form factor and price point.&lt;/p&gt;&#xA;&lt;p&gt;In this article, we&amp;rsquo;ll discuss in great detail about each board, their benefits, limitations,  advantages, disadvantages, and the kind of projects for which they are suitable for.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Install and Setup SSH Server and Client on your Embedded Linux Device</title>
+      <link>http://localhost:51627/iot/install-setup-ssh-server-client-iot-device/</link>
+      <pubDate>Wed, 10 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/install-setup-ssh-server-client-iot-device/</guid>
+      <description>&lt;p&gt;&#xA;    &lt;a href=&#34;https://www.openssh.com/&#34; rel=&#34;nofollow&#34; target=&#34;_blank&#34;&gt; &#xA;OpenSSH &lt;/a&gt;&#xA; is a free open source software that uses Secure Shell(SSH) protocol to create secure and encrypted communication channels over computer networks.&lt;/p&gt;&#xA;&lt;p&gt;OpenSSH is developed by the &#xA;    &lt;a href=&#34;https://www.openbsd.org/&#34; rel=&#34;nofollow&#34; target=&#34;_blank&#34;&gt; Open BST Community &lt;/a&gt;&#xA; and it is released under a Simplified BSD License.&lt;/p&gt;&#xA;&lt;p&gt;OpenSSH comes with additional features such as SFTP and SCP to perform secure file transfer and secure copy over a computer network.&lt;/p&gt;&#xA;&lt;p&gt;Setting up SSH server in your IoT device is essential for enabling &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;secure remote access to your IoT device&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Securing Your IoT devices: Best Practices for SSH Remote Access
+</title>
+      <link>http://localhost:51627/iot/remote-access-iot-ssh-security-best-practices/</link>
+      <pubDate>Thu, 20 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-iot-ssh-security-best-practices/</guid>
+      <description>&lt;p&gt;Are you using Secure Shell(SSH) for remotely accessing your IoT, Raspberry Pi or Arduino?&lt;/p&gt;&#xA;&lt;p&gt;As exciting as it is to have a IoT device as a versatile mini-computer, it&amp;rsquo;s crucial to ensure that your SSH remote access is secured to protect your device and data from potential security risks.&lt;/p&gt;&#xA;&lt;p&gt;In this article, we&amp;rsquo;ll explore essential security considerations and best practices for IoT SSH remote access. These tips will help you safeguard your IoT and keep it safe from unauthorized access.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access IoT SSH over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-iot-ssh-over-the-internet/</link>
+      <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-iot-ssh-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to configure and setup remote access to your IoT Secure Shell(SSH) command line over the internet.&lt;/p&gt;&#xA;&lt;p&gt;The Internet of Things (IoT) has revolutionized the way we interact with the world around us.&lt;/p&gt;&#xA;&lt;p&gt;With the ability to connect and control devices from anywhere in the world, IoT technology has brought convenience and efficiency to our daily lives.&lt;/p&gt;&#xA;&lt;p&gt;However, with this increased connectivity comes the need for secure remote access to these devices. One way to achieve this is through the use of &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell/&#34;&gt;Secure Shell (SSH)&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Create Secure Reverse SSH Tunnel to IoT devices</title>
+      <link>http://localhost:51627/iot/create-secure-reverse-ssh-tunnel-to-iot-devices/</link>
+      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/create-secure-reverse-ssh-tunnel-to-iot-devices/</guid>
+      <description>&lt;p&gt;Normally, an SSH client would connect to an SSH server for SSH access.&lt;/p&gt;&#xA;&lt;p&gt;But, what if you want the &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell/&#34;&gt;SSH server&lt;/a&gt; to connect to the SSH client? That&amp;rsquo;s when you need to setup an SSH reverse proxy tunnel.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Hint:&lt;/strong&gt; To better understand SSH reverse proxy tunnel, imagine two tubes (a smaller tube within a larger tube) connecting two endpoints.&lt;/p&gt;&#xA;&#xA;&lt;div class=&#34;entry-img mt-4&#34; style=&#34;text-align: center;&#34;&gt;&#xA;    &lt;img src=&#34;http://localhost:51627/assets/img/ssh-reverse-proxy-tunnel/reverse-proxy-tunnel.jpg&#34; alt=&#34;what is a reverse proxy tunnel&#34; style=&#34;max-width:80%;max-height:100%;&#34;&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;h2 id=&#34;what-is-a-reverse-proxy-tunnel&#34;&gt;What is a reverse proxy tunnel&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s say you want to access an SSH client behind a NAT router or firewall from a public SSH server.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

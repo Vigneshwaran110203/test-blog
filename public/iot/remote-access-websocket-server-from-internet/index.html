@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Remote Access Websocket Server from the Internet</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Remote Access Websocket Server from the Internet</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Remote Access Websocket Server from the Internet</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Oct 10, 2023
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#nodejs-websocket-server-example">NodeJS Websocket server example</a></li>
+    <li><a href="#nodejs-websocket-client-example">NodeJS Websocket client example</a></li>
+    <li><a href="#remote-access-websocket-server-from-internet">Remote Access Websocket Server From Internet</a>
+      <ul>
+        <li><a href="#step-1-download-and-install">Step 1: Download and Install</a></li>
+        <li><a href="#step-2-get-your-authentication-token">Step 2: Get your Authentication Token</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remote-access-websocket-server-from-internet/" title="How to Remote Access Websocket Server from the Internet">
+                        <img src="/assets/img/remote-access-localhost-nodejs-app/remote-access-localhost-nodejs-app.png" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#nodejs-websocket-server-example">NodeJS Websocket server example</a></li>
+    <li><a href="#nodejs-websocket-client-example">NodeJS Websocket client example</a></li>
+    <li><a href="#remote-access-websocket-server-from-internet">Remote Access Websocket Server From Internet</a>
+      <ul>
+        <li><a href="#step-1-download-and-install">Step 1: Download and Install</a></li>
+        <li><a href="#step-2-get-your-authentication-token">Step 2: Get your Authentication Token</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this tutorial, we will discuss how to setup remote access to a websocket server in your local machine so that you can connect to the websocket securely over the internet.</p>
+<p>Whether you are a coding enthusiast, a DIY enthusiast, or just curious about writing web applications for <a href="/iot-remote-access">IoT and remotely accessing</a> it, this article will provide you with a step-by-step instructions on how to remotely connect to a websocket app running in your IoT over the internet.</p>
+<p>So, let&rsquo;s dive in.</p>
+<h2 id="nodejs-websocket-server-example">NodeJS Websocket server example</h2>
+<p>We&rsquo;ll use the following simple NodeJS based Websocket server to illustrate our solution.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$
+// ws-server.js
+const express = require('express');
+const http = require('http');
+const WebSocket = require('ws');
+
+const app = express();
+
+//initialize a simple http server
+const server = http.createServer(app);
+
+//initialize the WebSocket server instance
+const wss = new WebSocket.Server({ server });
+
+wss.on('connection', (ws) => {
+    //websocket client connection is up.
+
+    //Listen for messages from the client and print
+    ws.on('message', (message) => {
+        console.log('Msg received: %s', message);
+    });
+
+    //send a message to the incoming client connection    
+    ws.send('Hi there, I am a WebSocket server');
+});
+
+//start the HTTP WS server
+server.listen(3000, () => {
+    console.log(`HTTP server started on port ${server.address().port}`);
+});
+</pre>
+<p>Now run the Websocket server using the following command:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ node ws-server.js
+HTTP server started on port 3000
+</pre>
+<h2 id="nodejs-websocket-client-example">NodeJS Websocket client example</h2>
+<p>We&rsquo;ll use the following simple NodeJS websocket client for our illustration:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+//ws-client.js
+const WebSocket = require('ws');
+
+const ws = new WebSocket('ws://localhost:3000')
+ws.onopen = () => {
+  console.log('Websocket opened on browser')
+  ws.send('Hello, I am a Websocket client')
+}
+
+ws.onmessage = (message) => {
+  console.log(`Msg received: `, message.data)
+}
+</pre>
+<p>Now, let&rsquo;s run the Websocket client locally on the same machine as the server and test if the client is able to connect to the Websocket server.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ node ws-client.js
+Websocket opened on browser
+Msg received:  Hi there, I am a WebSocket server
+</pre>
+<p>Now if you watch the Websocket server&rsquo;s terminal window, you&rsquo;ll see the following message:
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ node ws_server.js
+HTTP server started on port 3000
+Msg received: Hello, I am a Websocket client
+</pre></p>
+<p>Right now the Websocket server application can be accessed only from a local network because it runs on your server, Raspberry Pi or IoT behind a NAT router or Firewall.</p>
+<p>Now, to remote access your Websocket server application from the internet, we&rsquo;ll use a simple and easy to use <a href="/iot-remote-access">SocketXP IoT Remote Access Solution</a> to setup remote access to your websocket server.</p>
+<p>You can use SocketXP to <a href="/iot/remote-access-iot-web-app-from-internet/">remote access any web application</a> over the internet.</p>
+<h2 id="remote-access-websocket-server-from-internet">Remote Access Websocket Server From Internet</h2>
+<p>Follow the instructions below to create a SocketXP HTTPS tunnel and a Public Web URL for your Websocket Server application, so that it can be remotely accessed from anywhere using a Websocket client.</p>
+<h3 id="step-1-download-and-install">Step 1: Download and Install</h3>
+<p><a href="https://www.socketxp.com/download">Download and install</a> SocketXP IoT agent on your server, IoT or Raspberry Pi device where the Websocket server runs.</p>
+<h3 id="step-2-get-your-authentication-token">Step 2: Get your Authentication Token</h3>
+<p>Sign up at <a href="https://portal.socketxp.com">https://portal.socketxp.com</a> and get your authentication token.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/AuthToken.jpg" alt="remote access JS web app in IoT over the Internet" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Click the copy button to copy the command string and paste in the terminal window in your laptop or server.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ socketxp login "eyJhbGciOiJIUzI1NiIsInR5cCI..."</pre>
+<p>After registering the SocketXP Client with the SocketXP Cloud Service, use the following command to create a secure HTTP proxy tunnel between the nodejs websocket server and the SocketXP Cloud Gateway.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$socketxp connect http://localhost:3000
+Public URL -&gt; https://test-user-59129dd68b58.socketxp.com</pre>
+<p>Let&rsquo;s access the nodejs websocket server application from the internet using the SocketXP Public URL provided in the above output.</p>
+<p>The above SocketXP public URL is a permanent link just assigned to your Websocket server app and it doesn&rsquo;t change until you manually delete it from the <a href="https://portal.socketxp.com">SocketXP web portal</a>.</p>
+<p>We have modified the Websocket client to use the above SocketXP Public Web URL to connect to the Websocket server over the internet or from any outside network.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+//ws-client.js
+const WebSocket = require('ws');
+const ws = new WebSocket('ws://test-user-59129dd68b58.socketxp.com')
+ws.onopen = () => {
+  console.log('Websocket opened on browser')
+  ws.send('Hello, I am a Websocket client')
+}
+ws.onmessage = (message) => {
+  console.log(`Msg received: `, message.data)
+}
+</pre>
+<p>Now let&rsquo;s try connecting the Websocket client to the Websocket server over the internet.</p>
+<p>Note: Usually the Websocket client runs in a browser. But to keep our discussion simple we use NodeJS to execute the Websocket client app.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ node ws-client.js
+Websocket opened on browser
+Msg received:  Hi there, I am a WebSocket server
+</pre>
+<p>Congratulations!! You have successfully setup remote access to your Websocket server and accessed it remotely using a Websocket client.</p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>Developing websocket applications for IoT is made easy by using Javascript or Python.</p>
+<p>With <a href="/iot-remote-access">SocketXP IoT Remote Access Solution</a> &ndash; part of <a href="/iot/iot-device-management-platform">IoT Device Management and Remote Access Platform</a>, it is easy to securely access any websocket application running in your IoT from any browser on any OS, be it Windows or Mac or Linux.</p>
+<p>By following the steps outlined in this article, you can quickly set up remote access to websocket app running in your IoT and access it from anywhere, anytime.</p>
+<p>Whether you&rsquo;re managing a IoT project remotely or accessing your IoT for troubleshooting or maintenance purposes, web application remote access is a powerful tool that enables you to stay connected to your IoT with ease.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

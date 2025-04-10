@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Raspberry Pi on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/raspberry-pi/</link>
+    <description>Recent content in Raspberry Pi on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Update Firmware in your IoT using SocketXP OTA Update</title>
+      <link>http://localhost:51627/iot/update-iot-firmware-using-socketxp-ota-update/</link>
+      <pubDate>Fri, 07 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/update-iot-firmware-using-socketxp-ota-update/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to remotely update firmware (A/B update) on a fleet of IoT or embedded Linux devices using &lt;a href=&#34;http://localhost:51627/iot-ota-update&#34;&gt;SocketXP&amp;rsquo;s Over-the-Air(OTA) update&lt;/a&gt; feature.&lt;/p&gt;&#xA;&lt;p&gt;SocketXP is an &lt;a href=&#34;http://localhost:51627/socketxp-iot-device-management-platform&#34;&gt;IoT device management platform&lt;/a&gt; that can be used to remotely manage, monitor, access, update and control IoT or any embedded Linux devices at massive scale.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot-ota-update&#34;&gt;SocketXP&amp;rsquo;s OTA update&lt;/a&gt; feature is extremely useful when you have to deploy software update on a fleet of IoT devices or embedded devices in your customer&amp;rsquo;s network behind a NAT router or Firewall or out in the field connected via a cellular network.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Update Docker Containers in your IoT using SocketXP OTA Update</title>
+      <link>http://localhost:51627/iot/update-iot-docker-containers-using-socketxp-ota-update/</link>
+      <pubDate>Tue, 04 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/update-iot-docker-containers-using-socketxp-ota-update/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to build and update an IoT application as a Docker container on a fleet of IoT devices using &lt;a href=&#34;http://localhost:51627/iot-ota-update&#34;&gt;SocketXP&amp;rsquo;s Over-the-Air(OTA) update&lt;/a&gt; feature.&lt;/p&gt;&#xA;&lt;p&gt;SocketXP is an &lt;a href=&#34;http://localhost:51627/socketxp-iot-device-management-platform&#34;&gt;IoT device management platform&lt;/a&gt; that can be used to remotely manage, monitor, access, update and control IoT or any embedded Linux devices at massive scale.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot-ota-update&#34;&gt;SocketXP&amp;rsquo;s OTA update&lt;/a&gt; feature is extremely useful when you have to deploy software update on a fleet of IoT devices in your customer&amp;rsquo;s network behind a NAT router or Firewall or out in the field connected via a cellular network.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Update Debian Packages in your IoT using SocketXP OTA Update</title>
+      <link>http://localhost:51627/iot/update-iot-debian-packages-using-socketxp-ota-update/</link>
+      <pubDate>Wed, 26 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/update-iot-debian-packages-using-socketxp-ota-update/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to build and update an IoT application as a debian package on a fleet of IoT devices using SocketXP&amp;rsquo;s Over-the-Air(OTA) update feature.&lt;/p&gt;&#xA;&lt;p&gt;SocketXP is an &lt;a href=&#34;http://localhost:51627/socketxp-iot-device-management-platform&#34;&gt;IoT device management platform&lt;/a&gt; that can be used to remotely manage, monitor, access, update and control IoT or any embedded Linux devices at massive scale.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot-ota-update&#34;&gt;SocketXP&amp;rsquo;s OTA update&lt;/a&gt; feature is extremely useful when you have to deploy software update on a fleet of IoT devices in your customer&amp;rsquo;s network behind a NAT router or Firewall or out in the field connected via a cellular network.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Update Your IoT App using SocketXP OTA Update</title>
+      <link>http://localhost:51627/iot/update-iot-app-using-socketxp-ota-update/</link>
+      <pubDate>Tue, 25 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/update-iot-app-using-socketxp-ota-update/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to build and update an IoT application binary running in a fleet of IoT devices using SocketXP&amp;rsquo;s Over-the-Air(OTA) update feature.&lt;/p&gt;&#xA;&lt;p&gt;SocketXP is an &lt;a href=&#34;http://localhost:51627/socketxp-iot-device-management-platform&#34;&gt;IoT device management platform&lt;/a&gt; that can be used to remotely manage, monitor, access, update and control IoT or any embedded Linux devices at massive scale.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot-ota-update&#34;&gt;SocketXP&amp;rsquo;s OTA update&lt;/a&gt; feature is extremely useful when you have to deploy software update on a fleet of IoT devices in your customer&amp;rsquo;s network or out in the field, behind a NAT router or Firewall.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access a TCP Socket Server from the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-tcp-socket-server-python-c-java-go-from-internet/</link>
+      <pubDate>Mon, 09 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-tcp-socket-server-python-c-java-go-from-internet/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to &lt;strong&gt;remote access a TCP socket server&lt;/strong&gt; from the internet using &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;SocketXP Remote Access solution&lt;/a&gt;, without having to setup port forwarding.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s assume you have a TCP socket server that runs on &lt;strong&gt;localhost IP address 127.0.0.1&lt;/strong&gt; in your personal laptop or in a office server in your office network, behind NAT router and firewall.&lt;/p&gt;&#xA;&lt;p&gt;Anyone outside of your office network cannot access the TCP socket server because the server runs in your local network or local IP address 127.0.0.1. Local IP addresses such as &lt;strong&gt;127.0.0.1, 10.1.1.1 or 192.168.1.1&lt;/strong&gt; etc., cannot be accessed from the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access NGINX web server from the internet</title>
+      <link>http://localhost:51627/iot/remote-access-nginx-web-server-from-internet/</link>
+      <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-nginx-web-server-from-internet/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to &lt;strong&gt;remote access an NGINX web server&lt;/strong&gt; from the internet using &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;SocketXP Remote Access solution&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;NGINX can be configured to run as a web server or a web proxy server.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s assume you have a NGINX web server that runs on &lt;strong&gt;localhost IP address 127.0.0.1&lt;/strong&gt; in your personal laptop or in a office server or as a Docker container in your home or office network, behind NAT router and firewall.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>A Guide to IoT Performance Monitoring</title>
+      <link>http://localhost:51627/iot/iot-performance-monitoring/</link>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/iot-performance-monitoring/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot-remote-monitoring&#34;&gt;IoT (Internet of Things) Performance Monitoring&lt;/a&gt; refers to the processes and technologies used to track, manage, and optimize the performance of IoT devices, networks, and systems.&lt;/p&gt;&#xA;&lt;p&gt;IoT networks, made up of interconnected devices that communicate autonomously, are increasingly critical across various sectors including manufacturing, healthcare, agriculture, and smart cities.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;  +---------------------+&#xA;  |    IoT Devices      | &amp;lt;--- Sensor data, Device health&#xA;  +---------------------+&#xA;          |&#xA;          |  (Data Transmission)&#xA;          v&#xA;  +---------------------+            +------------------+&#xA;  |   Gateway/Edge      | &amp;lt;-------&amp;gt;  |   Network        | &#xA;  |   Device            |            |   Performance    |&#xA;  +---------------------+            +------------------+&#xA;          |&#xA;          |  (Data Collection, Analytics)&#xA;          v&#xA;  +---------------------+              +--------------------+&#xA;  |   Cloud Platform    | &amp;lt;-------&amp;gt;    |   Cloud Monitoring |&#xA;  |   (Data Analytics)  |              |   (Resource Usage, |&#xA;  +---------------------+              |   API, Health)     |&#xA;          |                            +--------------------+&#xA;          |&#xA;          v&#xA;  +----------------------+&#xA;  |    Visualization &amp;amp;   |&#xA;  |    Performance Dash  |&#xA;  +----------------------+&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Performance monitoring ensures that these systems remain functional, efficient, secure, and scalable.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>IoT Remote Monitoring - A Comprehensive Guide</title>
+      <link>http://localhost:51627/iot/iot-remote-monitoring/</link>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/iot-remote-monitoring/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot-remote-monitoring/&#34;&gt;IoT (Internet of Things) remote monitoring solutions&lt;/a&gt; have revolutionized the way businesses manage their operations.&lt;/p&gt;&#xA;&lt;p&gt;By leveraging IoT technology, companies can monitor their assets, processes, and environments in real-time, enabling them to make informed decisions, optimize efficiency, and enhance security.&lt;/p&gt;&#xA;&lt;p&gt;In this comprehensive guide, we will explore the benefits, key features, challenges, and best practices of &lt;a href=&#34;http://localhost:51627/iot-remote-monitoring/&#34;&gt;IoT remote monitoring&lt;/a&gt; solutions, and how SocketXP’s platform can help businesses achieve their remote monitoring goals.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Over-the-Air(OTA) Updates for IoT</title>
+      <link>http://localhost:51627/iot/over-the-air-update-ota-update-iot/</link>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/over-the-air-update-ota-update-iot/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot-ota-update/&#34;&gt;Over-the-air (OTA) updates&lt;/a&gt; have become an essential component of IoT (Internet of Things) device management.&lt;/p&gt;&#xA;&lt;p&gt;OTA updates allow businesses to remotely update the firmware and software of their IoT devices, ensuring they are always running the latest versions with the most recent features and security patches.&lt;/p&gt;&#xA;&lt;p&gt;In this comprehensive guide, we will explore the importance, benefits, key features, challenges, best practices, and future trends of OTA updates for IoT, and how &lt;a href=&#34;http://localhost:51627/&#34;&gt;SocketXP IoT Device Management Platform&lt;/a&gt; can help businesses implement efficient &lt;a href=&#34;http://localhost:51627/iot-ota-update/&#34;&gt;OTA update processes&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Remote IoT Security - The Ultimate Guide</title>
+      <link>http://localhost:51627/iot/remote-iot-security/</link>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-iot-security/</guid>
+      <description>&lt;p&gt;As the Internet of Things (IoT) continues to expand, ensuring the security of IoT devices becomes increasingly critical.&lt;/p&gt;&#xA;&lt;p&gt;Remote IoT security is essential for protecting sensitive data, maintaining device integrity, and preventing unauthorized access.&lt;/p&gt;&#xA;&lt;p&gt;In this comprehensive guide, we will explore the importance, challenges, key features, best practices, and future trends of remote IoT security, and how SocketXP’s platform can help businesses achieve their security goals.&lt;/p&gt;&#xA;&lt;h2 id=&#34;importance-of-remote-iot-security&#34;&gt;Importance of Remote IoT Security:&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-protecting-sensitive-data&#34;&gt;1. Protecting Sensitive Data&lt;/h3&gt;&#xA;&lt;p&gt;IoT devices often collect and transmit sensitive data, such as personal information, financial data, and business-critical information. Ensuring the security of this data is paramount to prevent data breaches and protect privacy.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Ultimate Guide to IoT Asset Tracking</title>
+      <link>http://localhost:51627/iot/iot-asset-tracking/</link>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/iot-asset-tracking/</guid>
+      <description>&lt;p&gt;IoT (Internet of Things) asset tracking has become a crucial tool for businesses to monitor and manage their valuable assets.&lt;/p&gt;&#xA;&lt;p&gt;With &lt;a href=&#34;http://localhost:51627/iot-asset-tracking&#34;&gt;IoT asset tracking&lt;/a&gt;, companies can ensure that their assets are always in the right place and in optimal condition, reducing losses and enhancing operational efficiency.&lt;/p&gt;&#xA;&lt;p&gt;In this comprehensive guide, we will explore the significance, benefits, key features, challenges, and best practices of IoT asset tracking, and how SocketXP’s platform can help businesses achieve their asset tracking goals.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mutual TLS Authentication - Everything you need to know</title>
+      <link>http://localhost:51627/iot/mutual-tls-authentication/</link>
+      <pubDate>Sat, 09 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/mutual-tls-authentication/</guid>
+      <description>&lt;h2 id=&#34;what-is-mtls&#34;&gt;What is mTLS?&lt;/h2&gt;&#xA;&lt;p&gt;Mutual Transport Layer Security (mTLS), also known as two-way TLS, is a security protocol that allows both the client and server to authenticate each other before establishing a secure connection. This is in contrast to traditional TLS, where only the client authenticates the server.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-mtls-works&#34;&gt;How mTLS Works:&lt;/h2&gt;&#xA;&lt;p&gt;Certificate Exchange: Both the client and server present their respective digital certificates to each other.&lt;/p&gt;&#xA;&lt;p&gt;Certificate Verification: Each party verifies the authenticity and validity of the other&amp;rsquo;s certificate using a trusted certificate authority (CA).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Medical Device Remote Access and Management Platform</title>
+      <link>http://localhost:51627/iot/medical-device-remote-access-management-platform/</link>
+      <pubDate>Mon, 04 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/medical-device-remote-access-management-platform/</guid>
+      <description>&lt;p&gt;Remote access and management of medical devices, often connected through secure networks, empower vendors and healthcare device manufacturers to remotely monitor, control, and access medical devices at scale.  It also enables remote maintenance, debugging and updates of medical equipments.&lt;/p&gt;&#xA;&lt;p&gt;These medical devices, when managed properly over its lifetime, will play a pivotal role in shaping the future of healthcare industry, ultimately improving patient outcomes and reducing healthcare disparities.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:51627/&#34;&gt;SocketXP is an IoT device management and remote access platform&lt;/a&gt; that can be used to remotely access and manage medical devices, IoT devices, or any embedded Linux devices at scale.  Try &lt;a href=&#34;http://localhost:51627/&#34;&gt;SocketXP IoT Remote Access and Device Management Platform&lt;/a&gt; for free.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Cloud vs. On-Premises IoT Device Management Platform - Which One Is Best For You?</title>
+      <link>http://localhost:51627/iot/iot-device-management-cloud-platform-on-premises-platform/</link>
+      <pubDate>Thu, 12 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/iot-device-management-cloud-platform-on-premises-platform/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll compare and contrast two different types of IoT device management platforms: &lt;strong&gt;cloud platform vs. on-premises platform&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll discuss in detail about: what are they, how they are different, advantages and disadvantages of each type of platform, and which one you should choose for your needs.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s get started.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-an-iot-device-management-platform&#34;&gt;What is an IoT Device Management Platform&lt;/h2&gt;&#xA;&lt;p&gt;An &lt;a href=&#34;http://localhost:51627/iot/iot-device-management-platform&#34;&gt;IoT device management platform&lt;/a&gt; is a software solution that helps businesses to manage their IoT devices.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>IoT Device Management Platform - A Comprehensive Guide</title>
+      <link>http://localhost:51627/iot/iot-device-management-platform/</link>
+      <pubDate>Thu, 12 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/iot-device-management-platform/</guid>
+      <description>&lt;p&gt;The Internet of Things (IoT) is the next big thing.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s changing the way we live, work, and play. And it&amp;rsquo;s just getting started.&lt;/p&gt;&#xA;&lt;p&gt;Imagine a world where everything is connected and can communicate with each other. Where your car can talk to your house, your refrigerator can order groceries for you, and your doctor can monitor your health remotely.&lt;/p&gt;&#xA;&lt;p&gt;That&amp;rsquo;s the world of the IoT. And it&amp;rsquo;s coming sooner than you think.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Securely Remote Access MySQL or Any Database in Raspberry Pi behind Firewall</title>
+      <link>http://localhost:51627/iot/secure-remote-access-mysql-database-raspberry-pi-behind-firewall-over-the-internet-anywhere/</link>
+      <pubDate>Mon, 07 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/secure-remote-access-mysql-database-raspberry-pi-behind-firewall-over-the-internet-anywhere/</guid>
+      <description>&lt;p&gt;In this article, we’ll discuss how to securely remote access MySQL database or any database(DB) in a Raspberry Pi in a private network (behind NAT router and firewall) over the internet.&lt;/p&gt;&#xA;&lt;p&gt;You can use the same procedure to remote access any database (PostgresSQL, MariaDB, GridDB, SQLite, Redis etc) in your Raspberry Pi or IoT over the internet.&lt;/p&gt;&#xA;&lt;p&gt;We will use &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;SocketXP IoT Remote Access solution&lt;/a&gt; to securely connect to your remote MySQL database.  SocketXP is very simple and easy to setup.  SocketXP has a free trial plan.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Securely Remote Access MySQL Database Behind Firewall</title>
+      <link>http://localhost:51627/iot/secure-remote-access-mysql-database-behind-firewall-over-the-internet/</link>
+      <pubDate>Thu, 06 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/secure-remote-access-mysql-database-behind-firewall-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we’ll discuss how to securely remote connect to a MySQL database running in a private network (behind NAT router and firewall) over the internet.&lt;/p&gt;&#xA;&lt;p&gt;You can use the same procedure to remote access any database (Postgresql, MariaDB, Redis DB, SQLite etc.) over the internet.&lt;/p&gt;&#xA;&lt;p&gt;We will use &lt;a href=&#34;http://localhost:51627/&#34;&gt;SocketXP Remote Access solution&lt;/a&gt; to securely connect to your remote MySQL database.  SocketXP is very simple and easy to setup.  SocketXP has a free trial plan.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Nvidia Jetson Nano vs Raspberry Pi  - Which one is better for your project?</title>
+      <link>http://localhost:51627/iot/nvidia-jetson-nano-vs-raspberry-pi-which-one-is-better-for-your-project/</link>
+      <pubDate>Thu, 25 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/nvidia-jetson-nano-vs-raspberry-pi-which-one-is-better-for-your-project/</guid>
+      <description>&lt;p&gt;Single-board computers (SBCs) are becoming increasingly popular for their low cost and versatility.&lt;/p&gt;&#xA;&lt;p&gt;Two of the most popular SBCs are the Nvidia Jetson Nano and the Raspberry Pi.&lt;/p&gt;&#xA;&lt;p&gt;While both boards have their own strengths and weaknesses, they are often compared against each other due to their similar form factor and price point.&lt;/p&gt;&#xA;&lt;p&gt;In this article, we&amp;rsquo;ll discuss in great detail about each board, their benefits, limitations,  advantages, disadvantages, and the kind of projects for which they are suitable for.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Securing Your IoT devices: Best Practices for SSH Remote Access
+</title>
+      <link>http://localhost:51627/iot/remote-access-iot-ssh-security-best-practices/</link>
+      <pubDate>Thu, 20 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-iot-ssh-security-best-practices/</guid>
+      <description>&lt;p&gt;Are you using Secure Shell(SSH) for remotely accessing your IoT, Raspberry Pi or Arduino?&lt;/p&gt;&#xA;&lt;p&gt;As exciting as it is to have a IoT device as a versatile mini-computer, it&amp;rsquo;s crucial to ensure that your SSH remote access is secured to protect your device and data from potential security risks.&lt;/p&gt;&#xA;&lt;p&gt;In this article, we&amp;rsquo;ll explore essential security considerations and best practices for IoT SSH remote access. These tips will help you safeguard your IoT and keep it safe from unauthorized access.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remotely Execute Shell Commands or Scripts on your IoT device</title>
+      <link>http://localhost:51627/iot/remote-command-script-execution-iot/</link>
+      <pubDate>Sat, 15 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-command-script-execution-iot/</guid>
+      <description>&lt;p&gt;Are you looking for a way to control your IoT projects from anywhere in the world?&lt;/p&gt;&#xA;&lt;p&gt;Want to break free from the limitations of physical proximity and execute commands remotely with ease? Remote command execution is the ultimate solution!&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s a game-changer for IoT enthusiasts and professionals alike, offering unparalleled convenience and flexibility. Picture being able to execute commands on your IoT from the comfort of your  home, office or even while on the go.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Monitor IoT System Resources and Performance using Python</title>
+      <link>http://localhost:51627/iot/monitor-iot-system-resources-performance-using-python/</link>
+      <pubDate>Tue, 21 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/monitor-iot-system-resources-performance-using-python/</guid>
+      <description>&lt;p&gt;In this tutorial, you&amp;rsquo;ll learn how to &lt;a href=&#34;http://localhost:51627/iot-remote-monitoring&#34;&gt;monitor the performance of IoT device system resources&lt;/a&gt; such as CPU, Memory, Disk and Network using Python.&lt;/p&gt;&#xA;&lt;p&gt;You&amp;rsquo;ll also learn how to generate alerts by invoking a webhook URL when the system resource usage exceeds a certain threshold. This is useful if you want to generate webhook alerts to your &lt;code&gt;Slack&lt;/code&gt; app when the CPU or memory usage exceeds, for example, 80%.&lt;/p&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll use the Python&amp;rsquo;s standard library &lt;code&gt;psutil&lt;/code&gt; to read and monitor CPU, memory, disk and network usages.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access Golang Web Server App from Internet</title>
+      <link>http://localhost:51627/iot/remote-access-golang-web-server-app-from-internet/</link>
+      <pubDate>Mon, 30 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-golang-web-server-app-from-internet/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s assume you have a Golang web server application that runs in your personal laptop or in a server or in a Raspberry Pi in your office LAN network.&lt;/p&gt;&#xA;&lt;p&gt;Anyone outside of your office network cannot access the Golang web server application because the application runs in your local network.&lt;/p&gt;&#xA;&lt;p&gt;Suppose, let&amp;rsquo;s say, you want to expose the Golang web service app to the internet, so that your customers or remote employees can access the Golang web app from the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Execute Shell Scripts on Multiple Linux Servers</title>
+      <link>http://localhost:51627/iot/execute-shell-scripts-on-multiple-remote-linux-servers/</link>
+      <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/execute-shell-scripts-on-multiple-remote-linux-servers/</guid>
+      <description>&lt;p&gt;When you have hundreds or thousands of linux servers or embedded Linux devices deployed in the field, it becomes very hard, challenging and time consuming to manually remote SSH login to each one of those Linux servers to run the same set of shell commands to re-configure, update software, or execute a script.&lt;/p&gt;&#xA;&lt;p&gt;SocketXP OTA (Over The Air) or Remote Job Automation feature automates and simplifies the execution of shell commands or scripts on multiple Linux servers over SSH.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access Python Flask App from Internet</title>
+      <link>http://localhost:51627/iot/remote-access-python-flask-app-from-internet/</link>
+      <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-python-flask-app-from-internet/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to &lt;strong&gt;remote access a Python Flask app&lt;/strong&gt; from the internet using &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;SocketXP IoT Remote Access solution&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s assume you have a Python Flask web server application that runs on &lt;strong&gt;localhost IP address 127.0.0.1&lt;/strong&gt; in your personal laptop or in a server or in a Raspberry Pi in your home or office network, behind NAT router and firewall.&lt;/p&gt;&#xA;&lt;p&gt;Anyone outside of your home or office network cannot access the Flask web application because the application runs in your local network or local IP address 127.0.0.1. Local IP addresses such as &lt;strong&gt;127.0.0.1, 10.1.1.1 or 192.168.1.1&lt;/strong&gt; etc., cannot be accessed from the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access your Localhost NodeJS App from internet</title>
+      <link>http://localhost:51627/iot/remote-access-localhost-nodejs-app-from-internet/</link>
+      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-localhost-nodejs-app-from-internet/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s assume you have a nodejs web application that runs in your personal laptop or in a server or in a Raspberry Pi in your office LAN network.&lt;/p&gt;&#xA;&lt;p&gt;Anyone outside of your office network cannot access the web application because the application runs in your local network.&lt;/p&gt;&#xA;&lt;p&gt;Suppose you want to expose the web application to the internet, so that your customers or remote employees can access it from anywhere in the world.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

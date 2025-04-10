@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python Flask App on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/python-flask-app/</link>
+    <description>Recent content in Python Flask App on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/python-flask-app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remote Access API Gateway Server from the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-api-gateway-server-from-internet/</link>
+      <pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-api-gateway-server-from-internet/</guid>
+      <description>&lt;p&gt;In this tutorial, we will discuss how to setup remote access to a private API gateway server in your local machine, so that you can connect to it remotely and securely over the internet.&lt;/p&gt;&#xA;&lt;p&gt;Whether you are a coding enthusiast, a professional developer, or just a beginner, this article will provide you with a step-by-step instructions on how to setup remote connectivity to your private API gateway server running in your local machine over the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access Python Flask App from Internet</title>
+      <link>http://localhost:51627/iot/remote-access-python-flask-app-from-internet/</link>
+      <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-python-flask-app-from-internet/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to &lt;strong&gt;remote access a Python Flask app&lt;/strong&gt; from the internet using &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;SocketXP IoT Remote Access solution&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s assume you have a Python Flask web server application that runs on &lt;strong&gt;localhost IP address 127.0.0.1&lt;/strong&gt; in your personal laptop or in a server or in a Raspberry Pi in your home or office network, behind NAT router and firewall.&lt;/p&gt;&#xA;&lt;p&gt;Anyone outside of your home or office network cannot access the Flask web application because the application runs in your local network or local IP address 127.0.0.1. Local IP addresses such as &lt;strong&gt;127.0.0.1, 10.1.1.1 or 192.168.1.1&lt;/strong&gt; etc., cannot be accessed from the internet.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

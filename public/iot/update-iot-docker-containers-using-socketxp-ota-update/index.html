@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>Update Docker Containers in your IoT using SocketXP OTA Update</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">Update Docker Containers in your IoT using SocketXP OTA Update</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">Update Docker Containers in your IoT using SocketXP OTA Update</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Mar 4, 2025
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#creating-and-deploying-ota-updates">Creating and Deploying OTA Updates</a>
+      <ul>
+        <li><a href="#simple-iot-app-example">Simple IoT App Example:</a></li>
+        <li><a href="#build-the-app-binary">Build the App Binary</a></li>
+        <li><a href="#workflow-script---updatesh">Workflow Script - update.sh</a></li>
+        <li><a href="#upload-the-artifact">Upload the artifact</a></li>
+        <li><a href="#deploy-the-artifact">Deploy the Artifact</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/update-iot-docker-containers-using-socketxp-ota-update/" title="Update Docker Containers in your IoT using SocketXP OTA Update">
+                        <img src="/assets/img/ota-update/container/socketxp-iot-ota-update-docker-containers.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#creating-and-deploying-ota-updates">Creating and Deploying OTA Updates</a>
+      <ul>
+        <li><a href="#simple-iot-app-example">Simple IoT App Example:</a></li>
+        <li><a href="#build-the-app-binary">Build the App Binary</a></li>
+        <li><a href="#workflow-script---updatesh">Workflow Script - update.sh</a></li>
+        <li><a href="#upload-the-artifact">Upload the artifact</a></li>
+        <li><a href="#deploy-the-artifact">Deploy the Artifact</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this article, we will show you how to build and update an IoT application as a Docker container on a fleet of IoT devices using <a href="/iot-ota-update">SocketXP&rsquo;s Over-the-Air(OTA) update</a> feature.</p>
+<p>SocketXP is an <a href="/socketxp-iot-device-management-platform">IoT device management platform</a> that can be used to remotely manage, monitor, access, update and control IoT or any embedded Linux devices at massive scale.</p>
+<p><a href="/iot-ota-update">SocketXP&rsquo;s OTA update</a> feature is extremely useful when you have to deploy software update on a fleet of IoT devices in your customer&rsquo;s network behind a NAT router or Firewall or out in the field connected via a cellular network.</p>
+<p>The OTA update feature can be used to update the following types of artifacts:</p>
+<ul>
+<li><a href="/iot/update-iot-firmware-using-socketxp-ota-update">Firmware</a></li>
+<li><a href="/iot/update-iot-debian-packages-using-socketxp-ota-update">Software packages (Debian, RPM)</a></li>
+<li><a href="/iot/update-iot-app-using-socketxp-ota-update">Application binaries</a></li>
+<li>Docker containers</li>
+<li>Program files</li>
+<li>Config files</li>
+<li>Execute a script or command</li>
+</ul>
+<p>on multiple remote devices.</p>
+<h2 id="creating-and-deploying-ota-updates">Creating and Deploying OTA Updates</h2>
+<p>Creating and deploying Docker container OTA updates using the tool is a two step process:</p>
+<ol>
+<li>Create and upload an artifact workflow script to the SocketXP Artifact Registry</li>
+<li>Deploy the artifact workflow script on a group of devices</li>
+</ol>
+<p>The basic concept behind this two-step approach is to reuse the uploaded artifact to deploy OTA updates on  different group of devices.</p>
+<p>The workflow script will download Docker container images from a third-party container registry and update the Docker containers running in the target IoT devices.</p>
+<h3 id="simple-iot-app-example">Simple IoT App Example:</h3>
+<p>We will be using a simple C program to demonstrate SocketXP&rsquo;s OTA update capabilities.  We will build a Docker container using the compiled C program binary.</p>
+<p><strong>Note</strong>: We are using a C program for our example but the IoT app can be created using any programming language or script.  Eg: Java, C++, Golang, Python, Javascript, C# etc.</p>
+<p>The app will print <code>“Hello, OTA update!”</code> every 10 minutes.</p>
+<p>We also assume that the app is running as a Linux systemd service in the IoT devices.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+/*
+ * To build: gcc myapp.c -o myapp
+ * To run: ./myapp
+ * Output: "Hello, OTA update!"
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt; 
+
+int main() {
+    while (1) {
+        printf("Hello, OTA update!\n");
+        fflush(stdout); // Ensure immediate output
+        sleep(600); // in seconds
+    }
+    return 0;
+}
+</pre>
+<p>The above C program, the build script and the Dockerfile we will use for this demo can be downloaded from our <a href="https://github.com/ampaslabs/ota-update-build-artifacts">official git repository here</a>:</p>
+<h3 id="build-the-app-binary">Build the App Binary</h3>
+<p>First, let’s clone the git repository using the link provided above:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ git clone https://github.com/ampaslabs/ota-update-build-artifacts
+</pre>
+<p>For this exercise, we will use the example in the <code>container</code> folder.  So let’s get into the <code>container</code> folder.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span> ~/$ cd ota-update-build-artifacts/container
+</span></span></code></pre></div><p>Let&rsquo;s look into the contents of the <code>container</code> folder.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>~/ota-update-build-artifacts/container$ ls 
+</span></span><span style="display:flex;"><span>myapp  update.sh
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>~/ota-update-build-artifacts/container$ ls myapp/
+</span></span><span style="display:flex;"><span>Dockerfile  makefile  myapp.c
+</span></span></code></pre></div><p>The <code>container</code> folder contains the following three items:</p>
+<ol>
+<li>
+<p>A <code>myapp</code> folder containing our <code>app</code> code written in the the C language and a <code>makefile</code> to compile the app and build the app binary.  The <code>myapp</code> folder also includes a Dockerfile that has the necessary instructions to build a Docker container.  The <code>makefile</code> will eventually build a Docker container image using the Dockerfile and push the image to the <code>DockerHub Registry</code> using the login credentials provided by the user.</p>
+</li>
+<li>
+<p>An <code>update.sh</code> shell script – the workflow script that runs in the target devices and updates the myapp Docker container.</p>
+</li>
+<li>
+<p>No <code>make_artifact.sh</code> shell script exists for this example because we&rsquo;ll not build a <code>tar.gz</code> style artifact using the Docker image. The docker images are uploaded to a thirdy-party container registry (Eg: <code>DockerHub</code>). We will just upload the <code>update.sh</code> workflow script to the SocketXP Artifact Registry as a &ldquo;script&rdquo; type artifact and deploy container OTA updates using the workflow script.</p>
+</li>
+</ol>
+<p><strong>Create a New Version of the App:</strong></p>
+<p>Let’s get into the myapp directory and start building our app.</p>
+<p>Before we do that, we will edit the <code>myapp.c</code> file and make it to print <code>&quot;Hello, OTA update! Version 1.0.0&quot;</code>.  Let&rsquo;s call it as the version 1.0.0 of the app.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+/*
+ * To build: gcc myapp.c -o myapp
+ * To run: ./myapp
+ * Output: "Hello, OTA update!"
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt; 
+
+int main() {
+    while (1) {
+        printf("Hello, OTA update! Version 1.0.0\n");
+        fflush(stdout); // Ensure immediate output
+        sleep(600); // in seconds
+    }
+    return 0;
+}
+</pre>
+<p>Next build the app and package the app binary into a Docker container image using the <code>&quot;make all&quot;</code> command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/ota-update-build-artifacts/container$ cd myapp
+</span></span><span style="display:flex;"><span>~/ota-update-build-artifacts/container/myapp$ make all
+</span></span><span style="display:flex;"><span>gcc -o myapp myapp.c
+</span></span><span style="display:flex;"><span>docker build -t test-user/myapp:1.0.0 .
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Building 0.9s <span style="color:#f92672">(</span>8/8<span style="color:#f92672">)</span> FINISHED                                                                      docker:default
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span>internal<span style="color:#f92672">]</span> load build definition from Dockerfile                                                            0.0s
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">=</span>&gt; transferring dockerfile: 284B                                                                            0.0s
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span>internal<span style="color:#f92672">]</span> load metadata <span style="color:#66d9ef">for</span> docker.io/library/ubuntu:latest                                                0.9s
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>~/ota-update-build-artifacts/container/myapp# ls
+</span></span><span style="display:flex;"><span>Dockerfile makefile  myapp  myapp.c
+</span></span><span style="display:flex;"><span>~/ota-update-build-artifacts/container/myapp$ docker image ls
+</span></span><span style="display:flex;"><span>REPOSITORY           TAG       IMAGE ID       CREATED             SIZE
+</span></span><span style="display:flex;"><span>test-user/myapp      1.0.0     28a75833fed7   <span style="color:#ae81ff">5</span> minutes ago      101MB
+</span></span></code></pre></div><p>Login to your DockerHub account and verify if the new Docker image version 1.0.0 got pushed to the registry.</p>
+<p>Now that we have finished creating a Docker container image for the app, let&rsquo;s create an OTA update workflow script that specifies how to download and update the newly created containers on IoT devices.</p>
+<h3 id="workflow-script---updatesh">Workflow Script - update.sh</h3>
+<p>The OTA update workflow script contains all the instructions required to update the <code>myapp</code> Docker container running in the IoT devices.</p>
+<p>Let’s quickly look at the contents of the <code>update.sh</code> workflow script.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>~/ota-update-build-artifacts/container$ cat update.sh
+</span></span></code></pre></div><pre class="p-4 bg-background rounded overflow-x-auto">
+#!/bin/bash
+
+#================================================
+# MyApp Container Update Workflow Script
+#================================================
+
+DOCKER_USER="dockerhub-username"
+DOCKER_REPO="myapp"
+NEW_VERSION="1.0.0"
+OLD_VERSION="0.0.1"
+CONTAINER_NAME="myapp"
+
+
+# Function to check if a container is running and healthy
+check_container_status() {
+    local container_id="$1"
+    local status=$(docker inspect --format='{{.State.Health.Status}}' "$container_id" 2>/dev/null)
+    local state=$(docker inspect --format='{{.State.Running}}' "$container_id" 2>/dev/null)
+
+    if [[ "$state" == "true" ]]; then
+        if [[ -z "$status" ]]; then
+            return 0 # Running, no healthcheck
+        elif [[ "$status" == "healthy" ]]; then
+            return 0 # Running and healthy
+        else
+            return 1 # Running, but unhealthy
+        fi
+    else
+        return 1 # Not running
+    fi
+}
+
+# Function to rollback to the previous version
+rollback() {
+    echo "Rolling back to version $OLD_VERSION..."
+
+    # Stop and remove the new container
+    docker stop "${CONTAINER_NAME}-${NEW_VERSION}" 2>/dev/null
+    docker rm "${CONTAINER_NAME}-${NEW_VERSION}" 2>/dev/null
+
+    # Delete the new image
+    docker image rm "$DOCKER_USER/$DOCKER_REPO:$NEW_VERSION" 2>/dev/null
+
+    # Run the old container
+    docker start "$${CONTAINER_NAME}-${OLD_VERSION}" 2>/dev/null
+}
+
+# Main update process
+echo "Updating to version $NEW_VERSION..."
+
+# Pull the new image
+docker pull "$DOCKER_USER/$DOCKER_REPO:$NEW_VERSION"
+
+# Stop the old container
+docker stop "$${CONTAINER_NAME}-${OLD_VERSION}" 2>/dev/null
+
+# Run the new container
+docker run -d --name ${CONTAINER_NAME}-${NEW_VERSION} "$DOCKER_USER/$DOCKER_REPO:$NEW_VERSION"
+
+# Check container status
+sleep 30 # Give the container time to start and healthcheck to run. Adjust as needed.
+container_id=$(docker ps -q --filter name=${CONTAINER_NAME}-${NEW_VERSION})
+
+if [[ -n "$container_id" ]] && check_container_status "$container_id"; then
+    echo "Update successful!"
+    # Clean up the old container and image
+    docker rm ${CONTAINER_NAME}-${OLD_VERSION} 2>/dev/null
+    docker image rm "$DOCKER_USER/$DOCKER_REPO:$OLD_VERSION" 2>/dev/null
+else
+    echo "Update failed! Rolling back..."
+    rollback
+    echo "Rollback complete."
+fi
+
+</pre>
+<p><strong>Explanation</strong>:</p>
+<p>What the <code>update.sh</code> workflow script does is:</p>
+<ul>
+<li>
+<p>Downloads the new version of the <code>myapp</code> Docker container image <code>1.0.0</code> on the device.</p>
+</li>
+<li>
+<p>Stops the old version (0.0.1) of the <code>myapp</code> Docker container already running in the device.  It doesn&rsquo;t remove the old container yet, but keeps it as a backup.  The backup will be restored on failure.</p>
+</li>
+<li>
+<p>Creates a new container named <code>myapp-1.0.0</code> using the newly downloaded Docker image.</p>
+</li>
+<li>
+<p>Verifies if the newly created container is running successfully.  If the new version is running successfully, it will remove the old version of the container in the device.</p>
+</li>
+<li>
+<p>If the new version of the container fails to run due to an error, the script will stop the container and remove it.  The old version of the container will be restored.</p>
+</li>
+</ul>
+<h3 id="upload-the-artifact">Upload the artifact</h3>
+<p>We will upload the workflow script <code>update.sh</code> directly to the SocketXP Artifact Registry as a <code>script</code> type artifact.</p>
+<p>Login to your SocketXP account using the web potal and go to the OTA update page.  In the Artifacts table, click the “Upload new artifact” button.</p>
+<p>A new window will popup as show below.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/container/iot-ota-update-docker-container-update-artifact-upload.png" alt="SocketXP IoT OTA Update - Update IoT app Docker container on remote embedded Linux devices" style="max-width:50%;max-height:;">
+</div>
+
+<p>Select the <code>artifact type</code> as <code>&quot;script&quot;</code>.</p>
+<p>Browse and select the <code>update.sh</code> file.</p>
+<p>Specify the appropriate version for the artifact, <code>1.0.0</code> in this example.</p>
+<p>Specify the destination folder in the target device where the script should be downloaded and executed.  For example: <code>/tmp or /home/user/myapp or /usr/bin</code></p>
+<p>Specify the command to execute the script in the target device. For example: <code>/bin/bash update.sh</code></p>
+<p>Finally, click the &ldquo;Upload&rdquo; button to upload the artifact to the cloud registry.</p>
+<p>You’ll see a message saying “File uploaded successfully”</p>
+<h3 id="deploy-the-artifact">Deploy the Artifact</h3>
+<p>Now that the artifact has been uploaded to the SocketXP Artifact Registry in the cloud, let’s deploy the artifact on target devices.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/container/iot-ota-update-docker-container-update-artifact-summary.png" alt="SocketXP OTA Update upload an IoT app binary to SocketXP cloud artifact registry" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>From the Artifacts table, view and select the artifact you have just uploaded.</p>
+<p><strong>Note</strong>: If you don&rsquo;t see your artifact yet, click the &ldquo;Refresh&rdquo; button to reload the table data.</p>
+<p>Click the <code>“+” icon</code> next to the artifact to create a new deployment.</p>
+<p>A new window will popup, as shown below.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/container/iot-ota-update-docker-linux-container-update-create-deployment.png" alt="SocketXP OTA Update - deploy and update an IoT app as Docker container on a fleet of remote iot and embedded Linux devices" style="max-width:50%;max-height:;">
+</div>
+
+<p>Give a name for the deployment, say for example, <code>“deploy-version-1.0.0-to-test-devices”</code>.</p>
+<p>Specify the target device ID or the device group or select a tag to deploy the artifact on.</p>
+<p><strong>Note</strong>: You can deploy the artifact on a single device ID, or a device group or a device tag.  If you want to deploy the artifact on more than one device group or device tag, repeat the &ldquo;Create New Deployment&rdquo; process for the different group or tag.</p>
+<p>Finally, click the “Create Deployment” button.</p>
+<p>Now, go to the “Deployments” tab, hit the refresh button.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/container/iot-ota-update-docker-linux-container-update-deployments-summary.png" alt="SocketXP OTA Update - View the summary of Docker Container OTA updates deployed" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>View and select the deployment we just created to see its progress.</p>
+<p>Click the <code>“More Info &lt; &gt;”</code> button to view and monitor the progress of the deployment on each target devices (in the device group or tag).</p>
+<p>Click the “Refresh” button to view the progress.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/container/iot-ota-update-docker-linux-container-update-deployment-progress.png" alt="SocketXP OTA Update - View the progress of Docker Container OTA updates deployed on each IoT or embedded Linux device" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>You can check the stdout and stderr logs generated by the update process, by clicking the “view log” buttons.</p>
+<p>Let’s login into one of the devices to check if the <code>myapp</code> deployment is successful.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ docker ps
+CONTAINER ID   IMAGE                      COMMAND            CREATED          STATUS          PORTS     NAMES
+cdc95577be33   test-user/myapp:1.0.0      "/usr/bin/myapp"   5 minutes ago    Up 5 minutes              myapp-1.0.0
+
+
+</pre>
+<p>We can also view the app logs using <code>docker logs</code> command.
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ docker logs myapp-1.0.0
+Hello, OTA update! Version 1.0.0
+</pre></p>
+<p>Congratulations!  We have successfully updated the <code>myapp</code> Docker container in the remote IoT devices using <a href="/iot-ota-update">SocketXP OTA update</a>.</p>
+<p>Now that you have learnt how to create and publish a Docker container as OTA updates to remote devices, you can learn to create OTA updates for the following artifacts:</p>
+<ul>
+<li><a href="/iot/update-iot-app-using-socketxp-ota-update">App Binary</a></li>
+<li><a href="/iot/update-iot-debian-packages-using-socketxp-ota-update">Debian Package</a></li>
+<li><a href="/iot/update-iot-firmware-using-socketxp-ota-update">Firmware</a></li>
+<li>Config File</li>
+<li>Script File</li>
+</ul>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

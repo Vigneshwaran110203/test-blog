@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Create Secure Reverse SSH Tunnel to IoT devices</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Create Secure Reverse SSH Tunnel to IoT devices</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Create Secure Reverse SSH Tunnel to IoT devices</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Nov 7, 2018
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-reverse-proxy-tunnel">What is a reverse proxy tunnel</a></li>
+    <li><a href="#how-to-create-a-reverse-ssh-tunnel">How to create a Reverse SSH tunnel</a></li>
+    <li><a href="#how-to-create-a-reverse-ssh-tunnel-with-port-forwarding-">How to create a Reverse SSH tunnel with Port Forwarding ?</a></li>
+    <li><a href="#problem">Problem:</a></li>
+    <li><a href="#a-better-solution">A Better Solution:</a></li>
+    <li><a href="#how-socketxp-iot-remote-access-solution-works">How SocketXP IoT Remote Access solution works</a>
+      <ul>
+        <li><a href="#step-1-download-and-install">Step 1:  Download and Install</a></li>
+        <li><a href="#step-2-get-your-authentication-token">Step 2: Get your Authentication Token</a></li>
+        <li><a href="#step-3-create-socketxp-ssl-tunnel-endpoint-for-remote-ssh">Step 3: Create SocketXP SSL Tunnel Endpoint for Remote SSH</a></li>
+        <li><a href="#configuring-socketxp-agent-to-run-in-slave-mode">Configuring SocketXP agent to run in slave mode</a></li>
+        <li><a href="#accessing-the-iot-device-ssh-from-your-laptop">Accessing the IoT device SSH from your laptop</a></li>
+      </ul>
+    </li>
+    <li><a href="#security-challenges-of-ssh-reverse-proxy-tunnel">Security Challenges of SSH Reverse Proxy Tunnel</a></li>
+    <li><a href="#advantages-of-socketxp">Advantages of SocketXP</a>
+      <ul>
+        <li><a href="#conclusion">Conclusion:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/create-secure-reverse-ssh-tunnel-to-iot-devices/" title="How to Create Secure Reverse SSH Tunnel to IoT devices">
+                        <img src="/assets/img/how-reverse-ssh-tunneling-works.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-reverse-proxy-tunnel">What is a reverse proxy tunnel</a></li>
+    <li><a href="#how-to-create-a-reverse-ssh-tunnel">How to create a Reverse SSH tunnel</a></li>
+    <li><a href="#how-to-create-a-reverse-ssh-tunnel-with-port-forwarding-">How to create a Reverse SSH tunnel with Port Forwarding ?</a></li>
+    <li><a href="#problem">Problem:</a></li>
+    <li><a href="#a-better-solution">A Better Solution:</a></li>
+    <li><a href="#how-socketxp-iot-remote-access-solution-works">How SocketXP IoT Remote Access solution works</a>
+      <ul>
+        <li><a href="#step-1-download-and-install">Step 1:  Download and Install</a></li>
+        <li><a href="#step-2-get-your-authentication-token">Step 2: Get your Authentication Token</a></li>
+        <li><a href="#step-3-create-socketxp-ssl-tunnel-endpoint-for-remote-ssh">Step 3: Create SocketXP SSL Tunnel Endpoint for Remote SSH</a></li>
+        <li><a href="#configuring-socketxp-agent-to-run-in-slave-mode">Configuring SocketXP agent to run in slave mode</a></li>
+        <li><a href="#accessing-the-iot-device-ssh-from-your-laptop">Accessing the IoT device SSH from your laptop</a></li>
+      </ul>
+    </li>
+    <li><a href="#security-challenges-of-ssh-reverse-proxy-tunnel">Security Challenges of SSH Reverse Proxy Tunnel</a></li>
+    <li><a href="#advantages-of-socketxp">Advantages of SocketXP</a>
+      <ul>
+        <li><a href="#conclusion">Conclusion:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div>
+                <p>Normally, an SSH client would connect to an SSH server for SSH access.</p>
+<p>But, what if you want the <a href="/iot/ssh-secure-shell/">SSH server</a> to connect to the SSH client? That&rsquo;s when you need to setup an SSH reverse proxy tunnel.</p>
+<p><strong>Hint:</strong> To better understand SSH reverse proxy tunnel, imagine two tubes (a smaller tube within a larger tube) connecting two endpoints.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ssh-reverse-proxy-tunnel/reverse-proxy-tunnel.jpg" alt="what is a reverse proxy tunnel" style="max-width:80%;max-height:100%;">
+</div>
+
+<h2 id="what-is-a-reverse-proxy-tunnel">What is a reverse proxy tunnel</h2>
+<p>Let&rsquo;s say you want to access an SSH client behind a NAT router or firewall from a public SSH server.</p>
+<p>For this, you first need to create an SSH connection, also known as an SSH tunnel, from the SSH client to the SSH server (imagine a large tube connecting two endpoints).</p>
+<p>Note the direction of this first SSH connection: it starts from the SSH client behind NAT and ends at the SSH server in the public internet.</p>
+<p>Next, from the public SSH server, you can establish a second SSH connection to the SSH client through the SSH tunnel created in the previous step (imagine a smaller tube within the larger tube).</p>
+<p>You access the client machine and its private network through this SSH tunnel (larger tube).</p>
+<p>Note the direction of this second SSH connection: it starts from the public SSH server in the internet and ends at the SSH client behind NAT and firewall.</p>
+<p>This is called <strong>SSH reverse proxy tunneling</strong>.</p>
+<p>SSH reverse proxy tunneling is a secure method to set up <a href="/iot-remote-access">remote access to your IoT device</a> or any machine(server, laptop, PC) behind a NAT router or firewall.</p>
+<p>This solution is great for hobbyists, hackers, and professionals tinkering with IoT device. However, the solution has some real security challenges when it comes to business use cases, which we’ll discuss in the end.</p>
+<h2 id="how-to-create-a-reverse-ssh-tunnel">How to create a Reverse SSH tunnel</h2>
+<p>Let&rsquo;s take the following scenario:</p>
+<p>You have an SSH Server (with Public IP: 202.10.135.4) and you want to access a destination host (with local IP 192.168.1.1) behind a NAT router or firewall.</p>
+<p>You want to access a service (SSH server or HTTP web server) running in the destination host via the Souce SSH Server.</p>
+<blockquote>
+<p>Source (Public IP: 202.10.135.4) =&gt; Internet =&gt; NAT =&gt; Destination(Local IP: 192.168.1.1)</p></blockquote>
+<p><img src="/assets/img/ssh-reverse-proxy-tunnel/ssh-reverse-proxy-tunnel-port-forwarding.jpg" alt="how ssh reverse proxy tunnel with port forwarding works"></p>
+<p><strong>Step 1:</strong></p>
+<p>Using an SSH client, create a reverse SSH tunnel to the Source ( 202.10.135.4) from the Destination (192.168.1.1) using the following command:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ ssh -fNT -R  20022:localhost:22   source-user@202.10.135.4<br></pre>
+<p>This will create a <code>Reverse SSH Tunnel</code> from the destination to the source.</p>
+<p>The above command basically instructs the SSH server to listen for any connection on TCP port 20022 and blindly forward it to the destination host&rsquo;s TCP port 22 (SSH server port).</p>
+<p><strong>Step 2:</strong></p>
+<p>Now, using an SSH client, you can SSH login into the Destination host behind NAT through the public SSH server(Source) and the reverse SSH tunnel created in step #1.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ ssh -p 20022  destination-user@202.10.135.4</pre>
+<p>In this scenario, there are two SSH connections established between the Source and the Destination, one within the other.  We call this <code>SSH Reverse Proxy tunneling</code>.</p>
+<p>The first SSH connection is created from the Destination to the Source.  The second SSH connection is created from the Source to the Destination through the first SSH connection.  All data transmitted over the second SSH connection will actually be going via the first SSH connection.</p>
+<p>If you capture the packets arriving at the Destination using an IP packet sniffing tool like Wireshark, you&rsquo;ll find that the arriving packets have two SSH headers, unlike regular SSH connections that have only one SSH header.</p>
+<h2 id="how-to-create-a-reverse-ssh-tunnel-with-port-forwarding-">How to create a Reverse SSH tunnel with Port Forwarding ?</h2>
+<p>To explain the concept of <code>Reverse SSH Tunnel with Port Forwarding</code>, let&rsquo;s use a HTTP web server example.</p>
+<p>Let&rsquo;s say you want to access a nodejs web application running in a server in the same local network as the Destination host behind a NAT router.  Let&rsquo;s assume the web application listens on TCP port 3000.</p>
+<p>Let&rsquo;s use the following simple nodejs web application for the demo.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ cat myapp.js
+var http = require('http');
+//create a server object:
+http.createServer(function (req, res) {
+ res.writeHead(200, {'Content-Type': 'text/html'});
+ res.write("&lt;h2&gt;Hello World!&lt;/h2&gt;"); //write a response to the client
+ res.end(); //end the response
+}).listen(3000); //the server object listens on port 3000
+$</pre>
+<p>We can use the <code>Reverse SSH Tunnel Port Forwarding</code> feature to access the web application running on any host present in the same local network as the Destination host.</p>
+<p>Here is how to do it.</p>
+<p><em><strong>Source (Public IP: 202.10.135.4, Port: 20022) ==&gt; Internet ==&gt; NAT ==&gt; Destination(Local IP: 192.168.1.1, Port: 3000)</strong></em></p>
+<p><strong>Step 1:</strong></p>
+<p>Reverse SSH into the Source ( 202.10.135.4) from the Destination(192.168.1.1) by executing the below SSH command in the destination host.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ ssh -fNT -R  20022:192.168.1.2:3000   source-user@202.10.135.4</pre>
+<p>The above command basically tells the public SSH server to blindly forward any TCP connections (including HTTP requests) to its port 20022 to the Destination host.  The Destination host will eventually forward the traffic to the neighbouring host 192.168.1.2 port 3000 where the NodeJS web application runs.</p>
+<p><strong>Step 2:</strong></p>
+<p>From the Source, access the nodejs web application running in the Destination behind a NAT router, as follows:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ curl http://202.10.135.4:20022
+&lt;h2&gt;Hello World!&lt;/h2&gt;
+</pre>
+<h2 id="problem">Problem:</h2>
+<p>The only problem with this approach to access the Destination behind a NAT router is that the Source needs to be accessible from the internet using a public IP.  Otherwise, it is not possible to establish a Reverse SSH Tunnel from the Destination to the Source.</p>
+<blockquote>
+<p><strong>What if the Source is also behind a NAT and wants to access the Destination behind another NAT ? What if there are more sources and desinations behind NAT in different places?</strong></p></blockquote>
+<p><em><strong>Source (Local IP: 10.1.1.1)  ==&gt; NAT ==&gt; Internet ==&gt; NAT-&gt;Destination (Local IP: 192.168.1.1)</strong></em></p>
+<p>Consider the following example, where a web application is running in a server behind a NAT&rsquo;ed network and firewall and the MySQL database running in a server behind another NAT&rsquo;ed network and firewall.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ssh-reverse-proxy-tunnel/web-app-database-ssh-reverse-proxy-tunnel.jpg" alt="ssh reverse proxy tunnel to remote access database and web application behind NAT router and firewall" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>The web app can talk to the DB over the internet using an SSH Reverse Proxy Tunnel with Port Forwarding enabled.</p>
+<p>You can access the web app over the internet using another SSH Reverse Proxy Tunnel with Port Forwarding enabled.</p>
+<p>You need to open up two ports in the public SSH server, say port 20021 for accessing the web app and 20022 for accessing the MySQL DB.</p>
+<p>What if you have many sources and many destinations behind many different NAT&rsquo;ed networks?  Like having hundreds of thousands of IoT devices deployed in different customer sites around the world?</p>
+<p>You&rsquo;ll have to open up that many number of ports in the public SSH server to the internet and setup port forwarding, so that you can connect to all those destination hosts (like IoT devices) over the internet.</p>
+<blockquote>
+<p>Is there a better solution to this problem than having to open up a large number of ports in a public SSH server to the internet?</p></blockquote>
+<p>The answer is yes!</p>
+<h2 id="a-better-solution">A Better Solution:</h2>
+<p>A better way to solve this security problem is to use a simple and easy to use <a href="/iot-remote-access">remote access solution</a> like <a href="/">SocketXP</a>.  SocketXP creates a secure SSL based reverse proxy tunnel from your device to the SocketXP cloud gateway.</p>
+<p>SocketXP solution does not require opening up ports to the internet and it does not perform port forwarding.  SocketXP uses a much smarter and secure method to remotely connect to a device behind NAT and firewall.</p>
+<p>The SocketXP cloud gateway simply joins the tube originating from the source with the tube originating from the destination host.  So that, the two hosts (behind NAT or firewall) could talk to each other securely over the internet.  SocketXP cloud gateway performs the role of a internet relay server without using port forwarding.</p>
+<h2 id="how-socketxp-iot-remote-access-solution-works">How SocketXP IoT Remote Access solution works</h2>
+<p>First, you need to install a SocketXP IoT agent on your IoT device. </p>
+<p>The SocketXP agent would connect the device to the SocketXP IoT Cloud Gateway by creating a secure SSL/TLS reverse tunnel.</p>
+<p>You could then remote SSH into the IoT device from the SocketXP IoT Cloud Gateway&rsquo;s web portal page (via this secure SSL/TLS tunnel).</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-ssh-access/iot-remote-ssh.png" alt="IoT Remote SSH" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Follow the below steps to setup SocketXP IoT agent and remote SSH into your IoT using SocketXP IoT Remote Access solution.</p>
+<h3 id="step-1-download-and-install">Step 1:  Download and Install</h3>
+<p><a href="https://www.socketxp.com/download/">Download and install</a> the SocketXP IoT agent on your IoT device from <a href="https://www.socketxp.com/download/">here.</a></p>
+<h3 id="step-2-get-your-authentication-token">Step 2: Get your Authentication Token</h3>
+<p>Sign up at <a href="%22https://portal.socketxp.com/%22">https://portal.socketxp.com</a> and get your authentication token.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/AuthToken.jpg" alt="SocketXP Portal - Authtoken for IoT Remote SSH" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Use the following command to login to the SocketXP IoT Cloud Gateway using the auth token.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ socketxp login [your-auth-token-goes-here]
+</pre>
+<h3 id="step-3-create-socketxp-ssl-tunnel-endpoint-for-remote-ssh">Step 3: Create SocketXP SSL Tunnel Endpoint for Remote SSH</h3>
+<p>Use the following command to create a secure and private SSL tunnel endpoint at the SocketXP IoT Cloud Gateway.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto"> $ socketxp connect tcp://localhost:22
+
+Connected to SocketXP Cloud Gateway.
+Access the TCP service securely using the SocketXP agent in IoT Slave Mode.
+</pre>
+<p><strong>Note:</strong></p>
+<p>For the security of your devices, <a href="/iot-remote-access">SocketXP Remote Access Solution</a> doesn&rsquo;t open up ports in our public cloud gateway that can be connected by any SSH client from the internet.</p>
+<p>SocketXP private tunnel endpoints are not exposed to the internet and can be accessed either from the web terminal in the SocketXP Web Portal page after a successful SSO login or by running SocketXP agent in IoT Slave Mode and authenticating using an authentication token.</p>
+<p>More importantly, this also means port scanners or hackers from the internet cannot access your IoT device&rsquo;s SSH server port.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-ssh-access/SocketXP-IoT-Remote-SSH-2.png" alt="SocketXP IoT Remote SSH IoT device Remote SSH xterm access from browser" style="max-width:80%;max-height:100%;">
+</div>
+
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-ssh-access/SSH-from-browser-2.jpg" alt="IoT Remote SSH IoT device Remote SSH IoT device Fleet management" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>The screen capture above shows the &ldquo;htop&rdquo; command being executed from an SSH session created using the XTERM window from the SocketXP Portal page using a web browser.  You could use any browser of your choice to remote SSH into your IoT device.</p>
+<h3 id="configuring-socketxp-agent-to-run-in-slave-mode">Configuring SocketXP agent to run in slave mode</h3>
+<p>This is an alternate method for connecting to your IoT device from a remote location using the SocketXP solution.</p>
+<p>If you don&rsquo;t want to access your IoT device from a web browser and you want to access it using your SSH client (Eg: PuTTY, SecureCRT) then follow the instructions below.</p>
+<p>First download and install the regular SocketXP agent software on your access device such as a laptop or PC running Windows or Mac OS.</p>
+<p>Next, configure the agent to run in slave mode using the command option &ldquo;&ndash;iot-slave&rdquo; as shown in the example below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ socketxp connect tcp://localhost:3000 --iot-slave --peer-device-id "2233-4455-abcd-34445" --peer-device-port 22 --authtoken &lt;auth token&gt;
+
+Listening for TCP connections at:
+Local URL -&gt; tcp://localhost:3000
+</pre>
+<p>You shall find the device ID of your IoT device from the <a href="https://portal.socketxp.com/#/devices">SocketXP Portal page in the IoT Devices section</a>.</p>
+<p>The above command basically tells SocketXP agent to act like a local proxy server.</p>
+<h3 id="accessing-the-iot-device-ssh-from-your-laptop">Accessing the IoT device SSH from your laptop</h3>
+<p>Now you can access your IoT device&rsquo;s SSH server using the above SocketXP local endpoint, as shown below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ ssh -i ~/.ssh/john-private.key john@localhost -p 3000
+</pre>
+<p>The above method uses SSH private key based authentication to SSH into your IoT device.  You can also use password based authentication.</p>
+<blockquote>
+<p>You could use <a href="/iot-remote-access">SocketXP Remote Access Solution</a> to create a reverse SSH proxy tunnel to remote access any TCP service (SSH, HTTP, SMTP, MQTT, VNC, or RDP server) running in your local network behind NAT router and firewall.</p></blockquote>
+<h2 id="security-challenges-of-ssh-reverse-proxy-tunnel">Security Challenges of SSH Reverse Proxy Tunnel</h2>
+<p>There are some security challenges that need to be considered when using SSH server based SSH reverse proxy tunnel in a business environment.</p>
+<p>One of the main security challenges with SSH reverse proxy tunneling is that it can be used to bypass firewalls. This means that an attacker could use this technique to gain access to a machine that is normally protected by a firewall.</p>
+<p>Another security challenge with SSH reverse proxy tunneling is that it can be used to tunnel malicious traffic. This means that an attacker could use this technique to send malicious traffic through the SSH tunnel and into the network.</p>
+<p>If you are considering using SSH reverse proxy tunneling in a business environment, it is important to carefully consider the security risks involved. You should also implement additional security measures to mitigate these risks.</p>
+<p>Here are some additional security measures that you can implement to mitigate the risks of SSH reverse proxy tunneling:</p>
+<ul>
+<li>Use strong passwords for the SSH connections.  Better yet, disable password based authentication and use SSH keys or <a href="https://www.bastionxp.com/blog/tightening-ssh-access-using-short-lived-ssh-certificates/">SSH Certificates for authentication</a>.</li>
+<li>Use a firewall to restrict access to the SSH server.</li>
+<li><a href="https://www.bastionxp.com">Monitor the SSH connections and SSH logs</a> for suspicious activity.</li>
+<li>Follow the <a href="/iot/remote-access-raspberry-pi-ssh-security-best-practices/">SSH Server remote access security best practices</a>.</li>
+</ul>
+<p>By implementing these security measures, you can help to protect your network from the risks of SSH reverse proxy tunneling.</p>
+<h2 id="advantages-of-socketxp">Advantages of SocketXP</h2>
+<p>Following are the advantages of using SocketXP IoT Remote Access Solution over SSH Server based Reverse Proxy Tunnel with Port Forwarding Solution:</p>
+<ol>
+<li>You don&rsquo;t have to run and manage a dedicated SSH server or VM with a public IP address in the cloud.</li>
+<li>You don&rsquo;t have to handle any DoS attacks on your SSH server, SocketXP server will handle them.</li>
+<li>SocketXP enforces <a href="/iot/zero-trust-security-iot-devices/">Zero Trust Network Access</a> using private Keys and authentication tokens to access your network and devices.</li>
+<li>SocketXP does not perform port-forwarding. Port-forwarding is not a secure solution.  All traffic hitting a port on the public server will be simply forwarded the destination host behind NAT or firewall.</li>
+<li>SocketXP will not expose your IoT or Raspberry&rsquo;s TCP ports publicly to the internet.  No rogue users or hackers in the internet will be able to scan or directly connect to your IoT devices, without verifying their identity first with SocketXP Cloud Gateway using an authentication token or via SSO + MFA based login.</li>
+<li>SocketXP dashboard provides a sophisticated device management software to list, filter and view devices. Moreover, it provides you the ability to login to your device shell from a web browser.  You don&rsquo;t have to remember which device maps to which port in the SSH server(port forwarding), as your Raspberry Pi or IoT device fleet scales up.</li>
+<li>SocketXP offers open API&rsquo;s to integrate your IoT application with SocketXP, so that you can have fine grain control over your IoT devices in the field.</li>
+</ol>
+<h3 id="conclusion">Conclusion:</h3>
+<p>Creating SSH Reverse proxy tunnels using a public SSH server is a great way to selectively expose applications and network services (such as SSH servers, HTTP web server apps or databases) running in your private network to your customer applications running in your customer&rsquo;s private network.  But it comes with security caveats.</p>
+<p>Creating secure reverse SSL/TLS tunnels using <a href="/">SocketXP</a>, an <a href="/iot/iot-device-management-platform">IoT Device Management and Remote Access Platform</a>, is a simple and secure way to selectively expose applications or services running in your private network behind NAT router and firewall to your customers or vendors.  SocketXP solution addresses the security caveats introduced by SSH Reverse Proxy Tunneling.</p>
+<p>For better security and to reduce the complexity associated with managing a large fleet of IoT or Raspberry Pi devices, an <a href="/">IoT Remote Access and Device Management Platform</a> like SocketXP comes in handy.  So that your team can focus on your core business function and offload the device management to SocketXP.</p>
+<p>You can use SocketXP to not only <a href="/iot-remote-access">remote access your raspberry pi or IoT device</a> fleet, but also troubleshoot, debug, configure, monitor and update IoT device software.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!-- Start of Footer Section -->
+<footer id="contact" class="{{ if eq .Params.showHero "homepage" }}large:px-64{{ else }}large:px-[20%]{{ end }}">
+    <div class="{{ if .Params.showCopyright }}hidden{{else}}footer-links-container{{end}}">
+        <div class="space-y-2 md:col-span-2 md:order-1 xl:pr-16">
+            <span class="logo"><a href="/">SocketXP</a></span>
+            <p class="text-base font-normal text-gray_color">SocketXP is an IoT device management platform that can be used to remotely manage, monitor, access, update and control IoT or any embedded Linux devices at massive scale.</p>
+        </div>
+        <div class="space-y-2 md:order-2">
+            <p class="footer-title">Company</p>
+            <ul class="footer-links-group">
+                <li class="footer-links"><a href="/about">About us</a></li>
+                <li class="footer-links"><a href="#contact">Contact</a></li>
+                <li class="footer-links"><a href="/affiliates">Affiliates</a></li>
+                <li class="footer-links"><a href="/resellers">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="space-y-2 md:col-span-2 xl:col-span-1 md:order-4 xl:order-7 xl:w-[250px]">
+            <p class="footer-title">Solutions</p>
+            <ul class="footer-links-group">
+                <li class="footer-links"><a href="/iot-remote-access/">IoT Remote Access</a></li>
+                <li class="footer-links"><a href="/iot-remote-monitoring">IoT Remote Device Monitoring</a></li>
+                <li class="footer-links"><a href="/iot-asset-tracking">IoT Real-time Asset Tracking</a></li>
+                <li class="footer-links"><a href="/iot-ota-update">OTA Updates</a></li>
+            </ul>
+        </div>
+        <div class="space-y-2 md:order-3">
+            <p class="footer-title">Products</p>
+            <ul class="footer-links-group">
+                <li class="footer-links"><a href="/socketxp-iot-device-management-platform/">SocketXP</a></li>
+                <li class="footer-links"><a href="https://www.bastionxp.com/">BastionXP</a></li>
+            </ul>
+        </div>
+        <div class="space-y-2 md:order-5 xl:order-6">
+            <p class="footer-title">Resources</p>
+            <ul class="footer-links-group">
+                <li class="footer-links"><a href="https://docs.socketxp.com/">Documentation</a></li>
+                <li class="footer-links"><a href="/iot">Blog</a></li>
+                <li class="footer-links"><a href="/download">Downloads</a></li>
+            </ul>
+        </div>
+        <div class="space-y-2 md:order-6 xl:order-4">
+            <p class="footer-title">Industries</p>
+            <ul class="footer-links-group">
+                <li class="footer-links"><a href="/industries/agriculture-iot-management/">Agriculture</a></li>
+                <li class="footer-links"><a href="/industries/automotive-connected-vehicles-iot-management/">Automobile</a></li>
+                <li class="footer-links"><a href="/industries/healthcare-iot-management/">Healthcare</a></li>
+                <li class="footer-links"><a href="/industries/smart-city-iot-management/">Smart Energy</a></li>
+                <li class="footer-links"><a href="/industries/smart-energy-iot-management/">Smart City</a></li>
+            </ul>
+        </div>
+        <div class="space-y-4 md:order-7 xl:order-5 md:col-span-2 xl:pr-16">
+            <div class="footer-links-group">
+                <p class="footer-title">Registered Office</p>
+                <address class="footer-links not-italic">Ampas Labs Inc., 16192 Coastal Highway, Lewes, Delaware 19958-9776.</address>
+            </div>
+            <div class="footer-links-group">
+                <p class="text-lg font-bold">Email</p>
+                <p class="footer-links">support@socketxp.com</p>
+            </div>
+        </div>
+    </div>
+    <div class="{{ if .Params.showCopyright }}hidden{{else}}social-media-links{{end}}">
+        <img src="/assets/images/linkedin-logo.svg" alt="" class="size-10">
+        <img src="/assets/images/youtube-logo.svg" alt="" class="size-11">
+        <img src="/assets/images/x-icon.svg" alt="" class="size-11">
+        <img src="/assets/images/instagram-logo.svg" alt="" class="size-12">
+    </div>
+    <hr>
+    <div class="copyright-section">
+        <p class="copyright-text">© Copyright Ampas Labs Inc. (2018-2025). All Rights Reserved</p>
+        <div class="laws-section">
+            <p><a href="/tos">Terms of Service</a></p>
+            <p><a href="/privacy">Privacy Policy</a></p>
+            <p><a href="/gdpr">GDPR</a></p>
+            <p><a href="/sla">SLA</a></p>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer Section -->

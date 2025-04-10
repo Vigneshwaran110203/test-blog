@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Remote Access your Localhost NodeJS App from internet</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Remote Access your Localhost NodeJS App from internet</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Remote Access your Localhost NodeJS App from internet</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>May 18, 2021
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-socketxp">What is SocketXP</a>
+      <ul>
+        <li><a href="#how-it-works">How it works?</a></li>
+        <li><a href="#a-quick-demo">A Quick Demo:</a></li>
+      </ul>
+    </li>
+    <li><a href="#next-steps">Next Steps:</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remote-access-localhost-nodejs-app-from-internet/" title="How to Remote Access your Localhost NodeJS App from internet">
+                        <img src="/assets/img/remote-access-localhost-nodejs-app/remote-access-localhost-nodejs-app.png" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-socketxp">What is SocketXP</a>
+      <ul>
+        <li><a href="#how-it-works">How it works?</a></li>
+        <li><a href="#a-quick-demo">A Quick Demo:</a></li>
+      </ul>
+    </li>
+    <li><a href="#next-steps">Next Steps:</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>Let&rsquo;s assume you have a nodejs web application that runs in your personal laptop or in a server or in a Raspberry Pi in your office LAN network.</p>
+<p>Anyone outside of your office network cannot access the web application because the application runs in your local network.</p>
+<p>Suppose you want to expose the web application to the internet, so that your customers or remote employees can access it from anywhere in the world.</p>
+<p>Today, there are two ways to expose your application to the internet.</p>
+<ul>
+<li>Deploy the web application in your office server which has a public IP address and domain name.</li>
+<li>Deploy the web application in the cloud such as AWS, MS Azure, GCP or web hosting companies like GoDaddy, SiteGround, A2Hosting etc.</li>
+</ul>
+<p>Both of the above options cost more money in terms of purchasing your own IP address, domain name, configuring and managing them.</p>
+<p>Moreover, you need to pay the monthly usage based fees if you run the web application in any cloud server.</p>
+<p>To address the above problems and provide an alternate cost-effective solution, we have created SocketXP.</p>
+<h2 id="what-is-socketxp">What is SocketXP</h2>
+<p>SocketXP is a simple, quick and cost-effective way to deploy your web application online.</p>
+<h3 id="how-it-works">How it works?</h3>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/remote-access-localhost-nodejs-app/remote-access-localhost-nodejs-app.png" alt="remote-access-localhost-nodejs-app" style="max-width:80%;max-height:100%;">
+</div>
+
+<ul>
+<li>Run your web application in any server or laptop in your office LAN network.</li>
+<li>Download SocketXP Client and install in the office server or laptop</li>
+<li>SocketXP Client will create a secure tunnel from your server to the SocketXP Cloud Service.</li>
+<li>SocketXP Cloud Service will provide a public tunnel endpoint (Public IP address and port) that you can use to access your nodejs web application from the internet.</li>
+</ul>
+<h3 id="a-quick-demo">A Quick Demo:</h3>
+<p>Let&rsquo;s use the following simple nodejs web application for the demo.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ cat myapp.js
+var http = require('http');
+//create a server object:
+http.createServer(function (req, res) {
+ res.writeHead(200, {'Content-Type': 'text/html'});
+ res.write("&lt;h2&gt;Hello World!&lt;/h2&gt;"); //write a response to the client
+ res.end(); //end the response
+}).listen(3000); //the server object listens on port 3000
+$</pre>
+<p>Run the myapp.js on a local server or laptop.</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">$ node myapp.js</pre>
+Using a browser, let&rsquo;s point to http://localhost:3000 to connect to the web application.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/remote-access-localhost-nodejs-app/localhost-nodejs-app-server.png" alt="remote-access-localhost-nodejs-app" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Right now the web application can be accessed only by you because it runs on your laptop.</p>
+<p>Now to make the nodejs web application accessible from the internet, let&rsquo;s download and run the SocketXP Client from the <a href="https://www.socketxp.com/download">download page</a>.</p>
+<p>Next authenticate and register the SocketXP Client with the SocketXP Cloud Gateway, using the auth-token from the <a href="https://portal.socketxp.com">Portal Page</a></p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/AuthToken.jpg" alt="remote-access-localhost-nodejs-app" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Click the copy button to copy the command string and paste it in the terminal window in your laptop or server.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ socketxp login "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+</pre>
+<p>After registering the SocketXP Client with the SocketXP Cloud Service, you could create HTTP proxy tunnel between the application running in your laptop and the SocketXP Cloud Service, via the SocketXP Client.</p>
+<p>As our nodejs app is a web application(HTTP server), let&rsquo;s create a HTTP proxy tunnel.</p>
+<p>Use the following command to create a HTTP proxy tunnel between the nodejs web application and the SocketXP Cloud Service.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$socketxp connect http://localhost:3000
+Public URL -&gt; <strong>https://679aa48b-1162-44f7-b6c6-59129dd68b58.socketxp.com</strong></pre>
+<p>Let&rsquo;s access the nodejs web application from the internet using the SocketXP Public URL provided in the above output.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/remote-access-localhost-nodejs-app/Access-Public-URL-localhost-nodejs-app.png" alt="remote-access-localhost-nodejs-app" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>You could now share the above link with your customers or remote employees, so that they could access your web application from anywhere in the world. </p>
+<p>The above SocketXP public URL is a permanent link just assigned to you and it doesn&rsquo;t change until you manually delete it from the HTTP tunnels section in the portal.</p>
+<h2 id="next-steps">Next Steps:</h2>
+<ul>
+<li>Setup remote access to a NodeJS based Node-RED server running in your Raspberry Pi or IoT device: <a href="/iot/remote-access-node-red-server-iot-from-internet">Remote Access Node-RED Server</a></li>
+</ul>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

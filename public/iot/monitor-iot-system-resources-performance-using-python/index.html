@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Monitor IoT System Resources and Performance using Python</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Monitor IoT System Resources and Performance using Python</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Monitor IoT System Resources and Performance using Python</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Mar 21, 2023
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#install-the-psutil-module">Install the psutil module</a></li>
+    <li><a href="#a-simple-resource-monitoring-program-in-python">A simple resource monitoring program in python</a></li>
+    <li><a href="#linux-system-resource-performance-monitoring-and-generating-alerts-in-python">Linux System Resource Performance Monitoring and Generating Alerts in Python</a></li>
+    <li><a href="#socketxp-iot-management-platform">SocketXP IoT Management Platform</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/monitor-iot-system-resources-performance-using-python/" title="How to Monitor IoT System Resources and Performance using Python">
+                        <img src="/assets/img/iot-remote-monitoring/iot-performance-system-resource-monitoring.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#install-the-psutil-module">Install the psutil module</a></li>
+    <li><a href="#a-simple-resource-monitoring-program-in-python">A simple resource monitoring program in python</a></li>
+    <li><a href="#linux-system-resource-performance-monitoring-and-generating-alerts-in-python">Linux System Resource Performance Monitoring and Generating Alerts in Python</a></li>
+    <li><a href="#socketxp-iot-management-platform">SocketXP IoT Management Platform</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this tutorial, you&rsquo;ll learn how to <a href="/iot-remote-monitoring">monitor the performance of IoT device system resources</a> such as CPU, Memory, Disk and Network using Python.</p>
+<p>You&rsquo;ll also learn how to generate alerts by invoking a webhook URL when the system resource usage exceeds a certain threshold. This is useful if you want to generate webhook alerts to your <code>Slack</code> app when the CPU or memory usage exceeds, for example, 80%.</p>
+<p>We&rsquo;ll use the Python&rsquo;s standard library <code>psutil</code> to read and monitor CPU, memory, disk and network usages.</p>
+<h2 id="install-the-psutil-module">Install the psutil module</h2>
+<p>Run the below command on your Raspberry Pi to install the <code>psutil</code> python library module.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    python3 -m pip install psutil
+</span></span></code></pre></div><h2 id="a-simple-resource-monitoring-program-in-python">A simple resource monitoring program in python</h2>
+<p>Here is a simple python program that monitors the performance of system resources such as CPU, memory, disk, and network usages.  We&rsquo;ll look at a very detailed version of the python app in the next section below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+import psutil
+
+def main():
+    print("CPU usage %: ", psutil.cpu_percent(), "%")
+    print("Mem Usage %:", psutil.virtual_memory().percent, "%")
+    print("Swap Usage %:", psutil.swap_memory().percent, "%")
+
+    for dp in psutil.disk_partitions():
+        print("\nDisk usage of partition [", dp.mountpoint, "]: ",
+                psutil.disk_usage(dp.mountpoint).percent, "%")
+
+    print("Network bytes sent: ", psutil.net_io_counters().bytes_sent, "Bytes")
+    print("Network bytes received: ", psutil.net_io_counters().bytes_recv, "Bytes")
+
+    
+if __name__ == "__main__":
+    main()
+</pre>
+<p>Here is a sample output from executing the above program:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>    $ python3.9 simple-res-mon.py 
+</span></span><span style="display:flex;"><span>    CPU usage %:  72.0 %
+</span></span><span style="display:flex;"><span>    Mem Usage %: 89.3 %
+</span></span><span style="display:flex;"><span>    Swap Usage %: 95.3 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition <span style="color:#f92672">[</span> / <span style="color:#f92672">]</span>:  10.6 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition <span style="color:#f92672">[</span> /System/Volumes/Preboot <span style="color:#f92672">]</span>:  2.4 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition <span style="color:#f92672">[</span> /System/Volumes/VM <span style="color:#f92672">]</span>:  34.6 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition <span style="color:#f92672">[</span> /System/Volumes/Update <span style="color:#f92672">]</span>:  0.0 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition <span style="color:#f92672">[</span> /System/Volumes/Data <span style="color:#f92672">]</span>:  62.3 %
+</span></span><span style="display:flex;"><span>    Network bytes sent:  <span style="color:#ae81ff">3892295680</span> Bytes
+</span></span><span style="display:flex;"><span>    Network bytes received:  <span style="color:#ae81ff">4136247296</span> Bytes
+</span></span></code></pre></div><h2 id="linux-system-resource-performance-monitoring-and-generating-alerts-in-python">Linux System Resource Performance Monitoring and Generating Alerts in Python</h2>
+<p>Here is the python program that continously monitors the performance of CPU, Memory, Disk and Network usage in a Raspberry Pi.  The program also sends an alert when the CPU, memory, disk or network usage crosses certain threshold.</p>
+<p>You can run the program in the background (or as a systemd daemon). It will continously monitor the system resources and generate alerts.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+import psutil
+import http.client
+import json
+
+
+def main():
+    while True:
+        print("CPU: \n")
+        getCPUUsage()
+        print("\n\nMem: \n")
+        getMemUsage()
+        print("\n\nDisk: \n")
+        getDiskUsage()
+        print("\n\nNetwork: \n")
+        getNetworkUsage()
+        time.sleep(10*60) # sleep for 10 minutes
+
+def getCPUUsage():
+    print("CPU usage %: ", psutil.cpu_percent(), "%")
+    print("CPU count: ", psutil.cpu_count(), "cores")
+    cpuUsagePercent = psutil.cpu_percent(1)
+    print("CPU usage in last 10 secs: ", cpuUsagePercent, "%")
+    if (cpuUsagePercent > 20):
+        print("Sending alert on high cpu usage.")
+        alertMsg = {"device_name": os.uname().nodename, "cpu_alert": "cpu usage is high: "+ str(cpuUsagePercent) + "%"}
+        sendWebhookAlert(alertMsg)
+
+
+def getMemUsage():
+    print("Mem Total:", int(psutil.virtual_memory().total/(1024*1024)), "MB")
+    print("Mem Used:", int(psutil.virtual_memory().used/(1024*1024)), "MB")
+    print("Mem Available:", int(psutil.virtual_memory().available/(1024*1024)), "MB")
+    memUsagePercent = psutil.virtual_memory().percent
+    print("Mem Usage %:", memUsagePercent, "%")
+    print("Swap Usage %:", psutil.swap_memory().percent, "%")
+    if (memUsagePercent > 80):
+        print("Sending alert on high memory usage.")
+        alertMsg = {"device_name": os.uname().nodename, "memory_alert": "memory usage is high: "+ str(memUsagePercent) + "%"}
+        sendWebhookAlert(alertMsg)
+
+def getDiskUsage():
+    for dp in psutil.disk_partitions():
+        # print(x)
+        print("\nDisk usage of partition ", dp.mountpoint, ": ") 
+        print("Total: ", int(psutil.disk_usage(dp.mountpoint).total/(1024*1024)), "MB")
+        print("Used: ", int(psutil.disk_usage(dp.mountpoint).used/(1024*1024)), "MB")
+        print("Free: ", int(psutil.disk_usage(dp.mountpoint).free/(1024*1024)), "MB")
+        diskUsagePercent = psutil.disk_usage(dp.mountpoint).percent
+        print("Used %: ", diskUsagePercent, "%")
+        if (diskUsagePercent > 60):
+            print("Sending alert on high disk usage.")
+            alertMsg = {"device_name": os.uname().nodename, "disk_alert": "disk usage is high: "+ str(diskUsagePercent) + "%" +" in partition: " + 
+                            dp.mountpoint}
+            sendWebhookAlert(alertMsg)
+
+def getNetworkUsage():
+    print("Total bytes sent: ", psutil.net_io_counters().bytes_sent, "Bytes")
+    print("Total bytes received: ", psutil.net_io_counters().bytes_recv, "Bytes")
+    print("Total packets sent:", psutil.net_io_counters().packets_sent, "Packets")
+    print("Total packets received:", psutil.net_io_counters().packets_recv, "Packets")
+    print("Total incoming packets dropped:", psutil.net_io_counters().dropin, "Packets")
+    print("Total outgoing packets dropped:", psutil.net_io_counters().dropout, "Packets")
+    if (psutil.net_io_counters().dropin > 10000 or psutil.net_io_counters().dropout > 10000):
+        print("Sending alert on high network packet drop.")
+        alertMsg = {"device_name": os.uname().nodename, "network_alert": "network packet drop is high: in: "+ 
+                    str(psutil.net_io_counters().dropin) + " out: " + 
+                    str(psutil.net_io_counters().dropout)}
+        sendWebhookAlert(alertMsg)
+
+def sendWebhookAlert(alertMsg):
+    conn = http.client.HTTPSConnection('www.httpbin.org')
+    headers = {'Content-type': 'application/json'}
+    jsonData = json.dumps(alertMsg)
+    conn.request('POST', '/post', jsonData, headers)
+    response = conn.getresponse()
+    print(response.read().decode())
+    
+if __name__ == "__main__":
+    main()
+</pre>
+<p>We use the free HTTP testing website <code>http://www.httpbin.org/post</code> to test our webhook.  You should replace this URL with your custom webhook URL.</p>
+<p>You could even use a <code>Slack</code> webhook to receive alerts on your <code>Slack app</code>.  Please refer to the 
+    <a href="https://api.slack.com/messaging/webhooks" rel="nofollow" target="_blank"> slack webhook integration documentation </a>
+ for more information.</p>
+<p>Here is a sample output from running the python program:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $ python3.9 resource-mon.py 
+</span></span><span style="display:flex;"><span>    CPU: 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    CPU usage %:  25.7 %
+</span></span><span style="display:flex;"><span>    CPU count:  <span style="color:#ae81ff">8</span> cores
+</span></span><span style="display:flex;"><span>    CPU usage in last <span style="color:#ae81ff">10</span> secs:  23.2 %
+</span></span><span style="display:flex;"><span>    Sending alert on high cpu usage.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;args&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;data&#34;</span>: <span style="color:#e6db74">&#34;{\&#34;device_name\&#34;: \&#34;raspberry-pi-1234\&#34;, \&#34;cpu_alert\&#34;: \&#34;cpu usage is high: 23.2%\&#34;}&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;files&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;form&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;headers&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Accept-Encoding&#34;</span>: <span style="color:#e6db74">&#34;identity&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Content-Length&#34;</span>: <span style="color:#e6db74">&#34;41&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Host&#34;</span>: <span style="color:#e6db74">&#34;www.httpbin.org&#34;</span>, 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;json&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;cpu_alert&#34;</span>: <span style="color:#e6db74">&#34;cpu usage is high: 23.2%&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;origin&#34;</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://www.httpbin.org/post&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Mem: 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Mem Total: <span style="color:#ae81ff">16384</span> MB
+</span></span><span style="display:flex;"><span>    Mem Used: <span style="color:#ae81ff">6319</span> MB
+</span></span><span style="display:flex;"><span>    Mem Available: <span style="color:#ae81ff">2693</span> MB
+</span></span><span style="display:flex;"><span>    Mem Usage %: 83.6 %
+</span></span><span style="display:flex;"><span>    Swap Usage %: 91.0 %
+</span></span><span style="display:flex;"><span>    Sending alert on high memory usage.
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;args&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;data&#34;</span>: <span style="color:#e6db74">&#34;{\&#34;device_name\&#34;: \&#34;raspberry-pi-1234\&#34;, \&#34;memory_alert\&#34;: \&#34;memory usage is high: 83.6%\&#34;}&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;files&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;form&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;headers&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Accept-Encoding&#34;</span>: <span style="color:#e6db74">&#34;identity&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Content-Length&#34;</span>: <span style="color:#e6db74">&#34;47&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Host&#34;</span>: <span style="color:#e6db74">&#34;www.httpbin.org&#34;</span>, 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;json&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;memory_alert&#34;</span>: <span style="color:#e6db74">&#34;memory usage is high: 83.6%&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;origin&#34;</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://www.httpbin.org/post&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk: 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition  / : 
+</span></span><span style="display:flex;"><span>    Total:  <span style="color:#ae81ff">239072</span> MB
+</span></span><span style="display:flex;"><span>    Used:  <span style="color:#ae81ff">8527</span> MB
+</span></span><span style="display:flex;"><span>    Free:  <span style="color:#ae81ff">71587</span> MB
+</span></span><span style="display:flex;"><span>    Used %:  10.6 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition  /System/Volumes/Preboot : 
+</span></span><span style="display:flex;"><span>    Total:  <span style="color:#ae81ff">239072</span> MB
+</span></span><span style="display:flex;"><span>    Used:  <span style="color:#ae81ff">1723</span> MB
+</span></span><span style="display:flex;"><span>    Free:  <span style="color:#ae81ff">71586</span> MB
+</span></span><span style="display:flex;"><span>    Used %:  2.4 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition  /System/Volumes/VM : 
+</span></span><span style="display:flex;"><span>    Total:  <span style="color:#ae81ff">239072</span> MB
+</span></span><span style="display:flex;"><span>    Used:  <span style="color:#ae81ff">37889</span> MB
+</span></span><span style="display:flex;"><span>    Free:  <span style="color:#ae81ff">71586</span> MB
+</span></span><span style="display:flex;"><span>    Used %:  34.6 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition  /System/Volumes/Update : 
+</span></span><span style="display:flex;"><span>    Total:  <span style="color:#ae81ff">239072</span> MB
+</span></span><span style="display:flex;"><span>    Used:  <span style="color:#ae81ff">2</span> MB
+</span></span><span style="display:flex;"><span>    Free:  <span style="color:#ae81ff">71586</span> MB
+</span></span><span style="display:flex;"><span>    Used %:  0.0 %
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Disk usage of partition  /System/Volumes/Data : 
+</span></span><span style="display:flex;"><span>    Total:  <span style="color:#ae81ff">239072</span> MB
+</span></span><span style="display:flex;"><span>    Used:  <span style="color:#ae81ff">118131</span> MB
+</span></span><span style="display:flex;"><span>    Free:  <span style="color:#ae81ff">71586</span> MB
+</span></span><span style="display:flex;"><span>    Used %:  62.3 %
+</span></span><span style="display:flex;"><span>    Sending alert on high disk usage.
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;args&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;data&#34;</span>: <span style="color:#e6db74">&#34;{\&#34;device_name\&#34;: \&#34;raspberry-pi-1234\&#34;, \&#34;disk_alert\&#34;: \&#34;disk usage is high: 62.3% in partition: /System/Volumes/Data\&#34;}&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;files&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;form&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;headers&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Accept-Encoding&#34;</span>: <span style="color:#e6db74">&#34;identity&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Content-Length&#34;</span>: <span style="color:#e6db74">&#34;77&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Host&#34;</span>: <span style="color:#e6db74">&#34;www.httpbin.org&#34;</span>, 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;json&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;disk_alert&#34;</span>: <span style="color:#e6db74">&#34;disk usage is high: 62.3% in partition: /System/Volumes/Data&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;origin&#34;</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://www.httpbin.org/post&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Network: 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Total bytes sent:  <span style="color:#ae81ff">3876892672</span> Bytes
+</span></span><span style="display:flex;"><span>    Total bytes received:  <span style="color:#ae81ff">4118461440</span> Bytes
+</span></span><span style="display:flex;"><span>    Total packets sent: <span style="color:#ae81ff">12182033</span> Packets
+</span></span><span style="display:flex;"><span>    Total packets received: <span style="color:#ae81ff">18241393</span> Packets
+</span></span><span style="display:flex;"><span>    Total incoming packets dropped: <span style="color:#ae81ff">105942526610</span> Packets
+</span></span><span style="display:flex;"><span>    Total outgoing packets dropped: <span style="color:#ae81ff">0</span> Packets
+</span></span><span style="display:flex;"><span>    Sending alert on high network packet drop.
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;args&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;data&#34;</span>: <span style="color:#e6db74">&#34;{\&#34;device_name\&#34;: \&#34;raspberry-pi-1234\&#34;, \&#34;network_alert\&#34;: \&#34;network packet drop is high: in: 105942526610 out: 0\&#34;}&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;files&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;form&#34;</span>: <span style="color:#f92672">{}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;headers&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Accept-Encoding&#34;</span>: <span style="color:#e6db74">&#34;identity&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Content-Length&#34;</span>: <span style="color:#e6db74">&#34;73&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Host&#34;</span>: <span style="color:#e6db74">&#34;www.httpbin.org&#34;</span>, 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;json&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;network_alert&#34;</span>: <span style="color:#e6db74">&#34;network packet drop is high: in: 105942526610 out: 0&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;origin&#34;</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://www.httpbin.org/post&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="socketxp-iot-management-platform">SocketXP IoT Management Platform</h2>
+<p><a href="/">SocketXP IoT Management Platform</a> can be used to remotely manage, control, access and monitor your Raspberry Pi fleet at scale.</p>
+<p>SocketXP, not only <a href="https://docs.socketxp.com/guide/monitoring/device-monitoring">monitors your device resource utilization</a> and sends notifications, but also monitors change in your devices status (up/down events, offline/online events), monitor files for any modifications, <a href="https://docs.socketxp.com/guide/monitoring/file-monitoring">monitors log files</a> for a specific error using regex pattern match etc., and sends a notification to admins via webhooks.</p>
+<p>Learn more about <a href="/">SocketXP IoT Management Platform here</a>.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

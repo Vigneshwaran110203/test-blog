@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/categories/</link>
+    <description>Recent content in Categories on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IoT</title>
+      <link>http://localhost:51627/categories/iot/</link>
+      <pubDate>Fri, 07 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/categories/iot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux Server</title>
+      <link>http://localhost:51627/categories/linux-server/</link>
+      <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/categories/linux-server/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Raspberry Pi</title>
+      <link>http://localhost:51627/categories/raspberry-pi/</link>
+      <pubDate>Mon, 07 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/categories/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blog</title>
+      <link>http://localhost:51627/categories/blog/</link>
+      <pubDate>Sat, 12 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/categories/blog/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

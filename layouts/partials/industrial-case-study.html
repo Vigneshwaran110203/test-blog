@@ -1,0 +1,15 @@
+<section class="industrial-case-study large:px-[20%]">
+    <div class="sub-container">
+        <span class="tagline">Industrial Case Study</span>
+        <h2 class="sub-container-title">{{ .title }}</h2>
+        <p class="sub-container-description">{{ .description }}</p>
+    </div>
+    <div class="industrial-case-study-container">
+        {{ range $index, $study := .case_studies }}
+            <div class="industrial-case-study-content-{{ if modBool $index 2 }}right{{ else }}left{{ end }}">
+                <img src="{{ $study.image }}" alt="Case Study Image" class="industrial-case-study-image">
+                <p class="industrial-case-study-paragraph">{{ $study.paragraph }}</p>
+            </div>
+        {{ end }}
+    </div>
+</section>

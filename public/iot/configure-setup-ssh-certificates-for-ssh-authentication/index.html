@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to configure and setup SSH certificates for SSH authentication</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to configure and setup SSH certificates for SSH authentication</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to configure and setup SSH certificates for SSH authentication</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Feb 12, 2022
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview:</a></li>
+    <li><a href="#step-1---creating-ca-certificates">Step 1 - Creating CA certificates</a>
+      <ul>
+        <li><a href="#step-1a---signing-the-cas-host-certificate">Step 1a - Signing the CA&rsquo;s Host Certificate</a></li>
+        <li><a href="#step-1b---signing-the-cas-user-certificate">Step 1b - Signing the CA&rsquo;s User Certificate</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-2---distributing-and-trusting-the-ca-certificates">Step 2 - Distributing and trusting the CA certificates</a>
+      <ul>
+        <li><a href="#step-2a---making-hosts-to-trust-user-ca-certificate">Step 2a - Making hosts to trust user CA certificate</a></li>
+        <li><a href="#step-2b---making-clients-to-trust-the-host-ca-certificate">Step 2b - Making clients to trust the host CA certificate</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-3---creating-ssh-host-certificates">Step 3 - Creating SSH Host Certificates</a></li>
+    <li><a href="#step-4---creating-ssh-user-certificates">Step 4 - Creating SSH User Certificates</a></li>
+    <li><a href="#benefits-of-using-ssh-certificate-based-authentication">Benefits of using SSH certificate based authentication:</a></li>
+    <li><a href="#drawbacks-of-using-ssh-certificate-based-authentication">Drawbacks of using SSH certificate based authentication:</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/configure-setup-ssh-certificates-for-ssh-authentication/" title="How to configure and setup SSH certificates for SSH authentication">
+                        <img src="/assets/img/tighten-ssh-access-using-ssh-certificates/setup-ssh-certificates.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview:</a></li>
+    <li><a href="#step-1---creating-ca-certificates">Step 1 - Creating CA certificates</a>
+      <ul>
+        <li><a href="#step-1a---signing-the-cas-host-certificate">Step 1a - Signing the CA&rsquo;s Host Certificate</a></li>
+        <li><a href="#step-1b---signing-the-cas-user-certificate">Step 1b - Signing the CA&rsquo;s User Certificate</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-2---distributing-and-trusting-the-ca-certificates">Step 2 - Distributing and trusting the CA certificates</a>
+      <ul>
+        <li><a href="#step-2a---making-hosts-to-trust-user-ca-certificate">Step 2a - Making hosts to trust user CA certificate</a></li>
+        <li><a href="#step-2b---making-clients-to-trust-the-host-ca-certificate">Step 2b - Making clients to trust the host CA certificate</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-3---creating-ssh-host-certificates">Step 3 - Creating SSH Host Certificates</a></li>
+    <li><a href="#step-4---creating-ssh-user-certificates">Step 4 - Creating SSH User Certificates</a></li>
+    <li><a href="#benefits-of-using-ssh-certificate-based-authentication">Benefits of using SSH certificate based authentication:</a></li>
+    <li><a href="#drawbacks-of-using-ssh-certificate-based-authentication">Drawbacks of using SSH certificate based authentication:</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>SSH public key based authentication has several drawbacks and operational challenges that could potentially compromise your organization&rsquo;s SSH access security. We discussed the drawbacks in detail in our earlier blog on: <a href="https://www.bastionxp.com/blog/tightening-ssh-access-using-short-lived-ssh-certificates/">Tightening SSH access using short-lived SSH certificates</a>.</p>
+<p>SSH certificate based authentication addresses most of these security problems while simplifying certificate and key management.</p>
+<p>In this article, we&rsquo;ll discuss how to configure and set up SSH certificates for SSH access to your servers and cloud resources.</p>
+<h2 id="overview">Overview:</h2>
+<p>Here is an overview of what we are about to discuss in this article.</p>
+<ul>
+<li>
+<p>We&rsquo;ll be creating two SSH Certificate Authorities(CA) - a host CA and a user CA, to sign the SSH host certificates and user certificates respectively. (Note: You can create just a single CA to sign both user and host certificates. But it is better to keep them separate, so that you could rotate them separately when the situation warrants.)</p>
+</li>
+<li>
+<p>We&rsquo;ll show how to configure the host and user machines to trust certificates issued by these host and user CAs.</p>
+</li>
+<li>
+<p>We&rsquo;ll be creating an SSH host certificate for each host and sign it using the host CA&rsquo;s private key.</p>
+</li>
+<li>
+<p>We&rsquo;ll be creating an SSH user certificate for each user and sign it using the user CA&rsquo;s private key.</p>
+</li>
+<li>
+<p>Finally, we&rsquo;ll discuss the benefits and drawbacks of using SSH certificate based authentication.</p>
+</li>
+</ul>
+<h2 id="step-1---creating-ca-certificates">Step 1 - Creating CA certificates</h2>
+<p>Before we could create the CA certificates, we needed an SSH key pair to work with.  We&rsquo;ll be using the <code>ssh-keygen</code> tool to generate an SSH key pair, as usual.  We&rsquo;ll be executing the following set of commands on the server designated to be the CA.</p>
+<p><strong>User CA SSH key pair:</strong></p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# ssh-keygen -t rsa -b 4096 -f ~/.ssh/ssh_user_ca
+
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /root/.ssh/ssh_user_ca
+Your public key has been saved in /root/.ssh/ssh_user_ca.pub
+The key fingerprint is:
+SHA256:ShpCF11/fYjujAVDYivNKpNM6QdVwh8Z9sX00PIspdo 
+The key's randomart image is:
++---[RSA 4096]----+
+|    .oooBo.o+.   |
+|     +o*o* .o=o. |
+|  . = ..+.= o*+ .|
+| . = o o.  =o o. |
+|  . B + S  oo.   |
+|   . B .  .=Z    |
+|    . .   . o    |
+|                 |
+|                 |
++----[SHA256]-----+
+</pre>
+<p><strong>Host CA SSH key pair:</strong></p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+
+# ssh-keygen -t rsa -b 4096 -f ~/.ssh/ssh_host_ca
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /root/.ssh/ssh_host_ca
+Your public key has been saved in /root/.ssh/ssh_host_ca.pub
+The key fingerprint is:
+SHA256:ShpCF11/fYjujAVDYivNKpNM6QdVwh8Z9sX00PIadsfj 
+The key's randomart image is:
++---[RSA 4096]----+
+|    .oooBo.o+.   |
+|     +o*o* .o=o. |
+|  . = ..+.= o*+ .|
+| . = o o.  =o o. |
+|  . B + S  oo.   |
+|   . B .  .=F    |
+|    . .   . o    |
+|                 |
+|                 |
++----[SHA256]-----+
+</pre>
+<p>We are requesting an RSA type key using the -t flag and the key length to be 4096 bits using the -b flag.  The longer the key, the harder it is to crack.</p>
+<p>It is highly recommended to provide a passphrase for the private key.  If an unauthorized user gets hold of the private key with no passphrase, they will be able to log in to any server you&rsquo;ve configured with the associated public key.</p>
+<p>The above command would have generated an SSH pair - public key and a private key, in the default <code>.ssh</code> folder in your home directory. For example: <code>/home/bob/.ssh/</code></p>
+<h3 id="step-1a---signing-the-cas-host-certificate">Step 1a - Signing the CA&rsquo;s Host Certificate</h3>
+<p>Now, using the following command, let&rsquo;s create the host CA&rsquo;s certificate using the host public key and sign it using the corresponding host private key generated in the previous step.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# ssh-keygen -s ~/.ssh/ssh_host_ca -I my-ca -h -n my-ca.example.com -V +52w ~/.ssh/ssh_host_ca.pub  
+</pre>
+<p>The -s specifies the host private key to be used for signing the certificate.  The -h option is used for generating a host type certificate.</p>
+<p>The -n option above sets the FQDN (Fully Qualified Domain Name) of the host as the principals in the certificate.</p>
+<p>The -V option sets the validity period of the certificate.</p>
+<p>In the example above, the certificate will be valid from today and expires one year (52 weeks) from now.</p>
+<p>You can verify the details of the certificate using the following command:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# ssh-keygen -Lf ~/.ssh/ssh_host_ca-cert.pub
+/root/.ssh/ssh_host_ca-cert.pub:
+        Type: ssh-rsa host certificate
+        Public key: RSA-CERT SHA256:7sCdBjn0...
+        Signing CA: RSA SHA256:7sCdBjn0... (using rsa-sha2-512)
+        Key ID: "my-ca"
+        Serial: 0
+        Valid: from 2022-02-12T10:09:00 to 2023-02-11T10:10:29
+        Principals: 
+                my-ca.example.com
+        Critical Options: (none)
+        Extensions: (none)
+</pre>
+<p>Copy the CA&rsquo;s host certificate to the <code>/etc/ssh/</code> folder in the CA server.</p>
+<h3 id="step-1b---signing-the-cas-user-certificate">Step 1b - Signing the CA&rsquo;s User Certificate</h3>
+<p>Now, let&rsquo;s create and sign the user CA certificate using the user CA public private keys.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# ssh-keygen -s ~/.ssh/ssh_user_ca -I root@example.com  -n root -V +52w ~/.ssh/ssh_user_ca.pub
+</pre>
+<p>Again the user CA&rsquo;s certificate will be valid for one year (52 weeks) from now.</p>
+<h2 id="step-2---distributing-and-trusting-the-ca-certificates">Step 2 - Distributing and trusting the CA certificates</h2>
+<p>We need to copy the user CA certificate to all the hosts in the organization.  This is to make the hosts trust the user certificate&rsquo;s signing authority.</p>
+<p>Similarly we need to copy the host CA certificate to all the user&rsquo;s machines.  This is to make the ssh clients in the user&rsquo;s machine trust the host certificate&rsquo;s signing authority.</p>
+<h3 id="step-2a---making-hosts-to-trust-user-ca-certificate">Step 2a - Making hosts to trust user CA certificate</h3>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# scp ~/.ssh/ssh_user_ca-cert.pub  root@host1.example.com:/etc/ssh/
+</pre>
+<p>Next edit the SSH server config file at /etc/ssh/sshd_config and make the <code>TrustedUserCAKeys</code> directive to point to the user CA certificate we just copied over.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+TrustedUserCAKeys /etc/ssh/ssh_user_ca-cert.pub
+</pre>
+<p>Restart the host to make the config change to take effect.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# systemctl restart sshd
+</pre>
+<h3 id="step-2b---making-clients-to-trust-the-host-ca-certificate">Step 2b - Making clients to trust the host CA certificate</h3>
+<p>For this, you need to copy the contents of the host CA certificate and append it to the <code>/etc/ssh/ssh_known_hosts</code> file using the <code>@cert-authority</code> directive as shown below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# cat /etc/ssh/ssh_host_ca-cert.pub
+ssh-rsa AAAAHHNzaC1yc2EtY2....  root@example.com
+</pre>
+<p>Now copy this content to the SSH global config file <code>ssh_known_hosts</code> in all the user systems.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# vi /etc/ssh/ssh_known_hosts
+@cert-authority *.example.com ssh-rsa AAAAHHNzaC1yc2EtY2....  root@example.com
+</pre>
+<p>The <code>*.example.com</code> wildcard entry above instructs the user systems to trust the host certificates received from any hosts in the <code>example.com</code> domain, signed by the host CA.</p>
+<p>Now that we have the host and user CA certificates in place, we are ready to issue SSH certificates to hosts and user machines using them. Let&rsquo;s see how to issue the host certificate first.</p>
+<h2 id="step-3---creating-ssh-host-certificates">Step 3 - Creating SSH Host Certificates</h2>
+<p>To create the host certificate, we needed an SSH key pair to work with.  Let&rsquo;s create one as usual using the <code>ssh-keygen</code> command.  Login to the host machine that needs the certificate and execute the below command.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# ssh-keygen -t rsa -b 4096 -f ~/.ssh/ssh_host
+</pre>
+<p>The above command will generate a public key (ssh_host.pub) and a private key (ssh_host) in the <code>.ssh</code> folder in the home directory (/root/.ssh/).</p>
+<p>You should retain the private key safely within the host system.  You should never copy or transfer the file to any other location.</p>
+<p>We&rsquo;ll copy just the host public key the CA server using the <code>scp</code> command as shown below:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# scp /root/.ssh/ssh_host.pub root@my-ca:/root/tmp/
+</pre>
+<p>Next, create the host certificate from the host public key and sign the certificate using the host CA&rsquo;s private key.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# ssh-keygen -s ~/.ssh/ssh_host_ca -I host1@example.com -h -n host1.example.com -V +52w /root/tmp/ssh_host.pub
+</pre>
+<p>Once signed, copy the host SSH certificate (ssh_host-cert.pub) to the host machine using the <code>scp</code> command.  It is safe to copy SSH certificates around because they are public objects and can be shared with anyone.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# scp /root/tmp/ssh_host-cert.pub  root@host1.example.com:/etc/ssh/
+</pre>
+<p>Now configure the host to use the signed host certificate for any connections coming from the SSH clients.  Edit the <code>/etc/ssh/sshd_config</code> file and set the <code>HostCertificate</code> directive to point to the host certificate as shown below:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# vim /etc/ssh/ssh_config
+…
+HostCertificate  /etc/ssh/ssh_host-cert.pub
+…
+</pre>
+<p>Finally, restart the SSH server for the configuration changes to take effect.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# systemctl restart sshd
+</pre>
+<h2 id="step-4---creating-ssh-user-certificates">Step 4 - Creating SSH User Certificates</h2>
+<p>First, let&rsquo;s create an SSH key pair for the user certificate as usual.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# ssh-keygen -t rsa -b 4096 -f ~/.ssh/ssh_user
+</pre>
+<p>Next, we should copy the user public key to the CA server for signing it.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# scp ~/.ssh/ssh_user.pub  /root/tmp/.
+</pre>
+<p>Login to the CA server and sign the user certificate using the user CA&rsquo;s private key as shown below:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# ssh-keygen -s ~/.ssh/ssh_user_ca -I bob@example.com  -n root -V +4w /root/tmp/ssh_user.pub
+</pre>
+<p>Secure copy the signed user certificate back to the user machine.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# scp /root/tmp/ssh_user-cert.pub bob@user1.example.com:~/.ssh/.
+</pre>
+<p>Next edit the ssh client config file <code>/etc/ssh/ssh_config</code>(global config file) or <code>~/.ssh/config</code> file (local config file) in the user&rsquo;s home directory and add the following line to it, so that SSH client will be able to automatically pick up the user&rsquo;s private key file and the certificate during authentication.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+IdentityFile ~/.ssh/ssh_user
+</pre>
+<p>Note that the <code>IdentityFile</code> directive is made to point to the user&rsquo;s private key and not the public key or the certificate.</p>
+<p>Try login to the host machine from the user machine to verify that everything is set properly and working just fine</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ ssh bob@host1.example.com
+</pre>
+<p>Delete any existing public key for this host from the <code>~/.ssh/known_hosts</code> file in the user machine, if required, to prevent the SSH client from complaining about the host key has changed.</p>
+<p>The host public key in the <code>~/.ssh/known_hosts</code> file is irrelevant for SSH certificate based authentication because it uses the host CA certificate to validate the signature in the host certificate.</p>
+<h2 id="benefits-of-using-ssh-certificate-based-authentication">Benefits of using SSH certificate based authentication:</h2>
+<ul>
+<li>
+<p>SSH certificates have a validity period, so user and host certificates expire eventually sometime in the future.</p>
+</li>
+<li>
+<p>User certificates need not be copied to all the host machines.</p>
+</li>
+<li>
+<p>Short-lived SSH certificates can be issued to users to access privileged resources.</p>
+</li>
+<li>
+<p>No more weird messages (about recognizing and accepting the host key fingerprint) shown by the SSH client when login to the host machines for the first time.</p>
+</li>
+<li>
+<p>When a security compromise is detected, invalidate the old CA, create a new CA and issue new certificates to hosts and users. This is called as certificate rotation.</p>
+</li>
+</ul>
+<h2 id="drawbacks-of-using-ssh-certificate-based-authentication">Drawbacks of using SSH certificate based authentication:</h2>
+<ul>
+<li>Certificates need to be rotated periodically with proper planning and resource allocation</li>
+<li>Short-lived user certificates are great for privileged access to production resources. However, issuing user certificates more frequently and copying them to the user machines is still a laborious process.</li>
+</ul>
+<p><a href="https://www.bastionxp.com">BastionXP Bastion Host solution</a> with built-in CA, automates and simplifies the certificate creation, signing and distribution process. It also automates the ability to rotate certificates when situation warrants. SocketXP Bastion Host CA also issues short-lived user certificates to end users to access cloud resources or on-prem servers. Moreover, the solution works seamlessly with OpenSSH server and clients.</p>
+<p>So when a privileged user leaves an origanization, you don&rsquo;t need to clean up the public keys or certificates in your host machines becuase we don&rsquo;t copy them to the host machines in the first place under the SSH certificate based authentication method.</p>
+<p>Moreover, the privileged user&rsquo;s short-lived certificates would have expired by the time he/she leaves the office on the last day of work.</p>
+<p>Learn more about the BastionXP here: <a href="https://www.bastionxp.com">https://www.bastionxp.com</a></p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

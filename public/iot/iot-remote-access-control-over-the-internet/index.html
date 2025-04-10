@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>IoT Remote Access, Control and Management Over the Internet</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">IoT Remote Access, Control and Management Over the Internet</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">IoT Remote Access, Control and Management Over the Internet</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Aug 12, 2023
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-socketxp">What is SocketXP</a></li>
+    <li><a href="#1--remotely-connect-to-iot-behind-nat-router-or-firwall-over-the-internet-using-ssh">1.  Remotely connect to IoT behind NAT router or firwall over the Internet using SSH</a></li>
+    <li><a href="#2-connect-to-iot-remotely-over-the-internet-using-vnc">2. Connect to IoT remotely over the Internet using VNC</a></li>
+    <li><a href="#3-connect-to-iot-remote-desktoprdp-over-the-internet-using-xrdp">3. Connect to IoT Remote Desktop(RDP) over the Internet using xrdp</a></li>
+    <li><a href="#4-remote-control-iot-behind-nat-router-or-firewall-using-a-web-app">4. Remote Control IoT Behind NAT router or Firewall using a Web App</a></li>
+    <li><a href="#5--send-remote-commands-to-iot-over-the-internet-from-outside-network">5.  Send Remote Commands to IoT over the Internet from Outside Network</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/iot-remote-access-control-over-the-internet/" title="IoT Remote Access, Control and Management Over the Internet">
+                        <img src="/assets/img/raspberry-pi-remote-ssh-access/iot-remote-ssh.png" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-socketxp">What is SocketXP</a></li>
+    <li><a href="#1--remotely-connect-to-iot-behind-nat-router-or-firwall-over-the-internet-using-ssh">1.  Remotely connect to IoT behind NAT router or firwall over the Internet using SSH</a></li>
+    <li><a href="#2-connect-to-iot-remotely-over-the-internet-using-vnc">2. Connect to IoT remotely over the Internet using VNC</a></li>
+    <li><a href="#3-connect-to-iot-remote-desktoprdp-over-the-internet-using-xrdp">3. Connect to IoT Remote Desktop(RDP) over the Internet using xrdp</a></li>
+    <li><a href="#4-remote-control-iot-behind-nat-router-or-firewall-using-a-web-app">4. Remote Control IoT Behind NAT router or Firewall using a Web App</a></li>
+    <li><a href="#5--send-remote-commands-to-iot-over-the-internet-from-outside-network">5.  Send Remote Commands to IoT over the Internet from Outside Network</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this article, we&rsquo;ll discuss how to remotely access, control and manage your IoT devices from outside of our home or office network over the internet, allowing you to remotely manage your IoT device from anywhere.</p>
+<p>IoT is quickly becoming popular worldwide because of the unlimited workflow automation opportunities that comes with it. However, if not managed properly, these IoT devices can become a liability and lead to customer churn, resulting in lost revenue.</p>
+<blockquote>
+<p><strong>The biggest challenge for any IoT vendor is:</strong><br>
+How to securely connect and manage IoT device remotely over the internet to login, debug, monitor, reboot, reconfigure and update it?</p></blockquote>
+<p>There are several ways to <a href="/iot-remote-access">securely access IoT device remotely over the Internet</a> but the most common ones are:</p>
+<ol>
+<li><a href="/iot/ssh-secure-shell/">Secure Shell (SSH)</a></li>
+<li>Remote Desktop Protocol(RDP)</li>
+<li>Virtual Network Connection(VNC)</li>
+<li>Web Application</li>
+<li>Remote Command Execution</li>
+</ol>
+<p>In this article, we’ll discuss how to configure and setup IoT device for:</p>
+<ul>
+<li><a href="/iot/remote-access-iot-ssh-over-the-internet">Remote access IoT device via SSH over the internet</a></li>
+<li><a href="/iot/remotely-connect-iot-via-vnc">Remote access IoT device GUI desktop using VNC over the internet</a></li>
+<li><a href="/iot/connect-iot-remote-desktop-xrdp-over-internet">Remote access IoT device GUI desktop using RDP over the internet</a></li>
+<li><a href="/iot/remote-access-iot-web-app-from-internet">Remote access IoT device web application over the internet</a></li>
+<li><a href="/iot/remote-command-script-execution-iot">Execute remote commands on IoT device over the internet</a></li>
+</ul>
+<p>We will be using <a href="/">SocketXP IoT Management and Remote Access Platform</a> to <a href="/iot-remote-access">remotely connect to IoT device</a>.</p>
+<p>You can use SocketXP to remotely connect to any IoT device behind NAT router and firewall from outside network such as the internet.</p>
+<h2 id="what-is-socketxp">What is SocketXP</h2>
+<p>SocketXP is a cloud based secure remote access solution to access, manage and debug embedded Linux devices such as IoT device, Nvidia Jetson or any IoT device over the internet. SocketXP creates a secure SSL/TLS connection over the internet to your <a href="/iot-remote-access">IoT device for secure remote access</a>.</p>
+<p>No configuration changes are required in your home or office router to make the SocketXP solution work.  No public IP is required.</p>
+<p>It simply works out of the box.</p>
+<p>SocketXP creates SSL/TLS reverse proxy tunnels to securely connect to remote devices.</p>
+<p>SocketXP does not use insecure methods such as port-forwarding techniques or Dynamic DNS(DDNS) to provide remote access to your  IoT device.</p>
+<p>SocketXP is an enterprise-grade IoT remote access and management platform trusted by thousands of customers around the world today for <a href="/iot-remote-access">secure remote access to their IoT</a> device over the internet from outside network.</p>
+<p>Let&rsquo;s dive in and get started.</p>
+<h2 id="1--remotely-connect-to-iot-behind-nat-router-or-firwall-over-the-internet-using-ssh">1.  Remotely connect to IoT behind NAT router or firwall over the Internet using SSH</h2>
+<p><a href="/iot/ssh-secure-shell/">Secure Shell (SSH)</a> is a network protocol that provides a secure means to connect to a raspberry terminal over an unsecured network such as the internet.</p>
+<p>SSH follows a client server model – the SSH server runs on the IoT and the SSH client runs on the user laptop or PC.   SSH server listens on TCP port 22 by default.</p>
+<p>OpenSSH provides an open source implementation of the SSH server and client software.</p>
+<p><strong>Note:</strong> Your IoT device comes installed with an SSH server software in it.</p>
+<p>SSH client needs to know the IP address of the device in which the SSH server runs so that it can connect to it.</p>
+<p>Because IoT devices installed behind a NAT router and firewall cannot be access from the internet, we’ll use SocketXP&rsquo;s <a href="/iot-remote-access">IoT Remote Access solution</a> to remotely connect to the IoT terminal using SSH over the internet.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-ssh-access/iot-remote-ssh.png" alt="remote access IoT behind NAT router or Firewall over the internet from outside network" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>To learn more refer to: <a href="/iot/remote-access-iot-ssh-over-the-internet/">how to setup and configure your IoT for remote SSH access over the internet</a></p>
+<h2 id="2-connect-to-iot-remotely-over-the-internet-using-vnc">2. Connect to IoT remotely over the Internet using VNC</h2>
+<p>Virtual Network Connection(VNC)  is a protocol for safely accessing the IoT Graphical User Interface(GUI) or desktop.   VNC is typically used for remotely accessing the GUI of a Linux based platforms such as IoT.</p>
+<p>VNC follows a client server model – the VNC server runs on the IoT and the VNC client runs on the user laptop or PC.   VNC server listens on TCP port 5901 by default.</p>
+<p>TightVNC is a open source based VNC software that can be installed on  IoT for remote desktop access.</p>
+<p>Because IoT devices installed behind a NAT router and firewall cannot be access from the internet, we’ll use SocketXP&rsquo;s <a href="/iot-remote-access">IoT Remote Access solution</a> to remotely connect to the IoT GUI desktop using VNC over the internet.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-access-vnc/remote-access-raspberry-pi-via-vnc.jpg" alt="iot remote access behind NAT router or firewall over the internet from outside network" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>To learn more refer to: <a href="/iot/remotely-connect-iot-via-vnc/">how to setup and configure your IoT for remote VNC access over the internet</a></p>
+<h2 id="3-connect-to-iot-remote-desktoprdp-over-the-internet-using-xrdp">3. Connect to IoT Remote Desktop(RDP) over the Internet using xrdp</h2>
+<p>Remote Desktop Protocol(RDP)  is a proprietary protocol invented by Microsoft for accessing the Windows desktop of one Windows machine from another Windows machine in a local network.</p>
+<p>RDP follows a client server model – the RDP server runs on the IoT and the RDP client runs on the user laptop or PC.   RDP server listens on TCP port 3389 by default.</p>
+<p>Microsoft has opened up the RDP for third parties to implement the same.  xrdp is a open source implementation of the Microsoft RDP.  xrdp is typically used for remotely accessing the GUI desktop of a Linux based platforms such as IoT.</p>
+<p>Because IoT devices installed behind a NAT router and firewall cannot be access from the internet, we’ll use SocketXP&rsquo;s <a href="/iot-remote-access">IoT Remote Access solution</a> to remotely connect to the IoT GUI desktop using xrdp over the internet.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-desktop-access/remote-access-raspberry-pi-remote-desktop-xrdp-from-internet.jpg" alt="IoT behind NAT router or firewall remote desktop access from outside network over the internet from windows 10" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>To learn more refer to: <a href="/iot/connect-iot-remote-desktop-xrdp-over-internet/">how to setup and configure your IoT for remote desktop access over the internet using xrdp</a></p>
+<h2 id="4-remote-control-iot-behind-nat-router-or-firewall-using-a-web-app">4. Remote Control IoT Behind NAT router or Firewall using a Web App</h2>
+<p>Installing and running a web application on your IoT is one way  to remotely connect and control your IoT using a web client.</p>
+<p>For example, you could write a simple python flask web server application to remotely access the files – images, videos from a web camera, configuration files, log files etc.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ cat get_files.py
+from flask import Flask, send_from_directory
+
+app = Flask(__name__)
+
+@app.route('/<path:path>')
+def send_report(path):
+    return send_from_directory('/', path)
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=3000, debug=True)
+</pre>
+<p>You can use a web browser to  access this web server application running in your IoT from a local network. Just point your browser to: http://localhost:3000</p>
+<p>But, IoT devices installed behind a NAT router and firewall cannot be access from the internet.</p>
+<p>We’ll use SocketXP&rsquo;s <a href="/iot-remote-access">IoT Remote Access solution</a> to remotely connect to the python flask web  server application over the internet.</p>
+<p>SocketXP creates a secure public web URL (HTTPS) for the local web app running in your Pi.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/remote-access-flask-app-from-internet/remote-access-raspberry-pi-web-app-from-internet.jpg" alt="remotely connect to IoT behind NAT router or firewall over the internet from outside network" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>To learn more refer to: <a href="/iot/remote-access-iot-web-app-from-internet/">how to remote access IoT web app over the internet</a></p>
+<h2 id="5--send-remote-commands-to-iot-over-the-internet-from-outside-network">5.  Send Remote Commands to IoT over the Internet from Outside Network</h2>
+<p>Remote Command  Execution - the ability to send one-off shell commands to your IoT to quickly fetch crucial information or take some corrective action on  your remote IoT is immensely important.</p>
+<p>It is cumbersome to always having to SSH login to your IoT using your login and password to execute even a simple command or a program.</p>
+<p>This becomes even more tedious if you have to execute the same script or command on a fleet of IoT.</p>
+<p>SocketXP&rsquo;s <a href="/iot-remote-access">IoT Remote Access solution</a> provides you the ability to remotely execute shell script, command or any python program on a single IoT or on a fleet of IoT over the internet.</p>
+<p>To learn more refer to: <a href="/iot/remote-command-script-execution-iot">how to setup and configure your IoT for remote command execution over the internet</a></p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>In this article, we discused the five different options available to remotely access IoT, such as: SSH, VNC, RDP, Web App and Remote Command Execution.</p>
+<p>We also discussed how SocketXP’s <a href="/iot-remote-access">IoT Remote Access solution</a> offers a secure, powerful and convenient way to remotely manage and control your IoT devices.</p>
+<p>With its user-friendly interface, advanced features, and unparalleled flexibility, this innovative solution is a must-have tool for IoT enthusiasts.</p>
+<p>Take advantage of this cutting-edge solution and unlock the full potential of your IoT devices. Try SocketXP’s IoT Remote Access solution today and discover the convenience and versatility it can bring to your IoT projects.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mobile Devices. on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/mobile-devices./</link>
+    <description>Recent content in Mobile Devices. on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/mobile-devices./index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remote Access API Gateway Server from the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-api-gateway-server-from-internet/</link>
+      <pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-api-gateway-server-from-internet/</guid>
+      <description>&lt;p&gt;In this tutorial, we will discuss how to setup remote access to a private API gateway server in your local machine, so that you can connect to it remotely and securely over the internet.&lt;/p&gt;&#xA;&lt;p&gt;Whether you are a coding enthusiast, a professional developer, or just a beginner, this article will provide you with a step-by-step instructions on how to setup remote connectivity to your private API gateway server running in your local machine over the internet.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

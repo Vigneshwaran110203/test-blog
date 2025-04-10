@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node-RED Server on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/node-red-server/</link>
+    <description>Recent content in Node-RED Server on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/node-red-server/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remote Access a Node-RED Server on your Device</title>
+      <link>http://localhost:51627/iot/remote-access-node-red-server-iot-from-internet/</link>
+      <pubDate>Thu, 14 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-node-red-server-iot-from-internet/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to remote access a Node-RED server running locally in your IoT, Raspberry Pi or any device, over the internet.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-node-red&#34;&gt;What is Node-RED&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://nodered.org/&#34;&gt;Node-RED&lt;/a&gt; is a low-code programming tool for visual programming developed originally by IBM for wiring together hardware devices, APIs and online services as part of the Internet of Things (IoT).&lt;/p&gt;&#xA;&lt;p&gt;Node-RED provides a web browser-based flow editor, which can be used to create JavaScript functions. Elements of applications can be saved or shared for re-use. The runtime is built on Node.js. The flows created in Node-RED are stored using JSON.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

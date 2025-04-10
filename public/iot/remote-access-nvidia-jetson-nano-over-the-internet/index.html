@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Remotely Access Nvidia Jetson Nano over the Internet</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Remotely Access Nvidia Jetson Nano over the Internet</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Remotely Access Nvidia Jetson Nano over the Internet</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Jan 27, 2025
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#understanding-ssh">Understanding SSH</a>
+      <ul>
+        <li><a href="#what-is-ssh">What is SSH?</a></li>
+        <li><a href="#how-does-ssh-work">How does SSH work?</a></li>
+        <li><a href="#how-to-install-and-setup-ssh-server">How to install and setup SSH server</a></li>
+        <li><a href="#enable-ssh-on-jetson-nano">Enable SSH on Jetson Nano:</a></li>
+        <li><a href="#find-jetson-nano-ip-address">Find Jetson Nano IP address:</a></li>
+        <li><a href="#connect-using-ssh-client">Connect using SSH client:</a></li>
+        <li><a href="#security-tips">Security Tips:</a></li>
+        <li><a href="#firewall-settings">Firewall settings:</a></li>
+        <li><a href="#why-is-ssh-important-for-remote-access">Why is SSH important for remote access?</a></li>
+      </ul>
+    </li>
+    <li><a href="#remotely-connect-to-nvidia-jetson-nano-via-ssh">Remotely connect to Nvidia Jetson Nano via SSH</a></li>
+    <li><a href="#what-is-socketxp">What is SocketXP</a>
+      <ul>
+        <li><a href="#socketxp-remote-access-features-for-nvidia-jetson-nano">SocketXP Remote Access Features For Nvidia Jetson Nano:</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-socketxp-nvidia-jetson-nano-remote-access-solution-works">How SocketXP Nvidia Jetson Nano Remote Access solution works</a>
+      <ul>
+        <li><a href="#step-1-download-and-install">Step 1:  Download and Install</a></li>
+        <li><a href="#step-2-get-your-authentication-token">Step 2: Get your Authentication Token</a></li>
+        <li><a href="#step-3-create-socketxp-ssl-tunnel-endpoint-for-remote-ssh">Step 3: Create SocketXP SSL Tunnel Endpoint for Remote SSH</a></li>
+        <li><a href="#single-touch-installation-command">Single-Touch Installation Command</a></li>
+        <li><a href="#socketxp-ssh-public-key-management-tool">SocketXP SSH Public Key Management Tool:</a></li>
+        <li><a href="#configuring-socketxp-agent-to-run-in-slave-mode">Configuring SocketXP agent to run in slave mode</a></li>
+        <li><a href="#accessing-the-jetson-nano-devices-ssh-from-your-laptop">Accessing the Jetson Nano device&rsquo;s SSH from your laptop</a></li>
+      </ul>
+    </li>
+    <li><a href="#need-assistance">Need Assistance?</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+    <li><a href="#nvidia-jetson-nano-remote-ssh-security---dos-and-donts">Nvidia Jetson Nano Remote SSH Security - Do&rsquo;s and Don&rsquo;ts</a></li>
+    <li><a href="#remote-ssh-access-to-nvidia-jetson-devices">Remote SSH access to Nvidia Jetson devices</a></li>
+    <li><a href="#unsafe-methods-of-remotely-ssh-into-nvidia-jetson-nano-devices">Unsafe Methods of Remotely SSH into Nvidia Jetson Nano devices</a></li>
+    <li><a href="#why-socketxp-remote-access-solution-for-nvidia-jetson-nano-is-more-secure">Why SocketXP Remote Access Solution For Nvidia Jetson Nano Is More Secure?</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remote-access-nvidia-jetson-nano-over-the-internet/" title="How to Remotely Access Nvidia Jetson Nano over the Internet">
+                        <img src="/assets/img/raspberry-pi-remote-ssh-access/iot-remote-ssh.png" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#understanding-ssh">Understanding SSH</a>
+      <ul>
+        <li><a href="#what-is-ssh">What is SSH?</a></li>
+        <li><a href="#how-does-ssh-work">How does SSH work?</a></li>
+        <li><a href="#how-to-install-and-setup-ssh-server">How to install and setup SSH server</a></li>
+        <li><a href="#enable-ssh-on-jetson-nano">Enable SSH on Jetson Nano:</a></li>
+        <li><a href="#find-jetson-nano-ip-address">Find Jetson Nano IP address:</a></li>
+        <li><a href="#connect-using-ssh-client">Connect using SSH client:</a></li>
+        <li><a href="#security-tips">Security Tips:</a></li>
+        <li><a href="#firewall-settings">Firewall settings:</a></li>
+        <li><a href="#why-is-ssh-important-for-remote-access">Why is SSH important for remote access?</a></li>
+      </ul>
+    </li>
+    <li><a href="#remotely-connect-to-nvidia-jetson-nano-via-ssh">Remotely connect to Nvidia Jetson Nano via SSH</a></li>
+    <li><a href="#what-is-socketxp">What is SocketXP</a>
+      <ul>
+        <li><a href="#socketxp-remote-access-features-for-nvidia-jetson-nano">SocketXP Remote Access Features For Nvidia Jetson Nano:</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-socketxp-nvidia-jetson-nano-remote-access-solution-works">How SocketXP Nvidia Jetson Nano Remote Access solution works</a>
+      <ul>
+        <li><a href="#step-1-download-and-install">Step 1:  Download and Install</a></li>
+        <li><a href="#step-2-get-your-authentication-token">Step 2: Get your Authentication Token</a></li>
+        <li><a href="#step-3-create-socketxp-ssl-tunnel-endpoint-for-remote-ssh">Step 3: Create SocketXP SSL Tunnel Endpoint for Remote SSH</a></li>
+        <li><a href="#single-touch-installation-command">Single-Touch Installation Command</a></li>
+        <li><a href="#socketxp-ssh-public-key-management-tool">SocketXP SSH Public Key Management Tool:</a></li>
+        <li><a href="#configuring-socketxp-agent-to-run-in-slave-mode">Configuring SocketXP agent to run in slave mode</a></li>
+        <li><a href="#accessing-the-jetson-nano-devices-ssh-from-your-laptop">Accessing the Jetson Nano device&rsquo;s SSH from your laptop</a></li>
+      </ul>
+    </li>
+    <li><a href="#need-assistance">Need Assistance?</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+    <li><a href="#nvidia-jetson-nano-remote-ssh-security---dos-and-donts">Nvidia Jetson Nano Remote SSH Security - Do&rsquo;s and Don&rsquo;ts</a></li>
+    <li><a href="#remote-ssh-access-to-nvidia-jetson-devices">Remote SSH access to Nvidia Jetson devices</a></li>
+    <li><a href="#unsafe-methods-of-remotely-ssh-into-nvidia-jetson-nano-devices">Unsafe Methods of Remotely SSH into Nvidia Jetson Nano devices</a></li>
+    <li><a href="#why-socketxp-remote-access-solution-for-nvidia-jetson-nano-is-more-secure">Why SocketXP Remote Access Solution For Nvidia Jetson Nano Is More Secure?</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this article, we will show you how to configure and setup remote access to your Nvidia Jetson Nano&rsquo;s Secure Shell(SSH) command line, so that you could connect to it over the internet from anywhere.</p>
+<p>We will also discuss how to securely remote connect to your Nvidia Jetson Nano based embedded Linux device using Remote Desktop Application.</p>
+<p>The <a href="/iot/nvidia-jetson-nano-vs-raspberry-pi-which-one-is-better-for-your-project">NVIDIA Jetson Nano</a> is a small, powerful computer that can be used for robotics and many AI-based applications. It&rsquo;s a popular choice for prototyping AI products and creating embedded AI solutions.</p>
+<p>However, with this increased popularity and wide range of embedded AI deployments based on Jetson Nano comes the need for secure remote access to these devices. One way to achieve this is through the use of <a href="/iot/ssh-secure-shell/">Secure Shell (SSH)</a>.</p>
+<p>By the end of this article, you will have a better understanding of how to use SSH to securely and remotely access Nvidia Jetson Nano based embedded Linux devices over the internet from outside network.</p>
+<h2 id="overview">Overview</h2>
+<p>Here is an overview of how to configure and setup SSH remote access to your Nvidia Jetson device:</p>
+<ul>
+<li>Install, configure and enable SSH server in your Linux based Nvidia Jetson Nano device.</li>
+<li>Install, configure and setup SSL/TLS Reverse Proxy Tunnel to the SSH server running in your Jetson device using the <a href="/iot-remote-access">SocketXP Remote Access Solution</a>.  No port forwarding setup required in your WiFi router.</li>
+<li>Remotely connect to your Jetson Nano device&rsquo;s SSH server from the SocketXP Web Portal or using your favorite SSH client such as PuTTY, SecureCRT or SSH CLI client.</li>
+<li>Remotely upload or download files to or from your Jetson device from the SocketXP Web Portal or using your favorite SSH client such as Filezilla, PuTTY, SecureCRT or SCP/SFTP CLI client.</li>
+</ul>
+<h2 id="understanding-ssh">Understanding SSH</h2>
+<p>To access a Jetson Nano remotely using SSH, you need to first ensure SSH is enabled on the device, then connect to it using an SSH client on your computer by entering the Jetson Nano&rsquo;s IP address, username, and password, allowing you to securely manage the device from a remote location over the network.</p>
+<h3 id="what-is-ssh">What is SSH?</h3>
+<p>SSH stands for Secure Shell, which is a cryptographic network protocol for secure remote access to devices over an unsecured network such as the internet.</p>
+<h3 id="how-does-ssh-work">How does SSH work?</h3>
+<p>SSH uses encryption to secure the connection between two devices. It creates a secure tunnel through which data can be transmitted and received.</p>
+<p>SSH uses a client server model, wherein the SSH server runs in your embedded Linux device and the SSH client runs in your access devices such as your PC or Laptop.</p>
+<h3 id="how-to-install-and-setup-ssh-server">How to install and setup SSH server</h3>
+<p>You need to <a href="/iot/install-setup-ssh-server-client-iot-device">download, install and setup SSH server in your Nvidia Jetson Nano</a> so that you could connect to it remotely via the internet.  Most Linux distributions come with SSH server pre-installed.</p>
+<p>You also need to <a href="/iot/install-setup-ssh-server-client-iot-device">download and install SSH client on your access device</a>, such as your laptop or PC.</p>
+<h3 id="enable-ssh-on-jetson-nano">Enable SSH on Jetson Nano:</h3>
+<p>Connect to the Jetson Nano via a local connection (either Ethernet or Wi-Fi).
+Open a terminal window.</p>
+<p>Run the command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo systemctl enable ssh
+</span></span></code></pre></div><h3 id="find-jetson-nano-ip-address">Find Jetson Nano IP address:</h3>
+<p>In the terminal, run the command <code>ifconfig</code> to identify the IP address assigned to your Jetson Nano.</p>
+<h3 id="connect-using-ssh-client">Connect using SSH client:</h3>
+<p>On your computer, open an SSH client (like PuTTY on Windows, or the built-in terminal on macOS/Linux).
+Enter the Jetson Nano&rsquo;s IP address.</p>
+<p>When prompted, provide the username (usually &ldquo;ubuntu&rdquo; or &ldquo;jetson&rdquo;) and password.</p>
+<h3 id="security-tips">Security Tips:</h3>
+<p>Consider using SSH key pairs for a more secure authentication method instead of relying solely on passwords.</p>
+<h3 id="firewall-settings">Firewall settings:</h3>
+<p>Ensure your network firewall is configured to allow incoming SSH connections on the appropriate port (typically 22).</p>
+<h3 id="why-is-ssh-important-for-remote-access">Why is SSH important for remote access?</h3>
+<p>SSH allows for remote management and monitoring of these devices from anywhere in the world. By using SSH, users can securely access their Linux devices and perform tasks such as updating firmware, changing settings, and troubleshooting issues.</p>
+<h2 id="remotely-connect-to-nvidia-jetson-nano-via-ssh">Remotely connect to Nvidia Jetson Nano via SSH</h2>
+<p>Let&rsquo;s say you have a Jetson Nano in your office connected to the WiFi network or far out in the field connected to the internet through cellular internet or satellite internet.</p>
+<p>You can connect to the local device via SSH if your access device such as your Laptop or PC is also connected to the same local network such as WiFi Network or via an Ethernet cable.</p>
+<p>But our goal is to configure and setup the Jetson Nano device for remote access so that you could connect remotely via SSH over the internet and execute a command in the device terminal.</p>
+<p>To remotely access the device&rsquo;s SSH server, you need a <a href="/iot-remote-access">secure remote access solution</a> like <a href="/">SocketXP</a> to remotely connect to your Nvidia Jetson Nano based embedded Linux device.</p>
+<p>SocketXP solution works in 3 simple steps.</p>
+<h2 id="what-is-socketxp">What is SocketXP</h2>
+<p><a href="/">SocketXP</a> is a cloud based <a href="/iot/iot-device-management-platform">remote access and device management solution</a> that provides remote SSH access to embedded Linux devices such as a Raspberry Pi, Arduino, Nvidia Jetson, or any embedded Linux devices(based on any hardware platform or OS) behind NAT router or firewall over the internet using secure SSL/TLS VPN tunnels. </p>
+<p><a href="/iot-remote-access">SocketXP Remote Access Solution</a> does not require any changes to your WiFi or gateway NAT router configuration.  No port forwarding setup or firewall pinholing is required, when you use SocketXP.</p>
+<p>SocketXP creates a secure SSL/TLS encrypted tunnel through your firewall, NAT router, and over the internet, for secure remote SSH access, similar to how a secure VPN solution works.  SocketXP uses the SSL/TLS encryption technology used by VPN services.</p>
+<h3 id="socketxp-remote-access-features-for-nvidia-jetson-nano">SocketXP Remote Access Features For Nvidia Jetson Nano:</h3>
+<p><a href="/iot-remote-access">SocketXP Remote Access Solution for Nvidia Jetson Nano</a> provides you the ability to remote access your Nvidia Jetson Nano device via the following methods:</p>
+<ul>
+<li><a href="/iot/remote-access-ssh-from-anywhere/">Remote SSH Access from anywhere</a></li>
+<li><a href="/iot/remote-access-ssh-from-anywhere/">Remote File Transfer - SFTP/SCP</a></li>
+<li><a href="/iot/connect-iot-remote-desktop-xrdp-over-internet">Remote VNC Desktop Access - RDP/VNC</a></li>
+<li><a href="/iot/remote-access-iot-web-app-from-internet">Remote Access to Web Application</a></li>
+<li><a href="/">Remote Device Management</a></li>
+<li><a href="/iot-remote-monitoring">Remote Device Monitoring</a></li>
+<li><a href="/iot-asset-tracking">Remote Asset Live Tracking</a></li>
+</ul>
+<h2 id="how-socketxp-nvidia-jetson-nano-remote-access-solution-works">How SocketXP Nvidia Jetson Nano Remote Access solution works</h2>
+<p>SocketXP solution works in 3 simple steps.</p>
+<p>First, you need to install a SocketXP agent on your Jetson Nano. </p>
+<p>The SocketXP agent would connect the device to the SocketXP Cloud Gateway by creating a secure SSL/TLS tunnel.</p>
+<p>You could then remote SSH into the device from the SocketXP Cloud Gateway&rsquo;s portal page (via this secure SSL/TLS tunnel).</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-ssh-access/iot-remote-ssh.png" alt="Nvidia Jetson Nano Remote SSH Access" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Follow the 3 simple steps listed below to setup SocketXP agent and remote SSH into your Nvidia Jetson Nano using <a href="(/iot-remote-access)">SocketXP Remote Access solution</a>.</p>
+<h3 id="step-1-download-and-install">Step 1:  Download and Install</h3>
+<p><a href="https://www.socketxp.com/download/">Download and install</a> the SocketXP agent on your Jetson Nano based embedded Linux device from <a href="https://www.socketxp.com/download/">here.</a></p>
+<h3 id="step-2-get-your-authentication-token">Step 2: Get your Authentication Token</h3>
+<p>Sign up at <a href="%22https://portal.socketxp.com/%22">https://portal.socketxp.com</a> and get your authentication token.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/AuthToken.jpg" alt="SocketXP Portal - Authtoken for Nvidia Jetson Nano Remote SSH Access" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Use the following command to login to the SocketXP Cloud Gateway using the auth token.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ socketxp login [your-auth-token-goes-here]
+</pre>
+<h3 id="step-3-create-socketxp-ssl-tunnel-endpoint-for-remote-ssh">Step 3: Create SocketXP SSL Tunnel Endpoint for Remote SSH</h3>
+<p>Use the following command to create a secure and private SSL tunnel endpoint at the SocketXP Cloud Gateway.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto"> $ socketxp connect tcp://localhost:22
+
+Connected to SocketXP Cloud Gateway.
+Access the TCP service securely using the SocketXP agent in Slave Mode.
+</pre>
+<p><strong>Note:</strong></p>
+<p>For the security of your device, SocketXP Remote Access Solution doesn&rsquo;t create any public TCP tunnel endpoints(IP address + Port combo) that can be connected by any SSH client from the internet.</p>
+<p>SocketXP private tunnel endpoints are not exposed to the internet and can be accessed only using the SocketXP agent (using the auth token of the user) or through the XTERM terminal in the SocketXP Portal page.</p>
+<p>More importantly, this also means port scanners or hackers from the internet cannot access your IoT device SSH server port.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-ssh-access/SocketXP-IoT-Remote-SSH-2.png" alt="SocketXP IoT Remote SSH IoT device Remote SSH xterm access from browser" style="max-width:80%;max-height:100%;">
+</div>
+
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-ssh-access/SSH-from-browser-2.jpg" alt="IoT Remote SSH IoT device Remote SSH IoT device Fleet management" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>The screen capture above shows the &ldquo;htop&rdquo; command being executed from an SSH session created using the XTERM window from the SocketXP Portal page using a web browser.  You could use any browser of your choice to remote SSH into your Jetson device.</p>
+<h3 id="single-touch-installation-command">Single-Touch Installation Command</h3>
+<p>The 3 step instruction explained above to setup SocketXP on your Jetson device is a tedious process, if you have thousands of devices to install, configure and manage.</p>
+<p>With this in mind, SocketXP Remote Access Solution also provides a single-touch installation command for installing and configuring SocketXP Agent on large number of devices. </p>
+<p>Copy and paste the below single-touch installation command from the SocketXP Portal page on to the terminal of your embedded Linux device. The command shown below will download a shell script that will install, configure, setup SocketXP agent on your Jetson device.  After the command completes, the Jetson Nano device would show up as online in the SocketXP Portal page.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-ssh-access/SocketXP-IoT-Agent-Install-Script.png" alt="SocketXP Nvidia Jetson Nano Remote SSH Access Remote Desktop Access - installation script" style="max-width:80%;max-height:100%;">
+</div>
+
+<h3 id="socketxp-ssh-public-key-management-tool">SocketXP SSH Public Key Management Tool:</h3>
+<p>SSH password based authentication is vulnerable to attacks and generally not recommended for production usecases.  SSH Public Private key based authentication is a secure and recommended method for production usecases.</p>
+<p>By default, SocketXP Web Portal will create and sync a very short-lived single-use SSH public key to your Ubuntu Linux machine, so that you can securely remote login to your Ubuntu Linux from anywhere in the world, without having to use password based authentication. The key will be cleaned up or trashed immediately after the user logs in.</p>
+<p>You should remember that a user can SSH into your Ubuntu Linux machine from the SocketXP web portal, only after a successful SSO login (and 2FA authentication) provided by your SSO OAuth provider such: Microsoft 365 or Google G-Suite.</p>
+<p>SocketXP has a built-in SSH public key management tool, that automates SSH public key management or syncing it between your Ubuntu Linux system and the SSH web client.  It even cleans up the key immediately, so that a new public key setup is required for the next login attempt by the same user.</p>
+<p>For better security, you can even disable password based authentication completely on your Ubuntu Linux SSH server.  But, if you prefer to use password based authentication, then select the &ldquo;Password authentication&rdquo; option during the login prompt in the web portal.  The default option is &ldquo;SSH Public Key Authentication.&rdquo;</p>
+<h3 id="configuring-socketxp-agent-to-run-in-slave-mode">Configuring SocketXP agent to run in slave mode</h3>
+<p>This is an alternate method for connecting to your Nvidia Jetson device from a remote location using the SocketXP solution.</p>
+<p>If you don&rsquo;t want to access your Jetson device from the browser and you want to access it using your SSH client (Eg: PuTTY, SecureCRT) then follow the instructions below.</p>
+<p>First download and install the regular SocketXP agent software on your accessing device (such as a laptop running Windows or Mac OS).</p>
+<p>Next, configure the agent to run in slave mode using the command option &ldquo;&ndash;iot-slave&rdquo; as shown in the example below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ socketxp connect tcp://localhost:3000 --iot-slave --peer-device-id "2233-4455-abcd-34445" --peer-device-port 22 --authtoken &lt;auth token&gt;
+
+Listening for TCP connections at:
+Local URL -&gt; tcp://localhost:3000
+</pre>
+<p>You shall find the device ID of your Jetson Nano from the <a href="https://portal.socketxp.com/#/devices">SocketXP Portal page in the Devices section</a>.</p>
+<h3 id="accessing-the-jetson-nano-devices-ssh-from-your-laptop">Accessing the Jetson Nano device&rsquo;s SSH from your laptop</h3>
+<p>Now you can access your Jetson Nano device&rsquo;s SSH server using the above SocketXP local endpoint, as shown below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ ssh -i ~/.ssh/john-private.key john@localhost -p 3000
+</pre>
+<p>The above method uses SSH private key based authentication to SSH into your Linux device.</p>
+<h2 id="need-assistance">Need Assistance?</h2>
+<p>If you are stuck and need assistance with our SocketXP Remote Access Solution, or you have a query that needs to be answered, please feel free to reach out to us.  We&rsquo;ll get back to you as soon as possible.  Please email us at: <a href="%22support@socketxp.com%22">support@socketxp.com</a></p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>The solution discussed in this article is a secure method to remote SSH into your home or office computer because the data is encrypted using SSL.</p>
+<p>SSH uses the same cryptography technology used by banks and governments to exchange highly confidential data over the internet.</p>
+<p>The data transferred gets encrypted end-to-end between the SSH client and the SSH server.</p>
+<p>SocketXP has no way to decrypt or eavesdrop your encrypted data without knowing your SSH private keys.  SocketXP merely acts as an online TCP reverse proxy server for your encrypted data traffic transmitted through the SSH connection.</p>
+<h2 id="nvidia-jetson-nano-remote-ssh-security---dos-and-donts">Nvidia Jetson Nano Remote SSH Security - Do&rsquo;s and Don&rsquo;ts</h2>
+<h2 id="remote-ssh-access-to-nvidia-jetson-devices">Remote SSH access to Nvidia Jetson devices</h2>
+<p>The primary reason why you deployed these Nvidia Jetson based embedded Linux devices and connected them to the internet was to monitor, track and operate these devices from any remote locations.</p>
+<p>Sometimes you need a way to gain access to those Nvidia devices for troubleshooting, configuration updates, and other operational tasks.</p>
+<p>For example, a sensor device deployed at a factory that is hundreds of miles away is having trouble measuring the factory temperature.</p>
+<p>You can use secure remote access tunnels to open and quickly start a session to that sensor device.</p>
+<p>After you have identified the problem (for example, a misconfiguration or disk full error), you can reset the configuration, delete unwanted files or logs history and restart the sensor device through the same session.</p>
+<p>In the  traditional methods of troubleshooting you would typically wait until the next day to send a technician to the factory to investigate the sensor device. </p>
+<p>But remote access using secure tunneling (using SocketXP) decreases incident response and recovery time and operational costs.</p>
+<p>But gaining remote access to Jetson devices is no simple task.</p>
+<p>So often people take shortcuts and perform quick hacks on routers/firewall settings to permit internet traffic into the corporate network.</p>
+<p>In the next section, we&rsquo;ll discuss about some of these unsafe practices and the security risks associated with such configuration options.</p>
+<h2 id="unsafe-methods-of-remotely-ssh-into-nvidia-jetson-nano-devices">Unsafe Methods of Remotely SSH into Nvidia Jetson Nano devices</h2>
+<p>Embedded Linux devices in industries, factories, offices and homes are placed behind a firewall and NAT(Wifi Router or Gateway Router).  These devices are always assigned a Local IP address using mechanisms such as DHCP.  The local IP addresses are usually assigned in the 10.X.X.X  or 192.X.X.X range.  These devices do not have publicly reachable IP addresses assigned to them.</p>
+<p>Nvidia Jetson Nano devices behind the firewall can talk to servers on the internet (via the gateway router) but not the other way around.  This is because you want to prevent your devices from being accessed from the internet by unwanted people or hackers.</p>
+<p>So to gain remote access from the internet to Jetson devices in your home or factory is not easy and straightforward.</p>
+<p>Many people would practice the unsafe method of opening up ports (SSH port 22 or HTTP/HTTPS ports 80/443) in their firewall settings(ACL rules) or gateway router NAT configuration to allow a particular traffic to sneak into the local network. </p>
+<p>Then they would use Dynamic DNS (DDNS) solutions to track the non-static public IP address of the gateway router. </p>
+<p>This method is prone for errors and would create a security risk for your embedded AI based application. </p>
+<p>Online hackers could scan such open ports and try sneaking into your local network and servers.</p>
+<p>The common myth or the misunderstanding here is that, people falsely believe that as long as they use a secure shell connection (SSH) everything going to that port 22 is safe.</p>
+<p>But they fail to understand that they have left a door to their industrial, corporate or home network wide open for any strangers to sneak in without being noticed.</p>
+<p>The same door will be shared by hackers and your secure SSH session alike.</p>
+<p>The problem is not in the SSH session but in the door you left wide open for anyone to sneak in.</p>
+<h2 id="why-socketxp-remote-access-solution-for-nvidia-jetson-nano-is-more-secure">Why SocketXP Remote Access Solution For Nvidia Jetson Nano Is More Secure?</h2>
+<p><a href="/iot-remote-access">SocketXP Nvidia Jetson Remote Access solution</a> &ndash; part of <a href="/iot/iot-device-management-platform">IoT Device Management and Remote Access Platform</a>,  doesn&rsquo;t require setting up port-forwarding on your WiFi router.  SocketXP solution works without making any changes to your WiFi router settings.</p>
+<p><a href="/">SocketXP IoT Platform</a>, unlike all other vendor solutions, does not open up your device ports to the internet. Therefore, port scanners and hackers cannot scan your device ports (SSH or VNC ports).  SocketXP IoT Platform protects and handles all direct attacks from the internet, eliminating unnecessary traffic from reaching your Nvidia Jetson Nano devices.</p>
+<p>SocketXP connects users with remote devices over secure SSL/TLS connections(vpn tunnels).  This is the same technology used by the banks and Governments to exchange confidential data securely over the internet.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

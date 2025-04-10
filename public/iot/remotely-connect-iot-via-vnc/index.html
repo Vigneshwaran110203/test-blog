@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>Remotely Connect to IoT via VNC : A Step-by-Step Guide
+</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">Remotely Connect to IoT via VNC : A Step-by-Step Guide
+</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">Remotely Connect to IoT via VNC : A Step-by-Step Guide
+</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Jun 23, 2023
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1-setting-up-xfce-desktop-environment-on-iot">Step 1: Setting up XFCE desktop environment on IoT</a></li>
+    <li><a href="#step-2-installing-tightvnc-server-on-iot">Step 2: Installing TightVNC server on IoT</a></li>
+    <li><a href="#step-3-installing-socketxp-iot-remote-access-agent">Step 3: Installing SocketXP IoT Remote Access Agent</a></li>
+    <li><a href="#step-4-connecting-remotely-to-iot-via-vnc-viewer-from-windows">Step 4: Connecting remotely to IoT via VNC viewer from Windows:</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remotely-connect-iot-via-vnc/" title="Remotely Connect to IoT via VNC : A Step-by-Step Guide
+">
+                        <img src="/assets/img/iot-remote-access-vnc/remote-access-iot-via-vnc.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1-setting-up-xfce-desktop-environment-on-iot">Step 1: Setting up XFCE desktop environment on IoT</a></li>
+    <li><a href="#step-2-installing-tightvnc-server-on-iot">Step 2: Installing TightVNC server on IoT</a></li>
+    <li><a href="#step-3-installing-socketxp-iot-remote-access-agent">Step 3: Installing SocketXP IoT Remote Access Agent</a></li>
+    <li><a href="#step-4-connecting-remotely-to-iot-via-vnc-viewer-from-windows">Step 4: Connecting remotely to IoT via VNC viewer from Windows:</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>One of the key features of IoT is its ability to be accessed remotely, allowing you to control it from another device. One of the most common methods to achieve this is by using Virtual Network Computing (VNC).</p>
+<p>In this article, we will guide you through the process of remotely connecting to a IoT such as Raspberry Pi, Nvidia Jetson Nano, or Google Coral via VNC.</p>
+<p>Remotely connecting and accessing a IoT Remote Desktop involves the following steps:</p>
+<ol>
+<li>Setting up a desktop environment (XFCE) for your IoT</li>
+<li>Installing TightVNC Server on IoT, as well as install the TightVNC client for Windows or Mac.</li>
+<li>Installing SocketXP IoT Remote Access[/iot-remote-access] agent on IoT.</li>
+<li>Connecting to IoT remotely via the TightVNC client from a Windows or Mac laptop over the internet.</li>
+</ol>
+<h2 id="step-1-setting-up-xfce-desktop-environment-on-iot">Step 1: Setting up XFCE desktop environment on IoT</h2>
+<p>Before you can remotely connect to your IoT via VNC, you need to make sure your IoT is set up and running.</p>
+<p>This includes installing an operating system (such as Raspbian) and connecting your IoT to a display, keyboard, and mouse.</p>
+<p>Additionally, make sure your IoT is connected to the internet via an Ethernet cable or Wi-Fi.</p>
+<p>For this tutorial we will assume that your IoT doesn&rsquo;t have a GUI desktop environment installed. We will install XFCE desktop environment, to have the actual desktop accessible on IoT.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">sudo apt install -y xfce4 xfce4-goodies </pre>
+<p>Next, we will install tightvncserver to be able to access that GUI desktop.</p>
+<h2 id="step-2-installing-tightvnc-server-on-iot">Step 2: Installing TightVNC server on IoT</h2>
+<p>Use the following command to install TightVNC server on IoT.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">sudo apt install -y tightvncserver</pre>
+<p>The next thing we&rsquo;ll have to do is to set up an access password for VNC clients. This is done on the first run of your VNC server. Simply run the command below:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">vncserver</pre>
+<p>You will be asked to provide two passwords.</p>
+<p>One is an access password and the other is a view-only password.</p>
+<p>The access password lets you connect to the desktop and interact with it using keyboard and mouse whereas the view-only password will only let a user observe your desktop.</p>
+<p>The view only password is optional so you can skip setting it up when asked by pressing the enter key on your keyboard.</p>
+<p>Now that the password is set up we will configure a startup file for VNC.</p>
+<p>Firstly, we&rsquo;ll have to shut down our currently running VNC server.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">vncserver -kill :1</pre>
+<p>Then we&rsquo;ll create a backup of current startup file, in case we&rsquo;d like to revert back to it.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">mv ~/.vnc/xstartup ~/.vnc/xstartup.bak</pre>
+<p>Finally, we&rsquo;ll create a new startup file.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">printf '#!/bin/bash\nxrdb $HOME/.Xresources\nstartxfce4 &\n' > ~/.vnc/xstartup
+sudo chmod +x ~/.vnc/xstartup</pre>
+<p>This will create the following file:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+#!/bin/bash
+xrdb $HOME/.Xresources
+startxfce4 & 
+</pre>
+<p>The first line xrdb $HOME/.Xresources tells the VNC&rsquo;s GUI framework to read the server user&rsquo;s Xresource file.</p>
+<p>The second line starts the Xfce in background.</p>
+<p>Now, re-start the VNC server using the command below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ vncserver</pre>
+<p>Now we&rsquo;re ready to access our IoT desktop via VNC from our Windows or Mac PC on a local network.</p>
+<p>But our goal is to connect to IoT remotely via VNC over the internet.</p>
+<p>For this, we&rsquo;ll use the <a href="/iot-remote-access">SocketXP IoT Remote Access solution</a> as shown in the next step.</p>
+<h2 id="step-3-installing-socketxp-iot-remote-access-agent">Step 3: Installing SocketXP IoT Remote Access Agent</h2>
+<p>We need to install SocketXP IoT Remote Access Agent to run in two different places:</p>
+<ul>
+<li>IoT - in IoT Master Mode (Default Mode)</li>
+<li>Laptop or PC - in IoT Slave Mode</li>
+</ul>
+<p>Follow the SocketXP <a href="https://www.socketxp.com/download">download and install</a> instructions to install the SocketXP Remote Access agent on IoT and the access devices.</p>
+<p>To make SocketXP agent to run in IoT Master Mode (which is the default mode of SocketXP agent) use the below command.</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">
+$ socketxp  connect tcp://localhost:5901
+
+Connected to SocketXP Cloud Gateway.
+Access the TCP service securely using the SocketXP agent in IoT Slave Mode.
+</pre>
+where localhost port 5901 is the VNC server port, on which tightvncserver is listening for connections from a VNC viewer .</p>
+<p>Next, to access IoT device from your Windows laptop or PC, install SocketXP Agent for Windows and run the below command:</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">
+$ ./socketxp.exe connect tcp://localhost:10111 --iot-slave --peer-device-id "2233-abcdefgh-2342abc" --peer-device-port 5901 --authtoken &lt;auth token&gt;
+Listening for TCP connections at:
+Local URL -> tcp://localhost:10111  
+</pre>
+where 10111 is a local port on your PC at which you want to access IoT.  You can choose to use any free local port instead of port 10111.
+You shall find the device ID of your IoT device from the <a href="https://portal.socketxp.com/#/devices">SocketXP Portal page in IoT Devices section</a>.</p>
+<h2 id="step-4-connecting-remotely-to-iot-via-vnc-viewer-from-windows">Step 4: Connecting remotely to IoT via VNC viewer from Windows:</h2>
+<p>Install TightVNC Viewer from the 
+    <a href="https://www.tightvnc.com/download.php" rel="nofollow" target=""> TightVNC website. </a>
+</p>
+<p>Launch TightVNC Viewer and it will bring you straight to the login window. Fill it out with the following details:</p>
+<pre><code>- Remote Host: localhost:10111.
+</code></pre>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-remote-access-vnc/tightvnc-viewer.png" alt="access rasperry pi remotely via vnc" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>When done click on &ldquo;Connect&rdquo;. This will bring you to the authentication window.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-remote-access-vnc/tightvnc-viewer-login.png" alt="connect rasperry pi via vnc remotely" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>This is where you provide your access password that you&rsquo;ve set up in the first section of this article. When you click OK, you will see the desktop of your IoT.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-remote-access-vnc/iot-remote-access-via-vnc.jpg" alt="rasperry pi remote access via vnc" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Please keep in mind that there&rsquo;s a lot of data being transferred in between your IoT and your Windows PC in order to provide live desktop experience, so the quality and response time might not be exactly as on a local desktop.</p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>Remote access to your IoT via VNC can be a powerful tool that allows you to control your IoT from any device with a VNC viewer installed.</p>
+<p><a href="/iot-remote-access">SocketXP IoT Remote Access Solution</a> &ndash; part of <a href="/iot/iot-device-management-platform">IoT Device Management and Remote Access Platform</a>,  is a highly scalable solution that uses secure SSL/TLS tunnel to remotely connect and access IoT VNC server from a Windows Laptop or a Mac Book.</p>
+<p>With the simple steps outlined in this article, you can easily set up and connect to your IoT remotely via VNC.</p>
+<p>This can be particularly useful in scenarios where you want to access your IoT headless (without a display, keyboard, and mouse), or when you need to manage your IoT from a different location.</p>
+<p>So go ahead and try remote access via VNC for your IoT and enjoy the flexibility and convenience it offers!</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

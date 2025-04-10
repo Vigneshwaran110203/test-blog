@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Securely Remote Access MySQL or Any Database in Raspberry Pi behind Firewall</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Securely Remote Access MySQL or Any Database in Raspberry Pi behind Firewall</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Securely Remote Access MySQL or Any Database in Raspberry Pi behind Firewall</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Aug 7, 2023
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#prerequisites">Prerequisites:</a></li>
+    <li><a href="#mysql-database-server-setup">MySQL Database Server Setup:</a></li>
+    <li><a href="#socketxp-agent-setup-on-the-database-server">SocketXP Agent Setup on the Database Server</a>
+      <ul>
+        <li><a href="#step-1-download-and-install">Step #1: Download and Install</a></li>
+        <li><a href="#step2-register-the-agent">Step#2: Register the agent</a></li>
+        <li><a href="#step-3-create-a-secure-ssltls-tunnel">Step #3: Create a secure SSL/TLS tunnel</a></li>
+        <li><a href="#step-4-connect-to-the-remote-mysql-db-from-a-local-machine-">Step #4: Connect to the remote MySQL DB from a local machine :</a></li>
+      </ul>
+    </li>
+    <li><a href="#simple-mysql-client-using-python">Simple MySQL Client using Python</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/secure-remote-access-mysql-database-raspberry-pi-behind-firewall-over-the-internet-anywhere/" title="How to Securely Remote Access MySQL or Any Database in Raspberry Pi behind Firewall">
+                        <img src="/assets/img/remote-database-access/remote-connect-mysql-database-over-internet.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#prerequisites">Prerequisites:</a></li>
+    <li><a href="#mysql-database-server-setup">MySQL Database Server Setup:</a></li>
+    <li><a href="#socketxp-agent-setup-on-the-database-server">SocketXP Agent Setup on the Database Server</a>
+      <ul>
+        <li><a href="#step-1-download-and-install">Step #1: Download and Install</a></li>
+        <li><a href="#step2-register-the-agent">Step#2: Register the agent</a></li>
+        <li><a href="#step-3-create-a-secure-ssltls-tunnel">Step #3: Create a secure SSL/TLS tunnel</a></li>
+        <li><a href="#step-4-connect-to-the-remote-mysql-db-from-a-local-machine-">Step #4: Connect to the remote MySQL DB from a local machine :</a></li>
+      </ul>
+    </li>
+    <li><a href="#simple-mysql-client-using-python">Simple MySQL Client using Python</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this article, we’ll discuss how to securely remote access MySQL database or any database(DB) in a Raspberry Pi in a private network (behind NAT router and firewall) over the internet.</p>
+<p>You can use the same procedure to remote access any database (PostgresSQL, MariaDB, GridDB, SQLite, Redis etc) in your Raspberry Pi or IoT over the internet.</p>
+<p>We will use <a href="/iot-remote-access">SocketXP IoT Remote Access solution</a> to securely connect to your remote MySQL database.  SocketXP is very simple and easy to setup.  SocketXP has a free trial plan.</p>
+<h2 id="prerequisites">Prerequisites:</h2>
+<p>You&rsquo;ll need the following artifacts for this tutorial</p>
+<ul>
+<li>MySQL server</li>
+<li>MySQL client</li>
+<li>SocketXP agent</li>
+</ul>
+<h2 id="mysql-database-server-setup">MySQL Database Server Setup:</h2>
+<p>Let’s assume you already have a MySQL database installed and running in your Raspberry Pi in a private network behind NAT router and firewall (say, your home or office network).</p>
+<p>If not, visit the 
+    <a href="https://www.mysql.com" rel="nofollow" target="_blank"> MySQL official website </a>
+ and follow the instructions to download, install and setup a MySQL database natively in your Raspberry Pi.</p>
+<p>For this tutorial, we’ll be using a docker container version of MySQL database server from the  
+    <a href="https://hub.docker.com/_/mysql" rel="nofollow" target="_blank"> Docker Hub MySQL Official Repository </a>
+.</p>
+<p>The procedure to setup remote access to the MySQL DB in your Raspberry Pi is the same irrespective of whether you run the docker version of MySQL or the native binary version.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ docker run --name mysql -e MYSQL_ROOT_PASSWORD=test123 -p 3306:3306 -d mysql:8.0
+295305d8f3f17445f5890d5af5a82dda2c4298cbdf1c26717d70a62936e00237
+</pre>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED       STATUS       PORTS                               NAMES
+295305d8f3f1   mysql:8.0   "docker-entrypoint.s…"   3 seconds ago   Up 3 seconds   0.0.0.0:3306->3306/tcp, 33060/tcp   mysql
+</pre>
+<p>Now let’s try connecting to this MySQL database container using a local mysql client on the server(which is also the Docker host).</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ mysql -h localhost --protocol=tcp  -uroot  -v -p 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 25
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+mysql>
+</pre>
+<p>Let’s create a new database named <code>school_db</code>.</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">
+mysql> create database school_db;
+Query OK, 1 row affected (0.02 sec)
+</pre>
+Next, connect to the database.
+<pre class="p-4 bg-background rounded overflow-x-auto">
+mysql> connect school_db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    28
+Current database: school_db
+</pre></p>
+<p>Create a table named <code>student</code> in the <code>school_db</code> database with the following columns: (Name, Age, Class).</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+mysql> create table student (name varchar(255), age int, class varchar(255));
+</pre>
+<p>Insert few students&rsquo; data into the table as shown below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+mysql> insert into student (name, age, class) values ('james', 10, '5th grade')
+mysql> insert into student (name, age, class) values ('thomas', 9, '4th grade');
+mysql> insert into student (name, age, class) values ('percy', 11, '6th grade');
+</pre>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+mysql> select * from student;
++--------+------+-----------+
+| name   | age  | class     |
++--------+------+-----------+
+| james  |   10 | 5th grade |
+| thomas |    9 | 4th grade |
+| percy  |   11 | 6th grade |
++--------+------+-----------+
+3 rows in set (0.00 sec)
+
+</pre>
+<p>Now to access this remote MySQL database server <code>securely</code> from an outside network such as your home or coffee shop, we need to install the SocketXP Remote Access agent on this server.</p>
+<h2 id="socketxp-agent-setup-on-the-database-server">SocketXP Agent Setup on the Database Server</h2>
+<p>Follow the steps below to download and install SocketXP agent on your remote database server.</p>
+<h3 id="step-1-download-and-install">Step #1: Download and Install</h3>
+<p>Follow the <a href="/download">download and install</a> instructions in the <a href="/download">SocketXP website</a> to install the appropriate SocketXP agent on your server.  SocketXP agent can work on any OS (Windows, Linux, and MacOS) and any hardware platforms (x86_64, Intel, AMD, ARM, RISC, Apple M1/M2)</p>
+<h3 id="step2-register-the-agent">Step#2: Register the agent</h3>
+<p>Next, you need to register the SocketXP agent installed on your server with the SocketXP Cloud Gateway using the command below:
+<pre class="p-4 bg-background rounded overflow-x-auto">
+socketxp login &lt;your-auth-token-goes-here&gt; --iot-device-name “MySQL DB”
+</pre></p>
+<p>Visit <a href="https://portal.socketxp.com">SocketXP Web Portal</a> and sign up for free, to fetch an auth token for device registration.</p>
+<h3 id="step-3-create-a-secure-ssltls-tunnel">Step #3: Create a secure SSL/TLS tunnel</h3>
+<p>Next, use the below command to create a secure SSL/TLS tunnel between the MySQL DB service running in your server at TCP port 3306 to the SocketXP Gateway using the SocketXP agent.
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ sudo socketxp connect tcp://127.0.0.1:3306 
+
+Connected to SocketXP Cloud Gateway.
+Access the TCP service securely using the SocketXP agent in IoT Slave Mode.
+</pre></p>
+<h3 id="step-4-connect-to-the-remote-mysql-db-from-a-local-machine-">Step #4: Connect to the remote MySQL DB from a local machine :</h3>
+<p>Follow the instructions in step #1 to download and install the SocketXP agent on your laptop or any local device from which you want to connect to your remote MySQL database server.</p>
+<p>Use the below command to run the SocketXP agent in IoT Slave Mode(Local Proxy Mode) on your laptop:
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ sudo socketxp connect tcp://localhost:3000 --iot-slave --peer-device-id 4853b37f-616d-4662-91bb-b394ce84fc1b --peer-device-port 3306 --authtoken &lt;auth token&gt;
+
+Listening for TCP connections at:
+Local URL -> tcp://localhost:3000
+</pre></p>
+<p>Where port 3000 is the local proxy port at which the SocketXP agent is listening for connections from any MySQL client. You could specify any free port in your laptop as a local proxy port instead of 3000 (say for example, port 3306).</p>
+<p>You could find the device ID of your device from the SocketXP Web Portal page in the Devices section.  Alternatively, you could use the <code>--peer-device-name</code> option instead of <code>--peer-device-id</code> and input the device name (for eg: &ldquo;MySQL DB&rdquo;, in this example.) to connect.</p>
+<p><strong>Security Note:</strong>
+SocketXP IoT Agent when run in IoT Slave Mode acts like a local proxy server.  It proxies all connections to a user-specified local port (3000 in the example above) in your laptop/PC to the SocketXP IoT Cloud Gateway using a secure SSL/TLS tunnel.  Also the SocketXP IoT Agent authenticates itself with the SocketXP IoT Cloud Gateway using your auth token.  This ensures that only legitimate, authenticated users are permitted to access your remote IoT devices. SocketXP ensures <code>Zero-Trust security</code> on all connected devices.</p>
+<p>Next, you need to install the MySQL client on your laptop or local machine, so that you can connect to your remote MySQL database running in the Raspberry Pi via the SocketXP secure tunnel.</p>
+<p>[Potentially, you can have a Python program running in this local machine (laptop) that wants to connect to your remote MySQL database.  But for keeping this tutorial simple, we&rsquo;ll be using the MySQL client example first. Later, we&rsquo;ll see how to connect to the remote MySQL DB using a Python program running in your laptop or PC.]</p>
+<p>Now open a new terminal window in your laptop.</p>
+<p>Using the MySQL client, you can connect to your remote MySQL database server as shown below:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ mysql -h localhost --protocol=tcp --port 3000 -uroot  -p 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 29
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+</pre>
+<p>In parallel, you&rsquo;ll see the below message on the other terminal window where you are running the SocketXP agent in IoT Slave Mode:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ sudo socketxp connect tcp://localhost:3000 --iot-slave --peer-device-id 4853b37f-616d-4662-91bb-b394ce84fc1b --peer-device-port 3306 --authtoken &lt;auth token&gt;
+
+Listening for TCP connections at:
+Local URL -> tcp://localhost:3000
+<b>Dialing SocketXP IoT Gateway for device (4853b37f-616d-4662-91bb-b394ce84fc1b, ) port (3306) remote access...</b>
+
+
+</pre>
+<p>Now, switch back to the terminal window where you are running the MySQL client and execute a test query, as shown below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+mysql> connect school_db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    30
+Current database: school_db
+
+</pre>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+
+mysql> select * from student;
++--------+------+-----------+
+| name   | age  | class     |
++--------+------+-----------+
+| james  |   10 | 5th grade |
+| thomas |    9 | 4th grade |
+| percy  |   11 | 6th grade |
++--------+------+-----------+
+3 rows in set (0.61 sec)
+
+mysql> 
+
+</pre>
+<p>We are able to successfully connect to our remote MySQL database and execute a query remotely.</p>
+<h2 id="simple-mysql-client-using-python">Simple MySQL Client using Python</h2>
+<p>Now, let&rsquo;s use a simple MySQL client program written in Python to demonstrate the database remote access usecase.</p>
+<p>Here is a simple MySQL client written in Python using the <code>mysql.connector</code> package.</p>
+<p>You need to install the <code>mysql.connector</code> package using the following command:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+python3 -m pip install mysql-connector-python
+</pre>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# mysql_client.py
+import mysql.connector  
+  
+# Create a connection to the MySQL DB   
+myconn = mysql.connector.connect(host = "localhost", port = 3000, 
+                user = "root", passwd = "pa$$word123", database = "school_db", 
+                auth_plugin='mysql_native_password')  
+cur = myconn.cursor()  
+cur.execute("select * from student")  
+result = cur.fetchall() 
+
+# Print the student table.
+for x in result:  
+    print(x);  
+
+myconn.close()  
+</pre>
+<p>Now, let&rsquo;s execute the python program to fetch the student details:</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ python3 mysql-client.py 
+('james', 10, '5th grade')
+('thomas', 9, '4th grade')
+('percy', 11, '6th grade')
+</pre>
+<p>We are able to successfully connect to our remote MySQL database and execute a query remotely.</p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>Securely connecting to a remote database such as MySQL DB, MariaDB or any DB running in your Raspberry Pi is crucial.</p>
+<p>In this article, you have learnt how to securely remote connect to a MySQL database running in a Raspberry Pi behind NAT router and firewall using <a href="/iot-remote-access">SocketXP IoT Remote Access solution</a>.</p>
+<p>You can use the same procedure to remote access any database - MySQL, Mariadb, GridDB, Postgresql etc. - over the internet.</p>
+<p>If you face any issues or have any questions, please write to us at: <a href="mailto:support@socketxp.com">support@socketxp.com</a></p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

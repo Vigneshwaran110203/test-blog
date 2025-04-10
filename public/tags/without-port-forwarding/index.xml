@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Without Port Forwarding on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/without-port-forwarding/</link>
+    <description>Recent content in Without Port Forwarding on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/without-port-forwarding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Share Your Linux Terminal with Your Team Members</title>
+      <link>http://localhost:51627/iot/linux-terminal-sharing-ssh-session-sharing/</link>
+      <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/linux-terminal-sharing-ssh-session-sharing/</guid>
+      <description>&lt;p&gt;SocketXP is a powerful tool for securely sharing your Linux terminal or SSH session with people you trust to quickly perform a joint debugging. Your customers or team members can connect to your Linux terminal session via a browser over HTTPS protocol using a public web URL.&lt;/p&gt;&#xA;&lt;p&gt;In this article, we will discuss how to configure and setup SocketXP in your Linux machine or device so that you can share your Linux terminal with your team members, customers or anyone you trust.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access SSH From Anywhere</title>
+      <link>http://localhost:51627/iot/remote-access-ssh-from-anywhere/</link>
+      <pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-ssh-from-anywhere/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to securely remote access your Linux (SSH) server or device from anywhere in the world, making it easier than ever to remotely manage your Linux server.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the Linux server is its ability to be accessed remotely, which allows you to control and manage your Linux server from another machine over the internet.&lt;/p&gt;&#xA;&lt;p&gt;One common method to remotely access a Linux server is using &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell/&#34;&gt;Secure Shell (SSH)&lt;/a&gt;, a network protocol that provides a secure way to communicate with a remote device.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access SSH Without Port Forwarding</title>
+      <link>http://localhost:51627/iot/remote-access-ssh-without-port-forwarding/</link>
+      <pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-ssh-without-port-forwarding/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to securely remote access your Linux or Ubuntu Secure Shell (SSH) server over the internet without setting up port forwarding in your router or pinholing your firewall, making it easier than ever to manage your Linux server from anywhere in the world.&lt;/p&gt;&#xA;&lt;p&gt;One of the key features of the Linux server is its ability to be accessed remotely, which allows you to control and manage your Linux server from another machine over the internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>IoT Remote Access, Control and Management Over the Internet</title>
+      <link>http://localhost:51627/iot/iot-remote-access-control-over-the-internet/</link>
+      <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/iot-remote-access-control-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll discuss how to remotely access, control and manage your IoT devices from outside of our home or office network over the internet, allowing you to remotely manage your IoT device from anywhere.&lt;/p&gt;&#xA;&lt;p&gt;IoT is quickly becoming popular worldwide because of the unlimited workflow automation opportunities that comes with it. However, if not managed properly, these IoT devices can become a liability and lead to customer churn, resulting in lost revenue.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

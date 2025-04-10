@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenSSH Client on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/openssh-client/</link>
+    <description>Recent content in OpenSSH Client on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/openssh-client/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remote Access IoT SSH over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-iot-ssh-over-the-internet/</link>
+      <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-iot-ssh-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to configure and setup remote access to your IoT Secure Shell(SSH) command line over the internet.&lt;/p&gt;&#xA;&lt;p&gt;The Internet of Things (IoT) has revolutionized the way we interact with the world around us.&lt;/p&gt;&#xA;&lt;p&gt;With the ability to connect and control devices from anywhere in the world, IoT technology has brought convenience and efficiency to our daily lives.&lt;/p&gt;&#xA;&lt;p&gt;However, with this increased connectivity comes the need for secure remote access to these devices. One way to achieve this is through the use of &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell/&#34;&gt;Secure Shell (SSH)&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

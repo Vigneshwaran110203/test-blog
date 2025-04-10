@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>Remote Access to MQTT Broker Behind NAT Router or Firewall over the Internet</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">Remote Access to MQTT Broker Behind NAT Router or Firewall over the Internet</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">Remote Access to MQTT Broker Behind NAT Router or Firewall over the Internet</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>May 21, 2021
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#setup-socketxp-iot-agent-for-mqtt-broker-remote-access">Setup SocketXP IoT Agent for MQTT Broker Remote Access</a></li>
+    <li><a href="#connect-iot-devices-to-the-mqtt-broker-in-iot-slave-mode">Connect IoT devices to the MQTT Broker in IoT Slave Mode</a></li>
+    <li><a href="#subscribe-to-a-topic">Subscribe to a topic</a></li>
+    <li><a href="#publish-to-the-topic">Publish to the topic</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remote-access-mqtt-broker-behind-nat-router-firewall-over-the-internet/" title="Remote Access to MQTT Broker Behind NAT Router or Firewall over the Internet">
+                        <img src="/assets/img/mqtt-remote-access/mqtt-broker-remote-access.png" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#setup-socketxp-iot-agent-for-mqtt-broker-remote-access">Setup SocketXP IoT Agent for MQTT Broker Remote Access</a></li>
+    <li><a href="#connect-iot-devices-to-the-mqtt-broker-in-iot-slave-mode">Connect IoT devices to the MQTT Broker in IoT Slave Mode</a></li>
+    <li><a href="#subscribe-to-a-topic">Subscribe to a topic</a></li>
+    <li><a href="#publish-to-the-topic">Publish to the topic</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this article, we&rsquo;ll discuss how to securely connect and remotely access a private MQTT Broker located inside your office or home network behind a NAT router or a Firewall over the internet. We&rsquo;ll use the open source <a href="https://mosquitto.org/">Mosquitto MQTT broker</a> and client for this demo.</p>
+<p>Remote access to a private MQTT broker is required when IoT devices and sensors are placed remotely in customer sites or in some remote locations in the open fields to monitor and measure the environmental factors.</p>
+<p>Data collected from the sensors needs to be streamed to the MQTT broker so that MQTT subscribers of an MQTT topic could receive the published data for further processing and analysis.  MQTT broker and clients follow the pub-sub model.</p>
+<p>You can find the instructions to <a href="https://mosquitto.org/download/">download and installMosquitto MQTT broker on your private server here</a> .</p>
+<p>Let&rsquo;s see how to setup remote access to an MQTT broker using SocketXP IoT Remote Access Platform.</p>
+<h2 id="setup-socketxp-iot-agent-for-mqtt-broker-remote-access">Setup SocketXP IoT Agent for MQTT Broker Remote Access</h2>
+<p>You need to download and install a simple SocketXP IoT agent on your IoT devices and the server where your MQTT broker runs. You can find the instructions to<a href="https://www.socketxp.com/download">download and install SocketXP IoT Agent here</a>.</p>
+<p>Next, connect the MQTT Broker with the SocketXP IoT Cloud Gateway using the following command.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ socketxp connect tcp://127.0.0.1:1883 
+
+Connected to SocketXP Cloud Gateway.
+Access the TCP service securely using the SocketXP agent in IoT Slave Mode.</pre>
+<h2 id="connect-iot-devices-to-the-mqtt-broker-in-iot-slave-mode">Connect IoT devices to the MQTT Broker in IoT Slave Mode</h2>
+<p>Next, setup SocketXP agent to run in IoT Slave Mode in all your IoT devices (both MQTT subscriber devices and the publisher devices)</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ socketxp connect tcp://localhost:3883 --iot-slave --peer-device-id 22312adsf-233434-18042021 --peer-device-port 1883 --authtoken &lt;auth token&gt;
+
+Listening for TCP connections at:
+Local URL -> tcp://localhost:3883</pre>
+<p>You shall find the device ID of the device from the SocketXP Portal in the IoT Devices section.</p>
+<h2 id="subscribe-to-a-topic">Subscribe to a topic</h2>
+<p>Make your IoT devices to subscribe to a topic they are interested in listening, so that they could take some action like powering ON a bulb. In the following example, the IoT device subscribes to the topic &ldquo;office/floor1/bulb1&rdquo;</p>
+<p>Note: port 3883 is the local TCP port on which MQTT broker is reachable via the SocketXP agent running in IoT Slave Mode, providing secure TLS tunnel to the MQTT Broker.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ mosquitto_sub -h 127.0.0.1 -t "office/floor1/bulb1" -d -p 3883 
+Client mosq-Q9Qsreqpu6epUSQdMH sending CONNECT
+Client mosq-Q9Qsreqpu6epUSQdMH received CONNACK (0)
+Client mosq-Q9Qsreqpu6epUSQdMH sending SUBSCRIBE (Mid: 1, Topic: office/floor1/bulb1, QoS: 0, Options: 0x00)
+Client mosq-Q9Qsreqpu6epUSQdMH received SUBACK
+Subscribed (mid: 1): 0</pre>
+<h2 id="publish-to-the-topic">Publish to the topic</h2>
+<p>Now it&rsquo;s time to publish some message to the topic &ldquo;office/floor1/bulb1&rdquo;. Again use the local TCP port 3883 and local host IP address 127.0.0.1 to reach the MQTT Broker via the SocketXP agent running in IoT slave mode.</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">$ mosquitto_pub -h 127.0.0.1 -p 3883 -t "office/floor1/bulb1" -m "ON" -d
+Client mosq-dAaaept2na6Hz8vqgV sending CONNECT
+Client mosq-dAaaept2na6Hz8vqgV received CONNACK (0)
+Client mosq-dAaaept2na6Hz8vqgV sending PUBLISH (d0, q0, r0, m1, 'office/floor1/bulb1', ... (2 bytes))
+Client mosq-dAaaept2na6Hz8vqgV sending DISCONNECT
+$</pre>
+Check if the subscriber has received the &ldquo;ON&rdquo; message sent to the topic.</p>
+<p><pre class="p-4 bg-background rounded overflow-x-auto">$ mosquitto_sub -h 127.0.0.1 -t "office/floor1/bulb1" -d -p 3883 
+...
+...
+Client mosq-Q9Qsreqpu6epUSQdMH sending PINGREQ
+Client mosq-Q9Qsreqpu6epUSQdMH received PINGRESP
+Client mosq-Q9Qsreqpu6epUSQdMH received PUBLISH (d0, q0, r0, m0, 'office/floor1/bulb1', ... (2 bytes))
+ON</pre>
+We see that the &ldquo;ON&rdquo; message has been received by the subscriber.</p>
+<p>SocketXP eliminates the need to host your MQTT broker in a public cloud infrastructure. You could host the MQTT broker server in-house in a private network behind a NAT router or Firewall.  SocketXP IoT Remote Access solution provides simple and secure remote connections to your IoT devices and edge servers.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

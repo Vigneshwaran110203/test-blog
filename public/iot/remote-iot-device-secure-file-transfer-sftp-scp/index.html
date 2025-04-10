@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>Securely Transfer Files to your Remote IoT Devices - A Step-by-Step Guide</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">Securely Transfer Files to your Remote IoT Devices - A Step-by-Step Guide</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">Securely Transfer Files to your Remote IoT Devices - A Step-by-Step Guide</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Feb 27, 2025
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#understanding-ssh">Understanding SSH</a>
+      <ul>
+        <li><a href="#what-is-ssh">What is SSH?</a></li>
+        <li><a href="#how-does-ssh-work">How does SSH work?</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-are-sftp-and-scp">What are SFTP and SCP?</a>
+      <ul>
+        <li><a href="#sftp-ssh-file-transfer-protocol">SFTP (SSH File Transfer Protocol):</a></li>
+        <li><a href="#scp-secure-copy-protocol">SCP (Secure Copy Protocol):</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-install-and-setup-ssh-server">How to install and setup SSH server</a></li>
+    <li><a href="#why-is-ssh-important-for-remote-access">Why is SSH important for remote access?</a></li>
+    <li><a href="#remotely-connecting-to-iot-device-via-ssh">Remotely connecting to IoT device via SSH</a></li>
+    <li><a href="#what-is-socketxp">What is SocketXP</a></li>
+    <li><a href="#how-socketxp-iot-remote-access-solution-works">How SocketXP IoT Remote Access solution works</a>
+      <ul>
+        <li><a href="#step-1-download-and-install">Step 1:  Download and Install</a></li>
+        <li><a href="#step-2-get-your-authentication-token">Step 2: Get your Authentication Token</a></li>
+        <li><a href="#step-3-create-socketxp-ssl-tunnel-endpoint-for-remote-ssh">Step 3: Create SocketXP SSL Tunnel Endpoint for Remote SSH</a></li>
+        <li><a href="#secure-file-transfer-using-third-party-tools-filezilla-putty-psftp-openssh-sftpscp-clients">Secure File Transfer using Third-Party Tools: Filezilla, PuTTY PSFTP, OpenSSH SFTP/SCP Clients</a></li>
+        <li><a href="#connecting-to-your-iot-ssh-through-socketxp-local-proxy">Connecting to your IoT SSH through SocketXP Local Proxy</a></li>
+        <li><a href="#secure-file-transfer-using-puttys-pstfp-client">Secure File Transfer using PuTTY&rsquo;s PSTFP Client</a></li>
+        <li><a href="#single-touch-installation-and-configuration-command">Single-Touch Installation and Configuration Command</a></li>
+        <li><a href="#socketxp-ssh-public-key-management-tool">SocketXP SSH Public Key Management Tool:</a></li>
+      </ul>
+    </li>
+    <li><a href="#need-assistance">Need Assistance?</a></li>
+    <li><a href="#socketxp-features">SocketXP Features:</a></li>
+    <li><a href="#socketxp-scaling-and-performance">SocketXP Scaling and Performance</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+    <li><a href="#iot-remote-ssh-security---dos-and-donts">IoT Remote SSH Security - Do&rsquo;s and Don&rsquo;ts</a></li>
+    <li><a href="#what-is-iot">What is IoT</a></li>
+    <li><a href="#remote-ssh-access-to-iot-devices">Remote SSH access to IoT devices</a></li>
+    <li><a href="#insecure-methods-used-to-remotely-access-iot-devices">Insecure methods used to remotely access IoT devices</a></li>
+    <li><a href="#why-socketxp-iot-remote-access-solution-is-more-secure">Why SocketXP IoT Remote Access Solution Is More Secure?</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/remote-iot-device-secure-file-transfer-sftp-scp/" title="Securely Transfer Files to your Remote IoT Devices - A Step-by-Step Guide">
+                        <img src="/assets/img/raspberry-pi-remote-ssh-access/iot-remote-ssh.png" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#understanding-ssh">Understanding SSH</a>
+      <ul>
+        <li><a href="#what-is-ssh">What is SSH?</a></li>
+        <li><a href="#how-does-ssh-work">How does SSH work?</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-are-sftp-and-scp">What are SFTP and SCP?</a>
+      <ul>
+        <li><a href="#sftp-ssh-file-transfer-protocol">SFTP (SSH File Transfer Protocol):</a></li>
+        <li><a href="#scp-secure-copy-protocol">SCP (Secure Copy Protocol):</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-install-and-setup-ssh-server">How to install and setup SSH server</a></li>
+    <li><a href="#why-is-ssh-important-for-remote-access">Why is SSH important for remote access?</a></li>
+    <li><a href="#remotely-connecting-to-iot-device-via-ssh">Remotely connecting to IoT device via SSH</a></li>
+    <li><a href="#what-is-socketxp">What is SocketXP</a></li>
+    <li><a href="#how-socketxp-iot-remote-access-solution-works">How SocketXP IoT Remote Access solution works</a>
+      <ul>
+        <li><a href="#step-1-download-and-install">Step 1:  Download and Install</a></li>
+        <li><a href="#step-2-get-your-authentication-token">Step 2: Get your Authentication Token</a></li>
+        <li><a href="#step-3-create-socketxp-ssl-tunnel-endpoint-for-remote-ssh">Step 3: Create SocketXP SSL Tunnel Endpoint for Remote SSH</a></li>
+        <li><a href="#secure-file-transfer-using-third-party-tools-filezilla-putty-psftp-openssh-sftpscp-clients">Secure File Transfer using Third-Party Tools: Filezilla, PuTTY PSFTP, OpenSSH SFTP/SCP Clients</a></li>
+        <li><a href="#connecting-to-your-iot-ssh-through-socketxp-local-proxy">Connecting to your IoT SSH through SocketXP Local Proxy</a></li>
+        <li><a href="#secure-file-transfer-using-puttys-pstfp-client">Secure File Transfer using PuTTY&rsquo;s PSTFP Client</a></li>
+        <li><a href="#single-touch-installation-and-configuration-command">Single-Touch Installation and Configuration Command</a></li>
+        <li><a href="#socketxp-ssh-public-key-management-tool">SocketXP SSH Public Key Management Tool:</a></li>
+      </ul>
+    </li>
+    <li><a href="#need-assistance">Need Assistance?</a></li>
+    <li><a href="#socketxp-features">SocketXP Features:</a></li>
+    <li><a href="#socketxp-scaling-and-performance">SocketXP Scaling and Performance</a></li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+    <li><a href="#iot-remote-ssh-security---dos-and-donts">IoT Remote SSH Security - Do&rsquo;s and Don&rsquo;ts</a></li>
+    <li><a href="#what-is-iot">What is IoT</a></li>
+    <li><a href="#remote-ssh-access-to-iot-devices">Remote SSH access to IoT devices</a></li>
+    <li><a href="#insecure-methods-used-to-remotely-access-iot-devices">Insecure methods used to remotely access IoT devices</a></li>
+    <li><a href="#why-socketxp-iot-remote-access-solution-is-more-secure">Why SocketXP IoT Remote Access Solution Is More Secure?</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>In this article, we will show you how to securely transfer files to and from your remote IoT or embedded Linux devices using SCP/SFTP.</p>
+<p>The Internet of Things (IoT) has revolutionized the way we interact with the world around us.</p>
+<p>With the ability to connect and control devices from anywhere in the world, IoT technology has brought convenience and efficiency to our daily lives.</p>
+<p>However, with this increased connectivity comes the need for secure transfer of file to/from these devices. One way to achieve this is through the use of <a href="/iot/secure-file-transfer-sftp-scp">SFTP or SCP</a> tools.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-secure-file-transfer-sftp-scp/secure-file-transfer-sftp-scp-filezilla-remote-iot-device-drag-n-drop-files-gui.png" alt="IoT Remote SSH and Secure File Transfer using Filezilla, PuTTY PSFTP, GUI based secure file transfer, drag-n-drop file transfer" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>By the end of this article, you will have a better understanding of how to use SSH, SFTP, and SCP to securely access, transfer files to/from your IoT devices such as Nvidia Jetson Nano, Arduino, Raspberr Pi or any embedded Linux device over the internet from an outside network.</p>
+<h2 id="overview">Overview</h2>
+<p>Here is an overview of what we plan to achieve in this article:</p>
+<ol>
+<li>
+<p>Install and setup SSH server in your Linux based IoT device.  The SSH server will act like a secure file server that understands SFTP/SCP protocols.  We will use SCP/SFTP client software (PuTTY PSFTP/Filezilla) that implements SSH based secure file transfer protocols such as SFTP/SCP to transfer the files.</p>
+</li>
+<li>
+<p>Install and setup SocketXP agent in your IoT device.  SocketXP will create an SSL/TLS based reverse proxy connection to the SSH server running in your IoT device using the <a href="/iot-remote-access">SocketXP Remote Access Solution</a>.  No port forwarding setup required in your WiFi router or Firewall settings.  You can remotely connect to your devices behind a NAT router and firewall, over the internet.</p>
+</li>
+<li>
+<p>Remotely upload or download files to or from your IoT device from the SocketXP Web Portal or using your favorite SSH, SFTP, SCP clients such as Filezilla, PuTTY&rsquo;s PSFTP or OpenSSH SCP/SFTP command line client.</p>
+</li>
+</ol>
+<h2 id="understanding-ssh">Understanding SSH</h2>
+<h3 id="what-is-ssh">What is SSH?</h3>
+<p>SSH stands for Secure Shell, which is a cryptographic network protocol for secure remote access to devices over an unsecured network such as the internet.</p>
+<h3 id="how-does-ssh-work">How does SSH work?</h3>
+<p>SSH uses encryption to secure the connection between two devices. It creates a secure tunnel through which data can be transmitted and received.</p>
+<p>SSH uses a client server model, wherein the SSH server runs in your IoT device and the SSH client runs in your access devices such as your PC or Laptop.</p>
+<h2 id="what-are-sftp-and-scp">What are SFTP and SCP?</h2>
+<h3 id="sftp-ssh-file-transfer-protocol">SFTP (SSH File Transfer Protocol):</h3>
+<p>SFTP is a secure file transfer protocol that operates over the SSH (Secure Shell) protocol.
+It provides a secure, interactive session for transferring files, similar to FTP, but with encryption.
+SFTP allows for various file operations, including uploading, downloading, renaming, deleting, and managing directories.</p>
+<h3 id="scp-secure-copy-protocol">SCP (Secure Copy Protocol):</h3>
+<p>SCP is also a secure file transfer protocol that uses SSH.
+It&rsquo;s designed for simple file transfers between a local and remote host or between two remote hosts.
+SCP is primarily used for copying files and directories, and it&rsquo;s less interactive than SFTP.</p>
+<h2 id="how-to-install-and-setup-ssh-server">How to install and setup SSH server</h2>
+<p>You need to <a href="/iot/install-setup-ssh-server-client-iot-device">download, install and setup SSH server in your IoT device</a> so that you could connect to it remotely via the internet.</p>
+<p>You also need to <a href="/iot/install-setup-ssh-server-client-iot-device">download and install SSH client on your access device</a>, such as your laptop or PC.</p>
+<h2 id="why-is-ssh-important-for-remote-access">Why is SSH important for remote access?</h2>
+<p>SSH allows for remote management and monitoring of these devices from anywhere in the world. By using SSH, users can securely access their IoT devices and perform tasks such as updating firmware, changing settings, and troubleshooting issues.</p>
+<h2 id="remotely-connecting-to-iot-device-via-ssh">Remotely connecting to IoT device via SSH</h2>
+<p>Let&rsquo;s say you have an IoT device in your office or in your customer location or far out in the field.</p>
+<p>Let&rsquo;s say the device is connected to the internet through a WiFi network or SIM card or cellular internet or satellite internet.</p>
+<p>You want to remotely connect to the device via SSH over the internet, so that you could execute a remote command in the device terminal.</p>
+<p>You need to ensure that SSH is enabled in your IoT device and the SSH server is up and running in your device.</p>
+<p>To remotely access the SSH server, you need an <a href="/iot-remote-access">IoT secure remote access solution</a> like <a href="/">SocketXP</a> to remotely SSH/SFTP/SCP into your IoT device in 3 simple steps.</p>
+<h2 id="what-is-socketxp">What is SocketXP</h2>
+<p><a href="/">SocketXP</a> is a cloud based <a href="/iot/iot-device-management-platform">IoT remote access and device management solution</a> that provides remote connectivity to your IoT devices such as a Raspberry Pi, Nvidia Jetson, or any embedded Linux devices behind NAT router or firewall over the internet using secure SSL/TLS VPN tunnels. </p>
+<p><a href="/iot-remote-access">SocketXP IoT Remote Access Solution</a> does not require any changes to your gateway NAT router configuration.  No port forwarding setup or firewall pinholing is required, when you use SocketXP.</p>
+<p>SocketXP creates a secure SSL/TLS encrypted tunnel through your firewall, NAT router and over the internet for secure remote SSH access, similar to how a secure VPN solution works. VPN also uses the same SSL/TLS encryption technology.</p>
+<p>SocketXP uses two-factor authentication(2FA) to authenticate users before they could SSH login to any remote device.</p>
+<h2 id="how-socketxp-iot-remote-access-solution-works">How SocketXP IoT Remote Access solution works</h2>
+<p>First, you need to install a SocketXP IoT agent on your IoT device. </p>
+<p>The SocketXP agent would connect the device to the SocketXP IoT Cloud Gateway by creating a secure SSL/TLS reverse proxy tunnel.</p>
+<p>You could then remote SSH into the IoT device from the SocketXP IoT Cloud Gateway&rsquo;s web portal page (via this secure SSL/TLS tunnel).</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/raspberry-pi-remote-ssh-access/iot-remote-ssh.png" alt="IoT Remote SSH" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Follow the below 3 steps to setup SocketXP IoT agent and remote SSH into your IoT using SocketXP IoT Remote Access solution.  We will also show you how to securely transfer file to and from your devices using SFTP/SCP client tools.</p>
+<h3 id="step-1-download-and-install">Step 1:  Download and Install</h3>
+<p><a href="/download/">Download and install</a> the SocketXP IoT agent on your IoT device first.</p>
+<h3 id="step-2-get-your-authentication-token">Step 2: Get your Authentication Token</h3>
+<p>Sign up at <a href="%22https://portal.socketxp.com/%22">https://portal.socketxp.com</a> and get your authentication token.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/AuthToken.jpg" alt="SocketXP Portal - Authtoken for IoT Remote SSH SFTP/ SCP Access" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Use the following command to login to the SocketXP IoT Cloud Gateway using the auth token.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ socketxp login [your-auth-token-goes-here]
+</pre>
+<h3 id="step-3-create-socketxp-ssl-tunnel-endpoint-for-remote-ssh">Step 3: Create SocketXP SSL Tunnel Endpoint for Remote SSH</h3>
+<p>Use the following command to create a secure and private SSL reverse proxy tunnel endpoint at the SocketXP IoT Cloud Gateway.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto"> $ socketxp connect tcp://localhost:22
+
+Connected to SocketXP Cloud Gateway.
+Access the TCP service securely using the SocketXP agent in IoT Slave Mode.
+</pre>
+<p><strong>Note:</strong></p>
+<p>From the SocketXP web portal&rsquo;s &ldquo;Devices&rdquo; page, click the &ldquo;terminal&rdquo; icon to SSH into your remote device.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-remote-ssh-access/socketxp-web-portal-iot-devices-summary-page.png" alt="SocketXP IoT SSH Remote Access from Web Browser" style="max-width:80%;max-height:100%;">
+</div>
+
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-remote-ssh-access/socketxp-ssh-login-password-authentication.png" alt="IoT SSH Remote Access using SSH Password Based Authentication" style="max-width:40%;max-height:;">
+</div>
+
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-remote-ssh-access/socketxp-ssh-web-terminal-using-xterm.png" alt="IoT SSH Remote Access using Web Terminal and xtermjs" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>You have the option of using SSH password based authetication or SSH public private key based authentication to login to your remote devices.  SocketXP will automatically create and download a public key to your remote device.  It does key mamagement behind the screen automatically.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-remote-ssh-access/socketxp-ssh-login-public-key-authentication.png" alt="IoT SSH Remote Access using SSH Public Private Key Based Authentication" style="max-width:40%;max-height:;">
+</div>
+
+<p>For secure file transfer, click the &ldquo;File Upload&rdquo; or &ldquo;File Download&rdquo; icon button next to your IoT device.  It will open up a SCP dialog window.  Follow the instructions to securely transfer a file using SCP from the web client.</p>
+<p><strong>File Download Dialog Window</strong>:
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-remote-ssh-access/socketxp-secure-file-transfer-SFTP-SCP-file-download.png" alt="IoT SSH secure file transfer using SCP/SFTP PuTTY PSTF Filezilla OpenSSH SCP/SFTP client" style="max-width:40%;max-height:;">
+</div>
+</p>
+<p>If the file download is successfull, it will open up a file browser window to select a folder location in your local machine where to store the download file.  If there was any login error or error finding the source file in the IoT device, the download will abort.</p>
+<p><strong>File Upload Dialog Window</strong>:
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-remote-ssh-access/socketxp-secure-file-transfer-SFTP-SCP-file-upload.png" alt="IoT SSH secure file transfer using SCP/SFTP PuTTY PSTF Filezilla OpenSSH SCP/SFTP client" style="max-width:40%;max-height:;">
+</div>
+</p>
+<p>For the security of your device, SocketXP IoT Solution doesn&rsquo;t create any public TCP tunnel endpoints that can be connected by any SSH client from the internet.</p>
+<p>SocketXP private tunnel endpoints are not exposed to the internet and can be accessed only using the SocketXP agent (using the auth token of the user) or through the XTERM terminal in the SocketXP Portal page.</p>
+<p>More importantly, this also means port scanners or hackers from the internet cannot access your IoT device SSH server port.</p>
+<h3 id="secure-file-transfer-using-third-party-tools-filezilla-putty-psftp-openssh-sftpscp-clients">Secure File Transfer using Third-Party Tools: Filezilla, PuTTY PSFTP, OpenSSH SFTP/SCP Clients</h3>
+<p>This is an alternate method for remotely connecting and transfering file to/from your IoT device from a remote location using the SocketXP solution.</p>
+<p>If you don&rsquo;t want to remotely access your IoT device from the SocketXP web portal and you want to access it using your favorite third-party SSH and SFTP/SCP client software such as OpenSSH SSH/SFTP/SCP client, PuTTY, Filezilla, SecureCRT then follow the instructions below.</p>
+<p>First <a href="/download">download and install</a> the regular SocketXP agent software on your accessing device (such as a laptop running Windows or Mac OS). This is in-addition to installing the agent in your IoT device, we did in the previous section.  Why? Hint: Imagine a VPN client connecting to a VPN server.</p>
+<p>Next, configure the agent to run in slave mode using the command option &ldquo;&ndash;iot-slave&rdquo; as shown in the example below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+$ socketxp connect tcp://localhost:3000 --iot-slave --peer-device-id "2233-4455-abcd-34445" --peer-device-port 22 --authtoken &lt;auth token&gt;
+
+Listening for TCP connections at:
+Local URL -&gt; tcp://localhost:3000
+</pre>
+<p>You shall find the device ID of your IoT device from the <a href="https://portal.socketxp.com/#/devices">SocketXP Portal page in the IoT Devices section</a>.</p>
+<p>If your SSH server is configured to run in a non-default SSH port, then you need to specify that in the &ldquo;&mdash;peer-device-port&rdquo; option in the above command, instead of the default port 22.</p>
+<h3 id="connecting-to-your-iot-ssh-through-socketxp-local-proxy">Connecting to your IoT SSH through SocketXP Local Proxy</h3>
+<p>Now you can use any third-party SSH clients to connect to your IoT device&rsquo;s SSH server using the above SocketXP local endpoint, as shown in the below examples.  The examples below use the OpenSSH client tools such as <code>scp</code>, <code>sftp</code>, and <code>scp</code> that are command line based tools.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ ssh -i ~/.ssh/john-private.key john@localhost -p 3000
+</pre>
+<p>Securely transfer files from the remote IoT device to your local machine using the OpenSSH SCP command as shown below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ scp -i ~/.ssh/john-private.key john@localhost:/path/to/remote/file.txt /path/to/local/directory/ -p 3000
+
+file.txt                                      100%   12KB  12.0KB/s   00:00
+</pre>
+<p>Securely transfer files from the local machine to your remote device using the OpenSSH SCP command as shown below.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">$ scp -i ~/.ssh/john-private.key /path/to/local/file.txt john@localhost:/path/to/remote/directory/  -p 3000
+
+file.txt                                      100%   12KB  12.0KB/s   00:00
+</pre>
+<p>Note:</p>
+<ol>
+<li>
+<p>The above method uses SSH private key based authentication to SSH into your IoT device.  You can also login use SSH password based authentication by skipping the &ldquo;-i&rdquo; option in the above command.</p>
+</li>
+<li>
+<p>Secondly, we connect our SSH/SFTP/SCP client tools to our local proxy server listening TCP port 3000 in your local machine.</p>
+</li>
+<li>
+<p>Thirdly, you can use any third-party SSH/SFTP/SCP client tool to securely transfer files to and from your remote IoT devices or embedded Linux devices or any Linux machine/server.</p>
+</li>
+</ol>
+<p>Below we show you the step-by-step instructions on how to securely transfer files using a free SFTP tool named Filezilla.  Filezilla provides a GUI window to login, drag-n-drop files between your local machine and your remote IoT devices.</p>
+<p>Note that Filezilla connects to the localhost IP 127.0.0.1 TCP port 3000 where the  SocketXP agent running as a local proxy server in the IoT Slave Mode is waiting to create secure reverse proxy tunnels between Filezilla and your remote IoT device.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-secure-file-transfer-sftp-scp/secure-file-transfer-sftp-scp-using-filezilla-putty.png" alt="IoT Remote SSH and Secure File Transfer using Filezilla, PuTTY PSFTP, GUI based secure file transfer, drag-n-drop file transfer" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>In the above window, you will notice that we have input the localhost IP address 127.0.0.1 and changed the default SFTP port from 22 to 3000.</p>
+<p>This is required because:</p>
+<ul>
+<li>The Filezilla client should connect to the remote IoT device via the SocketXP agent running locally in &ldquo;IoT Slave&rdquo; mode.</li>
+</ul>
+<blockquote>
+<p><a href="/iot-remote-access">SocketXP Remote Access Solution</a> DOES NOT perform hole-punching or port-forwarding or create any open doors in your NAT router or firewall.  SocketXP DOES NOT create any public IP and port as a proxy for your device&rsquo;s private IP and port.  SocketXP solution creates and uses SSL encrypted reverse proxy tunnels to remotely access your IoT devices in the field.  Moreover, SocketXP agent requires an authentication token to connect to your remote devices.  This is because we care for your device and organization&rsquo;s security and reputation.  Imagine a VPN client-server architecture for better understanding.</p></blockquote>
+<ul>
+<li>
+<p>The SocketXP agent when configured to run in &ldquo;IoT Slave&rdquo; mode will function as a &ldquo;local-proxy server&rdquo;.
+The local-proxy server, listens on local IP 127.0.0.1 and local TCP port 3000.</p>
+</li>
+<li>
+<p>When the local-proxy server receives any TCP connection on the IP 127.0.0.1:3000, it will proxy the connection to the SocketXP IoT Cloud Gateway, which in-turn will proxy/relay the connection to your remote IoT device, after authenticating the auth token provided by the agent.</p>
+</li>
+<li>
+<p>The SocketXP agent creates an SSL encrypted secure reverse proxy tunnel between the Filezilla client and your remote IoT device&rsquo;s SSH server.</p>
+</li>
+</ul>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-secure-file-transfer-sftp-scp/secure-file-transfer-sftp-scp-filezilla-ssh-login.png" alt="IoT Remote SSH and Secure File Transfer using Filezilla, PuTTY PSFTP, GUI based secure file transfer, drag-n-drop file transfer" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Login using your IoT device&rsquo;s login username and password.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-secure-file-transfer-sftp-scp/secure-file-transfer-sftp-scp-host-key-verification.png" alt="IoT Remote SSH and Secure File Transfer using Filezilla, PuTTY PSFTP, GUI based secure file transfer, drag-n-drop file transfer" style="max-width:80%;max-height:100%;">
+</div>
+
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-secure-file-transfer-sftp-scp/secure-file-transfer-sftp-scp-filezilla-putty-view-local-files-remote-files.png" alt="IoT Remote SSH and Secure File Transfer using Filezilla, PuTTY PSFTP, GUI based secure file transfer, drag-n-drop file transfer" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Filezilla securely transfer files (using SFTP) between the local machine and remote device using the SocketXP agent&rsquo;s local-proxy server (that listens on local IP 127.0.0.1 and local TCP port 3000).</p>
+<p>The local-proxy server creates a secure reverse proxy tunnel between the Filezilla client and your remote IoT device&rsquo;s SSH server.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-secure-file-transfer-sftp-scp/secure-file-transfer-sftp-scp-filezilla-remote-iot-device-drag-n-drop-files-gui.png" alt="IoT Remote SSH and Secure File Transfer using Filezilla, PuTTY PSFTP, GUI based secure file transfer, drag-n-drop file transfer" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>You can drag and drop files from the local machine to your remote device or vice-versa, from the GUI window.</p>
+<h3 id="secure-file-transfer-using-puttys-pstfp-client">Secure File Transfer using PuTTY&rsquo;s PSTFP Client</h3>
+<p>Below we show you the step-by-step instructions on how to securely transfer files (using SFTP protocol) to and from your remote IoT device using another free SFTP tool named PuTTY&rsquo;s PSFTP.</p>
+<p>PSFTP is a command line tool that can be accessed from your Windows 10 or Windows 11 machine&rsquo;s &ldquo;terminal&rdquo; window or the &ldquo;command&rdquo; tool.</p>
+<p>Login using your IoT device&rsquo;s username and password.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-secure-file-transfer-sftp-scp/secure-file-transfer-SFTP-SCP-PuTTY-PSFTP-login.png" alt="IoT Remote SSH and Secure File Transfer using PuTTY PSFTP command line file transfer" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Use the &ldquo;get&rdquo; command to copy the file from the remote device to your local machine (Windows 10, for example).</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-secure-file-transfer-sftp-scp/secure-file-transfer-SFTP-SCP-PuTTY-PSFTP.png" alt="IoT Remote SSH and Secure File Transfer using PuTTY PSFTP command line file transfer - file upload to IoT device" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Open another terminal window to verify the contents of the file transferred to your Windows machine&rsquo;s local directory.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-secure-file-transfer-sftp-scp/secure-file-transfer-SFTP-SCP-PuTTY-PSFTP-file-download-file-upload.png" alt="IoT Remote SSH and Secure File Transfer using PuTTY PSFTP command line file transfer - file download from IoT device" style="max-width:80%;max-height:100%;">
+</div>
+
+<h3 id="single-touch-installation-and-configuration-command">Single-Touch Installation and Configuration Command</h3>
+<p>The 3 step instruction explained earlier to setup SocketXP on your IoT device is a tedious process, if you have thousands of IoT devices to install, configure and register.</p>
+<p>With this in mind, SocketXP IoT Remote Access Solution also provides a single-touch installation command for installing and configuring SocketXP IoT Agent on large number IoT devices. </p>
+<p>Copy and paste the single-touch installation and configuration command from the SocketXP Web Portal&rsquo;s devices page to the Linux shell terminal of your IoT device.</p>
+<p>The device registration command shown below will download a shell script that will install, configure, setup SocketXP IoT agent on your IoT device.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/iot-remote-ssh-access/socketxp-web-portal-iot-devices-summary-page.png" alt="SocketXP IoT SSH Remote Access from Web Browser" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>After the command completes, the IoT device would show up as online in the SocketXP Web Portal&rsquo;s &ldquo;Devices&rdquo; page.</p>
+<p>You can connect to it using any SSH client or by clicking the &ldquo;terminal&rdquo; icon shown next to it.</p>
+<h3 id="socketxp-ssh-public-key-management-tool">SocketXP SSH Public Key Management Tool:</h3>
+<p>SSH password based authentication is vulnerable to attacks and generally not recommended for production usecases.  SSH Public Private key based authentication is a secure and recommended method for production usecases.</p>
+<p>By default, SocketXP Web Portal will create and sync a very short-lived single-use SSH public key to your Ubuntu Linux machine, so that you can securely remote login to your Ubuntu Linux from anywhere in the world, without having to use password based authentication. The key will be cleaned up or trashed immediately after the user logs in.</p>
+<p>You should remember that a user can SSH into your IoT or embedded Linux device from the SocketXP web portal, only after a successful SSO login (and 2FA authentication) provided by your SSO OAuth provider such: Microsoft 365 or Google G-Suite.</p>
+<p>SocketXP has a built-in SSH public key management tool, that automates SSH public key management or syncing it between your Ubuntu Linux system and the SSH web client.  It even cleans up the key immediately, so that a new public key setup is required for the next login attempt by the same user.</p>
+<p>For better security, you can even disable password based authentication completely on your Ubuntu Linux SSH server.  But, if you prefer to use password based authentication, then select the &ldquo;Password authentication&rdquo; option during the login prompt in the web portal.  The default option is &ldquo;SSH Public Key Authentication.&rdquo;</p>
+<h2 id="need-assistance">Need Assistance?</h2>
+<p>If you are facing issues with using the SocketXP Remote Access Solution and need assistance, or you have a query that needs to be answered, please feel free to reach out to us.  We&rsquo;ll get back to you as soon as possible.  Please email us at: <a href="%22support@socketxp.com%22">support@socketxp.com</a></p>
+<h2 id="socketxp-features">SocketXP Features:</h2>
+<p><a href="/socketxp-iot-device-management-platform">SocketXP IoT Device Management and Remote Access Platform</a> provides the following feature that simplifies <a href="/iot/iot-device-management-platform">remote device management, access, control and monitoring</a>.</p>
+<ul>
+<li><a href="/iot-remote-access">SocketXP IoT Remote Access Solution</a></li>
+<li><a href="/iot/remote-access-ssh-from-anywhere/">Remote SSH Access from anywhere</a></li>
+<li><a href="/iot/remote-access-ssh-from-anywhere/">Remote File Transfer - SFTP/SCP</a></li>
+<li><a href="/iot/connect-iot-remote-desktop-xrdp-over-internet">Remote VNC Desktop Access - RDP/VNC</a></li>
+<li><a href="/iot-remote-monitoring">Remote IoT Device Monitoring</a></li>
+<li><a href="/iot-asset-tracking">Remote Asset Live Tracking</a></li>
+<li><a href="/iot-ota-update">Remote IoT Software OTA Update</a></li>
+</ul>
+<h2 id="socketxp-scaling-and-performance">SocketXP Scaling and Performance</h2>
+<p>SocketXP IoT Cloud Platform can easily support 100K or more devices per customer account. SocketXP IoT Gateway is a cloud native application that has the capability to grow to cloud scale on demand.</p>
+<p>If your requirements are unique or have a question regarding customizing our solution to your requirements, please write to us at: <a href="%22support@socketxp.com%22">support@socketxp.com</a></p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>The <a href="/iot-remote-access">SocketXP Remote Access Solution</a> discussed in this article is a secure method to transfer files to your IoT devices behind NAT router and Firewall or connected via a cellular network.  The file data will be encrypted using SSH when transmitted over the internet using SocketXP.</p>
+<p>SSH uses the same cryptography technology used by banks and governments to exchange highly confidential data over the internet.</p>
+<p>The data transferred gets encrypted end-to-end between the SSH client and the SSH server.</p>
+<p>SocketXP has no way to decrypt or eavesdrop your encrypted data without knowing your SSH private keys.  SocketXP merely acts as an online reverse proxy server for your encrypted data traffic transmitted through the SSH connection.</p>
+<h2 id="iot-remote-ssh-security---dos-and-donts">IoT Remote SSH Security - Do&rsquo;s and Don&rsquo;ts</h2>
+<h2 id="what-is-iot">What is IoT</h2>
+<p>IoT means Internet of Things.  The term IoT refers to the devices that are connected to the internet. </p>
+<p>Today, almost all electrical and electronic gadgets at home such as your air conditioner, refrigerator, washing machine, light bulbs, fans, and security video cameras can be connected to the internet using home automation devices or IoT devices.</p>
+<p>Automobiles such as cars, trucks, trains, airplanes and ships are connected to the internet through IoT devices to track the movement and operation of these vehicles.</p>
+<p>Even industrial heavy machineries are connected to the internet via the IoT devices.  Sensors are added to the machineries or placed at various locations in a plant to monitor the performance and operation of these machineries.</p>
+<p>A simple IoT device based IoT device can be used to monitor, control and operate smart electronic gadgets and electrical appliances in your home or factory.</p>
+<h2 id="remote-ssh-access-to-iot-devices">Remote SSH access to IoT devices</h2>
+<p>The primary reason why you deployed these IoT devices and connected them to the internet was to monitor, track and operate these devices from any remote locations.</p>
+<p>Sometimes you need a way to gain access to those IoT devices for troubleshooting, configuration updates, and other operational tasks.</p>
+<p>For example, a sensor device deployed at a factory that is hundreds of miles away is having trouble measuring the factory temperature.</p>
+<p>You can use <a href="/iot/create-secure-reverse-ssh-tunnel-to-iot-devices/">secure remote access tunnels</a> to open and quickly start a session to that sensor device.</p>
+<p>After you have identified the problem (for example, a misconfiguration or disk full error), you can reset the configuration, delete unwanted files or logs history and restart the sensor device through the same session.</p>
+<p>In the  traditional methods of troubleshooting you would typically wait until the next day to send a technician to the factory to investigate the sensor device. </p>
+<p>But remote access using secure tunneling (using SocketXP) decreases incident response and recovery time and operational costs.</p>
+<p>But gaining remote access to IoT devices is no simple task.</p>
+<p>So often people take shortcuts and perform quick hacks on routers/firewall settings to permit internet traffic into the corporate network.</p>
+<p>In the next section, we&rsquo;ll discuss about some of these unsafe practices and the security risks associated with such configuration options.</p>
+<h2 id="insecure-methods-used-to-remotely-access-iot-devices">Insecure methods used to remotely access IoT devices</h2>
+<p>IoT devices in industries, factories, offices and homes are placed behind a firewall and NAT(Wifi Router or Gateway Router). </p>
+<p>IoT devices are always assigned a Local IP address using mechanisms such as DHCP.  The local IP addresses are usually assigned in the 10.X.X.X  or 192.X.X.X range. </p>
+<p>IoT devices do not have publicly reachable IP addresses assigned to them.</p>
+<p>The IoT devices behind the firewall can talk to servers on the internet (via the gateway router) but not the other way around. </p>
+<p>This is because you want to prevent your IoT devices from being accessed from the internet by unwanted people or hackers.</p>
+<p>So to gain remote access from the internet to IoT devices in your home or factory is not easy and straightforward.</p>
+<p>Many people would practice the unsafe method of opening up ports (SSH port 22 or HTTP/HTTPS ports 80/443) in their firewall settings(ACL rules) or gateway router NAT configuration to allow a particular traffic to sneak into the local network. </p>
+<p>Then they would use Dynamic DNS (DDNS) solutions to track the non-static public IP address of the gateway router. </p>
+<p>This method is prone for errors and would create a security risk for your IoT installation. </p>
+<p>Online hackers could scan such open ports and try sneaking into your local network and servers.</p>
+<p>The common myth or the misunderstanding here is that, people falsely believe that as long as they use a secure shell connection (SSH) everything going to that port 22 is safe.</p>
+<p>But they fail to understand that they have left a door to their industrial, corporate or home network wide open for any strangers to sneak in without being noticed.</p>
+<p>The same door will be shared by hackers and your secure SSH session alike.</p>
+<p>The problem is not in the SSH session but in the door you left wide open for anyone to sneak in.</p>
+<h2 id="why-socketxp-iot-remote-access-solution-is-more-secure">Why SocketXP IoT Remote Access Solution Is More Secure?</h2>
+<p><a href="/socketxp-iot-device-management-platform">SocketXP IoT Remote Access and Device Management Platform</a> provides <a href="/iot-remote-access">secure remote access to your remote IoT devices</a>,  that <a href="/iot/remote-access-ssh-without-port-forwarding/">doesn&rsquo;t require setting up port-forwarding on your WiFi router or firewall</a>.</p>
+<p>SocketXP solution works without making any changes to your WiFi router or firewall settings.</p>
+<p>No hole-punching or port-forwarding setup or back-door opening required.</p>
+<p><a href="/">SocketXP IoT Platform</a>, unlike all other vendor solutions, does not open up your device ports to the internet. Therefore, port scanners and hackers cannot scan your device ports (SSH or HTTP or VNC ports).</p>
+<p>SocketXP IoT Platform protects and handles all direct attacks from the internet, eliminating unnecessary traffic from the internet reaching your IoT devices.</p>
+<p>SocketXP connects users with remote devices over secure SSL/TLS connections(vpn tunnels).</p>
+<p>This is the same technology used by the banks and Governments to exchange confidential data securely over the internet.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

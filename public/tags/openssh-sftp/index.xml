@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenSSH SFTP on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/openssh-sftp/</link>
+    <description>Recent content in OpenSSH SFTP on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/openssh-sftp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Securely Transfer Files to your Remote IoT Devices - A Step-by-Step Guide</title>
+      <link>http://localhost:51627/iot/remote-iot-device-secure-file-transfer-sftp-scp/</link>
+      <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-iot-device-secure-file-transfer-sftp-scp/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to securely transfer files to and from your remote IoT or embedded Linux devices using SCP/SFTP.&lt;/p&gt;&#xA;&lt;p&gt;The Internet of Things (IoT) has revolutionized the way we interact with the world around us.&lt;/p&gt;&#xA;&lt;p&gt;With the ability to connect and control devices from anywhere in the world, IoT technology has brought convenience and efficiency to our daily lives.&lt;/p&gt;&#xA;&lt;p&gt;However, with this increased connectivity comes the need for secure transfer of file to/from these devices. One way to achieve this is through the use of &lt;a href=&#34;http://localhost:51627/iot/secure-file-transfer-sftp-scp&#34;&gt;SFTP or SCP&lt;/a&gt; tools.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

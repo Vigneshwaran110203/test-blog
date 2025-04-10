@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Websocket Server Client on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/websocket-server-client/</link>
+    <description>Recent content in Websocket Server Client on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/websocket-server-client/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remote Access Websocket Server from the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-websocket-server-from-internet/</link>
+      <pubDate>Tue, 10 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-websocket-server-from-internet/</guid>
+      <description>&lt;p&gt;In this tutorial, we will discuss how to setup remote access to a websocket server in your local machine so that you can connect to the websocket securely over the internet.&lt;/p&gt;&#xA;&lt;p&gt;Whether you are a coding enthusiast, a DIY enthusiast, or just curious about writing web applications for &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;IoT and remotely accessing&lt;/a&gt; it, this article will provide you with a step-by-step instructions on how to remotely connect to a websocket app running in your IoT over the internet.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

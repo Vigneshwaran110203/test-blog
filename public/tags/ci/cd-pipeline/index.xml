@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CI/CD Pipeline on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/ci/cd-pipeline/</link>
+    <description>Recent content in CI/CD Pipeline on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/ci/cd-pipeline/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IoT DevOps Automation: Streamlining Your IoT Development Process
+</title>
+      <link>http://localhost:51627/iot/iot-devops-automation/</link>
+      <pubDate>Fri, 12 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/iot-devops-automation/</guid>
+      <description>&lt;p&gt;The rise of the Internet of Things(IoT) has brought with it a new set of challenges for developers and operations teams.&lt;/p&gt;&#xA;&lt;p&gt;With potentially millions of devices to manage, traditional DevOps practices may not be enough.&lt;/p&gt;&#xA;&lt;p&gt;In this article, we’ll take a closer look at how IoT DevOps automation tools (such as OTA update tool) that are part of an &lt;a href=&#34;http://localhost:51627/iot/iot-device-management-platform&#34;&gt;IoT device management platform&lt;/a&gt;, can help overcome these challenges.&lt;/p&gt;&#xA;&lt;p&gt;We’ll also explore the benefits of IoT DevOps automation and how it can help streamline your IoT development process.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

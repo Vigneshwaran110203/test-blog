@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.content img{
+    @apply w-80
+}
+
+.single-page-blog-content h2{
+    @apply text-primary font-bold scroll-m-20 pt-6
+}
+
+.single-page-blog-content h3{
+    @apply text-gray_color font-semibold scroll-m-20 pt-4
+}
+
+.single-page-blog-content ol{
+    @apply list-decimal list-outside space-y-2 xl:ml-4
+}
+
+.single-page-blog-content ul{
+    @apply list-decimal list-outside space-y-2
+}
+
+.single-page-blog-content ul{
+    @apply list-disc pl-5 space-y-2
+}
+
+.single-page-blog-content a{
+    @apply text-primary font-medium
+}
+
+.single-page-blog-content img{
+    @apply mx-auto py-4 w-full
+}
+
+.toc ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.toc li{
+    margin-bottom: 8px; /* Adds space between TOC items */
+}
+
+.toc ul > li > ul{
+    @apply mt-2 
+}
+
+.toc ul > li > ul > li a{
+    @apply text-gray_color text-sm
+}
+
+.toc a{
+    @apply text-primary font-medium no-underline
+}
+
+.toc a:hover {
+    @apply text-black
+}
+
+code{
+    @apply text-primary font-medium text-lg
+}
+
+pre{
+    @apply p-4 rounded overflow-x-auto my-2
+}
+
+pre>code>span{
+    @apply text-white text-sm font-light leading-[1.75]
+}

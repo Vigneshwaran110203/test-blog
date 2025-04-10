@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang HTTP Web Server App on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/golang-http-web-server-app/</link>
+    <description>Recent content in Golang HTTP Web Server App on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/golang-http-web-server-app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remote Access Golang Web Server App from Internet</title>
+      <link>http://localhost:51627/iot/remote-access-golang-web-server-app-from-internet/</link>
+      <pubDate>Mon, 30 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-golang-web-server-app-from-internet/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s assume you have a Golang web server application that runs in your personal laptop or in a server or in a Raspberry Pi in your office LAN network.&lt;/p&gt;&#xA;&lt;p&gt;Anyone outside of your office network cannot access the Golang web server application because the application runs in your local network.&lt;/p&gt;&#xA;&lt;p&gt;Suppose, let&amp;rsquo;s say, you want to expose the Golang web service app to the internet, so that your customers or remote employees can access the Golang web app from the internet.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

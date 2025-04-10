@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SSH Private Key on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/ssh-private-key/</link>
+    <description>Recent content in SSH Private Key on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/ssh-private-key/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automate SSH Key Management and Control with SocketXP</title>
+      <link>http://localhost:51627/iot/socketxp-ssh-key-management-platform/</link>
+      <pubDate>Thu, 30 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/socketxp-ssh-key-management-platform/</guid>
+      <description>&lt;p&gt;In today&amp;rsquo;s interconnected world, &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell&#34;&gt;Secure Shell (SSH)&lt;/a&gt; is fundamental to &lt;a href=&#34;http://localhost:51627/iot-remote-access&#34;&gt;secure remote access&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;SSH password based authentication is vulnerable to attacks and generally not recommended for production usecases.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:51627/iot/configure-setup-ssh-public-keys-right-way/&#34;&gt;SSH Public Private key based authentication&lt;/a&gt; is a secure and recommended method for production usecases.&lt;/p&gt;&#xA;&lt;p&gt;But managing SSH keys across a growing infrastructure can be a nightmare.&lt;/p&gt;&#xA;&lt;p&gt;SocketXP simplifies this complexity, offering a robust SSH Key Management Solution that empowers you to control, automate, and secure your SSH access.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

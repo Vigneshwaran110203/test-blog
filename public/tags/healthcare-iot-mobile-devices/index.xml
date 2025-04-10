@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Healthcare IoT Mobile Devices on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/healthcare-iot-mobile-devices/</link>
+    <description>Recent content in Healthcare IoT Mobile Devices on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/healthcare-iot-mobile-devices/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Medical Device Remote Access and Management Platform</title>
+      <link>http://localhost:51627/iot/medical-device-remote-access-management-platform/</link>
+      <pubDate>Mon, 04 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/medical-device-remote-access-management-platform/</guid>
+      <description>&lt;p&gt;Remote access and management of medical devices, often connected through secure networks, empower vendors and healthcare device manufacturers to remotely monitor, control, and access medical devices at scale.  It also enables remote maintenance, debugging and updates of medical equipments.&lt;/p&gt;&#xA;&lt;p&gt;These medical devices, when managed properly over its lifetime, will play a pivotal role in shaping the future of healthcare industry, ultimately improving patient outcomes and reducing healthcare disparities.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:51627/&#34;&gt;SocketXP is an IoT device management and remote access platform&lt;/a&gt; that can be used to remotely access and manage medical devices, IoT devices, or any embedded Linux devices at scale.  Try &lt;a href=&#34;http://localhost:51627/&#34;&gt;SocketXP IoT Remote Access and Device Management Platform&lt;/a&gt; for free.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

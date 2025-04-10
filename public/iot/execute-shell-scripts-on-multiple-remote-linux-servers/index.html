@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51627&amp;path=livereload" data-no-instant defer></script>
+  <title>How to Execute Shell Scripts on Multiple Linux Servers</title>
+  
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+  <header class="text-4xl text-blue-600">My Blog</header>
+  
+    <div class="flex flex-col items-center justify-center bg-background p-8 lg:h-80 large:px-[15%]">
+        <div class="lg:w-3/5 text-center space-y-6">
+            <span>
+                <a href="/" class="text-primary font-semibold text-sm">Home</a> &gt;
+                <a href="/iot" class="text-primary font-semibold text-sm">Iot</a> &gt;
+                <span class="text-gray_color text-sm font-normal">How to Execute Shell Scripts on Multiple Linux Servers</span>
+            </span>
+            <h1 class="text-4xl font-semibold text-primary leading-snug">How to Execute Shell Scripts on Multiple Linux Servers</h1>
+            <div class="w-fit flex flex-col lg:flex-row items-center justify-center gap-2 mx-auto">
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Author: </span>Ganesh Velrajan
+                </p>
+                <span class="hidden lg:block">|</span>
+                <p class="text-sm font-medium text-gray_color">
+                    <span class="font-normal text-black_color">Last Updated: </span>Aug 9, 2021
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <article class="prose single-blog relative large:px-[15%] space-y-8" style="padding-top: 0px;">
+        <div class="flex flex-col xl:flex-row justify-center items-start gap-8 lg:gap-4 relative w-full">
+            
+            
+            <div class="table-of-content xl:fixed top-28 lg:left-16 large:left-36 lg:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 hidden xl:block">
+                <h5 class="font-bold">Table of Content</h5>
+                <div class="text-sm toc space-y-1 [&>ul]:space-y-1 [&_ul_ul]:pl-4 [&_ul_ul]:border-l-2 [&_ul_ul]:border-gray-300 [&_ul_ul]:ml-0 overflow-y-auto xl:max-h-96 large:max-h-fit"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-remote-job">What is a Remote Job</a></li>
+    <li><a href="#usecases">Usecases:</a></li>
+    <li><a href="#pre-requisites">Pre-Requisites</a></li>
+    <li><a href="#remote-jobs-or-ota-deployment-types">Remote Jobs or OTA Deployment Types</a></li>
+    <li><a href="#1-script-file-deployment">1. Script File Deployment</a>
+      <ul>
+        <li><a href="#step-1">Step #1:</a></li>
+        <li><a href="#step-2">Step #2:</a></li>
+        <li><a href="#step-3">Step #3:</a></li>
+        <li><a href="#step-4">Step #4:</a></li>
+        <li><a href="#sample-script-files-for-various-use-cases">Sample Script Files For Various Use Cases</a></li>
+        <li><a href="#rest-apis">REST APIs</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-config-file-deployment">2. Config File Deployment</a>
+      <ul>
+        <li><a href="#step-1-1">Step #1:</a></li>
+        <li><a href="#step-2-1">Step #2:</a></li>
+        <li><a href="#step-3-1">Step #3:</a></li>
+        <li><a href="#step-4-1">Step #4:</a></li>
+        <li><a href="#step-5">Step #5:</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+            </div>
+
+            
+            <div class="w-full lg:w-3/5 large:w-3/5 space-y-4 single-page-blog-content mx-auto">
+                
+                <div class="pt-0 pb-4 lg:pb-8">
+                    <a href="http://localhost:51627/iot/execute-shell-scripts-on-multiple-remote-linux-servers/" title="How to Execute Shell Scripts on Multiple Linux Servers">
+                        <img src="/assets/img/execute-remote-commands-multiple-linux-server.jpg" alt="" class="mx-auto w-[600px]">
+                    </a>
+                </div>
+                
+                <div class="xl:w-1/5 large:w-1/5 bg-background p-4 rounded-md space-y-4 block xl:hidden">
+                    <h5 class="font-bold">Table of Content</h5>
+                    <div class="text-sm toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-remote-job">What is a Remote Job</a></li>
+    <li><a href="#usecases">Usecases:</a></li>
+    <li><a href="#pre-requisites">Pre-Requisites</a></li>
+    <li><a href="#remote-jobs-or-ota-deployment-types">Remote Jobs or OTA Deployment Types</a></li>
+    <li><a href="#1-script-file-deployment">1. Script File Deployment</a>
+      <ul>
+        <li><a href="#step-1">Step #1:</a></li>
+        <li><a href="#step-2">Step #2:</a></li>
+        <li><a href="#step-3">Step #3:</a></li>
+        <li><a href="#step-4">Step #4:</a></li>
+        <li><a href="#sample-script-files-for-various-use-cases">Sample Script Files For Various Use Cases</a></li>
+        <li><a href="#rest-apis">REST APIs</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-config-file-deployment">2. Config File Deployment</a>
+      <ul>
+        <li><a href="#step-1-1">Step #1:</a></li>
+        <li><a href="#step-2-1">Step #2:</a></li>
+        <li><a href="#step-3-1">Step #3:</a></li>
+        <li><a href="#step-4-1">Step #4:</a></li>
+        <li><a href="#step-5">Step #5:</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav></div>
+                </div>
+                <p>When you have hundreds or thousands of linux servers or embedded Linux devices deployed in the field, it becomes very hard, challenging and time consuming to manually remote SSH login to each one of those Linux servers to run the same set of shell commands to re-configure, update software, or execute a script.</p>
+<p>SocketXP OTA (Over The Air) or Remote Job Automation feature automates and simplifies the execution of shell commands or scripts on multiple Linux servers over SSH.</p>
+<p>SocketXP OTA or Remote Job Automation feature eliminates the need to manually SSH login to multiple remote Linux devices to execute shell commands to perform (device software management) tasks such as re-configuring, updating software, debugging or simply running a shell script.</p>
+<p>SocketXP is absolutely free to try for all users.</p>
+<h2 id="what-is-a-remote-job">What is a Remote Job</h2>
+<p>A Remote Job is nothing but a Linux shell command or a shell script that needs to be scheduled to run on single or multiple Linux servers or IoT devices.</p>
+<h2 id="usecases">Usecases:</h2>
+<p>In this section, we’ll discuss how to create and deploy SocketXP Remote Jobs (OTA updates) to execute shell commands or scripts on multiple remote linux servers for the following usecases:</p>
+<ul>
+<li>Execute a shell command or a shell script in multiple Linux servers</li>
+<li>Execute a Python program or any program or application in multiple IoT devices</li>
+<li>Update configuration file in multiple Linux devices</li>
+<li>Update the application software running in multiple Linux devices</li>
+<li>Update software packages or tools (such as Java, Python, NodeJS, NPM) installed in a group of IoT devices.</li>
+</ul>
+<h2 id="pre-requisites">Pre-Requisites</h2>
+<p>You need to install the SocketXP remote SSH agent on your Linux servers or IoT devices to securely remote access them from anywhere in the world.</p>
+<p>Follow the instructions to setup <a href="https://www.socketxp.com/iot/remote-access-iot-ssh-over-the-internet/">remote SSH access for your IoT or Linux server over the internet</a>.</p>
+<p>It takes less than a minute to <a href="/download">install and setup SocketXP agent</a> on your devices using the instructions.</p>
+<h2 id="remote-jobs-or-ota-deployment-types">Remote Jobs or OTA Deployment Types</h2>
+<p>Remote Jobs or OTA deployments can be classified into two broad categories:</p>
+<ol>
+<li>Script File Deployment</li>
+<li>Config File Deployment</li>
+</ol>
+<p>In the following sections, we’ll demonstrate how to perform various device software management tasks using these two OTA deployment types.</p>
+<h2 id="1-script-file-deployment">1. Script File Deployment</h2>
+<p>When you want to run a single shell command or a set of shell commands or a shell script or a python program on multiple Linux based IoT devices(or Linux servers), you could use <code>Script File Deployment</code> to automate the task.</p>
+<p>Script File Deployment uploads the shell script or the python program from your local machine to a specific directory path in your remote IoT devices.</p>
+<p>It then executes the script execution command you specify to run the script or python program.</p>
+<p>Script File Deployment also collects the log (outputs and errors) from each one of the IoT devices in the group and presents it to you in the OTA dashboard.</p>
+<p>Here are the two IoT Devices we’ll use for this demo:</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/iot-devices-summary.png" alt="List of IoT Devices" style="max-width:80%;max-height:100%;">
+</div>
+
+<h3 id="step-1">Step #1:</h3>
+<p>Go to the <a href="https://portal.socketxp.com/#/ota">Remote Job Automation page in the portal</a>. Click the <code>Create a Deployment</code> button to create a new deployment.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/ota-deployment-summary.png" alt="Remote Job Automation deployment Summary" style="max-width:80%;max-height:100%;">
+</div>
+
+<h3 id="step-2">Step #2:</h3>
+<p>Click the <code>Script File Deployment</code> button to create a config file deployment.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/ota-deployment-type-selection.png" alt="Remote Job Automation  deployment type selection form" style="max-width:80%;max-height:100%;">
+</div>
+
+<h3 id="step-3">Step #3:</h3>
+<p>Fill in the Script File Deployment form. Provide a deployment name that describes about the deployment task. Choose a script file to upload from your local machine to your IoT devices.</p>
+<p>Also specify a destination filepath in the IoT device where the script file needs to be uploaded.</p>
+<p>Finally, specify the Device Group to apply the deployment.</p>
+<p><strong>Note:</strong>
+A deployment can be applied only to a specific device group. If you want to deploy the script file on all IoT devices that you manage, then create additional Script File Deployments for each one of the device groups.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/ota-script-deployment-form.png" alt="Remote Job Automation script file deployment form" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Now submit the deployment by clicking the <code>CREATE DEPLOYMENT</code> button in the bottom right corner.</p>
+<h3 id="step-4">Step #4:</h3>
+<p>Track the status of the deployment from the OTA deployment summary page. Click the deployment to view more details about the set of IoT devices in which the deployment is being run.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/ota-deployment-summary-script.png" alt="Remote Job Automation script deployment summary" style="max-width:80%;max-height:100%;">
+</div>
+
+<h3 id="sample-script-files-for-various-use-cases">Sample Script Files For Various Use Cases</h3>
+<p><strong>Usecase #1: To Update SocketXP Agent on your Linux Servers or IoT devices:</strong>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+#!/bin/sh 
+curl -O https://portal.socketxp.com/download/arm/socketxp && 
+chmod +wx socketxp && 
+sudo mv socketxp /usr/local/bin 
+systemctl restart socketxp
+</pre>
+You could use the sample script above to update your IoT application too. All you need to do is upload your IoT application to AWS S3 or DropBox or Google Drive. Make the artifact publicly accessible. Obtain the public URL to access your artifact from your cloud storage provider. Update the CURL command above with the appropriate public URL.</p>
+<p><strong>Usecase #2: To Install Python packages:</strong>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+#!/bin/sh 
+pip3 install psutil
+pip3 install flask
+
+</pre></p>
+<p><strong>Usecase #3: To Update a config file and restart an app</strong>
+<pre class="p-4 bg-background rounded overflow-x-auto">
+#!/bin/sh 
+echo 'MOTOR_SPEED=300 
+LED_DISPLAY=true 
+TEST_RUN=yes 
+LOG_FILE="/var/log/mylogfile.log" 
+DEBUG_LEVEL=2' > /var/lib/myapp/app.config 
+systemctl restart myapp
+</pre></p>
+<p><strong>Usecase #4: To Run a Python script/program</strong>
+You could even run a python program on your IoT devices using the Script File Deployment. Upload a python program instead of a script file and specify the script execution command as python /home/john/get_system_info.py
+For example, the following Python script could be used to retrieve system information such as CPU, Memory, and Disk Size.
+<pre class="p-4 bg-background rounded overflow-x-auto">
+# Name: get_system_info.py 
+import psutil
+import datetime
+### *** CPU FUNCTIONS ***
+# Number of logical CPUs in the system
+print ("psutil.cpu_count() = {0}".format(psutil.cpu_count()))
+### *** DISK FUNCTIONS ***
+# List of named tuples containing all mounted disk partitions
+dparts = psutil.disk_partitions()
+print("psutil.disk_partitions() = {0}".format(dparts))
+# Disk usage statistics
+du = psutil.disk_usage('/')
+print("psutil.disk_usage('/') = {0}".format(du))
+### *** MEMORY FUNCTIONS ***
+# System memory usage statistics
+mem = psutil.virtual_memory()
+print("psutil.virtual_memory() = {0}".format(mem))
+THRESHOLD = 100 * 1024 * 1024  # 100MB
+if mem.available <= THRESHOLD:
+    print("warning, available memory below threshold")
+</pre> <br>
+Need help? Please write to us at <a href="mailto:support@socketxp.com">support@socketxp.com</a> if you need any assistance with creating a script or python program for your special use-case.</p>
+<h3 id="rest-apis">REST APIs</h3>
+<p>SocketXP also provides you with REST APIs to write your own tool or application around this OTA feature. You can find the REST API documentation here.</p>
+<h2 id="2-config-file-deployment">2. Config File Deployment</h2>
+<p>When you want to update a configuration file in a group of IoT devices, you could use the Config File Deployment to automate the task.</p>
+<p>Config File Deployment simply uploads a new config file from your local machine to a specific directory path in your remote IoT devices.</p>
+<p>Here are the two IoT Devices we’ll use for this demo:</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/iot-devices-summary.png" alt="List of IoT Devices" style="max-width:80%;max-height:100%;">
+</div>
+
+<h3 id="step-1-1">Step #1:</h3>
+<p>Go to the <a href="https://portal.socketxp.com/#/ota">Remote Job Automation page in the portal</a>.  Click the <code>Create a Deployment</code> button to create a new deployment.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/ota-deployment-summary.png" alt="Remote Job Automation deployment Summary" style="max-width:80%;max-height:100%;">
+</div>
+
+<h3 id="step-2-1">Step #2:</h3>
+<p>Click the <code>Config File Deployment</code> button to create a config file deployment.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/ota-deployment-type-selection.png" alt="Remote Job Automation deployment type selection form" style="max-width:80%;max-height:100%;">
+</div>
+
+<h3 id="step-3-1">Step #3:</h3>
+<p>Fill in the Config File Deployment form. Provide a deployment name that describes about the deployment task. Choose a new config file to upload from your local machine to your IoT devices. Also specify a destination filepath in the IoT device where the config file needs to be uploaded. Finally, specify the Device Group to apply the deployment.</p>
+<p><strong>Note:</strong>
+A deployment can be applied only to a specific device group. If you want to deploy the config file on all IoT devices that you manage, then create additional Config File Deployments for each one of the device groups.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/ota-config-deployment-form.png" alt="Remote Job Automation config file deployment form" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>Now submit the deployment by clicking the <code>CREATE DEPLOYMENT</code> button in the bottom right corner.</p>
+<h3 id="step-4-1">Step #4:</h3>
+<p>Track the status of the deployment from the OTA deployment summary page</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/ota-deployment-summary-config.png" alt="Remote Job Automation config deployment summary" style="max-width:80%;max-height:100%;">
+</div>
+
+<h3 id="step-5">Step #5:</h3>
+<p>Click the deployment to see more details about the IoT devices in which the config file is being deployed.</p>
+
+<div class="entry-img mt-4" style="text-align: center;">
+    <img src="/assets/img/ota-update/ota-config-deployment-details.png" alt="Remote Job Automation config deployment summary" style="max-width:80%;max-height:100%;">
+</div>
+
+<p>You can click the “VIEW LOG” button to see the output log and error log. For Config File Deployments, which involve a simple file copy, logs will be mostly empty.</p>
+<p>If you wish, but not required, you could SSH into your devices to confirm the deployment is successful.</p>
+<pre class="p-4 bg-background rounded overflow-x-auto">temp-sensor-1$ ls /var/lib/myapp/ config.json</pre>
+<h2 id="conclusion">Conclusion:</h2>
+<p>SocketXP OTA or Remote Command Execution feature is an extremely useful tool in your devops arsenal when you have to run a shell command or script (a.k.a Remote Jobs) on multiple Linux servers.</p>
+<p>By following the steps outlined in this article, you can easily enable SSH, install SocketXP <a href="/remote-access-linux-server">Linux server Remote Access</a> agent on your Linux server, and execute command remotely on them.</p>
+<p>Managing multiple remote Linux machines or IoT devices is a breeze when you use <a href="/">SocketXP Device Management and Remote Job Automation</a> platform.</p>
+
+            </div>
+
+            
+            <div class="sales-banner mx-auto xl:fixed md:hidden lg:block top-28 lg:right-16 large:right-52 w-full lg:w-3/5 xl:w-1/5 large:w-1/6 bg-secondary text-white p-4 space-y-4 rounded-lg">
+                <h4 class="text-lg font-bold">Simplify NGINX Remote Access with SocketXP</h4>
+                <p class="text-sm font-light">
+                    SocketXP offers a seamless solution to expose your NGINX web server to the internet securely. 
+                    By establishing an SSL/TLS reverse proxy tunnel, SocketXP provides a unique public web URL, 
+                    enabling remote access without the complexities of traditional methods. Experience effortless setup, 
+                    enhanced security, and reliable connectivity with SocketXP.
+                </p>
+                <button class="bg-primary px-4 py-2 rounded-md text-base font-medium">Learn More</button>
+            </div>
+        </div>
+    </article>
+
+  <footer>© 2025</footer>
+</body>
+</html>

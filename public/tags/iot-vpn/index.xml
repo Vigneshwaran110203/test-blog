@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IoT VPN on SocketXP | IoT Device Management and Remote Access Platform</title>
+    <link>http://localhost:51627/tags/iot-vpn/</link>
+    <description>Recent content in IoT VPN on SocketXP | IoT Device Management and Remote Access Platform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51627/tags/iot-vpn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Securely Transfer Files to your Remote IoT Devices - A Step-by-Step Guide</title>
+      <link>http://localhost:51627/iot/remote-iot-device-secure-file-transfer-sftp-scp/</link>
+      <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-iot-device-secure-file-transfer-sftp-scp/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to securely transfer files to and from your remote IoT or embedded Linux devices using SCP/SFTP.&lt;/p&gt;&#xA;&lt;p&gt;The Internet of Things (IoT) has revolutionized the way we interact with the world around us.&lt;/p&gt;&#xA;&lt;p&gt;With the ability to connect and control devices from anywhere in the world, IoT technology has brought convenience and efficiency to our daily lives.&lt;/p&gt;&#xA;&lt;p&gt;However, with this increased connectivity comes the need for secure transfer of file to/from these devices. One way to achieve this is through the use of &lt;a href=&#34;http://localhost:51627/iot/secure-file-transfer-sftp-scp&#34;&gt;SFTP or SCP&lt;/a&gt; tools.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remotely Access Nvidia Jetson Nano over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-nvidia-jetson-nano-over-the-internet/</link>
+      <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-nvidia-jetson-nano-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we will show you how to configure and setup remote access to your Nvidia Jetson Nano&amp;rsquo;s Secure Shell(SSH) command line, so that you could connect to it over the internet from anywhere.&lt;/p&gt;&#xA;&lt;p&gt;We will also discuss how to securely remote connect to your Nvidia Jetson Nano based embedded Linux device using Remote Desktop Application.&lt;/p&gt;&#xA;&lt;p&gt;The &lt;a href=&#34;http://localhost:51627/iot/nvidia-jetson-nano-vs-raspberry-pi-which-one-is-better-for-your-project&#34;&gt;NVIDIA Jetson Nano&lt;/a&gt; is a small, powerful computer that can be used for robotics and many AI-based applications. It&amp;rsquo;s a popular choice for prototyping AI products and creating embedded AI solutions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Remote Access IoT SSH over the Internet</title>
+      <link>http://localhost:51627/iot/remote-access-iot-ssh-over-the-internet/</link>
+      <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51627/iot/remote-access-iot-ssh-over-the-internet/</guid>
+      <description>&lt;p&gt;In this article, we will discuss how to configure and setup remote access to your IoT Secure Shell(SSH) command line over the internet.&lt;/p&gt;&#xA;&lt;p&gt;The Internet of Things (IoT) has revolutionized the way we interact with the world around us.&lt;/p&gt;&#xA;&lt;p&gt;With the ability to connect and control devices from anywhere in the world, IoT technology has brought convenience and efficiency to our daily lives.&lt;/p&gt;&#xA;&lt;p&gt;However, with this increased connectivity comes the need for secure remote access to these devices. One way to achieve this is through the use of &lt;a href=&#34;http://localhost:51627/iot/ssh-secure-shell/&#34;&gt;Secure Shell (SSH)&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
