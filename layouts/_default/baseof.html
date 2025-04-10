@@ -4,6 +4,16 @@
   <title>{{ block "title" . }}{{ .Title }}{{ end }}</title>
   {{/*  <link rel="stylesheet" href="/css/style.css">  */}}
   <link rel="stylesheet" href="/css/output.css">
+  <script src="/js/navbar.js" defer></script>
+    <script src="/js/carousel.js" defer></script>
+    <script src="/js/sub-dropdown-menu.js" defer></script>
+    <script src="/js/toc.js" defer></script>
+    {{ if eq .Title "Pricing" }}
+          <script src="/js/pricing.js" defer></script>  
+    {{ end }}
+    {{ if eq .Title "Downloads" }}
+          <script src="/js/copy-clipboard.js" defer></script>  
+    {{ end }} 
 </head>
 <body>
   <header class="text-4xl text-blue-600">My Blog</header>
